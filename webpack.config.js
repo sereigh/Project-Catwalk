@@ -8,10 +8,16 @@ module.exports = {
     path: path.resolve(__dirname, 'public'),
   },
 
+  devServer: {
+    contentBase: path.join(__dirname, 'public'),
+    compress: true,
+    port: 3000,
+  },
+
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.jsx?/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
