@@ -2,16 +2,10 @@ const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
-  mode: "development",
+  mode: 'development',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
-  },
-
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    compress: true,
-    port: 3000,
   },
 
   module: {
@@ -24,11 +18,11 @@ module.exports = {
           options: {
             presets: [
               '@babel/preset-env',
-              '@babel/preset-react'
-            ]
-          }
-        }
-      }
-    ]
-  }
-}
+              '@babel/preset-react',
+            ],
+          },
+        },
+      },
+    ],
+  },
+};
