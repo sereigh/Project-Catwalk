@@ -6,6 +6,7 @@
     "build": "webpack",
     "watch": "webpack -w",
     "start": "live-server",
+    "lint": "npx eslint ./client",
     "test": "jest"
   },
   "devDependencies": {
