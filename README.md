@@ -7,13 +7,13 @@ Modernize a client-facing retail web-portal to increase sales.
 ## Team Members
 
 - [Laura]
-https://github.com/VioletGlen/FEC.git
+https://github.com/VioletGlen
 - [Samuel]
-https://github.com/SamuelCho-ubf/FEC.git
+https://github.com/SamuelCho-ubf
 - [Kyle]
-https://github.com/KyleJohnson42/FEC.git
+https://github.com/KyleJohnson42
 - [Krista]
-https://github.com/sereigh/FEC.git
+https://github.com/sereigh
 
 ## Table of Contents
 
