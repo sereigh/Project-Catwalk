@@ -13,6 +13,7 @@
     "@babel/core": "^7.13.1",
     "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
+    "@webpack-contrib/eslint-config-webpack": "^3.0.0",
     "babel-loader": "^8.2.2",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
