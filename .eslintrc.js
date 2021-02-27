@@ -6,9 +6,9 @@ module.exports = {
     jest: true
   },
   extends: [
+    'airbnb',
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
-    'airbnb',
     '@webpack-contrib/eslint-config-webpack'
   ],
   settings: {
@@ -23,8 +23,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 2018,
-    sourceType: 'module',
+    ecmaVersion: 6,
   },
   plugins: [
     'react',
