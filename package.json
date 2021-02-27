@@ -6,7 +6,6 @@
     "build": "webpack",
     "watch": "webpack -w",
     "start": "nodemon server",
-    "lint": "npx eslint ./client",
     "test": "jest"
   },
   "devDependencies": {
