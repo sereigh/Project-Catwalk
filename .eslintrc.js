@@ -33,17 +33,6 @@ module.exports = {
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-console": "off",
-    "class-methods-use-this": ["error", {
-      "expectMethods": [
-        "render",
-        "getInitialState",
-        "getDefaultProps",
-        "getChildContext",
-        "componentDidMount",
-        "shouldComponentUpdate",
-        "componentDidUpdate",
-        "componentWillUnmount",
-      ],
-    }],
+    "class-methods-use-this": "off",
   },
 };
