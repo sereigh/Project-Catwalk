@@ -14,8 +14,7 @@ class App extends React.Component {
         {/* <span>Hello, world!</span> */}
         {/* <Overview />
         <RelatedItemsAndComparison />
-        <QuestionsAndAnswers />
-        <RatingsAndReviews /> */}
+        <QuestionsAndAnswers />*/}
         <ReviewsListContainer />
       </>
     );
