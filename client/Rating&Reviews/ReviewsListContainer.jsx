@@ -1,15 +1,18 @@
 import React from 'react';
 
+import ReviewsList from './ReviewsList.jsx';
+
 class ReviewsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'relevance'
+      selected: 'relevance',
+      reviews: []
     };
   }
 
   render() {
-    const {selected} = this.state
+    const {reviews, selected} = this.state
 
     return (
       <>
@@ -21,7 +24,7 @@ class ReviewsListContainer extends React.Component {
             <option value='newest'>newest</option>
           </select>
         </span>
-        <div>REVIEWS LIST HERE</div>
+        <ReviewsList reviews={reviews} />
         <button type='button'>More Reviews</button>
         <button type='button'>Add A Review +</button>
       </>
