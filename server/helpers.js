@@ -7,7 +7,7 @@ const config = require('../config.js'); //provides API token for insertion into 
 let getProductsList = () => {
   let options = {
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfp/products?page=1&count=5`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
@@ -19,8 +19,11 @@ let getProductsList = () => {
       //format: [{},{},{}] array of nested objs
       return (data);
     })
+    .catch((error) => {
+      console.log(error);
+    })
   //alt: axios.get(url[, config])
-  //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfp/products?page=1&count=5`, options)
+  //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`, options)
 }
 
 //Products GET /products/:product_id Returns all product level information for a specified product id
@@ -28,7 +31,7 @@ let getProductsList = () => {
 let getProductById = (id) => {
   let options = {
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfp/products/${id}?product_id=${id}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`,
     headers: {
       'User-Agent': 'request',
       'Authorization': `token ${config.TOKEN}`
@@ -40,8 +43,11 @@ let getProductById = (id) => {
       //format: {...} object w nested collections
       return (data);
     })
+    .catch((error) => {
+      console.log(error);
+    })
   //alt: axios.get(url[, config])
-  //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfp/products/${id}?product_id=${id}`, options)
+  //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`, options)
 }
 
 module.exports = {
