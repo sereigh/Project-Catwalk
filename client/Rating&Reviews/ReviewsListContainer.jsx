@@ -1,13 +1,14 @@
 import React from 'react';
 
 import ReviewsList from './ReviewsList.jsx';
+import dummyReviews from './dummyReviews';
 
 class ReviewsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: 'relevance',
-      reviews: []
+      reviews: dummyReviews
     };
   }
 
