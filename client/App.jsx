@@ -33,8 +33,9 @@ class App extends React.Component {
   }
 
   retrieveSelectProductInfo() {
+    const { selectProductId } = this.state;
     axios
-      .get(`/product/${this.state.selectProductId}`)
+      .get(`/product/${selectProductId}`)
       .then((data) => {
         this.setState({
           selectProductInfo: data
@@ -46,16 +47,20 @@ class App extends React.Component {
   }
 
   render() {
+    const { selectProductId } = this.state;
+    const { selectProductInfo } = this.state;
+    const { productId } = this.state;
+    const { productList } = this.state;
     return (
       <div>
         <span>Hello, world!</span>
-        <p>{this.state.selectProductId}</p>
+        <p>{selectProductId}</p>
         <br />
-        <p>{this.state.selectProductInfo}</p>
+        <p>{selectProductInfo}</p>
         <br />
-        <p>{this.state.productId}</p>
+        <p>{productId}</p>
         <br />
-        <p>{this.state.productList}</p>
+        <p>{productList}</p>
         {/* <Overview /> */}
         {/* <RelatedItemsAndComparison /> */}
         {/* <QuestionsAndAnswers /> */}
