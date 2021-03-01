@@ -2,12 +2,11 @@ import React from 'react';
 
 import ReviewListEntry from './ReviewListEntry.jsx';
 
-const ReviewsList = ({reviews}) => {
-  return (
-    <div>
-      {reviews.map(review => <ReviewListEntry review={review} />)}
-    </div>
-  );
-}
+const ReviewsList = ({reviews}) => (
+  <div>
+    {reviews.map(review => <ReviewListEntry key={review} review={review} />)}
+  </div>
+);
+
 
 export default ReviewsList;
