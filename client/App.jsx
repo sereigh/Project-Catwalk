@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ReviewsListContainer from './Rating&Reviews/ReviewsListContainer.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -9,11 +11,11 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <span>Hello, world!</span>
+        {/* <span>Hello, world!</span> */}
         {/* <Overview />
         <RelatedItemsAndComparison />
-        <QuestionsAndAnswers />
-        <RatingsAndReviews /> */}
+        <QuestionsAndAnswers />*/}
+        <ReviewsListContainer />
       </>
     );
   }
