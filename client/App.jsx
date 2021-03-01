@@ -1,18 +1,22 @@
 import React from 'react';
-import Axios from 'axios';
-import Overview from './Overview/Overview'
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productList: {},
-      productId: 1
+      productId: 1,
       selectProductId: 1,
       selectProductInfo: {}
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
+  }
+
+  componentDidMount() {
+    this.retrieveSelectProductInfo();
+    this.retrieveAllProductInfo();
   }
 
   retrieveAllProductInfo() {
@@ -41,18 +45,17 @@ class App extends React.Component {
       })
   }
 
-  componentDidMount() {
-    this.retrieveSelectProductInfo();
-    this.retrieveAllProductInfo();
-  }
-
   render() {
     return (
       <div>
         <span>Hello, world!</span>
         <p>{this.state.selectProductId}</p>
-        <br></br>
+        <br />
         <p>{this.state.selectProductInfo}</p>
+        <br />
+        <p>{this.state.productId}</p>
+        <br />
+        <p>{this.state.productList}</p>
         {/* <Overview /> */}
         {/* <RelatedItemsAndComparison /> */}
         {/* <QuestionsAndAnswers /> */}
