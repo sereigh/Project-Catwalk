@@ -21,7 +21,7 @@ class App extends React.Component {
 
   retrieveAllProductInfo() {
     axios
-      .get(`/product`)
+      .get(`/products`)
       .then((data) => {
         this.setState({
           productList: data
@@ -35,7 +35,7 @@ class App extends React.Component {
   retrieveSelectProductInfo() {
     const { selectProductId } = this.state;
     axios
-      .get(`/product/${selectProductId}`)
+      .get(`/products/${selectProductId}`)
       .then((data) => {
         this.setState({
           selectProductInfo: data
