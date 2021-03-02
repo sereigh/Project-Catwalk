@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ReviewsList from './ReviewsList.jsx';
 
@@ -42,6 +43,30 @@ class ReviewsListContainer extends React.Component {
       </>
     )
   }
+}
+
+ReviewsListContainer.propTypes = {
+  handleSort: PropTypes.func.isRequired,
+  totalReviews: PropTypes.number.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    review_id: PropTypes.number,
+    rating: PropTypes.number,
+    summary: PropTypes.string,
+    recommend: PropTypes.bool,
+    response: PropTypes.string,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    reviewer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string
+    }))
+  }))
+}
+
+ReviewsListContainer.defaultProps = {
+  reviews: []
 }
 
 export default ReviewsListContainer;

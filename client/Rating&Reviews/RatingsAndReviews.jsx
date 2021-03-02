@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import ReviewsListContainer from './ReviewsListContainer.jsx';
-import dummyReviews from './dummyReviews';
-
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -68,10 +67,14 @@ class RatingsAndReviews extends React.Component {
     return (
       <>
         {/* <RatingsContainer /> */}
-        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort}/>
+        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort} />
       </>
     )
   }
+}
+
+RatingsAndReviews.propTypes = {
+  productId: PropTypes.number.isRequired
 }
 
 export default RatingsAndReviews;
