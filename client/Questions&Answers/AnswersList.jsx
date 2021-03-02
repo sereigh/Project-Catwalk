@@ -3,12 +3,8 @@ import React from 'react';
 const AnswersList = () => (
   <>
     <span>
-      <strong>
-        A:
-      </strong>
-      <p>
-        Some kind of answer.
-      </p>
+      <strong>A:  </strong>
+      Some kind of answer.
     </span>
   </>
 );
