@@ -12,3 +12,5 @@ const AnswersList = () => (
     </span>
   </>
 );
+
+export default AnswersList;
