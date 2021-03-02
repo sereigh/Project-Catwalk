@@ -1,18 +1,15 @@
 import React from 'react';
 
+import Stars from './Stars.jsx';
+import NameAndDate from './NameAndDate.jsx';
+import Summary from './Summary.jsx';
+import PhotoList from './PhotoList.jsx';
+import Response from './Response.jsx';
+
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
-
-  convertDate(date) {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const dateObj = new Date(date);
-    const day = dateObj.getDate() + 1;
-    const month = months[dateObj.getMonth()];
-    const year = dateObj.getFullYear();
-    return `${month} ${day}, ${year}`;
   }
 
   render() {
@@ -20,21 +17,24 @@ class ReviewListEntry extends React.Component {
 
     return (
       <div className='review'>
-        <span>Rating:{review.rating}</span>
-        <span className='name-and-date'>{`${review.reviewer_name  }, ${  this.convertDate(review.date)}`}</span>
+        <Stars rating={review.rating} />
+        <NameAndDate name={review.reviewer_name} date={review.date} />
         <br />
-        <span>Summary:{review.summary}</span>
+        <Summary summary={review.summary} />
         <br />
         <p>{review.body}</p>
-        {review.photos.map(photo => <img key={photo.id} className='photo' src={photo.url} alt='product' />)}
+        <PhotoList photos={review.photos} />
         <br />
         <span>{review.recommend ? 'I recommend this product' : ''}</span>
-        <div>{review.response ? `Response:${  review.response}` : ''}</div>
+        <Response response={review.response} />
+        <br />
         <span>
           Helpful?
           <span> Yes ({review.helpfulness})</span>
           <span> | </span>
           <span>No</span>
+          <span> | </span>
+          <span>Report</span>
         </span>
       </div>
     )
