@@ -1,24 +1,20 @@
-const axios = require('axios'); //[https://github.com/axios/axios]
-const config = require('../config.js'); //provides API token for insertion into Authorization header
+const axios = require('axios');
+const config = require('../config.js');
 
 //Products GET /products Retrieves the list of products
-//param: page (integer) Selects the page of results to return. Default 1.
-//param: count (integer) Specifies how many results per page to return. Default 5
 let getProductsList = () => {
   let options = {
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
-    //url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
+    //param: page (integer) Selects the page of results to return. Default 1.
+    //param: count (integer) Specifies how many results per page to return. Default 5
     headers: {
-      //'User-Agent': 'request',
       Authorization: `${config.TOKEN}`
     }
   }
   return (
     axios(options)
       .then((data) => {
-        //console.log(data);
-        //format: [{},{},{}] array of nested objs
         return (data);
       })
       .catch((error) => {
@@ -30,41 +26,120 @@ let getProductsList = () => {
 }
 
 //Products GET /products/:product_id Returns all product level information for a specified product id
-//param: product_id (integer) Required ID of the Product requested
 let getProductById = (id) => {
   let options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`,
+    //param: product_id (integer) Required ID of the Product requested
     headers: {
-      //'User-Agent': 'request',
       Authorization: `${config.TOKEN}`
     }
   }
   return (
     axios(options)
       .then((data) => {
-        //console.log(data);
-        //format: {...} object w nested collections
         return (data);
       })
       .catch((error) => {
         console.log(error);
       })
   )
-  //alt: axios.get(url[, config])
-  //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`, options)
 }
+
+//Products GET /products/:product_id/styles Returns all styles available for the given product
+let getStylesById = (id) => {
+  let options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles?product_id=${id}`,
+    //param: product_id (integer) Required ID of the Product requested
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios(options)
+      .then((data) => {
+        return (data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
+//Products GET /products/:product_id/related Returns the id's of products related to the product specified
+let getRelatedProducts = (id) => {
+  let options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related?product_id=${id}`,
+    //param: product_id (integer) Required ID of the Product requested
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios(options)
+      .then((data) => {
+        return (data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
+//Reviews
+
+//Questions&Answers
+
+//Cart GET /cart Retrieves list of products added to the cart by a user
+// let getCartContents = (id) => {
+//   let options = {
+//     method: 'get',
+//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`,
+//     //param: sku_id (integer) ID for the product being added to the cart
+//     headers: {
+//       Authorization: `${config.TOKEN}`
+//     }
+//   }
+//   return (
+//     axios(options)
+//       .then((data) => {
+//         return (data);
+//       })
+//       .catch((error) => {
+//         console.log(error);
+//       })
+//   )
+// }
+
+//Cart POST /cart Adds a product to the cart
+// let postCartContents = (id) => {
+//   let options = {
+//     method: 'post',
+//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`,
+//     headers: {
+//       Authorization: `${config.TOKEN}`
+//     }
+//   }
+//
+// }
+
+//Interactions
 
 module.exports = {
   //Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
-  getProductById
+  getProductById,
+  getStylesById,
+  getRelatedProducts
   //Reviews[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/reviews.md]
 
   //Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
 
   //Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
-
+  //getCartContents,
+  //postCartContents,
   //Interations[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/interactions.md]
 }
 
