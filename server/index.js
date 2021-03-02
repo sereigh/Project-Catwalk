@@ -32,6 +32,17 @@ app.get('/products/:product_id', (req, res) => {
   })
 });
 
+// Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
+app.get('/reviewdata/:product_id', (req, res) => {
+  helpers.getReviewData(req.params.product_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });

@@ -18,14 +18,15 @@ class RatingsAndReviews extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveReviewData();
+    const {productId} = this.props;
+    this.retrieveReviewData(productId);
   }
 
-  retrieveReviewData() {
+  retrieveReviewData(id) {
     axios
-      .get(`/reviewdata`)
+      .get(`/reviewdata/${id}`)
       .then((response) => {
-        const totalReviews = response.data.recommended.false + response.data.recommended.true;
+        const totalReviews = parseInt(response.data.recommended.false, 10) + parseInt(response.data.recommended.true, 10);
         this.setState({
           reviewData: response.data,
           totalReviews
