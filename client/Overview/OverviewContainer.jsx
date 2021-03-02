@@ -23,7 +23,7 @@ class OverviewContainer extends React.Component {
   }
 
   render() {
-    // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.state;
+    // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
 
     return (
       <div className="overviewWidget">
