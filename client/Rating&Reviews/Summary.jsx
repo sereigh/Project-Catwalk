@@ -1,5 +1,5 @@
-
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Summary = ({summary}) => {
   if (summary.length > 60) {
@@ -24,6 +24,10 @@ const Summary = ({summary}) => {
       {summary}
     </div>
   )
+}
+
+Summary.propTypes = {
+  summary: PropTypes.string.isRequired
 }
 
 export default Summary;

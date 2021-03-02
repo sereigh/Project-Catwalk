@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Response = ({response}) => {
   if (response) {
@@ -14,6 +15,14 @@ const Response = ({response}) => {
   }
 
   return null;
+}
+
+Response.propTypes = {
+  response: PropTypes.string
+}
+
+Response.defaultProps = {
+  response: null
 }
 
 export default Response;

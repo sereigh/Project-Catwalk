@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Body extends React.Component {
   constructor(props) {
@@ -57,6 +58,10 @@ class Body extends React.Component {
       </>
     )
   }
+}
+
+Body.propTypes = {
+  body: PropTypes.string.isRequired
 }
 
 export default Body;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const convertDate = date => {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -14,5 +15,10 @@ const NameAndDate = ({name, date}) => (
     {`${name  }, ${  convertDate(date)}`}
   </span>
 )
+
+NameAndDate.propTypes = {
+  name: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired
+}
 
 export default NameAndDate;

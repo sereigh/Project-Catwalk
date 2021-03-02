@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Stars from '../SharedComponents/Stars.jsx';
 
@@ -14,6 +15,8 @@ class ReviewListEntry extends React.Component {
     super(props);
     this.state = {};
   }
+
+
 
   render() {
     const {review} = this.props;
@@ -31,7 +34,7 @@ class ReviewListEntry extends React.Component {
         <Response response={review.response} />
         <span>
           Helpful?
-          <span> Yes ({review.helpfulness})</span>
+          <span>{`Yes (${review.helpfulness})`}</span>
           <span> | </span>
           <span>No</span>
           <span> | </span>
@@ -40,6 +43,24 @@ class ReviewListEntry extends React.Component {
       </div>
     )
   }
+}
+
+ReviewListEntry.propTypes = {
+  review: PropTypes.shape({
+    review_id: PropTypes.number,
+    rating: PropTypes.number,
+    summary: PropTypes.string,
+    recommend: PropTypes.bool,
+    response: PropTypes.string,
+    body: PropTypes.string,
+    date: PropTypes.string,
+    reviewer_name: PropTypes.string,
+    helpfulness: PropTypes.number,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string
+    }))
+  }).isRequired
 }
 
 export default ReviewListEntry;

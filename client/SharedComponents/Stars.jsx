@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Stars = ({rating}) => {
   const percent = rating / 5 * 100;
@@ -22,6 +23,10 @@ const Stars = ({rating}) => {
       <span style={emptyStarStyle}>☆☆☆☆☆</span>
     </>
   )
+}
+
+Stars.propTypes = {
+  rating: PropTypes.number.isRequired
 }
 
 export default Stars;
