@@ -4,6 +4,7 @@ import Stars from './Stars.jsx';
 import NameAndDate from './NameAndDate.jsx';
 import Summary from './Summary.jsx';
 import PhotoList from './PhotoList.jsx';
+import Recommend from './Recommend.jsx';
 import Response from './Response.jsx';
 
 class ReviewListEntry extends React.Component {
@@ -25,9 +26,8 @@ class ReviewListEntry extends React.Component {
         <p>{review.body}</p>
         <PhotoList photos={review.photos} />
         <br />
-        <span>{review.recommend ? 'I recommend this product' : ''}</span>
+        <Recommend recommend={review.recommend} />
         <Response response={review.response} />
-        <br />
         <span>
           Helpful?
           <span> Yes ({review.helpfulness})</span>

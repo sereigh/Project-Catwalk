@@ -3,10 +3,13 @@ import React from 'react';
 const Response = ({response}) => {
   if (response) {
     return (
-      <div>
-        Response:
-        {response}
-      </div>
+      <>
+        <div>
+          Response:
+          {response}
+        </div>
+        <br />
+      </>
     )
   }
 
