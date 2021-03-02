@@ -1,5 +1,7 @@
 import React from 'react';
 
+import QuestionsList from './QuestionsList.jsx';
+
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
@@ -20,9 +22,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <div className="qaList" style={{ border: 'solid black thin' }}>
-          List
-        </div>
+        <QuestionsList />
       </div>
     );
   }
