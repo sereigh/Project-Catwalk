@@ -43,13 +43,33 @@ const getProductById = (id) => {
   )
 }
 
-// Reviews GET /reviewdata/:id Retrieves the review metadata
-// param: page (integer) Selects the page of results to return. Default 1.
-// param: count (integer) Specifies how many results per page to return. Default 5
+// Reviews GET /reviewdata/:id Retrieves the review metadata for a product
+// param: product_id (integer) Required ID of the product
 const getReviewData = (id) => {
   const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`,
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios(options)
+      .then(data => data)
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
+// Reviews GET /reviews/:id/:totalReviews Retrieves the review metadata
+// param: product_id (integer) Required ID of the product
+// param: page (integer) Selects the page of results to return. Default 1.
+// param: count (integer) Specifies how many results per page to return. Default 5
+const getAllReviews = (id, totalReviews) => {
+  const options = {
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${totalReviews}`,
     headers: {
       Authorization: `${config.TOKEN}`
     }
@@ -68,7 +88,8 @@ module.exports = {
   getProductsList,
   getProductById,
   // Reviews[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/reviews.md]
-  getReviewData
+  getReviewData,
+  getAllReviews
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
 
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]

@@ -20,8 +20,9 @@ class RatingsAndReviews extends React.Component {
 
   componentDidMount() {
     const {productId} = this.props;
+    const {totalReviews} = this.state;
     this.retrieveReviewData(productId);
-    this.retrieveAllReviews(productId);
+    this.retrieveAllReviews(productId, totalReviews);
   }
 
   retrieveReviewData(id) {
@@ -39,9 +40,9 @@ class RatingsAndReviews extends React.Component {
       })
   }
 
-  retrieveAllReviews(id) {
+  retrieveAllReviews(id, totalReviews) {
     axios
-      .get(`/reviews/${id}`)
+      .get(`/reviews/${id}/${totalReviews}`)
       .then((response) => {
         this.setState({
           reviews: response.data
