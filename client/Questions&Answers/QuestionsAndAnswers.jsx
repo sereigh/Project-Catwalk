@@ -4,12 +4,12 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: 18076
+      product: 18076,
     };
   }
 
   render() {
-    const {product} = this.state
+    const {product} = this.state;
 
     return (
       <div className="qaContainer" style={{ border: 'solid black thin' }}>
