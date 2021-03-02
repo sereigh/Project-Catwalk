@@ -7,21 +7,24 @@ const config = require('../config.js'); //provides API token for insertion into 
 let getProductsList = () => {
   let options = {
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
+    //url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
     headers: {
-      'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
+      //'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`
     }
   }
-  axios(options)
-    .then((data) => {
-      //console.log(data);
-      //format: [{},{},{}] array of nested objs
-      return (data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  return (
+    axios(options)
+      .then((data) => {
+        //console.log(data);
+        //format: [{},{},{}] array of nested objs
+        return (data);
+      })
+      .catch((error) => {
+        console.log('this is an error,', error);
+      })
+  )
   //alt: axios.get(url[, config])
   //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`, options)
 }
@@ -33,19 +36,21 @@ let getProductById = (id) => {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`,
     headers: {
-      'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
+      //'User-Agent': 'request',
+      Authorization: `${config.TOKEN}`
     }
   }
-  axios(options)
-    .then((data) => {
-      //console.log(data);
-      //format: {...} object w nested collections
-      return (data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+  return (
+    axios(options)
+      .then((data) => {
+        //console.log(data);
+        //format: {...} object w nested collections
+        return (data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
   //alt: axios.get(url[, config])
   //return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`, options)
 }

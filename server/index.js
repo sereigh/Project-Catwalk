@@ -13,23 +13,37 @@ app.get('/', (req, res) => {
 
 //Products GET /products Retrieves the list of products
 app.get('/products', (req,res) => {
-  helpers.getProductsList( (err, results) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.status(200).send(results);
-    }
-  })
+  // helpers.getProductsList( (err, results) => {
+  //   if (err) {
+  //     res.status(404).send(err);
+  //   } else {
+  //     res.status(200).send(results);
+  //   }
+  // })
+  helpers.getProductsList()
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 //Products GET /products/:product_id Returns all product level information for a specified product id
 app.get('/products/:product_id', (req, res) => {
-  helpers.getProductById( (err, results) => {
-    if (err) {
-      res.status(404).send(err);
-    } else {
-      res.status(200).send(results);
-    }
+//   helpers.getProductById( (err, results) => {
+//     if (err) {
+//       res.status(404).send(err);
+//     } else {
+//       res.status(200).send(results);
+//     }
+//   })
+  helpers.getProductsList()
+  .then((response) => {
+    res.send(response.data)
+  })
+  .catch((error) => {
+    console.log(error.data);
   })
 });
 
