@@ -1,0 +1,25 @@
+/* Overview */
+
+/* Related Items and Comparison */
+
+/* Questions and Answers */
+
+/* Ratings and Reviews */
+.review {
+  position: relative;
+  width: 50%;
+  border-bottom: 1px solid gray;
+}
+
+.name-and-date {
+  float: right;
+}
+
+.photo {
+  display: inline;
+  width: 100%;
+  height: 100%;
+  max-width: 20%;
+  max-height: 50px;
+  object-fit: scale-down;
+}
