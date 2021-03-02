@@ -5,3 +5,11 @@
 /* Questions and Answers */
 
 /* Ratings and Reviews */
+.photo {
+  display: inline;
+  width: 100%;
+  height: 100%;
+  max-width: 20%;
+  max-height: 50px;
+  object-fit: scale-down;
+}

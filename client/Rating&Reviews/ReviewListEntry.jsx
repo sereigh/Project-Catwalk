@@ -20,7 +20,8 @@ class ReviewListEntry extends React.Component {
         <span>Summary:{review.summary}</span>
         <br />
         <p>{review.body}</p>
-        {review.photos.map(photo => <img key={photo.id} src={photo.url} alt='product' />)}
+        {review.photos.map(photo => <img key={photo.id} className='photo' src={photo.url} alt='product' />)}
+        <br />
         <span>{review.recommend ? 'I recommend this product' : ''}</span>
         <div>{review.response ? `Response:${  review.response}` : ''}</div>
         <span>
