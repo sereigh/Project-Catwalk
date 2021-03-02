@@ -7,8 +7,12 @@ function QuestionsList({ view }) {
         className="question"
         role="button"
       >
-        <h3>Q: </h3>
-        <strong>Some kind of question?</strong>
+        <span>
+          <h3>
+            Q:
+            Some kind of question?
+          </h3>
+        </span>
       </div>
     </>
   );
