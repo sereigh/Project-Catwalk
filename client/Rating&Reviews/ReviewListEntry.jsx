@@ -3,6 +3,7 @@ import React from 'react';
 import Stars from './Stars.jsx';
 import NameAndDate from './NameAndDate.jsx';
 import Summary from './Summary.jsx';
+import Body from './Body.jsx';
 import PhotoList from './PhotoList.jsx';
 import Recommend from './Recommend.jsx';
 import Response from './Response.jsx';
@@ -22,7 +23,7 @@ class ReviewListEntry extends React.Component {
         <NameAndDate name={review.reviewer_name} date={review.date} />
         <br />
         <Summary summary={review.summary} />
-        <p>{review.body}</p>
+        <Body body={review.body} />
         <PhotoList photos={review.photos} />
         <br />
         <Recommend recommend={review.recommend} />
