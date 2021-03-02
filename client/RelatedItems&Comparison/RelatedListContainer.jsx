@@ -1,4 +1,5 @@
 import React from 'react';
+import RelatedProductList from './RelatedProductList.jsx';
 
 class RelatedListContainer extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class RelatedListContainer extends React.Component {
       <div>
         RelatedListContainer
         <ul>
-          <div>RelatedProductList</div>
+          <RelatedProductList />
           <div>OutfitList</div>
         </ul>
       </div>
