@@ -1,5 +1,6 @@
 import React from 'react';
 import RelatedProductList from './RelatedProductList.jsx';
+import dummyProductCards from './dummyProductCards.js';
 
 class RelatedListContainer extends React.Component {
   constructor(props) {
@@ -10,17 +11,18 @@ class RelatedListContainer extends React.Component {
           {productId: 17762}
           ]
         }
-      ]
+      ],
+      RelatedProductCards: dummyProductCards
     }
   }
 
   render() {
-    const {users} = this.state;
+    const {RelatedProductCards} = this.state;
     return (
       <div>
         RelatedListContainer
         <ul>
-          <RelatedProductList />
+          <RelatedProductList RelatedProductCards={RelatedProductCards}/>
           <div>OutfitList</div>
         </ul>
       </div>

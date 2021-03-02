@@ -1,9 +1,11 @@
 import React from 'react';
+import ProductCard from './ProductCard.jsx';
 
-const RelatedProductList = () => {
-  return (
-    <div>RelatedProductList</div>
-  );
-};
+const RelatedProductList = () => (
+  <div>
+    RelatedProductList
+    <ProductCard />
+  </div>
+);
 
 export default RelatedProductList;
