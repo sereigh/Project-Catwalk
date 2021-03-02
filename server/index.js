@@ -44,7 +44,7 @@ app.get('/reviewdata/:product_id', (req, res) => {
 });
 
 // Reviews GET /reviews/:product_id/:count Returns all reviews for a specified product id
-app.get('/reviewdata/:product_id', (req, res) => {
+app.get('/reviews/:product_id/:count', (req, res) => {
   helpers.getAllReviews(req.params.product_id, req.params.count)
     .then((response) => {
       res.send(response.data)
