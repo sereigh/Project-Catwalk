@@ -12,7 +12,7 @@ class QuestionsAndAnswers extends React.Component {
 
   render() {
     const {view} = this.state;
-    const toggleView = (e) => { this.setState({ view: !view }) };
+    const toggleView = () => { this.setState({ view: !view }) };
     return (
       <div className="qaContainer" style={{ border: 'solid black thin' }}>
         Container
@@ -22,7 +22,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <QuestionsList toggleView={toggleView}/>
+        <QuestionsList toggleView={toggleView} />
       </div>
     );
   }
