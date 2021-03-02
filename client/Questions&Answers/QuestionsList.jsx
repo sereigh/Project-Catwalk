@@ -1,5 +1,7 @@
 import React from 'react';
 
+import AnswersList from './AnswersList.jsx';
+
 function QuestionsList({ view }) {
   return (
     <>
@@ -13,6 +15,9 @@ function QuestionsList({ view }) {
             Some kind of question?
           </h3>
         </span>
+      </div>
+      <div className="answers">
+        <AnswersList />
       </div>
     </>
   );
