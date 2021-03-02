@@ -3,7 +3,13 @@
 /* Related Items and Comparison */
 
 /* Questions and Answers */
-
+.view-true {
+  display: block;
+  overflow: hidden;
+}
+.view-false {
+  display: none;
+}
 /* Ratings and Reviews */
 .review {
   position: relative;
