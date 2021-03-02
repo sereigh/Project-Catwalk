@@ -1,5 +1,7 @@
 const path = require('path');
+
 const express = require('express');
+
 const helpers = require('./helpers');
 
 const app = express();
@@ -8,7 +10,7 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
-//Products GET /products Retrieves the list of products
+// Products GET /products Retrieves the list of products
 app.get('/products', (req,res) => {
   helpers.getProductsList()
     .then((response) => {
@@ -19,7 +21,7 @@ app.get('/products', (req,res) => {
     })
 });
 
-//Products GET /products/:product_id Returns all product level information for a specified product id
+// Products GET /products/:product_id Returns all product level information for a specified product id
 app.get('/products/:product_id', (req, res) => {
   helpers.getProductsList()
   .then((response) => {
