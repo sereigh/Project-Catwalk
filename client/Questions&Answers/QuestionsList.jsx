@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
 
-function QuestionsList({ view }) {
+function QuestionsList({ view, toggleView }) {
   return (
     <>
       <div
         className="question"
         role="button"
+        onClick={toggleView}
       >
         <span>
           <h3>
