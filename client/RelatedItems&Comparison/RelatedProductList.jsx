@@ -1,10 +1,10 @@
 import React from 'react';
 import ProductCard from './ProductCard.jsx';
 
-const RelatedProductList = () => (
+const RelatedProductList = ({productCards}) => (
   <div>
     RelatedProductList
-    <ProductCard />
+    <ProductCard productCards={productCards}/>
   </div>
 );
 

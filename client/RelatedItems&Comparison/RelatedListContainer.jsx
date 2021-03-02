@@ -22,7 +22,7 @@ class RelatedListContainer extends React.Component {
       <div>
         RelatedListContainer
         <ul>
-          <RelatedProductList RelatedProductCards={RelatedProductCards}/>
+          <RelatedProductList productCards={RelatedProductCards}/>
           <div>OutfitList</div>
         </ul>
       </div>
