@@ -74,7 +74,7 @@ class App extends React.Component {
         {/* <Overview /> */}
         <RelatedListContainer />
         <QuestionsAndAnswers />
-        <RatingsAndReviews />
+        <RatingsAndReviews productId={productId} />
       </div>
     );
   }

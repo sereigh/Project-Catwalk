@@ -1,24 +1,23 @@
 import React from 'react';
 
 import ReviewsList from './ReviewsList.jsx';
-import dummyReviews from './dummyReviews';
 
 class ReviewsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'relevance',
-      reviews: dummyReviews
+      selected: 'relevance'
     };
   }
 
   render() {
-    const {reviews, selected} = this.state
+    const {reviews, totalReviews} = this.props;
+    const {selected} = this.state;
 
     return (
       <>
         <span>
-          ### reviews, sorted by:
+          {`${totalReviews} reviews, sorted by:`}
           <select defaultValue={selected}>
             <option value='relevance'>relevance</option>
             <option value='helpfulness'>helpfulness</option>
