@@ -5,10 +5,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productList: {},
-      productId: 1,
-      selectProductId: 1,
-      selectProductInfo: {}
+      productList: [
+        {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+      ],
+      productId: 17762,
+      selectProductId: 17762,
+      selectProductInfo: [
+        {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+      ]
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
@@ -22,9 +26,9 @@ class App extends React.Component {
   retrieveAllProductInfo() {
     axios
       .get(`/products`)
-      .then((data) => {
+      .then((response) => {
         this.setState({
-          productList: data
+          productList: response.data
         })
       })
       .catch((error) => {
@@ -36,9 +40,9 @@ class App extends React.Component {
     const { selectProductId } = this.state;
     axios
       .get(`/products/${selectProductId}`)
-      .then((data) => {
+      .then((response) => {
         this.setState({
-          selectProductInfo: data
+          selectProductInfo: response.data
         })
       })
       .catch((error) => {
@@ -51,16 +55,17 @@ class App extends React.Component {
     const { selectProductInfo } = this.state;
     const { productId } = this.state;
     const { productList } = this.state;
+    console.log('render selectProductInfo:', selectProductInfo);
     return (
       <div>
         <span>Hello, world!</span>
         <p>{selectProductId}</p>
         <br />
-        <p>{selectProductInfo}</p>
+        <p>{selectProductInfo[0].category}</p>
         <br />
         <p>{productId}</p>
         <br />
-        <p>{productList}</p>
+        <p>{productList[0].category}</p>
         {/* <Overview /> */}
         {/* <RelatedItemsAndComparison /> */}
         {/* <QuestionsAndAnswers /> */}
