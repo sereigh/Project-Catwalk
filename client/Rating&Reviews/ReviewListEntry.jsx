@@ -10,12 +10,9 @@ class ReviewListEntry extends React.Component {
     const {review} = this.props;
 
     return (
-      <div>
+      <div className='review'>
         <span>Rating:{review.rating}</span>
-        <span>
-          User:{review.reviewer_name}
-          Date:{review.date}
-        </span>
+        <span className='name-and-date'>{`${review.reviewer_name  }, ${  review.date}`}</span>
         <br />
         <span>Summary:{review.summary}</span>
         <br />
@@ -26,7 +23,7 @@ class ReviewListEntry extends React.Component {
         <div>{review.response ? `Response:${  review.response}` : ''}</div>
         <span>
           Helpful?
-          <span>Yes ({review.helpfulness})</span>
+          <span> Yes ({review.helpfulness})</span>
           <span> | </span>
           <span>No</span>
         </span>
