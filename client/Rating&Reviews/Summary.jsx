@@ -7,13 +7,9 @@ const Summary = ({summary}) => {
     const summaryEnding = summary.substring(61);
     return (
       <>
-        <div>
-          {`${summaryBeginning  }...`}
-        </div>
+        <div>{`Summary: ${summaryBeginning  }...`}</div>
         <br />
-        <div>
-          {`...${summaryEnding}`}
-        </div>
+        <div>{`...${summaryEnding}`}</div>
       </>
     )
   }

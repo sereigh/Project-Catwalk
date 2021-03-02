@@ -27,9 +27,7 @@ class Body extends React.Component {
 
     if (body.length <= 250) {
       return (
-        <p>
-          {body}
-        </p>
+        <p>{body}</p>
       )
     }
 
@@ -37,24 +35,16 @@ class Body extends React.Component {
       const bodyBeginning = body.substring(0, 251);
       return (
         <>
-          <p>
-            {`${bodyBeginning  }...`}
-          </p>
-          <button type='button' onClick={this.handleClick}>
-            Show More
-          </button>
+          <p>{`${bodyBeginning  }...`}</p>
+          <button type='button' onClick={this.handleClick}>Show More</button>
         </>
       )
     }
 
     return (
       <>
-        <p>
-          {body}
-        </p>
-        <button type='button' onClick={this.handleClick}>
-          Show Less
-        </button>
+        <p>{body}</p>
+        <button type='button' onClick={this.handleClick}>Show Less</button>
       </>
     )
   }
