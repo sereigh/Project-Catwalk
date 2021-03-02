@@ -15,11 +15,13 @@ class RatingsAndReviews extends React.Component {
     }
 
     this.retrieveReviewData = this.retrieveReviewData.bind(this);
+    this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
 
   componentDidMount() {
     const {productId} = this.props;
     this.retrieveReviewData(productId);
+    this.retrieveAllReviews(productId);
   }
 
   retrieveReviewData(id) {
@@ -34,6 +36,19 @@ class RatingsAndReviews extends React.Component {
       })
       .catch((error) => {
         console.log('Get review data failed...', error);
+      })
+  }
+
+  retrieveAllReviews(id) {
+    axios
+      .get(`/reviews/${id}`)
+      .then((response) => {
+        this.setState({
+          reviews: response.data
+        });
+      })
+      .catch((error) => {
+        console.log('Get all reviews failed...', error);
       })
   }
 
