@@ -15,6 +15,7 @@ class RatingsAndReviews extends React.Component {
       sort: 'relevant'
     }
 
+    this.handleSort = this.handleSort.bind(this);
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
     this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
@@ -23,6 +24,13 @@ class RatingsAndReviews extends React.Component {
     const {productId} = this.props;
     const {sort} = this.state;
     this.retrieveReviewsAndData(productId, sort);
+  }
+
+  handleSort(sort) {
+    const {productId} = this.props;
+    const {totalReviews} = this.state;
+
+    this.retrieveAllReviews(productId, sort, totalReviews);
   }
 
   retrieveReviewsAndData(id, sort) {
@@ -60,7 +68,7 @@ class RatingsAndReviews extends React.Component {
     return (
       <>
         {/* <RatingsContainer /> */}
-        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} />
+        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort}/>
       </>
     )
   }

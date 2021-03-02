@@ -8,6 +8,18 @@ class ReviewsListContainer extends React.Component {
     this.state = {
       selected: 'relevance'
     };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const {handleSort} = this.props;
+
+    handleSort(event.target.value);
+
+    this.setState({
+      selected: event.target.value
+    });
   }
 
   render() {
@@ -18,7 +30,7 @@ class ReviewsListContainer extends React.Component {
       <>
         <span>
           {`${totalReviews} reviews, sorted by:`}
-          <select defaultValue={selected}>
+          <select defaultValue={selected} onBlur={this.handleChange}>
             <option value='relevant'>relevance</option>
             <option value='helpful'>helpfulness</option>
             <option value='newest'>newest</option>
