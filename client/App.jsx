@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import ReviewsListContainer from './Rating&Reviews/ReviewsListContainer.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
