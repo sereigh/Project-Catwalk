@@ -7,8 +7,29 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
+    const {review} = this.props;
+
     return (
-      <span>Hello, world!</span>
+      <div>
+        <span>Rating:{review.rating}</span>
+        <span>
+          User:{review.reviewer_name}
+          Date:{review.date}
+        </span>
+        <br />
+        <span>Summary:{review.summary}</span>
+        <br />
+        <p>{review.body}</p>
+        {review.photos.map(photo => <img key={photo.id} src={photo.url} alt='product' />)}
+        <span>{review.recommend ? 'I recommend this product' : ''}</span>
+        <div>{review.response ? `Response:${  review.response}` : ''}</div>
+        <span>
+          Helpful?
+          <span>Yes ({review.helpfulness})</span>
+          <span> | </span>
+          <span>No</span>
+        </span>
+      </div>
     )
   }
 }
