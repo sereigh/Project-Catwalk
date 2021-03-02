@@ -30,6 +30,28 @@ app.get('/products/:product_id', (req, res) => {
   })
 });
 
+//Products GET /products/:product_id/styles Returns all styles available for the given product
+app.get('/products/:product_id/styles', (req, res) => {
+  helpers.getStylesById()
+  .then((response) => {
+    res.send(response.data)
+  })
+  .catch((error) => {
+    console.log(error.data);
+  })
+});
+
+//Products GET /products/:product_id/related Returns the id's of products related to the product specified
+app.get('/products/:product_id/related', (req, res) => {
+  helpers.getRelatedProducts()
+  .then((response) => {
+    res.send(response.data)
+  })
+  .catch((error) => {
+    console.log(error.data);
+  })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
