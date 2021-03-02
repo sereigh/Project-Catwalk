@@ -13,10 +13,12 @@ class RatingsAndReviews extends React.Component {
       reviews: [],
       totalReviews: 0
     }
+
+    this.retrieveReviewData = this.retrieveReviewData.bind(this);
   }
 
   componentDidMount() {
-
+    this.retrieveReviewData();
   }
 
   retrieveReviewData() {
