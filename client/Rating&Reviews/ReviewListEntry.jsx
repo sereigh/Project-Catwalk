@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Stars from './Stars.jsx';
+import Stars from '../SharedComponents/Stars.jsx';
+
 import NameAndDate from './NameAndDate.jsx';
 import Summary from './Summary.jsx';
 import Body from './Body.jsx';

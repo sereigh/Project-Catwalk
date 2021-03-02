@@ -6,6 +6,7 @@
 
 /* Ratings and Reviews */
 .review {
+  position: relative;
   width: 50%;
   border-bottom: 1px solid gray;
 }
