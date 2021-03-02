@@ -3,6 +3,12 @@
 /* Related Items and Comparison */
 
 /* Questions and Answers */
+.questionList {
+  list-style: none;
+}
+.answersList {
+  list-style: none;
+}
 .view-true {
   display: block;
   overflow: hidden;

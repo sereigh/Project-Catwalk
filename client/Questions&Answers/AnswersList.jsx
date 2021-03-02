@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import answers from './answers.js';
 
 const AnswersList = ({ view }) => (
-  <ul>
+  <ul className="answersList">
     {answers.map((answer) => (
       <li className={`view-${view}`} key={answer.id}>
         <span>
