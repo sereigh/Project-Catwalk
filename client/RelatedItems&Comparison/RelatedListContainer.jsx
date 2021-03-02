@@ -18,8 +18,10 @@ class RelatedListContainer extends React.Component {
     return (
       <div>
         RelatedListContainer
-        <div>RelatedProductList</div>
-        <div>OutfitList</div>
+        <ul>
+          <div>RelatedProductList</div>
+          <div>OutfitList</div>
+        </ul>
       </div>
     );
   }
