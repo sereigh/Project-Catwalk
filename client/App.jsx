@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import ReviewsListContainer from './Rating&Reviews/ReviewsListContainer.jsx';
 import QuestionsAndAnswers from './Questions&Answers/QuestionsAndAnswers.jsx';
+import RelatedListContainer from './RelatedItems&Comparison/RelatedListContainer.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -70,10 +72,10 @@ class App extends React.Component {
         <br />
         <p>{productList[0].category}</p>
         {/* <Overview /> */}
-        {/* <RelatedItemsAndComparison /> */}
+        <RelatedListContainer />
         <QuestionsAndAnswers />
         <ReviewsListContainer />
-      <div/>
+      </div>
     );
   }
 }
