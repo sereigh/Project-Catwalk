@@ -66,10 +66,10 @@ const getReviewData = (id) => {
 // param: product_id (integer) Required ID of the product
 // param: page (integer) Selects the page of results to return. Default 1.
 // param: count (integer) Specifies how many results per page to return. Default 5
-const getAllReviews = (id, totalReviews) => {
+const getAllReviews = (id, sort, totalReviews) => {
   const options = {
     method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&count=${totalReviews}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&sort=${sort}&count=${totalReviews}`,
     headers: {
       Authorization: `${config.TOKEN}`
     }

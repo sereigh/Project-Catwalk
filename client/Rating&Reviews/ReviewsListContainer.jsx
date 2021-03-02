@@ -19,8 +19,8 @@ class ReviewsListContainer extends React.Component {
         <span>
           {`${totalReviews} reviews, sorted by:`}
           <select defaultValue={selected}>
-            <option value='relevance'>relevance</option>
-            <option value='helpfulness'>helpfulness</option>
+            <option value='relevant'>relevance</option>
+            <option value='helpful'>helpfulness</option>
             <option value='newest'>newest</option>
           </select>
         </span>

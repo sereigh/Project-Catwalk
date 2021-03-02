@@ -11,7 +11,8 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       reviewData: {},
       reviews: [],
-      totalReviews: 0
+      totalReviews: 0,
+      sort: 'relevant'
     }
 
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
@@ -20,10 +21,11 @@ class RatingsAndReviews extends React.Component {
 
   componentDidMount() {
     const {productId} = this.props;
-    this.retrieveReviewsAndData(productId);
+    const {sort} = this.state;
+    this.retrieveReviewsAndData(productId, sort);
   }
 
-  retrieveReviewsAndData(id) {
+  retrieveReviewsAndData(id, sort) {
     axios
       .get(`/reviewdata/${id}`)
       .then((response) => {
@@ -32,16 +34,16 @@ class RatingsAndReviews extends React.Component {
           reviewData: response.data,
           totalReviews
         });
-        this.retrieveAllReviews(id, totalReviews);
+        this.retrieveAllReviews(id, sort, totalReviews);
       })
       .catch((error) => {
         console.log('Get review data failed...', error);
       })
   }
 
-  retrieveAllReviews(id, totalReviews) {
+  retrieveAllReviews(id, sort, totalReviews) {
     axios
-      .get(`/reviews/${id}/${totalReviews}`)
+      .get(`/reviews/${id}/${sort}/${totalReviews}`)
       .then((response) => {
         this.setState({
           reviews: response.data.results
