@@ -22,7 +22,6 @@ class ReviewListEntry extends React.Component {
         <NameAndDate name={review.reviewer_name} date={review.date} />
         <br />
         <Summary summary={review.summary} />
-        <br />
         <p>{review.body}</p>
         <PhotoList photos={review.photos} />
         <br />
