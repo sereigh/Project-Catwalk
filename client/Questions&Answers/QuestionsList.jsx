@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import AnswersList from './AnswersList.jsx';
 import SendFeedback from './SendFeedback.jsx';
 
-function QuestionsList({ questions }) {
+function QuestionsList({ questions, reportOption, handleFeedback }) {
+
   const [view, setView] = useState(false);
   const toggleView = (index) => {
     if (view === index) {
@@ -22,22 +23,28 @@ function QuestionsList({ questions }) {
     <>
       <div className="questionsList">
         {questions.map((question, index) => (
-          <div key={question.question_id}>
-            <span className="question">
-              <div
+          <div
+            key={question.question_id}
+            className="qBar"
+          >
+            <span
+              className="question"
+            >
+              <span
                 className="questionText"
                 onClick={() => toggleView(index)}
                 role="button"
                 tabIndex={0}
                 onKeyPress={() => toggleView(index)}
               >
+
                 <h3>
                   Q:
                   {' '}
                   {question.question_body}
                 </h3>
-              </div>
-              <SendFeedback option={0} />
+              </span>
+              <SendFeedback option={2} handleFeedback={() => {console.log('Should add helpfullness or an answer')}} />
             </span>
             {view === index && <AnswersList />}
           </div>
@@ -49,6 +56,8 @@ function QuestionsList({ questions }) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  reportOption: PropTypes.number.isRequired,
+  handleFeedback: PropTypes.func.isRequired,
 }
 
 export default QuestionsList;

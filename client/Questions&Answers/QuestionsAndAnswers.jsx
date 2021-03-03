@@ -1,6 +1,5 @@
 import React from 'react';
 
-import SendFeedback from './SendFeedback.jsx';
 import QuestionsList from './QuestionsList.jsx';
 
 // eslint-disable-next-line import/no-unresolved
@@ -11,11 +10,31 @@ class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      reportOption: 0,
     };
   }
 
+  componentDidMount() {
+    // GET questions
+  }
+
+
   render() {
+
+    const {reportOption} = this.state;
+
+    const handleFeedback = (userOption) => {
+      if (userOption === 0) {
+        // on success
+        this.setState({reportOption: 1})
+      }
+      if (userOption === 'Add Answer') {
+        console.log('add new  answer');
+      }
+      if (userOption === 'Yes') {
+        console.log('add to helpfulness count');
+      }
+    }
 
     return (
       <div className="qaContainer" style={{ border: 'solid black thin' }}>
@@ -23,9 +42,8 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaHeader" style={{ border: 'solid black thin' }} />
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
-          <SendFeedback option={1} />
         </div>
-        {questions && <QuestionsList questions={questions} />}
+        {questions && <QuestionsList questions={questions} handleFeedback={handleFeedback} reportOption={reportOption} />}
       </div>
     );
   }

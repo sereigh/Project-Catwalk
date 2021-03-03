@@ -2,23 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-class SendFeedback extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+function SendFeedback({option, handleFeedback}) {
 
-    };
-  }
-
-  render() {
-    const options = ['Yes', 'Report'];
-    const handleFeedback = () => { console.log('click') }
-    const { option } = this.props;
+    const options = ['Report', 'Reported'];
     return (
       <div
         className="feedback"
-        onClick={handleFeedback}
-        onKeyPress={handleFeedback}
+        onClick={() => handleFeedback(option)}
+        onKeyPress={() => handleFeedback(option)}
         role="button"
         tabIndex={0}
       >
@@ -34,48 +25,10 @@ class SendFeedback extends React.Component {
       </div>
     )
   }
-}
-
-// const messageFeedback = (Component) => {
-//   return class extends React.Component {
-//     render() {
-//       return (
-
-//       )
-//     }
-//   }
-// }
-
-// function SendFeedback(Component) {
-//   const { handleClick } = props;
-//   return class extends React.Component {
-//     render() {
-//       return (
-//         <Component
-//           onClick={handleClick}
-//         />
-//       );
-//     }
-//   }
-// }
-
-// export const Test = SendFeeback(Hello);
-
-// export const MarkHelpful = ({ text, onClick }) => (
-//   <div
-//     onClick={onClick}
-//     onKeyPress={onClick}
-//     role="button"
-//     tabIndex={0}
-//   >
-//     {text}
-//   </div>
-// );
-
-// export const MessageFeedback = SendFeedback(MarkHelpful('Yes', { handleFeedback: () => console.log('clicked') }));
 
 SendFeedback.propTypes = {
   option: PropTypes.number.isRequired,
+  handleFeedback: PropTypes.func.isRequired,
 }
 
 export default SendFeedback;
