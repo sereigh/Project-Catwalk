@@ -6,10 +6,9 @@
 .qaContainer {
   width: 100%;
 }
-.q {
+.questionText {
   width: 50%;
 }
-
 .question {
   display: flex;
   font-size: small;

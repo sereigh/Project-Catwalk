@@ -24,14 +24,14 @@ function QuestionsList({ questions }) {
         {questions.map((question, index) => (
           <div
             key={question.question_id}
-            className="qBar"
+            className="expandAnswer"
             onClick={() => toggleView(index)}
             role="button"
             tabIndex={0}
             onKeyPress={() => toggleView(index)}
           >
             <span className="question">
-              <span className="q">
+              <span className="questionText">
                 <h3>
                   Q:
                   {' '}
