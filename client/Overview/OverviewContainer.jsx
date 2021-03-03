@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // import ShowcaseImage from './ShowcaseImage.jsx';
 // import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
 // import FeaturedReviewLink from './FeaturedReviewLink.jsx';
 // import FeaturedProduct from './FeaturedProduct.jsx';
-import StylePriceType from './StylePriceType.jsx';
+// import StylePriceType from './StylePriceType.jsx';
 // import StyleSelector from './StyleSelector.jsx';
 // import CartFormSize from './CartFormSize.jsx';
 // import CartFormQuantity from './CartFormQuantity.jsx';
@@ -24,7 +24,7 @@ class OverviewContainer extends React.Component {
   }
 
   render() {
-    const { selectProductId } = this.props;
+    // const { selectProductId } = this.props;
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
     return (
       <div className="overviewWidget">
@@ -38,9 +38,9 @@ class OverviewContainer extends React.Component {
             <FeaturedProduct />
           </div> */}
           <div className="areaStyle">
-            <StylePriceType
+            {/* <StylePriceType
               selectProductId={selectProductId}
-            />
+            /> */}
             {/* <StyleSelector /> */}
           </div>
           {/* <div className="areaCart">
@@ -58,9 +58,9 @@ class OverviewContainer extends React.Component {
 
 }
 
-OverviewContainer.propTypes = {
-  selectProductId: PropTypes.number.isRequired
-}
+// OverviewContainer.propTypes = {
+//   selectProductId: PropTypes.number.isRequired
+// }
 
 export default OverviewContainer;
 
