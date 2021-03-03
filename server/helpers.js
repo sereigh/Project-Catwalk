@@ -98,6 +98,21 @@ const voteHelpful = (id) => {
   )
 }
 
+const reportReview = (id) => {
+  const options = {
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/report`, {}, options)
+      .then(data => data)
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
 module.exports = {
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
@@ -105,7 +120,8 @@ module.exports = {
   // Reviews[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/reviews.md]
   getReviewData,
   getAllReviews,
-  voteHelpful
+  voteHelpful,
+  reportReview
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
 
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]

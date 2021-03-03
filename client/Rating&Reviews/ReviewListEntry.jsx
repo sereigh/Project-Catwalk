@@ -96,13 +96,13 @@ class ReviewListEntry extends React.Component {
           </span>
           <span> | </span>
           <span
-            className={localStorage.getItem(`hasReported${review.review_id}`) ? reported : ''}
+            className={localStorage.getItem(`hasReported${review.review_id}`) ? 'reported' : ''}
             onClick={() => this.handleReport(review.review_id)}
             onKeyPress={() => this.handleReport(review.review_id)}
             role='button'
             tabIndex={0}
           >
-            {reported ? 'Report' : 'Reported'}
+            {reported ? 'Reported' : 'Report'}
           </span>
         </span>
       </div>
