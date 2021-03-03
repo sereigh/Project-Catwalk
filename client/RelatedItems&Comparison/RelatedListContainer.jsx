@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import RelatedProductList from './RelatedProductList.jsx';
 import dummyProductCards from './dummyProductCards';
 
@@ -12,17 +13,35 @@ class RelatedListContainer extends React.Component {
           ]
         }
       ],
-      RelatedProductCards: dummyProductCards
+      relatedProductIds: [],
+      relatedProductCards: dummyProductCards
     }
   }
 
+  getRelatedProductIds(productId) {
+    axios
+    .get(`/products/${productId}/related`)
+    .then((response) => {
+      this.setState({
+        relatedProductIds: response.data
+      })
+    })
+    .catch((error) => {
+      console.log('Get related items failed...', error);
+    })
+  }
+
+  createProductCardInformation() {
+
+  }
+
   render() {
-    const {RelatedProductCards} = this.state;
+    const {relatedProductCards} = this.state;
     return (
       <div>
         RelatedListContainer
         <ul>
-          <RelatedProductList productCards={RelatedProductCards} />
+          <RelatedProductList productCards={relatedProductCards} />
           <div>OutfitList</div>
         </ul>
       </div>

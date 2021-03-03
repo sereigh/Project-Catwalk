@@ -4,8 +4,10 @@ import ProductCard from './ProductCard.jsx';
 
 const RelatedProductList = ({productCards}) => (
   <div>
-    RelatedProductList
-    <ProductCard productCards={productCards} />
+    **RelatedProductList**
+    {productCards.map(productCard => (
+      <ProductCard key={productCard.id} productCard={productCard} />
+    ))}
   </div>
 );
 
