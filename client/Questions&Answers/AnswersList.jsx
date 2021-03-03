@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AnswersList = ({answers}) => (
-  <ul className="answersList">
+const Answerslist = ({answers}) => (
+  <div className="answersList">
     {answers.map((answer) => (
-      <li key={answer.id}>
+      <div key={answer.id} className="answer">
         <span>
           <strong>A:  </strong>
           Some kind of answer.
         </span>
-      </li>
+      </div>
     ))}
-  </ul>
+  </div>
 );
 
-AnswersList.propTypes = {
+Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
 }
 
-export default AnswersList;
+export default Answerslist;

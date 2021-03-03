@@ -3,17 +3,10 @@
 /* Related Items and Comparison */
 
 /* Questions and Answers */
-.questionList {
-  list-style: none;
+.questionsList div:nth-child(2n) {
+  display: none;
 }
-.answersList {
-  list-style: none;
-}
-.view-true {
-  display: block;
-  overflow: hidden;
-}
-.view-false {
+.answersList div:nth-child(5n) {
   display: none;
 }
 /* Ratings and Reviews */

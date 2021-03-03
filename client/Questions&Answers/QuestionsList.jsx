@@ -14,7 +14,7 @@ function QuestionsList({questions, answers}) {
   };
   return (
     <>
-      <ul className="questionList">
+      <div className="questionsList">
         {questions.map((question, index) => (
           <div
             key={question.question_id}
@@ -34,7 +34,7 @@ function QuestionsList({questions, answers}) {
             {view === index && <AnswersList answers={answers} /> }
           </div>
         ))}
-      </ul>
+      </div>
     </>
   );
 }
