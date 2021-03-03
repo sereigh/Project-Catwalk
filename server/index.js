@@ -52,6 +52,7 @@ app.get('/products/:product_id/related', (req, res) => {
   .catch((error) => {
     console.log(error.data);
   })
+});
 
 // Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
 app.get('/reviewdata/:product_id', (req, res) => {
