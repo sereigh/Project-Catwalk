@@ -32,7 +32,7 @@ class Body extends React.Component {
     }
 
     if (!fullyVisible) {
-      const bodyBeginning = body.substring(0, 251);
+      const bodyBeginning = body.substring(0, 250);
       return (
         <>
           <p>{`${bodyBeginning  }...`}</p>
