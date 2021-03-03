@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/extensions
 import answers from './answers.js';
 
-const AnswersList = ({ view }) => (
+const AnswersList = () => (
   <ul className="answersList">
     {answers.map((answer) => (
-      <li className={`view-${view}`} key={answer.id}>
+      <li key={answer.id}>
         <span>
           <strong>A:  </strong>
           Some kind of answer.
@@ -17,8 +17,8 @@ const AnswersList = ({ view }) => (
   </ul>
 );
 
-AnswersList.propTypes = {
-  view: PropTypes.bool.isRequired
-}
+// AnswersList.propTypes = {
+//   view: PropTypes.bool.isRequired
+// }
 
 export default AnswersList;
