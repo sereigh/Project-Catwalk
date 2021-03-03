@@ -118,6 +118,38 @@ const getAllReviews = (id, sort, totalReviews) => {
   )
 }
 
+// Reviews PUT /reviews/:id/helpful Updates the review helpfulness
+const voteHelpful = (id) => {
+  const options = {
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`, {}, options)
+      .then(data => data)
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
+// Reviews PUT /reviews/:id/report Reports the review for internal action
+const reportReview = (id) => {
+  const options = {
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/report`, {}, options)
+      .then(data => data)
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
+
 // Questions&Answers
 
 // Cart GET /cart Retrieves list of products added to the cart by a user
@@ -163,7 +195,9 @@ module.exports = {
   getRelatedProducts,
   // Reviews[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/reviews.md]
   getReviewData,
-  getAllReviews
+  getAllReviews,
+  voteHelpful,
+  reportReview
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
   // getCartContents,

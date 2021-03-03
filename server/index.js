@@ -75,6 +75,28 @@ app.get('/reviews/:product_id/:sort/:count', (req, res) => {
     })
 });
 
+// Reviews PUT /reviews/:review_id/helpful Increases helpfulness by one for a specified review id
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  helpers.voteHelpful(req.params.review_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+// Reviews PUT /reviews/:review_id/report Reports a specified review id
+app.put('/reviews/:review_id/report', (req, res) => {
+  helpers.reportReview(req.params.review_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
