@@ -10,12 +10,15 @@
   display: none;
 }
 /* Ratings and Reviews */
-.minimized {
-  background-color: red;
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
 }
 
 .maximized {
-  background-color: blue;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .review {
