@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
 
-function QuestionsList({ questions, answers }) {
+function QuestionsList({ questions }) {
   const [view, setView] = useState(false);
   const toggleView = (index) => {
-    console.log('clicked')
     if (view === index) {
       return setView(null);
     }
@@ -37,7 +36,7 @@ function QuestionsList({ questions, answers }) {
                   {question.question_body}
                 </h3>
               </span>
-              {view === index && <AnswersList answers={answers} />}
+              {view === index && <AnswersList />}
             </div>
           ))}
         </div>
@@ -47,7 +46,6 @@ function QuestionsList({ questions, answers }) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
 }
 
 export default QuestionsList;
