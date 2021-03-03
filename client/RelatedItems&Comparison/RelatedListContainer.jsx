@@ -71,9 +71,11 @@ class RelatedListContainer extends React.Component {
     const {relatedProductCards} = this.state;
     return (
       <div>
-        RelatedListContainer
         <ul>
-          <RelatedProductList productCards={relatedProductCards} />
+          <div>
+            **RelatedProductList**
+            <RelatedProductList productCards={relatedProductCards} />
+          </div>
           <div>OutfitList</div>
         </ul>
       </div>

@@ -1,6 +1,11 @@
 /* Overview */
 
 /* Related Items and Comparison */
+.relatedProductList {
+  display: flex;
+  width: 150px;
+  height: 300px;
+}
 
 /* Questions and Answers */
 .questionsList div:nth-child(5n) {

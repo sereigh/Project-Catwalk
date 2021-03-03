@@ -4,13 +4,15 @@ import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 
 const ProductCard = ({productCard}) => (
-  <div>
+  <div className="productCard" style={{border: 'solid black 1px'}}>
     <ActionButton />
     <PreviewImages styles={productCard.styles} />
-    {productCard.category}
-    {productCard.name}
-    {productCard.price}
-    {productCard.starRating}
+    <div>
+      <div>{productCard.category}</div>
+      <div>{productCard.name}</div>
+      <div>{`$${productCard.price}`}</div>
+      <div>{productCard.starRating}</div>
+    </div>
   </div>
 );
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const PreviewImages = ({styles}) => (
   <div>
-    <img src={styles[0].photos[0].url} alt='product' />
+    <img src={styles[0].photos[0].url} alt='product' style={{width: '150px', height: '200px'}} />
   </div>
 );
 

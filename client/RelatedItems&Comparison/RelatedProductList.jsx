@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard.jsx';
 
 const RelatedProductList = ({productCards}) => (
-  <div>
-    **RelatedProductList**
+  <div className="relatedProductList">
     {productCards.map(productCard => (
       <ProductCard key={productCard.id} productCard={productCard} />
     ))}
