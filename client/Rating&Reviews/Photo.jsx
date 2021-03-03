@@ -21,17 +21,10 @@ class Photo extends React.Component {
 
   render() {
     const {photo} = this.props;
-    const {show} = this.state;
 
     return (
       <>
-        <img className='photo' src={photo.url} alt='product' onClick={this.handleClick} />
-        {/* <Modal show={show} onHide={this.handleClick}>
-          <Modal.Body>
-            <span>Hello!</span>
-            {/* <img className='photo-modal' src={photo.url} alt='product' /> */}
-          {/* </Modal.Body>
-        </Modal> */}
+        <img className='photo' src={photo.url} alt='product' /* onClick={this.handleClick} */ />
       </>
     )
   }

@@ -1,9 +1,10 @@
 const axios = require('axios');
+
 const config = require('../config.js');
 
 // Products GET /products Retrieves the list of products
-let getProductsList = () => {
-  let options = {
+const getProductsList = () => {
+  const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products?page=1&count=5`,
     // param: page (integer) Selects the page of results to return. Default 1.
@@ -22,8 +23,8 @@ let getProductsList = () => {
 }
 
 // Products GET /products/:product_id Returns all product level information for a specified product id
-let getProductById = (id) => {
-  let options = {
+const getProductById = (id) => {
+  const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}?product_id=${id}`,
     // param: product_id (integer) Required ID of the Product requested
@@ -41,8 +42,8 @@ let getProductById = (id) => {
 }
 
 // Products GET /products/:product_id/styles Returns all styles available for the given product
-let getStylesById = (id) => {
-  let options = {
+const getStylesById = (id) => {
+  const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/styles?product_id=${id}`,
     // param: product_id (integer) Required ID of the Product requested
@@ -60,8 +61,8 @@ let getStylesById = (id) => {
 }
 
 // Products GET /products/:product_id/related Returns the id's of products related to the product specified
-let getRelatedProducts = (id) => {
-  let options = {
+const getRelatedProducts = (id) => {
+  const options = {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}/related?product_id=${id}`,
     // param: product_id (integer) Required ID of the Product requested
@@ -185,7 +186,7 @@ const reportReview = (id) => {
 //
 // }
 
-//Interactions
+// Interactions
 
 module.exports = {
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]

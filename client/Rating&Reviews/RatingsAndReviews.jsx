@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import RatingsContainer from './RatingsContainer.jsx';
 import ReviewsListContainer from './ReviewsListContainer.jsx';
 
 class RatingsAndReviews extends React.Component {
@@ -62,11 +63,11 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const {reviews, totalReviews} = this.state;
+    const {reviewData, reviews, totalReviews} = this.state;
 
     return (
       <>
-        {/* <RatingsContainer /> */}
+        <RatingsContainer reviewData={reviewData} />
         <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort} />
       </>
     )
