@@ -30,6 +30,7 @@ class ReviewListEntry extends React.Component {
           .then(() => this.setState({
             vote: 'yes'
           }))
+          .catch(error => console.log(error))
       } else if (vote === 'no') {
         this.setState({
           vote: 'no'
