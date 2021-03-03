@@ -1,6 +1,6 @@
 import React from 'react';
 import RelatedProductList from './RelatedProductList.jsx';
-import dummyProductCards from './dummyProductCards.js';
+import dummyProductCards from './dummyProductCards';
 
 class RelatedListContainer extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class RelatedListContainer extends React.Component {
       <div>
         RelatedListContainer
         <ul>
-          <RelatedProductList productCards={RelatedProductCards}/>
+          <RelatedProductList productCards={RelatedProductCards} />
           <div>OutfitList</div>
         </ul>
       </div>
