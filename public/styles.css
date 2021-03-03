@@ -10,6 +10,14 @@
   display: none;
 }
 /* Ratings and Reviews */
+.minimized {
+  background-color: red;
+}
+
+.maximized {
+  background-color: blue;
+}
+
 .review {
   position: relative;
   width: 50%;

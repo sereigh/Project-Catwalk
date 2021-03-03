@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import ReviewListEntry from './ReviewListEntry.jsx';
 
-const ReviewsList = ({reviews}) => (
-  <div>
+const ReviewsList = ({minimized, reviews}) => (
+  <div className={minimized ? 'minimized' : 'maximized'}>
     {reviews.map(review => <ReviewListEntry key={review.review_id} review={review} />)}
   </div>
 );
 
 ReviewsList.propTypes = {
+  minimized: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
     review_id: PropTypes.number,
     rating: PropTypes.number,
