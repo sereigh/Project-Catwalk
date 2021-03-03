@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import SendFeedback from './SendFeedback.jsx';
 import Test from './Test.jsx';
@@ -16,7 +16,7 @@ function Answerslist() {
   return (
 
     <div className="answersList">
-      {answers.map((answer, i) => (
+      {answers.map((answer) => (
         <div key={answer.answer_id} className="answer">
           <div className="answerText">
             <strong>A:  </strong>

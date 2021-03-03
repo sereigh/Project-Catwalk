@@ -44,7 +44,7 @@ function QuestionsList({ questions, reportOption, handleFeedback }) {
                   {question.question_body}
                 </h3>
               </span>
-              <SendFeedback option={2} handleFeedback={() => {console.log('Should add helpfullness or an answer')}} />
+              <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
             </span>
             {view === index && <AnswersList />}
           </div>

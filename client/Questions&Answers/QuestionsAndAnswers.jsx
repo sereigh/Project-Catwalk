@@ -23,17 +23,8 @@ class QuestionsAndAnswers extends React.Component {
 
     const {reportOption} = this.state;
 
-    const handleFeedback = (userOption) => {
-      if (userOption === 0) {
-        // on success
-        this.setState({reportOption: 1})
-      }
-      if (userOption === 'Add Answer') {
-        console.log('add new  answer');
-      }
-      if (userOption === 'Yes') {
-        console.log('add to helpfulness count');
-      }
+    const addToDatabase = (url, cb) => {
+
     }
 
     return (
@@ -43,7 +34,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        {questions && <QuestionsList questions={questions} handleFeedback={handleFeedback} reportOption={reportOption} />}
+        {questions && <QuestionsList questions={questions} reportOption={reportOption} />}
       </div>
     );
   }
