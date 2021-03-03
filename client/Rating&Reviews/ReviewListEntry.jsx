@@ -27,17 +27,19 @@ class ReviewListEntry extends React.Component {
       if (vote === 'yes') {
         axios
           .put(`/reviews/${id}/helpful`)
-          .then(() => this.setState({
-            vote: 'yes'
-          }))
+          .then(() => {
+            localStorage.setItem(`hasVoted${id}`, 'yes');
+            this.setState({
+              vote: 'yes'
+            })
+          })
           .catch(error => console.log(error))
       } else if (vote === 'no') {
+        localStorage.setItem(`hasVoted${id}`, 'no');
         this.setState({
           vote: 'no'
         });
       }
-
-      localStorage.setItem(`hasVoted${id}`, true);
     }
   }
 
@@ -66,7 +68,7 @@ class ReviewListEntry extends React.Component {
         <span>
           Helpful?
           <span
-            className={vote === 'yes' ? 'yes' : 'vote'}
+            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'yes' ? 'yes' : 'vote'}
             onClick={() => this.handleVote('yes', review.review_id)}
             onKeyPress={() => this.handleVote('yes', review.review_id)}
             role='button'
@@ -76,7 +78,7 @@ class ReviewListEntry extends React.Component {
           </span>
           <span> | </span>
           <span
-            className={vote === 'no' ? 'no' : 'vote'}
+            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'no' ? 'no' : 'vote'}
             onClick={() => this.handleVote('no', review.review_id)}
             onKeyPress={() => this.handleVote('no', review.review_id)}
             role='button'
