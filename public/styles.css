@@ -3,6 +3,19 @@
 /* Related Items and Comparison */
 
 /* Questions and Answers */
+.qaContainer {
+  width: 100%;
+}
+.q {
+  width: 50%;
+}
+
+.question {
+  display: flex;
+  font-size: small;
+  width: 100%;
+  justify-content: space-between;
+}
 .questionsList div:nth-child(5n) {
   display: none;
 }

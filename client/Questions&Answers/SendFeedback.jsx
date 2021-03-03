@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const options = ['Yes', 'Report'];
-const handleFeedback = () => { console.log('click') }
 
 class SendFeedback extends React.Component {
   constructor() {
@@ -13,6 +11,8 @@ class SendFeedback extends React.Component {
   }
 
   render() {
+    const options = ['Yes', 'Report'];
+    const handleFeedback = () => { console.log('click') }
     const { option } = this.props;
     return (
       <div
@@ -21,15 +21,30 @@ class SendFeedback extends React.Component {
         role="button"
         tabIndex={0}
       >
-        Helpful?
-        {' '}
-        <u>{options[option]}</u>
-        (0)
-        |
+        <p>
+          Helpful?
+          {' '}
+          <u>Yes</u>
+          (0)
+          |
+          {' '}
+          <u>{options[option]}</u>
+        </p>
       </div>
     )
   }
 }
+
+// const messageFeedback = (Component) => {
+//   return class extends React.Component {
+//     render() {
+//       return (
+
+//       )
+//     }
+//   }
+// }
+
 // function SendFeedback(Component) {
 //   const { handleClick } = props;
 //   return class extends React.Component {

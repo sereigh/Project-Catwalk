@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
+import SendFeedback from './SendFeedback.jsx';
 
 function QuestionsList({ questions }) {
   const [view, setView] = useState(false);
@@ -23,19 +24,21 @@ function QuestionsList({ questions }) {
         {questions.map((question, index) => (
           <div
             key={question.question_id}
-            className="question"
+            className="qBar"
             onClick={() => toggleView(index)}
             role="button"
             tabIndex={0}
             onKeyPress={() => toggleView(index)}
           >
-            <span>
-              <h3>
-                Q:
-                {' '}
-                {question.question_body}
-
-              </h3>
+            <span className="question">
+              <span className="q">
+                <h3>
+                  Q:
+                  {' '}
+                  {question.question_body}
+                </h3>
+              </span>
+              <SendFeedback option={0} />
             </span>
             {view === index && <AnswersList />}
           </div>
