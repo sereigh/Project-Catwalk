@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
 
-function QuestionsList({questions, answers}) {
+function QuestionsList({ questions, answers }) {
   const [view, setView] = useState(false);
   const toggleView = (index) => {
     console.log('clicked')
@@ -12,31 +12,37 @@ function QuestionsList({questions, answers}) {
     }
     return setView(index);
   };
-  return (
-    <>
-      <div className="questionsList">
-        {questions.map((question, index) => (
-          <div
-            key={question.question_id}
-            className="question"
-            onClick={() => toggleView(index)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={() => toggleView(index)}
-          >
-            <span>
-              <h3>
-                Q:
-                {' '}
-                {question.question_body}
-              </h3>
-            </span>
-            {view === index && <AnswersList answers={answers} /> }
-          </div>
-        ))}
-      </div>
-    </>
-  );
+
+  if (questions.length === 0) {
+    return (
+      <h1>Hi</h1>
+    );
+  }
+    return (
+      <>
+        <div className="questionsList">
+          {questions.map((question, index) => (
+            <div
+              key={question.question_id}
+              className="question"
+              onClick={() => toggleView(index)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={() => toggleView(index)}
+            >
+              <span>
+                <h3>
+                  Q:
+                  {' '}
+                  {question.question_body}
+                </h3>
+              </span>
+              {view === index && <AnswersList answers={answers} />}
+            </div>
+          ))}
+        </div>
+      </>
+    );
 }
 
 QuestionsList.propTypes = {

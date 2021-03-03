@@ -27,7 +27,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <QuestionsList questions={questions} answers={answers} />
+        {questions && <QuestionsList questions={questions} answers={answers} />}
       </div>
     );
   }
