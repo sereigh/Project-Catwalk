@@ -15,7 +15,8 @@ class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      vote: null
+      vote: null,
+      reported: false
     };
 
     this.handleVote = this.handleVote.bind(this);
@@ -44,15 +45,22 @@ class ReviewListEntry extends React.Component {
   }
 
   handleReport(id) {
-    localStorage.removeItem(`hasVoted${id}`);
-    this.setState({
-      vote: null
-    })
+    if (!localStorage.getItem(`hasReported${id}`)) {
+      axios
+        .put(`/reviews/${id}/report`)
+        .then(() => {
+          localStorage.setItem(`hasReported${id}`, true);
+          this.setState({
+            reported: true
+          })
+        })
+        .catch(error => console.log(error))
+    }
   }
 
   render() {
     const {review} = this.props;
-    const {vote} = this.state;
+    const {vote, reported} = this.state;
 
     return (
       <div className='review'>
@@ -88,12 +96,13 @@ class ReviewListEntry extends React.Component {
           </span>
           <span> | </span>
           <span
+            className={localStorage.getItem(`hasReported${review.review_id}`) ? reported : ''}
             onClick={() => this.handleReport(review.review_id)}
             onKeyPress={() => this.handleReport(review.review_id)}
             role='button'
             tabIndex={0}
           >
-            Report
+            {reported ? 'Report' : 'Reported'}
           </span>
         </span>
       </div>

@@ -32,6 +32,6 @@
   color: green;
 }
 
-.no {
+.no, .reported {
   color: red;
 }
