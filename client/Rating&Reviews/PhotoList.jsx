@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Photo from './Photo.jsx';
+
 const PhotoList = ({photos}) => (
   <div>
-    {photos.map(photo => <img key={photo.id} className='photo' src={photo.url} alt='product' />)}
+    {photos.map(photo => <Photo key={photo.id} photo={photo} />)}
   </div>
 )
 

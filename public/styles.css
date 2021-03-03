@@ -23,3 +23,15 @@
   max-height: 50px;
   object-fit: scale-down;
 }
+
+.vote {
+  color: blue;
+}
+
+.yes {
+  color: green;
+}
+
+.no {
+  color: red;
+}
