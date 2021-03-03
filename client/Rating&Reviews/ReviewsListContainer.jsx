@@ -7,10 +7,12 @@ class ReviewsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'relevance'
+      selected: 'relevance',
+      minimized: true
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(event) {
@@ -23,9 +25,17 @@ class ReviewsListContainer extends React.Component {
     });
   }
 
+  handleClick() {
+    const {minimized} = this.state;
+
+    this.setState({
+      minimized: !minimized
+    })
+  }
+
   render() {
     const {reviews, totalReviews} = this.props;
-    const {selected} = this.state;
+    const {selected, minimized} = this.state;
 
     return (
       <>
@@ -37,8 +47,8 @@ class ReviewsListContainer extends React.Component {
             <option value='newest'>newest</option>
           </select>
         </span>
-        <ReviewsList reviews={reviews} />
-        <button type='button'>More Reviews</button>
+        <ReviewsList minimized={minimized} reviews={reviews} />
+        <button type='button' onClick={this.handleClick}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
         <button type='button'>Add A Review +</button>
       </>
     )
