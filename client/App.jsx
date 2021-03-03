@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import ReviewsListContainer from './Rating&Reviews/ReviewsListContainer.jsx';
+import RatingsAndReviews from './Rating&Reviews/RatingsAndReviews.jsx';
 import QuestionsAndAnswers from './Questions&Answers/QuestionsAndAnswers.jsx';
 import RelatedListContainer from './RelatedItems&Comparison/RelatedListContainer.jsx';
 
@@ -74,7 +74,7 @@ class App extends React.Component {
         {/* <Overview /> */}
         <RelatedListContainer />
         <QuestionsAndAnswers />
-        <ReviewsListContainer />
+        <RatingsAndReviews productId={productId} />
       </div>
     );
   }
