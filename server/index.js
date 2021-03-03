@@ -1,5 +1,7 @@
 const path = require('path');
+
 const express = require('express');
+
 const helpers = require('./helpers');
 
 const app = express();
@@ -8,7 +10,7 @@ const port = 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 
-//Products GET /products Retrieves the list of products
+// Products GET /products Retrieves the list of products
 app.get('/products', (req,res) => {
   helpers.getProductsList()
     .then((response) => {
@@ -19,7 +21,7 @@ app.get('/products', (req,res) => {
     })
 });
 
-//Products GET /products/:product_id Returns all product level information for a specified product id
+// Products GET /products/:product_id Returns all product level information for a specified product id
 app.get('/products/:product_id', (req, res) => {
   helpers.getProductsList()
   .then((response) => {
@@ -30,7 +32,7 @@ app.get('/products/:product_id', (req, res) => {
   })
 });
 
-//Products GET /products/:product_id/styles Returns all styles available for the given product
+// Products GET /products/:product_id/styles Returns all styles available for the given product
 app.get('/products/:product_id/styles', (req, res) => {
   helpers.getStylesById()
   .then((response) => {
@@ -41,7 +43,7 @@ app.get('/products/:product_id/styles', (req, res) => {
   })
 });
 
-//Products GET /products/:product_id/related Returns the id's of products related to the product specified
+// Products GET /products/:product_id/related Returns the id's of products related to the product specified
 app.get('/products/:product_id/related', (req, res) => {
   helpers.getRelatedProducts()
   .then((response) => {
@@ -50,6 +52,27 @@ app.get('/products/:product_id/related', (req, res) => {
   .catch((error) => {
     console.log(error.data);
   })
+
+// Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
+app.get('/reviewdata/:product_id', (req, res) => {
+  helpers.getReviewData(req.params.product_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+// Reviews GET /reviews/:product_id/:sort/:count Returns all reviews for a specified product id
+app.get('/reviews/:product_id/:sort/:count', (req, res) => {
+  helpers.getAllReviews(req.params.product_id, req.params.sort, req.params.count)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 app.listen(port, () => {
