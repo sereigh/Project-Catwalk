@@ -1,10 +1,7 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line import/extensions
-import answers from './answers.js';
-
-const AnswersList = () => (
+const AnswersList = ({answers}) => (
   <ul className="answersList">
     {answers.map((answer) => (
       <li key={answer.id}>
@@ -17,8 +14,8 @@ const AnswersList = () => (
   </ul>
 );
 
-// AnswersList.propTypes = {
-//   view: PropTypes.bool.isRequired
-// }
+AnswersList.propTypes = {
+  answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
+}
 
 export default AnswersList;

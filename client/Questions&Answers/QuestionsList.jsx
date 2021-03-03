@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
-
-// eslint-disable-next-line import/no-unresolved
-// eslint-disable-next-line import/extensions
-import questions from './questions.js';
+import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
 
-function QuestionsList() {
+function QuestionsList({questions, answers}) {
   const [view, setView] = useState(false);
   const toggleView = (index) => {
     console.log('clicked')
@@ -21,7 +17,7 @@ function QuestionsList() {
       <ul className="questionList">
         {questions.map((question, index) => (
           <div
-            key={question.id}
+            key={question.question_id}
             className="question"
             onClick={() => toggleView(index)}
             role="button"
@@ -31,10 +27,11 @@ function QuestionsList() {
             <span>
               <h3>
                 Q:
-                Some kind of question?
+                {' '}
+                {question.question_body}
               </h3>
             </span>
-            {view === index && <AnswersList /> }
+            {view === index && <AnswersList answers={answers} /> }
           </div>
         ))}
       </ul>
@@ -42,9 +39,9 @@ function QuestionsList() {
   );
 }
 
-// QuestionsList.propTypes = {
-//   view: PropTypes.bool.isRequired,
-//   toggleView: PropTypes.func.isRequired
-// }
+QuestionsList.propTypes = {
+  questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
+}
 
 export default QuestionsList;

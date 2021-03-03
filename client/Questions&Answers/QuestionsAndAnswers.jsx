@@ -2,6 +2,12 @@ import React from 'react';
 
 import QuestionsList from './QuestionsList.jsx';
 
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/extensions
+import questions from './questions.js';
+// eslint-disable-next-line import/extensions
+import answers from './answers.js';
+
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +27,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <QuestionsList />
+        <QuestionsList questions={questions} answers={answers} />
       </div>
     );
   }
