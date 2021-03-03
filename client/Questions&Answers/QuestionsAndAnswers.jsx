@@ -1,15 +1,20 @@
 import React from 'react';
 
+import QuestionsList from './QuestionsList.jsx';
+
+// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/extensions
+import questions from './questions.js';
+
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: 18076,
+
     };
   }
 
   render() {
-    const {product} = this.state;
 
     return (
       <div className="qaContainer" style={{ border: 'solid black thin' }}>
@@ -20,9 +25,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <div className="qaList" style={{ border: 'solid black thin' }}>
-          List
-        </div>
+        {questions && <QuestionsList questions={questions} />}
       </div>
     );
   }

@@ -3,7 +3,12 @@
 /* Related Items and Comparison */
 
 /* Questions and Answers */
-
+.questionsList div:nth-child(5n) {
+  display: none;
+}
+.answersList div:nth-child(2n) {
+  display: none;
+}
 /* Ratings and Reviews */
 .review {
   position: relative;
