@@ -1,8 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import axios from 'axios';
 
-import StyleSelector from './StyleSelector.jsx';
+// import StyleSelector from './StyleSelector.jsx';
+
+// OverviewContainer.jsx provides props:
+//   selectProductId={selectProductId}
 
 class StylePriceType extends React.Component {
   constructor(props) {
@@ -41,7 +44,8 @@ class StylePriceType extends React.Component {
   }
 
   render() {
-    // const { ___ } = this.props;
+    const { selectProductId } = this.props;
+    console.log('StylePriceType_render selectProductID', selectProductId);
     const { selectStyleOptions, selectStyleIndex } = this.state;
     // Price $360
     // STYLE > SELECTED STYLE
@@ -59,11 +63,11 @@ class StylePriceType extends React.Component {
           </h3>
         </div>
         <div id="styleSelector">
-          <StyleSelector
+          {/* <StyleSelector
             selectStyleOptions={selectStyleOptions}
             selectStyleIndex={selectStyleIndex}
             setSelectStyleIndex={this.setSelectStyleIndex}
-          />
+          /> */}
         </div>
       </div>
     );
@@ -71,8 +75,8 @@ class StylePriceType extends React.Component {
 
 }
 
-// StylePriceType.propTypes = {
-//   selectProductId: PropTypes.number.isRequired
-// }
+StylePriceType.propTypes = {
+  selectProductId: PropTypes.number.isRequired
+}
 
 export default StylePriceType;
