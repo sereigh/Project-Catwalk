@@ -65,6 +65,17 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     })
 });
 
+// Reviews PUT /reviews/:review_id/report Reports a specified review id
+app.put('/reviews/:review_id/report', (req, res) => {
+  helpers.reportReview(req.params.review_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
