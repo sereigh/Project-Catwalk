@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import ShowcaseImage from './ShowcaseImage.jsx';
-import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
-import FeaturedReviewLink from './FeaturedReviewLink.jsx';
-import FeaturedProduct from './FeaturedProduct.jsx';
+// import ShowcaseImage from './ShowcaseImage.jsx';
+// import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
+// import FeaturedReviewLink from './FeaturedReviewLink.jsx';
+// import FeaturedProduct from './FeaturedProduct.jsx';
 import StylePriceType from './StylePriceType.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import CartFormSize from './CartFormSize.jsx';
-import CartFormQuantity from './CartFormQuantity.jsx';
-import CartInserter from './CartInserter.jsx';
-import DescriptionBanner from './DescriptionBanner.jsx';
+// import StyleSelector from './StyleSelector.jsx';
+// import CartFormSize from './CartFormSize.jsx';
+// import CartFormQuantity from './CartFormQuantity.jsx';
+// import CartInserter from './CartInserter.jsx';
+// import DescriptionBanner from './DescriptionBanner.jsx';
 
 // App.jsx provides props:
 //   selectProductId={selectProductId}
@@ -23,36 +24,44 @@ class OverviewContainer extends React.Component {
   }
 
   render() {
+    const { selectProductId } = this.props;
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
-
     return (
       <div className="overviewWidget">
-        <div className="showcaseCarousel">
+        {/* <div className="showcaseCarousel">
           <ShowcaseImage />
           <ShowcaseThumbnails />
-        </div>
+        </div> */}
         <div className="showcaseSelection">
-          <div className="areaItem">
+          {/* <div className="areaItem">
             <FeaturedReviewLink />
             <FeaturedProduct />
-          </div>
+          </div> */}
           <div className="areaStyle">
-            <StylePriceType />
-            <StyleSelector />
+            <StylePriceType
+              selectProductId={selectProductId}
+            />
+            {/* <StyleSelector /> */}
           </div>
-          <div className="areaCart">
+          {/* <div className="areaCart">
             <CartFormSize />
             <CartFormQuantity />
             <CartInserter />
-          </div>
+          </div> */}
         </div>
-        <div className="showcaseDescription">
+        {/* <div className="showcaseDescription">
           <DescriptionBanner />
-        </div>
+        </div> */}
       </div>
     );
   }
 
 }
 
+OverviewContainer.propTypes = {
+  selectProductId: PropTypes.number.isRequired
+}
+
 export default OverviewContainer;
+
+// "Warning: React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: object. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports. Check the render method"
