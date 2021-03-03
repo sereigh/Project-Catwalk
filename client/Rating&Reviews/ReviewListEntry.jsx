@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import Stars from '../SharedComponents/Stars.jsx';
 
@@ -24,9 +25,11 @@ class ReviewListEntry extends React.Component {
   handleVote(vote, id) {
     if (!localStorage.getItem(`hasVoted${id}`)) {
       if (vote === 'yes') {
-        this.setState({
-          vote: 'yes'
-        });
+        axios
+          .put(`/reviews/${id}/helpful`)
+          .then(() => this.setState({
+            vote: 'yes'
+          }))
       } else if (vote === 'no') {
         this.setState({
           vote: 'no'
@@ -68,7 +71,7 @@ class ReviewListEntry extends React.Component {
             role='button'
             tabIndex={0}
           >
-            {` Yes (${review.helpfulness})`}
+            {vote === 'yes' ? ` Yes (${review.helpfulness + 1})` : ` Yes (${review.helpfulness})`}
           </span>
           <span> | </span>
           <span
