@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ActionButton from './ActionButton.jsx';
+import PreviewImages from './PreviewImages.jsx';
 
 const ProductCard = ({productCards}) => (
   <div>
+    <ActionButton />
+    <PreviewImages />
     {productCards.map(card => (
       <div key={card.id}>
         {card.category}
