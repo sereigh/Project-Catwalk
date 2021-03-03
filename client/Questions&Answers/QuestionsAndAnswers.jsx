@@ -1,7 +1,7 @@
 import React from 'react';
 
-import QuestionsList from './QuestionsList.jsx';
 import SendFeedback from './SendFeedback.jsx';
+import QuestionsList from './QuestionsList.jsx';
 
 // eslint-disable-next-line import/no-unresolved
 // eslint-disable-next-line import/extensions
@@ -23,6 +23,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaHeader" style={{ border: 'solid black thin' }} />
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
+          <SendFeedback option={1} />
         </div>
         {questions && <QuestionsList questions={questions} />}
       </div>

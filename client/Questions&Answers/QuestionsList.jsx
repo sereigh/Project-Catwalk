@@ -22,22 +22,21 @@ function QuestionsList({ questions }) {
     <>
       <div className="questionsList">
         {questions.map((question, index) => (
-          <div
-            key={question.question_id}
-            className="expandAnswer"
-            onClick={() => toggleView(index)}
-            role="button"
-            tabIndex={0}
-            onKeyPress={() => toggleView(index)}
-          >
+          <div key={question.question_id}>
             <span className="question">
-              <span className="questionText">
+              <div
+                className="questionText"
+                onClick={() => toggleView(index)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={() => toggleView(index)}
+              >
                 <h3>
                   Q:
                   {' '}
                   {question.question_body}
                 </h3>
-              </span>
+              </div>
               <SendFeedback option={0} />
             </span>
             {view === index && <AnswersList />}

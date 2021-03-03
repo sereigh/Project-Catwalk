@@ -16,6 +16,7 @@ class SendFeedback extends React.Component {
     const { option } = this.props;
     return (
       <div
+        className="feedback"
         onClick={handleFeedback}
         onKeyPress={handleFeedback}
         role="button"

@@ -1,6 +1,8 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 
+// import PropTypes from 'prop-types';
+import SendFeedback from './SendFeedback.jsx';
+import Test from './Test.jsx';
 // eslint-disable-next-line import/extensions
 import answers from './answers.js';
 
@@ -10,10 +12,12 @@ function Answerslist() {
     <div className="answersList">
       {answers.map((answer) => (
         <div key={answer.answer_id} className="answer">
-          <span>
+          <div className="answerText">
             <strong>A:  </strong>
             {answer.body}
-          </span>
+          </div>
+          <Test />
+          <SendFeedback option={1} />
         </div>
     ))}
     </div>

@@ -6,14 +6,16 @@
 .qaContainer {
   width: 100%;
 }
-.questionText {
+.questionText, .answerText {
   width: 50%;
 }
-.question {
+.question, .answer {
   display: flex;
-  font-size: small;
   width: 100%;
   justify-content: space-between;
+}
+.feedback {
+  font-size: x-small;
 }
 .questionsList div:nth-child(5n) {
   display: none;
