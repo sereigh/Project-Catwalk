@@ -6,7 +6,7 @@ import PreviewImages from './PreviewImages.jsx';
 const ProductCard = ({productCard}) => (
   <div>
     <ActionButton />
-    <PreviewImages />
+    <PreviewImages styles={productCard.styles} />
     {productCard.category}
     {productCard.name}
     {productCard.price}
@@ -20,12 +20,27 @@ ProductCard.propTypes = {
     category: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
-    starRating: PropTypes.string
+    starRating: PropTypes.string,
+    styles: PropTypes.arrayOf(PropTypes.shape({
+      style_id: PropTypes.number,
+      name: PropTypes.string,
+      original_price: PropTypes.string,
+      sale_price: PropTypes.string,
+      default: PropTypes.bool,
+      photos: PropTypes.arrayOf(PropTypes.shape({
+        thumbnail_url: PropTypes.string,
+        url: PropTypes.string
+      }))
+    })),
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string
+    }))
   })
 }
 
 ProductCard.defaultProps = {
-  productCard: []
+  productCard: {}
 }
 
 export default ProductCard;
