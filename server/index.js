@@ -52,6 +52,7 @@ app.get('/products/:product_id/related', (req, res) => {
   .catch((error) => {
     console.log(error.data);
   })
+});
 
 // Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
 app.get('/reviewdata/:product_id', (req, res) => {
@@ -67,6 +68,28 @@ app.get('/reviewdata/:product_id', (req, res) => {
 // Reviews GET /reviews/:product_id/:sort/:count Returns all reviews for a specified product id
 app.get('/reviews/:product_id/:sort/:count', (req, res) => {
   helpers.getAllReviews(req.params.product_id, req.params.sort, req.params.count)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+// Reviews PUT /reviews/:review_id/helpful Increases helpfulness by one for a specified review id
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  helpers.voteHelpful(req.params.review_id)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+// Reviews PUT /reviews/:review_id/report Reports a specified review id
+app.put('/reviews/:review_id/report', (req, res) => {
+  helpers.reportReview(req.params.review_id)
     .then((response) => {
       res.send(response.data)
     })
