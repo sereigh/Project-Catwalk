@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import CharacteristicRate from './CharacteristicRate.jsx';
 
 const CharacteristicsSubmit = ({characteristics, handleCharacteristicRate}) => (
-  <span>
-    {'*Characteristics: '}
+  <>
+    <div>
+      {'*Characteristics: '}
+    </div>
     {characteristics.map(characteristic => (
       <CharacteristicRate key={characteristic} characteristic={characteristic} handleCharacteristicRate={handleCharacteristicRate} />
     ))}
-  </span>
+  </>
 )
 
 CharacteristicsSubmit.propTypes = {

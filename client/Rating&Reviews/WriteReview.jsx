@@ -53,29 +53,31 @@ class WriteReview extends React.Component {
   }
 
   handleCharacteristicRate(event, characteristic) {
-    if (characteristic === 'size') {
+    const rating = parseInt(event.target.value);
+
+    if (characteristic === 'Size') {
       this.setState({
-        size: event.target.value
+        size: rating
       });
-    } else if (characteristic === 'width') {
+    } else if (characteristic === 'Width') {
       this.setState({
-        width: event.target.value
+        width: rating
       });
-    } else if (characteristic === 'comfort') {
+    } else if (characteristic === 'Comfort') {
       this.setState({
-        comfort: event.target.value
+        comfort: rating
       });
-    } else if (characteristic === 'quality') {
+    } else if (characteristic === 'Quality') {
       this.setState({
-        quality: event.target.value
+        quality: rating
       });
-    } else if (characteristic === 'length') {
+    } else if (characteristic === 'Length') {
       this.setState({
-        length: event.target.value
+        length: rating
       });
-    } else if (characteristic === 'fit') {
+    } else if (characteristic === 'Fit') {
       this.setState({
-        fit: event.target.value
+        fit: rating
       });
     }
   }
