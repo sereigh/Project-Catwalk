@@ -9,33 +9,33 @@ class RelatedListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProductIds: [
-        17219,
-        17810,
-        17174
-      ],
+      // relatedProductIds: [
+      //   17219,
+      //   17810,
+      //   17174
+      // ],
       relatedProductCards: dummyProductCards
     }
   }
 
-  componentDidMount() {
-    const {selectProductId} = this.props;
-    this.getRelatedProductIds(selectProductId);
-  }
+  // componentDidMount() {
+  //   const {selectProductId} = this.props;
+  //   this.getRelatedProductIds(selectProductId);
+  // }
 
-  getRelatedProductIds(productId) {
-    axios
-    .get(`/products/${productId}/related`)
-    .then((response) => {
-      console.log('related', response.data);
-      this.setState({
-        relatedProductIds: response.data
-      })
-    })
-    .catch((error) => {
-      console.log('Get related items failed...', error);
-    })
-  }
+  // getRelatedProductIds(productId) {
+  //   axios
+  //   .get(`/products/${productId}/related`)
+  //   .then((response) => {
+  //     console.log('related', response.data);
+  //     this.setState({
+  //       relatedProductIds: response.data
+  //     })
+  //   })
+  //   .catch((error) => {
+  //     console.log('Get related items failed...', error);
+  //   })
+  // }
 
 /**
  * product_id

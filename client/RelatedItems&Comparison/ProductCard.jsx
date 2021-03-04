@@ -17,6 +17,22 @@ const ProductCard = ({productCard, selectProductInfo}) => {
     }
   };
 
+  // const trimProductDetails = () => {
+  //   if (selectProductInfo.features) {
+  //     console.log('selected', selectProductInfo.features);
+  //     console.log('card', productCard.features);
+  //     let allFeatures = productCard.features.slice(0).concat(selectProductInfo.features.slice(0));
+  //     const result = allFeatures.reduce((feature, i) => {
+  //       if (feature.includes(i)) {
+  //         return [...x, y];
+  //       }
+  //     }, []);
+  //     return result;
+  //   }
+  // }
+
+  // console.log(trimProductDetails());
+
   return (
     <div>
       <div className="productCard" style={{border: 'solid black 1px'}}>
