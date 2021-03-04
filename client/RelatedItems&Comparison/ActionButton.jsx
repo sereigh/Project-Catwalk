@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ActionButton = () => (
-  <button>☆</button>
+  <button id="startBtn">☆</button>
 );
 
 export default ActionButton;

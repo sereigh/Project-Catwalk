@@ -22,18 +22,23 @@ class RelatedListContainer extends React.Component {
     }
   }
 
-  // getRelatedProductIds(productId) {
-  //   axios
-  //   .get(`/products/${productId}/related`)
-  //   .then((response) => {
-  //     this.setState({
-  //       relatedProductIds: response.data
-  //     })
-  //   })
-  //   .catch((error) => {
-  //     console.log('Get related items failed...', error);
-  //   })
-  // }
+  componentDidMount() {
+    this.getRelatedProductIds(17762);
+  }
+
+  getRelatedProductIds(productId) {
+    axios
+    .get(`/products/${productId}/related`)
+    .then((response) => {
+      console.log('related', response.data);
+      this.setState({
+        relatedProductIds: response.data
+      })
+    })
+    .catch((error) => {
+      console.log('Get related items failed...', error);
+    })
+  }
 
 /**
  * product_id
@@ -76,7 +81,7 @@ class RelatedListContainer extends React.Component {
             **RelatedProductList**
             <RelatedProductList productCards={relatedProductCards} />
           </div>
-          <div>OutfitList</div>
+          <div>**OutfitList**</div>
         </ul>
       </div>
     );

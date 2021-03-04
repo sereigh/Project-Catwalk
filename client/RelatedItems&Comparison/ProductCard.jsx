@@ -2,17 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
+import ComparisonModal from './ComparisonModal.jsx';
 
 const ProductCard = ({productCard}) => (
-  <div className="productCard" style={{border: 'solid black 1px'}}>
-    <ActionButton />
-    <PreviewImages styles={productCard.styles} />
-    <div>
-      <div>{productCard.category}</div>
-      <div>{productCard.name}</div>
-      <div>{`$${productCard.price}`}</div>
-      <div>{productCard.starRating}</div>
+  <div>
+    <div className="productCard" style={{border: 'solid black 1px'}}>
+      <ActionButton />
+      <PreviewImages styles={productCard.styles} />
+      <div>
+        <div>{productCard.category}</div>
+        <div>{productCard.name}</div>
+        <div>{`$${productCard.price}`}</div>
+        <div>{productCard.starRating}</div>
+      </div>
     </div>
+    <ComparisonModal />
   </div>
 );
 
