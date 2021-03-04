@@ -3,7 +3,7 @@ const axios = require('axios');
 const config = require('../config.js');
 
 const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-const header = {headers: { 'Authorization': `${config.TOKEN}` }};
+const header = { headers: { 'Authorization': `${config.TOKEN}` } };
 
 // Products GET /products Retrieves the list of products
 const getProductsList = () => {
@@ -156,47 +156,37 @@ const reportReview = (id) => {
 
 // Questions&Answers
 
-const getQuestions = (id, cb) => {
-  axios.get(`${host}/qa/questions/?product_id=${id}`, header)
-    .then((response) => cb(null, response.data))
-    .catch((err) => cb(err, null))
-}
-const getAnswers = (id, cb) => {
-  axios.get(`${host}/qa/questions/${id}/answers`, header)
-    .then((response) => cb(null, response.data))
-    .catch((err) => cb(err, null))
-}
-const addQuestion = (id, data, cb) => {
-  axios.post(`${host}/qa/questions?product_id=${id}`, data, header)
-    .then((response) => cb(null, response))
-    .catch((err) => cb(err, null))
-}
-const addAnswer = (id, data, cb) => {
-  axios.post(`${host}/qa/questions/${id}/answers`, data, header)
-    .then((response) => cb(null, response))
-    .catch((err) => cb(err, null))
-}
-const markQuestionHelpful = (id, req, cb) => {
-  axios.put(`${host}/qa/questions/${id}/helpful`, req, header)
-  .then((response) => cb(null, response))
-  .catch((err) => cb(err, null))
-}
-const markAnswerHelpful = (id, req, cb) => {
-  axios.put(`${host}/qa/answers/${id}/helpful`, req, header)
-  .then((response) => cb(null, response))
-  .catch((err) => cb(err, null))
-}
-const reportQuestion = (id, req, cb) => {
-  axios.put(`${host}/qa/questions/${id}/report`, req, header)
-  .then((response) => cb(null, response))
-  .catch((err) => cb(err, null))
-}
+const getQuestions = (id) => axios.get(`${host}/qa/questions/?product_id=${id}`, header)
+  .then((response) => response)
+  .catch((err) => err)
 
-const reportAnswer = (id, req, cb) => {
-  axios.put(`${host}/qa/answers/${id}/report`, req, header)
-  .then((response) => cb(null, response))
-  .catch((err) => cb(err, null))
-}
+const getAnswers = (id) => axios.get(`${host}/qa/questions/${id}/answers`, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const addQuestion = (id, data) => axios.post(`${host}/qa/questions?product_id=${id}`, data, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const addAnswer = (id, data) => axios.post(`${host}/qa/questions/${id}/answers`, data, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const markQuestionHelpful = (id, req) => axios.put(`${host}/qa/questions/${id}/helpful`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const markAnswerHelpful = (id, req) => axios.put(`${host}/qa/answers/${id}/helpful`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const reportQuestion = (id, req) => axios.put(`${host}/qa/questions/${id}/report`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const reportAnswer = (id, req) => axios.put(`${host}/qa/answers/${id}/report`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
 
 // Cart GET /cart Retrieves list of products added to the cart by a user
 // let getCartContents = (id) => {

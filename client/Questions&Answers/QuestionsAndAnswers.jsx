@@ -23,9 +23,9 @@ class QuestionsAndAnswers extends React.Component {
 
     const {reportOption} = this.state;
 
-    const addToDatabase = (url, cb) => {
+    // const addToDatabase = (url, cb) => {
 
-    }
+    // }
 
     return (
       <div className="qaContainer" style={{ border: 'solid black thin' }}>
