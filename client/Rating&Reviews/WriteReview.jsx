@@ -110,7 +110,10 @@ class WriteReview extends React.Component {
 
   render() {
     const {characteristics} = this.props;
-    const {showModal, overallRating} = this.state;
+    const {showModal, overallRating, body} = this.state;
+
+    let charactersLeftMessage = 50 - body.length > 0 ?
+      `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
 
     return (
       <>
@@ -152,6 +155,7 @@ class WriteReview extends React.Component {
                         maxLength={1000}
                         onChange={this.handleBodyChange}
                       />
+                      <span>{charactersLeftMessage}</span>
                     </span>
                   </div>
                 </div>
