@@ -65,7 +65,7 @@ class ReviewListEntry extends React.Component {
     return (
       <div className='review'>
         <Stars rating={review.rating} />
-        <NameAndDate name={review.reviewer_name} date={review.date} />
+        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} />
         <br />
         <Summary summary={review.summary} />
         <Body body={review.body} />
@@ -120,6 +120,7 @@ ReviewListEntry.propTypes = {
     body: PropTypes.string,
     date: PropTypes.string,
     reviewer_name: PropTypes.string,
+    reviewer_email: PropTypes.string,
     helpfulness: PropTypes.number,
     photos: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number,
