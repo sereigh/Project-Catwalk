@@ -45,7 +45,7 @@ class WriteReview extends React.Component {
                 <h1>Write Your Review</h1>
                 <h3>About the [PRODUCT NAME HERE]</h3>
                 <span>
-                  *Overall Rating:
+                  {'*Overall Rating: '}
                   <span
                     role='button'
                     tabIndex={0}
@@ -96,6 +96,17 @@ class WriteReview extends React.Component {
                       : ''
                     }
                   </span>
+                </span>
+                <span>
+                  {'*Do you recommend this product? '}
+                  <label htmlFor='yes'>
+                    Yes
+                    <input type='radio' id='yes' name='recommend' value />
+                  </label>
+                  <label htmlFor='no'>
+                    No
+                    <input type='radio' id='no' name='recommend' value={false} />
+                  </label>
                 </span>
               </form>
               <div
