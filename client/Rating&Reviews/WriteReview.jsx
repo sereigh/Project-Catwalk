@@ -5,6 +5,7 @@ import RatingSubmit from './RatingSubmit.jsx';
 import RecommendSubmit from './RecommendSubmit.jsx';
 import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
 import SummarySubmit from './SummarySubmit.jsx';
+import BodySubmit from './BodySubmit.jsx';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -139,16 +140,7 @@ class WriteReview extends React.Component {
                     <SummarySubmit handleSummaryChange={this.handleSummaryChange} />
                     <br />
                     <br />
-                    <span>
-                      {'*Review Body: '}
-                      <textarea
-                        className='review-body'
-                        placeholder='Why did you like the product or not?'
-                        maxLength={1000}
-                        onChange={this.handleBodyChange}
-                      />
-                      <span>{charactersLeftMessage}</span>
-                    </span>
+                    <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} />
                   </div>
                 </div>
               </form>
