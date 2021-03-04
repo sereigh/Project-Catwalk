@@ -2,6 +2,9 @@ const axios = require('axios');
 
 const config = require('../config.js');
 
+const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const header = {headers: { 'Authorization': `${config.TOKEN}` }};
+
 // Products GET /products Retrieves the list of products
 const getProductsList = () => {
   const options = {
@@ -153,6 +156,20 @@ const reportReview = (id) => {
 
 // Questions&Answers
 
+const handleQuestions = (ext, cb) => {
+  axios.get(`${URL}${ext}`, header)
+    .then((response) => cb(null, response.data))
+    .catch((err) => cb(err, null))
+}
+
+handleQuestions('/qa/questions/114277/answers', (err, results) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(results);
+  }
+});
+
 // Cart GET /cart Retrieves list of products added to the cart by a user
 // let getCartContents = (id) => {
 //   let options = {
@@ -189,6 +206,7 @@ const reportReview = (id) => {
 // Interactions
 
 module.exports = {
+  handleQuestions,
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
   getProductById,
@@ -200,6 +218,7 @@ module.exports = {
   voteHelpful,
   reportReview
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
+
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
   // getCartContents,
   // postCartContents,
