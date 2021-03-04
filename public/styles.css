@@ -103,10 +103,10 @@
 }
 
 .submit-form{
-  width: 75vw;
-  height: 75vh;
-  max-width: 75vw;
-  max-height: 75vh;
+  width: 80vw;
+  height: 80vh;
+  max-width: 80vw;
+  max-height: 80vh;
   background-color: white;
   flex-direction: column;
   overflow: scroll;
@@ -174,7 +174,7 @@
 
 .review-body {
   width: 90%;
-  height: 30%;
+  height: 20%;
 }
 
 .user-details, .user-detail {

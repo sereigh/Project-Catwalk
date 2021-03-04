@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import RatingSubmit from './RatingSubmit.jsx';
 import RecommendSubmit from './RecommendSubmit.jsx';
 import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
 import SummarySubmit from './SummarySubmit.jsx';
 import BodySubmit from './BodySubmit.jsx';
+import PhotoPreviews from './PhotoPreviews.jsx';
+import PhotoSubmit from './PhotoSubmit.jsx';
 import NicknameSubmit from './NicknameSubmit.jsx';
 import EmailSubmit from './EmailSubmit.jsx';
 
@@ -24,6 +27,7 @@ class WriteReview extends React.Component {
       fit: null,
       summary: '',
       body: '',
+      photos: [],
       nickname: '',
       email: '',
       ratingError: false,
@@ -41,6 +45,7 @@ class WriteReview extends React.Component {
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handlePhotoChange = this.handlePhotoChange.bind(this);
     this.handleNicknameChange = this.handleNicknameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -67,6 +72,7 @@ class WriteReview extends React.Component {
       fit: null,
       summary: '',
       body: '',
+      photos: [],
       nickname: '',
       email: '',
       ratingError: false,
@@ -131,6 +137,15 @@ class WriteReview extends React.Component {
     this.setState({
       body: event.target.value
     });
+  }
+
+  handlePhotoChange(event) {
+    const {photos} = this.state;
+    const newPhotos = photos.concat(Array.from(event.target.files));
+
+    this.setState({
+      photos: newPhotos
+    })
   }
 
   handleNicknameChange(event) {
@@ -244,7 +259,7 @@ class WriteReview extends React.Component {
 
   render() {
     const {characteristics} = this.props;
-    const {showModal, overallRating, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors} = this.state;
+    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors} = this.state;
 
     const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
@@ -276,7 +291,10 @@ class WriteReview extends React.Component {
                     <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} bodyError={bodyError} />
                     <br />
                     <br />
-                    {/* Photos compononet */}
+                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} />
+                    <br />
+                    <br />
+                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} />
                     <br />
                     <br />
                     <div className='final-submission-details'>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SummarySubmit = ({handleSummaryChange}) => (
   <span>
-    {'Review Summary: '}
+    <span>{'Review Summary: '}</span>
     <input
       className='summary'
       type='text'
