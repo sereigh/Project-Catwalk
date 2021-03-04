@@ -101,3 +101,18 @@
 .no, .reported {
   color: red;
 }
+
+.submit-form{
+  background-color: white;
+  flex-direction: column;
+}
+
+.submit-form h1 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.submit-form h3 {
+  margin-top: 0;
+  text-align: center;
+}

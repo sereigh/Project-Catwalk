@@ -4,10 +4,12 @@ class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      overallRating: 0
     }
 
     this.handleModal = this.handleModal.bind(this);
+    this.handleRate = this.handleRate.bind(this);
   }
 
   handleModal() {
@@ -24,8 +26,14 @@ class WriteReview extends React.Component {
     })
   }
 
+  handleRate(rating) {
+    this.setState({
+      overallRating: rating
+    })
+  }
+
   render() {
-    const {showModal} = this.state;
+    const {showModal, overallRating} = this.state;
 
     return (
       <>
@@ -34,7 +42,61 @@ class WriteReview extends React.Component {
           showModal && (
             <>
               <form className='modal submit-form'>
-                <input type='text' />
+                <h1>Write Your Review</h1>
+                <h3>About the [PRODUCT NAME HERE]</h3>
+                <span>
+                  *Overall Rating:
+                  <span
+                    role='button'
+                    tabIndex={0}
+                    onClick={() => this.handleRate(1)}
+                    onKeyPress={() => this.handleRate(1)}
+                  >
+                    {overallRating < 1 ? '☆' : '★'}
+                  </span>
+                  <span
+                    role='button'
+                    tabIndex={0}
+                    onClick={() => this.handleRate(2)}
+                    onKeyPress={() => this.handleRate(2)}
+                  >
+                    {overallRating < 2 ? '☆' : '★'}
+                  </span>
+                  <span
+                    role='button'
+                    tabIndex={0}
+                    onClick={() => this.handleRate(3)}
+                    onKeyPress={() => this.handleRate(3)}
+                  >
+                    {overallRating < 3 ? '☆' : '★'}
+                  </span>
+                  <span
+                    role='button'
+                    tabIndex={0}
+                    onClick={() => this.handleRate(4)}
+                    onKeyPress={() => this.handleRate(4)}
+                  >
+                    {overallRating < 4 ? '☆' : '★'}
+                  </span>
+                  <span
+                    role='button'
+                    tabIndex={0}
+                    onClick={() => this.handleRate(5)}
+                    onKeyPress={() => this.handleRate(5)}
+                  >
+                    {overallRating < 5 ? '☆ ' : '★ '}
+                  </span>
+                  <span>
+                    {
+                      overallRating === 1 ? 'Poor'
+                      : overallRating === 2 ? 'Fair'
+                      : overallRating === 3 ? 'Average'
+                      : overallRating === 4 ? 'Good'
+                      : overallRating === 5 ? 'Great'
+                      : ''
+                    }
+                  </span>
+                </span>
               </form>
               <div
                 role='button'
