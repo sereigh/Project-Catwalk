@@ -103,6 +103,10 @@
 }
 
 .submit-form{
+  width: 75vw;
+  height: 75vh;
+  max-width: 75vw;
+  max-height: 75vh;
   background-color: white;
   flex-direction: column;
 }
@@ -115,4 +119,14 @@
 .submit-form h3 {
   margin-top: 0;
   text-align: center;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }
