@@ -147,12 +147,34 @@ class WriteReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {overallRating, recommend} = this.state;
+    const {characteristics} = this.props;
+    const {overallRating, recommend, size, width, comfort, quality, length, fit} = this.state;
 
     let errors = false;
     this.setState({
       errors: false
     });
+
+    for (let i = 0; i < characteristics.length; i++) {
+      if ((characteristics[i] === 'Size' && !size)
+        || (characteristics[i] === 'Width' && !width)
+        || (characteristics[i] === 'Comfort' && !comfort)
+        || (characteristics[i] === 'Quality' && !quality)
+        || (characteristics[i] === 'Length' && !length)
+        || (characteristics[i] === 'Fit' && !fit)) {
+          errors = true;
+          this.setState({
+            characteristicsError: true,
+            errors: true
+          });
+      }
+    }
+
+    if (!errors) {
+      this.setState({
+        characteristicsError: false
+      });
+    }
 
     if (overallRating !== 1 && overallRating !== 2 && overallRating !== 3 && overallRating !== 4 && overallRating !== 5) {
       errors = true;
