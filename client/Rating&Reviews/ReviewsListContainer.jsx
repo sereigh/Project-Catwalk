@@ -35,7 +35,7 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {reviews, totalReviews, characteristics} = this.props;
+    const {productId, reviews, totalReviews, characteristics} = this.props;
     const {selected, minimized} = this.state;
 
     return (
@@ -50,13 +50,14 @@ class ReviewsListContainer extends React.Component {
         </span>
         <ReviewsList minimized={minimized} reviews={reviews} />
         <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <WriteReview characteristics={characteristics} />
+        <WriteReview characteristics={characteristics} productId={productId} />
       </>
     )
   }
 }
 
 ReviewsListContainer.propTypes = {
+  productId: PropTypes.number.isRequired,
   handleSort: PropTypes.func.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
@@ -74,12 +75,37 @@ ReviewsListContainer.propTypes = {
       url: PropTypes.string
     }))
   })),
-  characteristics: PropTypes.arrayOf(PropTypes.string)
+  characteristics: PropTypes.shape({
+    Comfort: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Fit: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Length: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Quality: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Size: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Width: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+  })
 }
 
 ReviewsListContainer.defaultProps = {
   reviews: [],
-  characteristics: []
+  characteristics: {}
 }
 
 export default ReviewsListContainer;

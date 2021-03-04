@@ -162,22 +162,23 @@ class WriteReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {characteristics} = this.props;
+    const {productId, characteristics} = this.props;
     const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, nickname, email} = this.state;
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
+    const characteristicNames = Object.keys(characteristics);
 
     let errors = false;
     this.setState({
       errors: false
     });
 
-    for (let i = 0; i < characteristics.length; i++) {
-      if ((characteristics[i] === 'Size' && !size)
-        || (characteristics[i] === 'Width' && !width)
-        || (characteristics[i] === 'Comfort' && !comfort)
-        || (characteristics[i] === 'Quality' && !quality)
-        || (characteristics[i] === 'Length' && !length)
-        || (characteristics[i] === 'Fit' && !fit)) {
+    for (let i = 0; i < characteristicNames.length; i++) {
+      if ((characteristicNames[i] === 'Size' && !size)
+        || (characteristicNames[i] === 'Width' && !width)
+        || (characteristicNames[i] === 'Comfort' && !comfort)
+        || (characteristicNames[i] === 'Quality' && !quality)
+        || (characteristicNames[i] === 'Length' && !length)
+        || (characteristicNames[i] === 'Fit' && !fit)) {
           errors = true;
           this.setState({
             characteristicsError: true,
@@ -253,7 +254,17 @@ class WriteReview extends React.Component {
     }
 
     if (!errors) {
-      console.log(`No errors!${  summary}`);
+      const submission = {
+        product_id: productId,
+        rating: overallRating,
+        summary,
+        body,
+        recommend: recommend === 'yes',
+        name,
+        email,
+        photos: [],
+        characteristics: {}
+      }
     }
   }
 
@@ -282,7 +293,7 @@ class WriteReview extends React.Component {
                     <RecommendSubmit handleRecommend={this.handleRecommend} recommendError={recommendError} />
                     <br />
                     <br />
-                    <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
+                    <CharacteristicsSubmit characteristics={Object.keys(characteristics)} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
                   </div>
                   <div className='right'>
                     <SummarySubmit handleSummaryChange={this.handleSummaryChange} />
@@ -323,11 +334,37 @@ class WriteReview extends React.Component {
 }
 
 WriteReview.propTypes = {
-  characteristics: PropTypes.arrayOf(PropTypes.string)
+  productId: PropTypes.number.isRequired,
+  characteristics: PropTypes.shape({
+    Comfort: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Fit: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Length: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Quality: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Size: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Width: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+  })
 }
 
 WriteReview.defaultProps = {
-  characteristics: []
+  characteristics: {}
 }
 
 export default WriteReview;

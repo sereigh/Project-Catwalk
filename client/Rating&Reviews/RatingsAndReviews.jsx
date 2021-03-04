@@ -63,16 +63,18 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
+    const {productId} = this.props;
     const {reviewData, reviews, totalReviews} = this.state;
 
     return (
       <>
         <RatingsContainer reviewData={reviewData} />
         <ReviewsListContainer
+          productId={productId}
           reviews={reviews}
           totalReviews={totalReviews}
           handleSort={this.handleSort}
-          characteristics={Object.keys(reviewData.characteristics || {})}
+          characteristics={reviewData.characteristics || {}}
         />
       </>
     )
