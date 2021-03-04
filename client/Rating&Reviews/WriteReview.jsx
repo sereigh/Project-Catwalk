@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import RatingSubmit from './RatingSubmit.jsx';
 import RecommendSubmit from './RecommendSubmit.jsx';
+import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -10,12 +11,19 @@ class WriteReview extends React.Component {
     this.state = {
       showModal: false,
       overallRating: 0,
-      recommend: null
+      recommend: null,
+      size: null,
+      width: null,
+      comfort: null,
+      quality: null,
+      length: null,
+      fit: null
     }
 
     this.handleModal = this.handleModal.bind(this);
     this.handleRate = this.handleRate.bind(this);
     this.handleRecommend = this.handleRecommend.bind(this);
+    this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
   }
 
   handleModal() {
@@ -44,6 +52,34 @@ class WriteReview extends React.Component {
     })
   }
 
+  handleCharacteristicRate(event, characteristic) {
+    if (characteristic === 'size') {
+      this.setState({
+        size: event.target.value
+      });
+    } else if (characteristic === 'width') {
+      this.setState({
+        width: event.target.value
+      });
+    } else if (characteristic === 'comfort') {
+      this.setState({
+        comfort: event.target.value
+      });
+    } else if (characteristic === 'quality') {
+      this.setState({
+        quality: event.target.value
+      });
+    } else if (characteristic === 'length') {
+      this.setState({
+        length: event.target.value
+      });
+    } else if (characteristic === 'fit') {
+      this.setState({
+        fit: event.target.value
+      });
+    }
+  }
+
   render() {
     const {characteristics} = this.props;
     const {showModal, overallRating} = this.state;
@@ -59,10 +95,7 @@ class WriteReview extends React.Component {
                 <h3>About the [PRODUCT NAME HERE]</h3>
                 <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
                 <RecommendSubmit handleRecommend={this.handleRecommend} />
-                <span>
-                  {'*Characteristics: '}
-
-                </span>
+                <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
               </form>
               <div
                 role='button'

@@ -72,7 +72,7 @@ class RatingsAndReviews extends React.Component {
           reviews={reviews}
           totalReviews={totalReviews}
           handleSort={this.handleSort}
-          // characteristics={Object.keys(reviewData.characteristics)}
+          characteristics={Object.keys(reviewData.characteristics || {})}
         />
       </>
     )
