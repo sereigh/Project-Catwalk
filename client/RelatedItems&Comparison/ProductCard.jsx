@@ -5,7 +5,7 @@ import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
-const ProductCard = ({productCard}) => {
+const ProductCard = ({productCard, selectProductInfo}) => {
 
   const [window, setWindow] = React.useState('none');
 
@@ -29,7 +29,7 @@ const ProductCard = ({productCard}) => {
           <div>{productCard.starRating}</div>
         </div>
       </div>
-      <ComparisonModal features={productCard.features} window={window} toggleModalWindow={toggleModalWindow} />
+      <ComparisonModal name={productCard.name} features={productCard.features} window={window} toggleModalWindow={toggleModalWindow} selectProductInfo={selectProductInfo} />
     </div>
   );
 };
@@ -56,11 +56,14 @@ ProductCard.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  })
-}
-
-ProductCard.defaultProps = {
-  productCard: {}
+  }).isRequired,
+  selectProductInfo: PropTypes.shape({
+    name: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string
+    }))
+  }).isRequired
 }
 
 export default ProductCard;

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-// import OverviewContainer from './Overview/OverviewContainer.jsx';
+import OverviewContainer from './Overview/OverviewContainer.jsx';
 import QuestionsAndAnswers from './Questions&Answers/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './Rating&Reviews/RatingsAndReviews.jsx';
 import RelatedListContainer from './RelatedItems&Comparison/RelatedListContainer.jsx';
@@ -25,8 +25,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveSelectProductInfo();
     this.retrieveAllProductInfo();
+    this.retrieveSelectProductInfo();
   }
 
   retrieveAllProductInfo() {
@@ -58,26 +58,66 @@ class App extends React.Component {
 
   render() {
     const { productId, productList, selectProductId, selectProductInfo } = this.state;
-    console.log('App_render productList:', productList);
-    console.log('App_render selectProductInfo:', selectProductInfo);
+    // console.log('App_render productList:', productList);
+    // console.log('App_render selectProductInfo:', selectProductInfo);
     return (
       <div>
-        <span>Hello, world!</span>
-        <p>{selectProductId}</p>
-        <p>{selectProductInfo[0].category}</p>
-        <p>{productId}</p>
-        <p>{productList[0].category}</p>
-        {/* <OverviewContainer /> */}
-        {/* selectProductId={selectProductId}
-        selectProductInfo={selectProductInfo}
-        retrieveSelectProductInfo={this.retrieveSelectProductInfo}
-        /> */}
-        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={selectProductInfo} />
+        <span>::: FEC-ELLIS :::</span>
+        <p>
+          <a href="http://localhost:3000/products">
+            localhost:3000/products
+          </a>
+          <br />
+          productId:&nbsp;
+          {productId}
+          <br />
+          productList[0].name:&nbsp;
+          {productList[0].name}
+        </p>
+        <p>
+          <a href="http://localhost:3000/products/17763/">
+            localhost:3000/products/
+            {selectProductId}
+          </a>
+          <br />
+          selectProductId:&nbsp;
+          {selectProductId}
+          <br />
+          selectProductInfo.feature[1].feature:&nbsp;
+          {selectProductInfo.category}
+        </p>
+        <span>
+          ---Overview Widget---
+          <br />
+          <br />
+        </span>
+        <OverviewContainer
+          selectProductId={selectProductId}
+          selectProductInfo={selectProductInfo}
+          retrieveSelectProductInfo={this.retrieveSelectProductInfo}
+        />
+        <span>
+          ---Related List Widget---
+          <br />
+          <br />
+        </span>
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} />
+        <span>
+          ---Questions Answers Widget---
+          <br />
+          <br />
+        </span>
         <QuestionsAndAnswers />
+        <span>
+          ---Ratings Reviews Widget---
+          <br />
+          <br />
+        </span>
         <RatingsAndReviews productId={productId} />
       </div>
     );
   }
+
 }
 
 export default App;

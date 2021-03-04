@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import ProductCard from './ProductCard.jsx';
 
-const RelatedProductList = ({productCards}) => (
+const RelatedProductList = ({productCards, selectProductInfo}) => (
   <div className="relatedProductList">
     {productCards.map(productCard => (
-      <ProductCard key={productCard.id} productCard={productCard} />
+      <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} />
     ))}
   </div>
 );
@@ -33,7 +33,14 @@ RelatedProductList.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }))
+  })),
+  selectProductInfo: PropTypes.shape({
+    name: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.shape({
+      feature: PropTypes.string,
+      value: PropTypes.string
+    }))
+  }).isRequired
 }
 
 RelatedProductList.defaultProps = {
