@@ -64,7 +64,9 @@ class App extends React.Component {
       <div>
         <span>::: FEC-ELLIS :::</span>
         <p>
-          <a href="http://localhost:3000/products">localhost:3000/products</a>
+          <a href="http://localhost:3000/products">
+            localhost:3000/products
+          </a>
           <br />
           productId:&nbsp;
           {productId}
@@ -73,7 +75,10 @@ class App extends React.Component {
           {productList[0].name}
         </p>
         <p>
-          <a href="http://localhost:3000/products/17763/">localhost:3000/products/{selectProductId}</a>
+          <a href="http://localhost:3000/products/17763/">
+            localhost:3000/products/
+            {selectProductId}
+          </a>
           <br />
           selectProductId:&nbsp;
           {selectProductId}
