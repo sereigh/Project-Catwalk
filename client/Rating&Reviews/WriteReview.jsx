@@ -147,9 +147,12 @@ class WriteReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {overallRating} = this.state;
+    const {overallRating, recommend} = this.state;
 
     let errors = false;
+    this.setState({
+      errors: false
+    });
 
     if (overallRating !== 1 && overallRating !== 2 && overallRating !== 3 && overallRating !== 4 && overallRating !== 5) {
       errors = true;
@@ -158,10 +161,20 @@ class WriteReview extends React.Component {
         errors: true
       });
     } else {
-      errors = false;
       this.setState({
-        ratingError: false,
-        errors: false
+        ratingError: false
+      });
+    }
+
+    if (!recommend) {
+      errors = true;
+      this.setState({
+        recommendError: true,
+        errors: true
+      });
+    } else {
+      this.setState({
+        recommendError: false,
       });
     }
 
