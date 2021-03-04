@@ -11,7 +11,6 @@ const EmailSubmit = ({handleEmailChange}) => (
       onChange={handleEmailChange}
     />
     <span className='small-font'>For authentication reasons, you will not be emailed.</span>
-    <br />
   </div>
 )
 

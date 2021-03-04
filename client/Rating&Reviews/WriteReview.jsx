@@ -36,6 +36,7 @@ class WriteReview extends React.Component {
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleNicknameChange = this.handleNicknameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleModal() {
@@ -130,6 +131,10 @@ class WriteReview extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    alert('hello, world');
+  }
+
   render() {
     const {characteristics} = this.props;
     const {showModal, overallRating, body} = this.state;
@@ -166,9 +171,12 @@ class WriteReview extends React.Component {
                     {/* Photos compononet */}
                     <br />
                     <br />
-                    <div className='user-details'>
-                      <NicknameSubmit handleNicknameChange={this.handleNicknameChange} />
-                      <EmailSubmit handleEmailChange={this.handleEmailChange} />
+                    <div className='final-submission-details'>
+                      <div className='user-details'>
+                        <NicknameSubmit handleNicknameChange={this.handleNicknameChange} />
+                        <EmailSubmit handleEmailChange={this.handleEmailChange} />
+                      </div>
+                      <button type='submit' className='submit-review' onSubmit={this.handleSubmit}>Submit</button>
                     </div>
                   </div>
                 </div>

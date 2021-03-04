@@ -110,6 +110,7 @@
   background-color: white;
   flex-direction: column;
   overflow: scroll;
+  overflow-x: hidden;
 }
 
 .submit-form h1 {
@@ -174,10 +175,21 @@
   flex-direction: column;
 }
 
-.nickname, .email {
+.final-submission-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-details {
   width: 50%;
 }
 
 .small-font {
   font-size: x-small;
+}
+
+.submit-review {
+  margin: auto;
+  width: 100px;
+  height: 50px;
 }
