@@ -31,10 +31,24 @@
 }
 
 /* Questions and Answers */
+.qaContainer {
+  width: 100%;
+}
+.questionText, .answerText {
+  width: 50%;
+}
+.question, .answer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.feedback {
+  font-size: x-small;
+}
 .questionsList div:nth-child(5n) {
   display: none;
 }
-.answersList div:nth-child(2n) {
+.showDefault-answers div:nth-child(2n) {
   display: none;
 }
 /* Ratings and Reviews */

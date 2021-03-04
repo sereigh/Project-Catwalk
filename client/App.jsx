@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import OverviewContainer from './Overview/OverviewContainer.jsx';
+// import OverviewContainer from './Overview/OverviewContainer.jsx';
 import QuestionsAndAnswers from './Questions&Answers/QuestionsAndAnswers.jsx';
 import RatingsAndReviews from './Rating&Reviews/RatingsAndReviews.jsx';
 import RelatedListContainer from './RelatedItems&Comparison/RelatedListContainer.jsx';
@@ -16,7 +16,8 @@ class App extends React.Component {
       ],
       selectProductId: 17763,
       selectProductInfo: [
-        {"id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "features": [{"feature":null,"value": null},{"feature":null,"value": null}]}
       ]
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
@@ -57,24 +58,21 @@ class App extends React.Component {
 
   render() {
     const { productId, productList, selectProductId, selectProductInfo } = this.state;
-    // console.log('render productList:', productList);
-    // console.log('render selectProductInfo:', selectProductInfo);
+    console.log('App_render productList:', productList);
+    console.log('App_render selectProductInfo:', selectProductInfo);
     return (
       <div>
         <span>Hello, world!</span>
         <p>{selectProductId}</p>
-        <br />
         <p>{selectProductInfo[0].category}</p>
-        <br />
         <p>{productId}</p>
-        <br />
         <p>{productList[0].category}</p>
-        <OverviewContainer
-          selectProductId={selectProductId}
-          selectProductInfo={selectProductInfo}
-          retrieveSelectProductInfo={this.retrieveSelectProductInfo}
-        />
-        <RelatedListContainer selectProductId={selectProductId} />
+        {/* <OverviewContainer /> */}
+        {/* selectProductId={selectProductId}
+        selectProductInfo={selectProductInfo}
+        retrieveSelectProductInfo={this.retrieveSelectProductInfo}
+        /> */}
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={selectProductInfo} />
         <QuestionsAndAnswers />
         <RatingsAndReviews productId={productId} />
       </div>
