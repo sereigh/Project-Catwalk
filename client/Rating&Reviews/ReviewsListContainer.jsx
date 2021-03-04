@@ -2,19 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ReviewsList from './ReviewsList.jsx';
+import WriteReview from './WriteReview.jsx';
 
 class ReviewsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: 'relevance',
-      minimized: true,
-      showModal: false
+      minimized: true
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleView = this.handleView.bind(this);
-    this.handleModal = this.handleModal.bind(this);
   }
 
   handleChange(event) {
@@ -35,23 +34,9 @@ class ReviewsListContainer extends React.Component {
     })
   }
 
-  handleModal() {
-    const {showModal} = this.state;
-
-    if (!showModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'scroll';
-    }
-
-    this.setState({
-      showModal: !showModal
-    })
-  }
-
   render() {
     const {reviews, totalReviews} = this.props;
-    const {selected, minimized, showModal} = this.state;
+    const {selected, minimized} = this.state;
 
     return (
       <>
@@ -65,23 +50,7 @@ class ReviewsListContainer extends React.Component {
         </span>
         <ReviewsList minimized={minimized} reviews={reviews} />
         <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <button type='button' onClick={this.handleModal}>Add A Review +</button>
-        {
-          showModal && (
-            <>
-              <form className='modal submit-form'>
-                <input type='text' />
-              </form>
-              <div
-                role='button'
-                tabIndex={0}
-                className='overlay'
-                onClick={this.handleModal}
-                onKeyPress={this.handleModal}
-              />
-            </>
-          )
-        }
+        <WriteReview />
       </>
     )
   }
