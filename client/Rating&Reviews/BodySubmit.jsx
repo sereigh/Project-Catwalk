@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BodySubmit = ({handleBodyChange, charactersLeftMessage}) => (
+const BodySubmit = ({handleBodyChange, charactersLeftMessage, bodyError}) => (
   <span>
-    {'*Review Body: '}
+    <span className={bodyError ? 'error' : null}>{'*Review Body: '}</span>
     <textarea
       className='review-body'
       placeholder='Why did you like the product or not?'
@@ -16,7 +16,8 @@ const BodySubmit = ({handleBodyChange, charactersLeftMessage}) => (
 
 BodySubmit.propTypes = {
   handleBodyChange: PropTypes.func.isRequired,
-  charactersLeftMessage: PropTypes.string.isRequired
+  charactersLeftMessage: PropTypes.string.isRequired,
+  bodyError: PropTypes.bool.isRequired
 }
 
 export default BodySubmit;

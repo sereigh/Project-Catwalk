@@ -148,7 +148,7 @@ class WriteReview extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {characteristics} = this.props;
-    const {overallRating, recommend, size, width, comfort, quality, length, fit} = this.state;
+    const {overallRating, recommend, size, width, comfort, quality, length, fit, body} = this.state;
 
     let errors = false;
     this.setState({
@@ -197,6 +197,18 @@ class WriteReview extends React.Component {
     } else {
       this.setState({
         recommendError: false,
+      });
+    }
+
+    if (body.length < 50) {
+      errors = true;
+      this.setState({
+        bodyError: true,
+        errors: true
+      });
+    } else {
+      this.setState({
+        bodyError: false,
       });
     }
 
