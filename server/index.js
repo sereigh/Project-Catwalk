@@ -1,17 +1,19 @@
 const path = require('path');
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const helpers = require('./helpers');
 
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(express.json());
+
 
 // Products GET /products Retrieves the list of products
-app.get('/products', (req,res) => {
+app.get('/products', (req, res) => {
   helpers.getProductsList()
     .then((response) => {
       res.send(response.data)
@@ -24,34 +26,34 @@ app.get('/products', (req,res) => {
 // Products GET /products/:product_id Returns all product level information for a specified product id
 app.get('/products/:product_id', (req, res) => {
   helpers.getProductsList()
-  .then((response) => {
-    res.send(response.data)
-  })
-  .catch((error) => {
-    console.log(error.data);
-  })
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 // Products GET /products/:product_id/styles Returns all styles available for the given product
 app.get('/products/:product_id/styles', (req, res) => {
   helpers.getStylesById()
-  .then((response) => {
-    res.send(response.data)
-  })
-  .catch((error) => {
-    console.log(error.data);
-  })
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 // Products GET /products/:product_id/related Returns the id's of products related to the product specified
 app.get('/products/:product_id/related', (req, res) => {
   helpers.getRelatedProducts()
-  .then((response) => {
-    res.send(response.data)
-  })
-  .catch((error) => {
-    console.log(error.data);
-  })
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 // Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
@@ -100,12 +102,22 @@ app.put('/reviews/:review_id/report', (req, res) => {
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/114277/answers
 // qa/questions
 // qa/answers
-app.put('/qa/questions', (req, res) => {
-  helpers.handleQuestions(id, (err, results) => {
+app.get('/qa/questions:product_id', (req, res) => {
+  helpers.getQuestions((err, results) => {
     if (err) {
-      console.error(err);
+      res.status(404).send(err);
     } else {
-      console.log(results);
+      res.status(200).send(results);
+    }
+  });
+});
+
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  helpers.getAnswers((err, results) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(results);
     }
   });
 });

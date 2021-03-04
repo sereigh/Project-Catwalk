@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const config = require('../config.js');
 
-const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 const header = {headers: { 'Authorization': `${config.TOKEN}` }};
 
 // Products GET /products Retrieves the list of products
@@ -156,13 +156,51 @@ const reportReview = (id) => {
 
 // Questions&Answers
 
-const handleQuestions = (ext, cb) => {
-  axios.get(`${URL}${ext}`, header)
+const getQuestions = (id, cb) => {
+  axios.get(`${host}/qa/questions/?product_id=${id}`, header)
     .then((response) => cb(null, response.data))
     .catch((err) => cb(err, null))
 }
+const getAnswers = (id, cb) => {
+  axios.get(`${host}/qa/questions/${id}/answers`, header)
+    .then((response) => cb(null, response.data))
+    .catch((err) => cb(err, null))
+}
+const addQuestion = (id, data, cb) => {
+  axios.post(`${host}/qa/questions?product_id=${id}`, data, header)
+    .then((response) => cb(null, response))
+    .catch((err) => cb(err, null))
+}
+const addAnswer = (id, data, cb) => {
+  axios.post(`${host}/qa/questions/${id}/answers`, data, header)
+    .then((response) => cb(null, response))
+    .catch((err) => cb(err, null))
+}
+const markQuestionHelpful = (id, req, cb) => {
+  axios.put(`${host}/qa/questions/${id}/helpful`, req, header)
+  .then((response) => cb(null, response))
+  .catch((err) => cb(err, null))
+}
+const markAnswerHelpful = (id, req, cb) => {
+  axios.put(`${host}/qa/answers/${id}/helpful`, req, header)
+  .then((response) => cb(null, response))
+  .catch((err) => cb(err, null))
+}
+const reportQuestion = (id, req, cb) => {
+  axios.put(`${host}/qa/questions/${id}/report`, req, header)
+  .then((response) => cb(null, response))
+  .catch((err) => cb(err, null))
+}
 
-handleQuestions('/qa/questions/114277/answers', (err, results) => {
+const reportAnswer = (id, req, cb) => {
+  axios.put(`${host}/qa/answers/${id}/report`, req, header)
+  .then((response) => cb(null, response))
+  .catch((err) => cb(err, null))
+}
+
+const answer = {"answer_id": "114277"};
+
+reportAnswer(114277, answer, (err, results) => {
   if (err) {
     console.error(err);
   } else {
@@ -206,7 +244,14 @@ handleQuestions('/qa/questions/114277/answers', (err, results) => {
 // Interactions
 
 module.exports = {
-  handleQuestions,
+  getQuestions,
+  getAnswers,
+  addQuestion,
+  addAnswer,
+  markQuestionHelpful,
+  markAnswerHelpful,
+  reportQuestion,
+  reportAnswer,
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
   getProductById,
