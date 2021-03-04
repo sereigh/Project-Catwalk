@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AnswersList from './AnswersList.jsx';
 import SendFeedback from './SendFeedback.jsx';
 
-function QuestionsList({ questions, reportOption, handleFeedback }) {
+function QuestionsList({ questions }) {
 
   const [view, setView] = useState(false);
   const toggleView = (index) => {
@@ -56,8 +56,6 @@ function QuestionsList({ questions, reportOption, handleFeedback }) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  reportOption: PropTypes.number.isRequired,
-  handleFeedback: PropTypes.func.isRequired,
 }
 
 export default QuestionsList;

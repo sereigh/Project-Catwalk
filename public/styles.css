@@ -20,7 +20,7 @@
 .questionsList div:nth-child(5n) {
   display: none;
 }
-.answersList div:nth-child(2n) {
+.showDefault-answers div:nth-child(2n) {
   display: none;
 }
 /* Ratings and Reviews */
