@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NicknameSubmit = ({handleNicknameChange}) => (
+const NicknameSubmit = ({handleNicknameChange, nicknameError}) => (
   <div className='user-detail'>
-    <span>{'*What is your nickname? '}</span>
+    <span className={nicknameError ? 'error' : null}>{'*What is your nickname? '}</span>
     <input
       className='nickname'
       type='text'
@@ -16,7 +16,8 @@ const NicknameSubmit = ({handleNicknameChange}) => (
 )
 
 NicknameSubmit.propTypes = {
-  handleNicknameChange: PropTypes.func.isRequired
+  handleNicknameChange: PropTypes.func.isRequired,
+  nicknameError: PropTypes.bool.isRequired
 }
 
 export default NicknameSubmit;
