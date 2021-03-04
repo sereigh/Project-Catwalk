@@ -97,6 +97,18 @@ app.put('/reviews/:review_id/report', (req, res) => {
       console.log(error.data);
     })
 });
+// https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/114277/answers
+// qa/questions
+// qa/answers
+app.put('/qa/questions', (req, res) => {
+  helpers.handleQuestions(id, (err, results) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(results);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
