@@ -25,7 +25,14 @@ class WriteReview extends React.Component {
       summary: '',
       body: '',
       nickname: '',
-      email: ''
+      email: '',
+      ratingError: false,
+      recommendError: false,
+      characteristicsError: false,
+      bodyError: false,
+      nicknameError: false,
+      emailError: false,
+      errors: false
     }
 
     this.handleModal = this.handleModal.bind(this);
@@ -61,7 +68,14 @@ class WriteReview extends React.Component {
       summary: '',
       body: '',
       nickname: '',
-      email: ''
+      email: '',
+      ratingError: false,
+      recommendError: false,
+      characteristicsError: false,
+      bodyError: false,
+      nicknameError: false,
+      emailError: false,
+      errors: false
     })
   }
 
@@ -132,14 +146,35 @@ class WriteReview extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('hello, world');
+    event.preventDefault();
+    const {overallRating} = this.state;
+
+    let errors = false;
+
+    if (overallRating !== 1 && overallRating !== 2 && overallRating !== 3 && overallRating !== 4 && overallRating !== 5) {
+      errors = true;
+      this.setState({
+        ratingError: true,
+        errors: true
+      });
+    } else {
+      errors = false;
+      this.setState({
+        ratingError: false,
+        errors: false
+      });
+    }
+
+    if (!errors) {
+      console.log('No errors!');
+    }
   }
 
   render() {
     const {characteristics} = this.props;
-    const {showModal, overallRating, body} = this.state;
+    const {showModal, overallRating, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors} = this.state;
 
-    let charactersLeftMessage = 50 - body.length > 0 ?
+    const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
 
     return (
@@ -148,24 +183,25 @@ class WriteReview extends React.Component {
         {
           showModal && (
             <>
-              <form className='modal submit-form'>
+              <form className='modal submit-form' onSubmit={this.handleSubmit}>
                 <h1>Write Your Review</h1>
                 <h3>About the [PRODUCT NAME HERE]</h3>
+                <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
                 <div className='submission-components'>
                   <div className='left'>
-                    <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
+                    <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} ratingError={ratingError} />
                     <br />
                     <br />
-                    <RecommendSubmit handleRecommend={this.handleRecommend} />
+                    <RecommendSubmit handleRecommend={this.handleRecommend} recommendError={recommendError} />
                     <br />
                     <br />
-                    <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
+                    <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
                   </div>
                   <div className='right'>
                     <SummarySubmit handleSummaryChange={this.handleSummaryChange} />
                     <br />
                     <br />
-                    <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} />
+                    <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} bodyError={bodyError} />
                     <br />
                     <br />
                     {/* Photos compononet */}
@@ -173,10 +209,10 @@ class WriteReview extends React.Component {
                     <br />
                     <div className='final-submission-details'>
                       <div className='user-details'>
-                        <NicknameSubmit handleNicknameChange={this.handleNicknameChange} />
-                        <EmailSubmit handleEmailChange={this.handleEmailChange} />
+                        <NicknameSubmit handleNicknameChange={this.handleNicknameChange} nicknameError={nicknameError} />
+                        <EmailSubmit handleEmailChange={this.handleEmailChange} emailError={emailError} />
                       </div>
-                      <button type='submit' className='submit-review' onSubmit={this.handleSubmit}>Submit</button>
+                      <button type='submit' className='submit-review'>Submit</button>
                     </div>
                   </div>
                 </div>

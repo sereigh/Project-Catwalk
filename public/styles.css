@@ -120,7 +120,14 @@
 
 .submit-form h3 {
   margin-top: 0;
+  margin-bottom: 0;
   text-align: center;
+}
+
+.submit-form h4 {
+  margin-top: 0;
+  text-align: center;
+  color: red;
 }
 
 .submission-components {
@@ -192,4 +199,20 @@
   margin: auto;
   width: 100px;
   height: 50px;
+}
+
+.no-error-message {
+  color: red;
+  opacity: 0;
+}
+
+.error-message {
+  color: red;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.error {
+  color: red;
+  transition: color 200ms;
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const NicknameSubmit = ({handleNicknameChange}) => (
   <div className='user-detail'>
-    <span>{'What is your nickname? '}</span>
+    <span>{'*What is your nickname? '}</span>
     <input
       className='nickname'
       type='text'

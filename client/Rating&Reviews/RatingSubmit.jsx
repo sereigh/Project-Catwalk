@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RatingSubmit = ({handleRate, overallRating}) => (
+const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
   <span>
-    {'*Overall Rating: '}
+    <span className={ratingError ? 'error' : null}>{'*Overall Rating: '}</span>
     <span
       role='button'
       tabIndex={0}
@@ -59,7 +59,8 @@ const RatingSubmit = ({handleRate, overallRating}) => (
 
 RatingSubmit.propTypes = {
   handleRate: PropTypes.func.isRequired,
-  overallRating: PropTypes.number.isRequired
+  overallRating: PropTypes.number.isRequired,
+  ratingError: PropTypes.bool.isRequired
 }
 
 export default RatingSubmit;

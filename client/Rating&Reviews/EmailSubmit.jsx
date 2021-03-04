@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const EmailSubmit = ({handleEmailChange}) => (
   <div className='user-detail'>
-    <span>{'Email '}</span>
+    <span>{'*Email '}</span>
     <input
       className='email'
       type='text'
