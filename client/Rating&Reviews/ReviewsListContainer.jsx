@@ -35,7 +35,7 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {productId, reviews, totalReviews, characteristics} = this.props;
+    const {productId, productName, reviews, totalReviews, characteristics} = this.props;
     const {selected, minimized} = this.state;
 
     return (
@@ -50,7 +50,7 @@ class ReviewsListContainer extends React.Component {
         </span>
         <ReviewsList minimized={minimized} reviews={reviews} />
         <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <WriteReview characteristics={characteristics} productId={productId} />
+        <WriteReview characteristics={characteristics} productId={productId} productName={productName} />
       </>
     )
   }
@@ -58,6 +58,7 @@ class ReviewsListContainer extends React.Component {
 
 ReviewsListContainer.propTypes = {
   productId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({

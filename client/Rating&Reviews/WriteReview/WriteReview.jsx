@@ -12,32 +12,33 @@ import PhotoSubmit from './PhotoSubmit.jsx';
 import NicknameSubmit from './NicknameSubmit.jsx';
 import EmailSubmit from './EmailSubmit.jsx';
 
+const defaultState = {
+  overallRating: 0,
+  recommend: null,
+  size: null,
+  width: null,
+  comfort: null,
+  quality: null,
+  length: null,
+  fit: null,
+  summary: '',
+  body: '',
+  photos: [],
+  nickname: '',
+  email: '',
+  ratingError: false,
+  recommendError: false,
+  characteristicsError: false,
+  bodyError: false,
+  nicknameError: false,
+  emailError: false,
+  errors: false
+}
+
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: false,
-      overallRating: 0,
-      recommend: null,
-      size: null,
-      width: null,
-      comfort: null,
-      quality: null,
-      length: null,
-      fit: null,
-      summary: '',
-      body: '',
-      photos: [],
-      nickname: '',
-      email: '',
-      ratingError: false,
-      recommendError: false,
-      characteristicsError: false,
-      bodyError: false,
-      nicknameError: false,
-      emailError: false,
-      errors: false
-    }
+    this.state = Object.assign(defaultState, {showModal: false, submitted: false});
 
     this.handleModal = this.handleModal.bind(this);
     this.handleRate = this.handleRate.bind(this);
@@ -60,29 +61,7 @@ class WriteReview extends React.Component {
       document.body.style.overflow = 'scroll';
     }
 
-    this.setState({
-      showModal: !showModal,
-      overallRating: 0,
-      recommend: null,
-      size: null,
-      width: null,
-      comfort: null,
-      quality: null,
-      length: null,
-      fit: null,
-      summary: '',
-      body: '',
-      photos: [],
-      nickname: '',
-      email: '',
-      ratingError: false,
-      recommendError: false,
-      characteristicsError: false,
-      bodyError: false,
-      nicknameError: false,
-      emailError: false,
-      errors: false
-    })
+    this.setState(Object.assign(defaultState, {showModal: !showModal, submitted: false}));
   }
 
   handleRate(rating) {
@@ -282,14 +261,18 @@ class WriteReview extends React.Component {
 
       axios
         .post('/reviews', submission)
-        .then(results => console.log(results))
+        .then(results => {
+          event.target.reset();
+          this.setState(this.setState(Object.assign(defaultState, {submitted: true})));
+          console.log(results)
+        })
         .catch(error => console.log(error))
     }
   }
 
   render() {
-    const {characteristics} = this.props;
-    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors} = this.state;
+    const {characteristics, productName} = this.props;
+    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors, submitted} = this.state;
 
     const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
@@ -302,7 +285,7 @@ class WriteReview extends React.Component {
             <>
               <form className='modal submit-form' onSubmit={this.handleSubmit}>
                 <h1>Write Your Review</h1>
-                <h3>About the [PRODUCT NAME HERE]</h3>
+                <h3>{`About the ${productName}`}</h3>
                 <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
                 <div className='submission-components'>
                   <div className='left'>
@@ -332,7 +315,10 @@ class WriteReview extends React.Component {
                         <NicknameSubmit handleNicknameChange={this.handleNicknameChange} nicknameError={nicknameError} />
                         <EmailSubmit handleEmailChange={this.handleEmailChange} emailError={emailError} />
                       </div>
-                      <button type='submit' className='submit-review'>Submit</button>
+                      <div className='submit-details'>
+                        <button type='submit' className='submit-review'>Submit</button>
+                        <h4 className={submitted ? 'success-message' : 'no-success-message'}>Success!</h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -354,6 +340,7 @@ class WriteReview extends React.Component {
 
 WriteReview.propTypes = {
   productId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired,
   characteristics: PropTypes.shape({
     Comfort: PropTypes.shape({
       id: PropTypes.number,

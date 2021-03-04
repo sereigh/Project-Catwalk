@@ -177,9 +177,13 @@
   height: 20%;
 }
 
-.user-details, .user-detail {
+.user-details, .user-detail, .submit-details {
   display: flex;
   flex-direction: column;
+}
+
+.submit-details {
+  margin: auto;
 }
 
 .final-submission-details {
@@ -215,4 +219,17 @@
 .error {
   color: red;
   transition: color 200ms;
+}
+
+.no-success-message {
+  margin-bottom: 0;
+  color: green;
+  opacity: 0;
+}
+
+.success-message {
+  margin-bottom: 0;
+  color: green;
+  opacity: 1;
+  transition: opacity 200ms;
 }
