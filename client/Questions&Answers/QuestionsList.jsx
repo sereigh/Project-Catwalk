@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
+import SendFeedback from './SendFeedback.jsx';
 
 function QuestionsList({ questions }) {
 
@@ -18,31 +19,39 @@ function QuestionsList({ questions }) {
       <h1>Hi</h1>
     );
   }
-    return (
-      <>
-        <div className="questionsList">
-          {questions.map((question, index) => (
-            <div
-              key={question.question_id}
+  return (
+    <>
+      <div className="questionsList">
+        {questions.map((question, index) => (
+          <div
+            key={question.question_id}
+            className="qBar"
+          >
+            <span
               className="question"
-              onClick={() => toggleView(index)}
-              role="button"
-              tabIndex={0}
-              onKeyPress={() => toggleView(index)}
             >
-              <span>
+              <span
+                className="questionText"
+                onClick={() => toggleView(index)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={() => toggleView(index)}
+              >
+
                 <h3>
                   Q:
                   {' '}
                   {question.question_body}
                 </h3>
               </span>
-              {view === index && <AnswersList />}
-            </div>
-          ))}
-        </div>
-      </>
-    );
+              <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
+            </span>
+            {view === index && <AnswersList />}
+          </div>
+        ))}
+      </div>
+    </>
+  );
 }
 
 QuestionsList.propTypes = {
