@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import RatingSubmit from './RatingSubmit.jsx';
 import RecommendSubmit from './RecommendSubmit.jsx';
 import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
+import SummarySubmit from './SummarySubmit.jsx';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -135,16 +136,7 @@ class WriteReview extends React.Component {
                     <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
                   </div>
                   <div className='right'>
-                    <span>
-                      {'Review Summary: '}
-                      <input
-                        className='summary'
-                        type='text'
-                        placeholder='Example: Best purchase ever!'
-                        maxLength={60}
-                        onChange={this.handleSummaryChange}
-                      />
-                    </span>
+                    <SummarySubmit handleSummaryChange={this.handleSummaryChange} />
                     <br />
                     <br />
                     <span>
