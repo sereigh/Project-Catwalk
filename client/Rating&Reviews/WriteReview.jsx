@@ -18,7 +18,8 @@ class WriteReview extends React.Component {
       quality: null,
       length: null,
       fit: null,
-      summary: ''
+      summary: '',
+      body: ''
     }
 
     this.handleModal = this.handleModal.bind(this);
@@ -26,6 +27,7 @@ class WriteReview extends React.Component {
     this.handleRecommend = this.handleRecommend.bind(this);
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
   }
 
   handleModal() {
@@ -47,7 +49,8 @@ class WriteReview extends React.Component {
       quality: null,
       length: null,
       fit: null,
-      summary: ''
+      summary: '',
+      body: ''
     })
   }
 
@@ -99,6 +102,12 @@ class WriteReview extends React.Component {
     });
   }
 
+  handleBodyChange(event) {
+    this.setState({
+      body: event.target.value
+    });
+  }
+
   render() {
     const {characteristics} = this.props;
     const {showModal, overallRating} = this.state;
@@ -124,13 +133,24 @@ class WriteReview extends React.Component {
                   </div>
                   <div className='right'>
                     <span>
-                      {'Summary: '}
+                      {'Review Summary: '}
                       <input
                         className='summary'
                         type='text'
                         placeholder='Example: Best purchase ever!'
                         maxLength={60}
                         onChange={this.handleSummaryChange}
+                      />
+                    </span>
+                    <br />
+                    <br />
+                    <span>
+                      {'*Review Body: '}
+                      <textarea
+                        className='review-body'
+                        placeholder='Why did you like the product or not?'
+                        maxLength={1000}
+                        onChange={this.handleBodyChange}
                       />
                     </span>
                   </div>
