@@ -53,18 +53,15 @@ class OverviewContainer extends React.Component {
 
   retrieveSelectStyleOptions() {
     const { selectProductId } = this.props;
-    console.log('OverviewC_retrieveSelectStyleOptions selectProductId:', selectProductId);
+    // console.log('OverviewC_retrieveSelectStyleOptions selectProductId:', selectProductId);
     axios
       .get(`/products/${selectProductId}/styles`)
-      // .get(`/products/17764/styles`)
       .then((response) => {
-        // console.log('OverviewC_retrieveSelectStyleOptions response:', response);
         // console.log('OverviewC_retrieveSelectStyleOptions response.data:', response.data);
-        // console.log('OverviewC_retrieveSelectStyleOptions response.data.results:', response.data.results);
         this.setState({
           selectStyleOptions: response.data
         })
-        this.componentDidMount()
+        // this.componentDidMount()
       })
       .catch((error) => {
         console.log('Get product style options failed...', error);
@@ -73,15 +70,31 @@ class OverviewContainer extends React.Component {
 
   render() {
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
-    // const { selectProductId } = this.props;
+    const { selectProductId } = this.props;
     // console.log('OverviewC_render selectProductID:', selectProductId);
     // console.log('OverviewC_render selectProductInfo:', selectProductInfo);
     // console.log('OverviewC_render retrieveSelectProductInfo():', retrieveSelectProductInfo);
     const { selectStyleOptions, selectStyleResultsIndex } = this.state
     console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
-    console.log('OverviewC_render selectStyleResultsIndex:', selectStyleResultsIndex);
+    // console.log('OverviewC_render selectStyleResultsIndex:', selectStyleResultsIndex);
     return (
       <div className="overviewWidget">
+        <p>
+          <a href="http://localhost:3000/products/17763/styles/">
+            localhost:3000/products/
+            {selectProductId}
+            /styles
+          </a>
+          <br />
+          selectStyleOptions.product_id:&nbsp;
+          {selectStyleOptions.product_id}
+          {/* <br />
+          selectStyleOptions.results[0].name:&nbsp;
+          {selectStyleOptions.results[0].name} */}
+          <br />
+          selectStyleResultsIndex:&nbsp;
+          {selectStyleResultsIndex}
+        </p>
         <div className="showcaseCarousel">
           {/* <ShowcaseImage /> */}
         </div>
