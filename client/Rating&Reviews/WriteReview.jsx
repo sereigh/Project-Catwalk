@@ -17,13 +17,15 @@ class WriteReview extends React.Component {
       comfort: null,
       quality: null,
       length: null,
-      fit: null
+      fit: null,
+      summary: ''
     }
 
     this.handleModal = this.handleModal.bind(this);
     this.handleRate = this.handleRate.bind(this);
     this.handleRecommend = this.handleRecommend.bind(this);
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
+    this.handleSummaryChange = this.handleSummaryChange.bind(this);
   }
 
   handleModal() {
@@ -44,7 +46,8 @@ class WriteReview extends React.Component {
       comfort: null,
       quality: null,
       length: null,
-      fit: null
+      fit: null,
+      summary: ''
     })
   }
 
@@ -90,6 +93,12 @@ class WriteReview extends React.Component {
     }
   }
 
+  handleSummaryChange(event) {
+    this.setState({
+      summary: event.target.value
+    });
+  }
+
   render() {
     const {characteristics} = this.props;
     const {showModal, overallRating} = this.state;
@@ -103,11 +112,29 @@ class WriteReview extends React.Component {
               <form className='modal submit-form'>
                 <h1>Write Your Review</h1>
                 <h3>About the [PRODUCT NAME HERE]</h3>
-                <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
-                <br />
-                <RecommendSubmit handleRecommend={this.handleRecommend} />
-                <br />
-                <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
+                <div className='submission-components'>
+                  <div className='left'>
+                    <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
+                    <br />
+                    <br />
+                    <RecommendSubmit handleRecommend={this.handleRecommend} />
+                    <br />
+                    <br />
+                    <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
+                  </div>
+                  <div className='right'>
+                    <span>
+                      {'Summary: '}
+                      <input
+                        className='summary'
+                        type='text'
+                        placeholder='Example: Best purchase ever!'
+                        maxLength={60}
+                        onChange={this.handleSummaryChange}
+                      />
+                    </span>
+                  </div>
+                </div>
               </form>
               <div
                 role='button'
