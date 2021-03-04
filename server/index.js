@@ -98,6 +98,17 @@ app.put('/reviews/:review_id/report', (req, res) => {
     })
 });
 
+// Reviews POST /reviews Posts a new review to the database
+app.post('/reviews', (req, res) => {
+  helpers.submitReview(req.body)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
