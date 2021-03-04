@@ -102,7 +102,7 @@ app.put('/reviews/:review_id/report', (req, res) => {
 // https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/114277/answers
 // qa/questions
 // qa/answers
-app.get('/qa/questions:product_id', (req, res) => {
+app.get('/qa/questions/:product_id', (req, res) => {
   helpers.getQuestions((err, results) => {
     if (err) {
       res.status(404).send(err);

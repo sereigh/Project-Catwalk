@@ -198,16 +198,6 @@ const reportAnswer = (id, req, cb) => {
   .catch((err) => cb(err, null))
 }
 
-const answer = {"answer_id": "114277"};
-
-reportAnswer(114277, answer, (err, results) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(results);
-  }
-});
-
 // Cart GET /cart Retrieves list of products added to the cart by a user
 // let getCartContents = (id) => {
 //   let options = {
