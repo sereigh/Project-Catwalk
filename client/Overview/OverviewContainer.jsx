@@ -26,27 +26,38 @@ class OverviewContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectStyleResultsIndex: 0,
+      // selectStyleOptions: [
+      //   {"product_id":"17763",
+      //     "results":[
+      //       {"style_id":94747,"name":null,"original_price":null,"sale_price":null,"default?":true,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}},
+      //       {"style_id":94748,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}},
+      //       {"style_id": 94749,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}}
+      //     ]
+      //   }
+      // ]
+      selectStyleIndex: 0,
       selectStyleOptions: [
-        {"product_id":"17763",
-          "results":[
-            {"style_id":94747,"name":null,"original_price":null,"sale_price":null,"default?":true,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}},
-            {"style_id":94748,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}},
-            {"style_id": 94749,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}}
-          ]
+        {
+          "style_id":94747,"name":null,"original_price":null,"sale_price":null,"default?":true,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
+        },
+        {
+          "style_id":94748,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
+        },
+        {
+          "style_id": 94749,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
         }
       ]
     };
-    this.setSelectStyleResultsIndex = this.setSelectStyleResultsIndex.bind(this);
+    this.setSelectStyleIndex = this.setSelectStyleIndex.bind(this);
     this.retrieveSelectStyleOptions = this.retrieveSelectStyleOptions.bind(this);
   }
 
   componentDidMount() {
-    this.setSelectStyleResultsIndex();
+    this.setSelectStyleIndex();
     this.retrieveSelectStyleOptions();
   }
 
-  setSelectStyleResultsIndex() {
+  setSelectStyleIndex() {
     //   // const { selectProductId } = this.props;
     //   // const { selectStyleIndex } = this.state;
   }
@@ -58,10 +69,11 @@ class OverviewContainer extends React.Component {
       .get(`/products/${selectProductId}/styles`)
       .then((response) => {
         // console.log('OverviewC_retrieveSelectStyleOptions response.data:', response.data);
+        // console.log('OverviewC_retrieveSelectStyleOptions response.data.results:', response.data.results);
         this.setState({
-          selectStyleOptions: response.data
+          // selectStyleOptions: response.data
+          selectStyleOptions: response.data.results
         })
-        // this.componentDidMount()
       })
       .catch((error) => {
         console.log('Get product style options failed...', error);
@@ -74,27 +86,24 @@ class OverviewContainer extends React.Component {
     // console.log('OverviewC_render selectProductID:', selectProductId);
     // console.log('OverviewC_render selectProductInfo:', selectProductInfo);
     // console.log('OverviewC_render retrieveSelectProductInfo():', retrieveSelectProductInfo);
-    const { selectStyleOptions, selectStyleResultsIndex } = this.state
-    console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
-    // console.log('OverviewC_render selectStyleResultsIndex:', selectStyleResultsIndex);
+    const { selectStyleOptions, selectStyleIndex } = this.state
+    // console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
+    // console.log('OverviewC_render selectStyleIndex:', selectStyleIndex);
     return (
       <div className="overviewWidget">
-        <p>
-          <a href="http://localhost:3000/products/17763/styles/">
-            localhost:3000/products/
-            {selectProductId}
-            /styles
-          </a>
-          <br />
-          selectStyleOptions.product_id:&nbsp;
-          {selectStyleOptions.product_id}
-          {/* <br />
-          selectStyleOptions.results[0].name:&nbsp;
-          {selectStyleOptions.results[0].name} */}
-          <br />
-          selectStyleResultsIndex:&nbsp;
-          {selectStyleResultsIndex}
-        </p>
+        <a href="http://localhost:3000/products/17763/styles/">
+          localhost:3000/products/
+          {selectProductId}
+          /styles
+        </a>
+        <br />
+        selectStyleOptions[0].name:&nbsp;
+        {selectStyleOptions[0].name}
+        <br />
+        selectStyleIndex:&nbsp;
+        {selectStyleIndex}
+        <br />
+        <br />
         <div className="showcaseCarousel">
           {/* <ShowcaseImage /> */}
         </div>
