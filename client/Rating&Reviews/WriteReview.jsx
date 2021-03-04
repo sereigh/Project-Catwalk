@@ -104,7 +104,9 @@ class WriteReview extends React.Component {
                 <h1>Write Your Review</h1>
                 <h3>About the [PRODUCT NAME HERE]</h3>
                 <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
+                <br />
                 <RecommendSubmit handleRecommend={this.handleRecommend} />
+                <br />
                 <CharacteristicsSubmit characteristics={characteristics} handleCharacteristicRate={this.handleCharacteristicRate} />
               </form>
               <div
