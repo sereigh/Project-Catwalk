@@ -5,26 +5,55 @@ class Photo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      showModal: false
     }
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    const {show} = this.state;
+    const {showModal} = this.state;
+
+    if (!showModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'scroll';
+    }
 
     this.setState({
-      show: !show
+      showModal: !showModal
     })
   }
 
   render() {
     const {photo} = this.props;
+    const {showModal} = this.state;
 
     return (
       <>
-        <img className='photo' src={photo.url} alt='product' /* onClick={this.handleClick} */ />
+        <div
+          role='button'
+          tabIndex={0}
+          className='photo-container'
+          onClick={this.handleClick}
+          onKeyPress={this.handleClick}
+        >
+          <img className='photo' src={photo.url} alt='product' />
+        </div>
+        {
+          showModal && (
+            <>
+              <img className='modal' src={photo.url} alt='product' />
+              <div
+                role='button'
+                tabIndex={0}
+                className='overlay'
+                onClick={this.handleClick}
+                onKeyPress={this.handleClick}
+              />
+            </>
+          )
+        }
       </>
     )
   }
