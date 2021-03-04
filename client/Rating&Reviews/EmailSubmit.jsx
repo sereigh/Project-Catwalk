@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const EmailSubmit = ({handleEmailChange}) => (
+const EmailSubmit = ({handleEmailChange, emailError}) => (
   <div className='user-detail'>
-    <span>{'*Email '}</span>
+    <span className={emailError ? 'error' : null}>{'*Email '}</span>
     <input
       className='email'
       type='text'
@@ -15,7 +15,8 @@ const EmailSubmit = ({handleEmailChange}) => (
 )
 
 EmailSubmit.propTypes = {
-  handleEmailChange: PropTypes.func.isRequired
+  handleEmailChange: PropTypes.func.isRequired,
+  emailError: PropTypes.bool.isRequired
 }
 
 export default EmailSubmit;

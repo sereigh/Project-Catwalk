@@ -92,7 +92,7 @@ class WriteReview extends React.Component {
   }
 
   handleCharacteristicRate(event, characteristic) {
-    const rating = parseInt(event.target.value);
+    const rating = parseInt(event.target.value, 10);
 
     if (characteristic === 'Size') {
       this.setState({
@@ -148,7 +148,8 @@ class WriteReview extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {characteristics} = this.props;
-    const {overallRating, recommend, size, width, comfort, quality, length, fit, body, nickname, email} = this.state;
+    const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, nickname, email} = this.state;
+    const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
 
     let errors = false;
     this.setState({
@@ -224,8 +225,20 @@ class WriteReview extends React.Component {
       });
     }
 
+    if (!email.match(emailRegex)) {
+      errors = true;
+      this.setState({
+        emailError: true,
+        errors: true
+      });
+    } else {
+      this.setState({
+        emailError: false,
+      });
+    }
+
     if (!errors) {
-      console.log('No errors!');
+      console.log(`No errors!${  summary}`);
     }
   }
 
