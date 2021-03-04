@@ -130,6 +130,7 @@
 
 .left {
   width: 50%;
+  margin-left: 5%;
 }
 
 .right {
@@ -166,4 +167,17 @@
 .review-body {
   width: 90%;
   height: 30%;
+}
+
+.user-details, .user-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname, .email {
+  width: 50%;
+}
+
+.small-font {
+  font-size: x-small;
 }

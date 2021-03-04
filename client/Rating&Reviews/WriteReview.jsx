@@ -6,6 +6,8 @@ import RecommendSubmit from './RecommendSubmit.jsx';
 import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
 import SummarySubmit from './SummarySubmit.jsx';
 import BodySubmit from './BodySubmit.jsx';
+import NicknameSubmit from './NicknameSubmit.jsx';
+import EmailSubmit from './EmailSubmit.jsx';
 
 class WriteReview extends React.Component {
   constructor(props) {
@@ -21,7 +23,9 @@ class WriteReview extends React.Component {
       length: null,
       fit: null,
       summary: '',
-      body: ''
+      body: '',
+      nickname: '',
+      email: ''
     }
 
     this.handleModal = this.handleModal.bind(this);
@@ -30,6 +34,8 @@ class WriteReview extends React.Component {
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleNicknameChange = this.handleNicknameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
   handleModal() {
@@ -52,7 +58,9 @@ class WriteReview extends React.Component {
       length: null,
       fit: null,
       summary: '',
-      body: ''
+      body: '',
+      nickname: '',
+      email: ''
     })
   }
 
@@ -110,6 +118,18 @@ class WriteReview extends React.Component {
     });
   }
 
+  handleNicknameChange(event) {
+    this.setState({
+      nickname: event.target.value
+    });
+  }
+
+  handleEmailChange(event) {
+    this.setState({
+      email: event.target.value
+    });
+  }
+
   render() {
     const {characteristics} = this.props;
     const {showModal, overallRating, body} = this.state;
@@ -141,6 +161,15 @@ class WriteReview extends React.Component {
                     <br />
                     <br />
                     <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} />
+                    <br />
+                    <br />
+                    {/* Photos compononet */}
+                    <br />
+                    <br />
+                    <div className='user-details'>
+                      <NicknameSubmit handleNicknameChange={this.handleNicknameChange} />
+                      <EmailSubmit handleEmailChange={this.handleEmailChange} />
+                    </div>
                   </div>
                 </div>
               </form>
