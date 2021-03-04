@@ -254,17 +254,36 @@ class WriteReview extends React.Component {
     }
 
     if (!errors) {
+      const characteristicsInfo = {};
+
+      for (const prop in characteristics) {
+        if ({}.hasOwnProperty.call(characteristics, prop)) {
+          characteristicsInfo[characteristics[prop].id] =
+            prop === 'Size' ? size :
+            prop === 'Width' ? width :
+            prop === 'Comfort' ? comfort :
+            prop === 'Quality' ? quality :
+            prop === 'Length' ? length :
+            prop === 'Fit' ? fit : 0
+        }
+      }
+
       const submission = {
         product_id: productId,
         rating: overallRating,
         summary,
         body,
         recommend: recommend === 'yes',
-        name,
+        name: nickname,
         email,
         photos: [],
-        characteristics: {}
+        characteristics: characteristicsInfo
       }
+
+      axios
+        .post('/reviews', submission)
+        .then(results => console.log(results))
+        .catch(error => console.log(error))
     }
   }
 
