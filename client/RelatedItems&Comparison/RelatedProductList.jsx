@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import ProductCard from './ProductCard.jsx';
 
 const RelatedProductList = ({productCards}) => (
@@ -15,7 +16,7 @@ RelatedProductList.propTypes = {
     id: PropTypes.number,
     category: PropTypes.string,
     name: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     starRating: PropTypes.string,
     styles: PropTypes.arrayOf(PropTypes.shape({
       style_id: PropTypes.number,

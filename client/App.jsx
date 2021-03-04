@@ -74,7 +74,7 @@ class App extends React.Component {
           selectProductInfo={selectProductInfo}
           retrieveSelectProductInfo={this.retrieveSelectProductInfo}
         />
-        <RelatedListContainer />
+        <RelatedListContainer selectProductId={selectProductId} />
         <QuestionsAndAnswers />
         <RatingsAndReviews productId={productId} />
       </div>

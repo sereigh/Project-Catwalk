@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import RelatedProductList from './RelatedProductList.jsx';
 import dummyProductCards from './dummyProductCards';
 
@@ -7,23 +9,18 @@ class RelatedListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [
-        {userId: 1, products: [
-          {productId: 17762}
-          ]
-        }
-      ],
-      relatedProductIds: [
-        17219,
-        17810,
-        17174
-      ],
+      // relatedProductIds: [
+      //   17219,
+      //   17810,
+      //   17174
+      // ],
       relatedProductCards: dummyProductCards
     }
   }
 
   componentDidMount() {
-    this.getRelatedProductIds(17762);
+    const {selectProductId} = this.props;
+    this.getRelatedProductIds(selectProductId);
   }
 
   getRelatedProductIds(productId) {
@@ -87,5 +84,9 @@ class RelatedListContainer extends React.Component {
     );
   }
 };
+
+RelatedListContainer.propTypes = {
+  selectProductId: PropTypes.number.isRequired
+}
 
 export default RelatedListContainer;

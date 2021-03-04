@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
@@ -28,7 +29,7 @@ const ProductCard = ({productCard}) => {
           <div>{productCard.starRating}</div>
         </div>
       </div>
-      <ComparisonModal window={window} toggleModalWindow={toggleModalWindow} />
+      <ComparisonModal features={productCard.features} window={window} toggleModalWindow={toggleModalWindow} />
     </div>
   );
 };
@@ -38,7 +39,7 @@ ProductCard.propTypes = {
     id: PropTypes.number,
     category: PropTypes.string,
     name: PropTypes.string,
-    price: PropTypes.number,
+    price: PropTypes.string,
     starRating: PropTypes.string,
     styles: PropTypes.arrayOf(PropTypes.shape({
       style_id: PropTypes.number,
