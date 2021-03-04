@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ReviewsList from './ReviewsList.jsx';
-import WriteReview from './WriteReview.jsx';
+import ReviewsList from './ReviewsList/ReviewsList.jsx';
+import WriteReview from './WriteReview/WriteReview.jsx';
 
 class ReviewsListContainer extends React.Component {
   constructor(props) {

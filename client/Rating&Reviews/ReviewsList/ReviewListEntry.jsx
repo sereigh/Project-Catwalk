@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Stars from '../SharedComponents/Stars.jsx';
+import Stars from '../../SharedComponents/Stars.jsx';
 
 import NameAndDate from './NameAndDate.jsx';
 import Summary from './Summary.jsx';
