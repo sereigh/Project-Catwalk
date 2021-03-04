@@ -4,21 +4,34 @@ import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
-const ProductCard = ({productCard}) => (
-  <div>
-    <div className="productCard" style={{border: 'solid black 1px'}}>
-      <ActionButton />
-      <PreviewImages styles={productCard.styles} />
-      <div>
-        <div>{productCard.category}</div>
-        <div>{productCard.name}</div>
-        <div>{`$${productCard.price}`}</div>
-        <div>{productCard.starRating}</div>
+const ProductCard = ({productCard}) => {
+
+  const [window, setWindow] = React.useState('none');
+
+  const toggleModalWindow = () => {
+    if (window === 'none') {
+      setWindow('block');
+    } else {
+      setWindow('none');
+    }
+  };
+
+  return (
+    <div>
+      <div className="productCard" style={{border: 'solid black 1px'}}>
+        <ActionButton toggleModalWindow={toggleModalWindow} />
+        <PreviewImages styles={productCard.styles} />
+        <div>
+          <div>{productCard.category}</div>
+          <div>{productCard.name}</div>
+          <div>{`$${productCard.price}`}</div>
+          <div>{productCard.starRating}</div>
+        </div>
       </div>
+      <ComparisonModal window={window} toggleModalWindow={toggleModalWindow} />
     </div>
-    <ComparisonModal />
-  </div>
-);
+  );
+};
 
 ProductCard.propTypes = {
   productCard: PropTypes.shape({

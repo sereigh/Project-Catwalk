@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ActionButton = () => (
-  <button id="startBtn">☆</button>
+const ActionButton = ({toggleModalWindow}) => (
+  <button id="startBtn" onClick={toggleModalWindow}>☆</button>
 );
 
 export default ActionButton;
