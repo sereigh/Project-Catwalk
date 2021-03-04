@@ -36,7 +36,15 @@ class WriteReview extends React.Component {
     }
 
     this.setState({
-      showModal: !showModal
+      showModal: !showModal,
+      overallRating: 0,
+      recommend: null,
+      size: null,
+      width: null,
+      comfort: null,
+      quality: null,
+      length: null,
+      fit: null
     })
   }
 

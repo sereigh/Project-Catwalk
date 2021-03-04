@@ -9,10 +9,22 @@ class CharacteristicRate extends React.Component {
     this.state = {
       description: 'None Selected'
     }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event, characteristic) {
+    const {handleCharacteristicRate} = this.props;
+
+    handleCharacteristicRate(event, characteristic);
+
+    this.setState({
+      description: generateDescription(characteristic, parseInt(event.target.value, 10))
+    })
   }
 
   render() {
-    const {characteristic, handleCharacteristicRate} = this.props;
+    const {characteristic} = this.props;
     const {description} = this.state;
 
     return (
@@ -21,11 +33,11 @@ class CharacteristicRate extends React.Component {
           {description}
         </div>
         {characteristic}
-        <input type='radio' name={`${characteristic}-rating`} value='1' onChange={event => handleCharacteristicRate(event, characteristic)} />
-        <input type='radio' name={`${characteristic}-rating`} value='2' onChange={event => handleCharacteristicRate(event, characteristic)} />
-        <input type='radio' name={`${characteristic}-rating`} value='3' onChange={event => handleCharacteristicRate(event, characteristic)} />
-        <input type='radio' name={`${characteristic}-rating`} value='4' onChange={event => handleCharacteristicRate(event, characteristic)} />
-        <input type='radio' name={`${characteristic}-rating`} value='5' onChange={event => handleCharacteristicRate(event, characteristic)} />
+        <input type='radio' name={`${characteristic}-rating`} value='1' onChange={event => this.handleChange(event, characteristic)} />
+        <input type='radio' name={`${characteristic}-rating`} value='2' onChange={event => this.handleChange(event, characteristic)} />
+        <input type='radio' name={`${characteristic}-rating`} value='3' onChange={event => this.handleChange(event, characteristic)} />
+        <input type='radio' name={`${characteristic}-rating`} value='4' onChange={event => this.handleChange(event, characteristic)} />
+        <input type='radio' name={`${characteristic}-rating`} value='5' onChange={event => this.handleChange(event, characteristic)} />
       </div>
     )
   }
