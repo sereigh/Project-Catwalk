@@ -1,15 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import RatingSubmit from './RatingSubmit.jsx';
+import RecommendSubmit from './RecommendSubmit.jsx';
 
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      overallRating: 0
+      overallRating: 0,
+      recommend: null
     }
 
     this.handleModal = this.handleModal.bind(this);
     this.handleRate = this.handleRate.bind(this);
+    this.handleRecommend = this.handleRecommend.bind(this);
   }
 
   handleModal() {
@@ -32,7 +38,14 @@ class WriteReview extends React.Component {
     })
   }
 
+  handleRecommend(event) {
+    this.setState({
+      recommend: event.target.value
+    })
+  }
+
   render() {
+    const {characteristics} = this.props;
     const {showModal, overallRating} = this.state;
 
     return (
@@ -44,69 +57,11 @@ class WriteReview extends React.Component {
               <form className='modal submit-form'>
                 <h1>Write Your Review</h1>
                 <h3>About the [PRODUCT NAME HERE]</h3>
+                <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} />
+                <RecommendSubmit handleRecommend={this.handleRecommend} />
                 <span>
-                  {'*Overall Rating: '}
-                  <span
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => this.handleRate(1)}
-                    onKeyPress={() => this.handleRate(1)}
-                  >
-                    {overallRating < 1 ? '☆' : '★'}
-                  </span>
-                  <span
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => this.handleRate(2)}
-                    onKeyPress={() => this.handleRate(2)}
-                  >
-                    {overallRating < 2 ? '☆' : '★'}
-                  </span>
-                  <span
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => this.handleRate(3)}
-                    onKeyPress={() => this.handleRate(3)}
-                  >
-                    {overallRating < 3 ? '☆' : '★'}
-                  </span>
-                  <span
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => this.handleRate(4)}
-                    onKeyPress={() => this.handleRate(4)}
-                  >
-                    {overallRating < 4 ? '☆' : '★'}
-                  </span>
-                  <span
-                    role='button'
-                    tabIndex={0}
-                    onClick={() => this.handleRate(5)}
-                    onKeyPress={() => this.handleRate(5)}
-                  >
-                    {overallRating < 5 ? '☆ ' : '★ '}
-                  </span>
-                  <span>
-                    {
-                      overallRating === 1 ? 'Poor'
-                      : overallRating === 2 ? 'Fair'
-                      : overallRating === 3 ? 'Average'
-                      : overallRating === 4 ? 'Good'
-                      : overallRating === 5 ? 'Great'
-                      : ''
-                    }
-                  </span>
-                </span>
-                <span>
-                  {'*Do you recommend this product? '}
-                  <label htmlFor='yes'>
-                    Yes
-                    <input type='radio' id='yes' name='recommend' value />
-                  </label>
-                  <label htmlFor='no'>
-                    No
-                    <input type='radio' id='no' name='recommend' value={false} />
-                  </label>
+                  {'*Characteristics: '}
+
                 </span>
               </form>
               <div
@@ -122,6 +77,14 @@ class WriteReview extends React.Component {
       </>
     )
   }
+}
+
+WriteReview.propTypes = {
+  characteristics: PropTypes.arrayOf(PropTypes.string)
+}
+
+WriteReview.defaultProps = {
+  characteristics: []
 }
 
 export default WriteReview;

@@ -68,7 +68,12 @@ class RatingsAndReviews extends React.Component {
     return (
       <>
         <RatingsContainer reviewData={reviewData} />
-        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort} />
+        <ReviewsListContainer
+          reviews={reviews}
+          totalReviews={totalReviews}
+          handleSort={this.handleSort}
+          // characteristics={Object.keys(reviewData.characteristics)}
+        />
       </>
     )
   }

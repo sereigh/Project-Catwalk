@@ -35,7 +35,7 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {reviews, totalReviews} = this.props;
+    const {reviews, totalReviews, characteristics} = this.props;
     const {selected, minimized} = this.state;
 
     return (
@@ -50,7 +50,7 @@ class ReviewsListContainer extends React.Component {
         </span>
         <ReviewsList minimized={minimized} reviews={reviews} />
         <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <WriteReview />
+        <WriteReview characteristics={characteristics} />
       </>
     )
   }
@@ -73,11 +73,13 @@ ReviewsListContainer.propTypes = {
       id: PropTypes.number,
       url: PropTypes.string
     }))
-  }))
+  })),
+  characteristics: PropTypes.arrayOf(PropTypes.string)
 }
 
 ReviewsListContainer.defaultProps = {
-  reviews: []
+  reviews: [],
+  characteristics: []
 }
 
 export default ReviewsListContainer;
