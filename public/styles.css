@@ -17,7 +17,10 @@
 }
 .answerText {
   font-size: small;
-  width: 50%;
+  word-break: normal;
+  width: 68%;
+  text-align: left;
+  display: inline;
 }
 .questionFeedback {
   text-align: end;
@@ -25,15 +28,18 @@
   display: inline-block;
   width: 29%;
 }
-/* .question, .answer {
-  display: flex;
+.answersFeedback {
+  font-size: xx-small;
   width: 100%;
-  justify-content: space-between;
+  word-break: normal;
+  text-align: left;
+  display: inline;
 }
-.feedback {
-  font-size: x-small;
-} */
 .showDefault-questions {
+  position: relative;
+  min-height: 300px;
+}
+.showDefault-answers {
   position: relative;
   min-height: 150px;
 }

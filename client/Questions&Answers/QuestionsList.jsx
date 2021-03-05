@@ -39,8 +39,8 @@ function QuestionsList({ questions }) {
             </div>
             <div className="questionFeedback">
               <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
-              {view === index && <AnswersList />}
             </div>
+            {view === index && <AnswersList />}
           </div>
         ))}
       </div>
