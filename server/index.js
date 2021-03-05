@@ -7,9 +7,9 @@ const helpers = require('./helpers');
 const app = express();
 const port = 3000;
 
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
-
+app.use(express.json({limit: '500kb'}));
+app.use(express.urlencoded({limit: '500kb', extended: true}));
 
 // Products GET /products Retrieves the list of products
 app.get('/products', (req, res) => {
@@ -99,16 +99,16 @@ app.put('/reviews/:review_id/report', (req, res) => {
     })
 });
 
-// // Reviews POST /upload/photo Uploads photos to cloudinary
-// app.post('/upload/photo', (req, res) => {
-//   helpers.uploadPhotos(req.body)
-//     .then((response) => {
-//       res.send(response.data)
-//     })
-//     .catch((error) => {
-//       console.log(error.data);
-//     })
-// });
+// Reviews POST /upload/photo Uploads photo to cloudinary
+app.post('/upload/photo', (req, res) => {
+  helpers.uploadPhoto(req.body)
+    .then((response) => {
+      res.send(response.secure_url)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
 
 // Reviews POST /reviews Posts a new review to the database
 app.post('/reviews', (req, res) => {

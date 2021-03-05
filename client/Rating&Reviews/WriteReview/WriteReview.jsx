@@ -30,9 +30,11 @@ const defaultState = {
   recommendError: false,
   characteristicsError: false,
   bodyError: false,
+  photoError: false,
   nicknameError: false,
   emailError: false,
-  errors: false
+  errors: false,
+  submitting: false
 }
 
 class WriteReview extends React.Component {
@@ -46,6 +48,7 @@ class WriteReview extends React.Component {
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.handlePhotoChange = this.handlePhotoChange.bind(this);
     this.handleNicknameChange = this.handleNicknameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -127,6 +130,20 @@ class WriteReview extends React.Component {
     })
   }
 
+  handleRemove(id) {
+    const {photos} = this.state;
+
+    for (let i = 0; i < photos.length; i++) {
+      if (i === id) {
+        photos.splice(i, 1);
+        this.setState({
+          photos
+        });
+        break;
+      }
+    }
+  }
+
   handleNicknameChange(event) {
     this.setState({
       nickname: event.target.value
@@ -142,7 +159,7 @@ class WriteReview extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const {productId, characteristics, handleSort, selected} = this.props;
-    const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, nickname, email} = this.state;
+    const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, photos, nickname, email} = this.state;
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
     const characteristicNames = Object.keys(characteristics);
 
@@ -247,41 +264,58 @@ class WriteReview extends React.Component {
         }
       }
 
-      // const bufferPromises = photos.map(photo => photo.arrayBuffer());
+      const urls = [];
+      this.setState({
+        submitting: true
+      });
 
-      // Promise.all(bufferPromises)
-      //   .then(results => axios.post('/upload/photo', results)
-      //     .then(urls => console.log(urls))
-      //     .catch(error => console.log(error)))
-      //   .catch(error => console.log(error));
+      photos.forEach(photo => {
+        const reader = new FileReader();
+        reader.onload = readEvent => {
+          axios.post('/upload/photo', [readEvent.target.result])
+            .then(url => {
+              urls.push(url.data);
+              if (urls.length === photos.length) {
+                const submission = {
+                  product_id: productId,
+                  rating: overallRating,
+                  summary,
+                  body,
+                  recommend: recommend === 'yes',
+                  name: nickname,
+                  email,
+                  photos: urls,
+                  characteristics: characteristicsInfo
+                }
 
-      const submission = {
-        product_id: productId,
-        rating: overallRating,
-        summary,
-        body,
-        recommend: recommend === 'yes',
-        name: nickname,
-        email,
-        photos: [],
-        characteristics: characteristicsInfo
-      }
-
-      axios
-        .post('/reviews', submission)
-        .then(results => {
-          event.target.reset();
-          this.setState(this.setState(Object.assign(defaultState, {submitted: true})));
-          handleSort(selected);
-          console.log(results)
-        })
-        .catch(error => console.log(error))
+                axios
+                  .post('/reviews', submission)
+                  .then(results => {
+                    event.target.reset();
+                    this.setState(Object.assign(defaultState, {submitted: true}));
+                    handleSort(selected);
+                    console.log(results)
+                  })
+                  .catch(error => console.log(error))
+              }
+            })
+            .catch(error => {
+              console.log(error);
+              this.setState({
+                photoError: true,
+                errors: true,
+                submitting: false
+              })
+            })
+        }
+        reader.readAsDataURL(photo);
+      });
     }
   }
 
   render() {
     const {characteristics, productName} = this.props;
-    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors, submitted} = this.state;
+    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, photoError, nicknameError, emailError, errors, submitting, submitted} = this.state;
 
     const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
@@ -292,7 +326,7 @@ class WriteReview extends React.Component {
         {
           showModal && (
             <>
-              <form className='modal submit-form' onSubmit={this.handleSubmit}>
+              <form className='review-modal submit-form' onSubmit={this.handleSubmit}>
                 <h1>Write Your Review</h1>
                 <h3>{`About the ${productName}`}</h3>
                 <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
@@ -313,10 +347,10 @@ class WriteReview extends React.Component {
                     <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} bodyError={bodyError} />
                     <br />
                     <br />
-                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} />
+                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} handleRemove={this.handleRemove} />
                     <br />
                     <br />
-                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} />
+                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} photoError={photoError} />
                     <br />
                     <br />
                     <div className='final-submission-details'>
@@ -326,7 +360,7 @@ class WriteReview extends React.Component {
                       </div>
                       <div className='submit-details'>
                         <button type='submit' className='submit-review'>Submit</button>
-                        <h4 className={submitted ? 'success-message' : 'no-success-message'}>Success!</h4>
+                        <h4 className={submitting || submitted ? 'success-message' : 'no-success-message'}>{submitted ? 'Success!' : 'Submitting...'}</h4>
                       </div>
                     </div>
                   </div>
