@@ -1,13 +1,13 @@
 const axios = require('axios');
-// const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary').v2;
 
 const config = require('../config.js');
 
-// cloudinary.config({
-//   cloud_name: `${config.CLOUD_NAME}`,
-//   api_key: `${config.API_KEY}`,
-//   api_secret: `${config.API_SECRET}`
-// });
+cloudinary.config({
+  cloud_name: `${config.CLOUD_NAME}`,
+  api_key: `${config.API_KEY}`,
+  api_secret: `${config.API_SECRET}`
+});
 
 // Products GET /products Retrieves the list of products
 const getProductsList = () => {
@@ -158,32 +158,10 @@ const reportReview = (id) => {
   )
 }
 
-// // Reviews POST Uploads photos to cloudinary
-// const uploadPhotos = (photos) => {
-//   const results = [];
-//   console.log(photos);
-//   const uploadPromises = photos.map(photo => (
-//     cloudinary.uploader.upload_stream({resource_type: 'raw'}, (error, result) => {
-//       if (error) {
-//         results.push(error);
-//       } else if (result) {
-//         results.push(result);
-//       }
-//     })
-//     .end(photo)
-//   ));
-
-
-//   return Promise.all(uploadPromises)
-//     .then(() => {
-//       console.log('hello, ', results)
-//       return results;
-//     })
-//     .catch(err => {
-//       console.log('goodbye, ', err, results)
-//       return results;
-//     })
-// }
+// Reviews POST Uploads photos to cloudinary
+const uploadPhoto = (photo) => (
+  cloudinary.uploader.upload(photo[0], (error, result) => error || result)
+)
 
 // Reviews POST /reviews Posts the review to the database
 const submitReview = (review) => {
@@ -249,7 +227,7 @@ module.exports = {
   getAllReviews,
   voteHelpful,
   reportReview,
-  // uploadPhotos,
+  uploadPhoto,
   submitReview
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
