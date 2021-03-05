@@ -141,7 +141,7 @@ class WriteReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {productId, characteristics} = this.props;
+    const {productId, characteristics, handleSort, selected} = this.props;
     const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, nickname, email} = this.state;
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
     const characteristicNames = Object.keys(characteristics);
@@ -272,6 +272,7 @@ class WriteReview extends React.Component {
         .then(results => {
           event.target.reset();
           this.setState(this.setState(Object.assign(defaultState, {submitted: true})));
+          handleSort(selected);
           console.log(results)
         })
         .catch(error => console.log(error))
@@ -374,7 +375,9 @@ WriteReview.propTypes = {
       id: PropTypes.number,
       value: PropTypes.string
     }),
-  })
+  }),
+  handleSort: PropTypes.func.isRequired,
+  selected: PropTypes.string.isRequired
 }
 
 WriteReview.defaultProps = {
