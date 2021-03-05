@@ -7,15 +7,9 @@ const helpers = require('./helpers');
 const app = express();
 const port = 3000;
 
-<<<<<<< HEAD
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json({limit: '500kb'}));
 app.use(express.urlencoded({limit: '500kb', extended: true}));
-=======
-app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public')));
-
->>>>>>> 6f4f786b59ad5ab4b9d3fa25121f370c762ebc6e
 
 // Products GET /products Retrieves the list of products
 app.get('/products', (req, res) => {
