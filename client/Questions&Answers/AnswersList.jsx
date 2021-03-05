@@ -25,14 +25,14 @@ function Answerslist() {
 
   return (
 
-    <div className="showDefault-answers">
+    <div className={expand}>
       {answers.map((answer) => (
         <div key={answer.answer_id} className="view-answer">
           <div className="answerText">
             <strong>A:  </strong>
             {answer.body}
           </div>
-          <div className="answersFeedback">
+          <span className="answersFeedback">
             by
             {' '}
             {answer.answerer_name}
@@ -45,7 +45,7 @@ function Answerslist() {
               <SendFeedback option={0} handleFeedback={toggleStatus} />
               : <SendFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />
           }
-          </div>
+          </span>
         </div>
       ))}
       <span

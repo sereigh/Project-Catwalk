@@ -28,11 +28,13 @@ class QuestionsAndAnswers extends React.Component {
     }
 
     return (
-      <div className="qaContainer" style={{ border: 'solid black thin' }}>
-        Container
-        <div className="qaHeader" style={{ border: 'solid black thin' }} />
+      <div className="qaContainer">
+
+        <div className="qaHeader">
+          QUESTIONS & ANSWERS
+        </div>
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
-          Search
+          HAVE A QUESTION? SEARCH FOR ANSWERS...
         </div>
         {questions && <QuestionsList questions={questions} reportOption={reportOption} />}
       </div>

@@ -34,7 +34,7 @@ function QuestionsList({ questions }) {
               tabIndex={0}
               onKeyPress={() => toggleView(index)}
             >
-              Q:
+              <strong>Q:  </strong>
               {question.question_body}
             </div>
             <div className="questionFeedback">

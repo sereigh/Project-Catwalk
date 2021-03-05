@@ -6,6 +6,38 @@
 .qaContainer {
   width: 90%;
   align-self: auto;
+  padding-left: 50px;
+}
+.qaHeader {
+  width: 100%;
+  text-align: left;
+  margin: 2%;
+}
+.qaSearch {
+  margin: 2%;
+  height: 50px;
+
+}
+.showDefault-questions {
+  position: relative;
+  min-height: 380px;
+  margin: 2%;
+  border: solid black thin;
+}
+.showDefault-answers {
+  position: relative;
+  min-height: 50px;
+  margin: 2%;
+
+}
+.showDefault-questions div:nth-child(5n) {
+  display: none;
+}
+.showDefault-answers div:nth-child(2n) {
+  display: none;
+}
+.view-question {
+  margin: 2%;
 }
 .questionText {
   font-size: medium;
@@ -13,7 +45,8 @@
   word-break: normal;
   width: 68%;
   text-align: left;
-  display: inline-block
+  text-indent:0vw;
+  display: inline-block;
 }
 .answerText {
   font-size: small;
@@ -23,10 +56,10 @@
   display: inline;
 }
 .questionFeedback {
-  text-align: end;
+  text-align: right;
   font-size: xx-small;
   display: inline-block;
-  width: 29%;
+  width: 32%;
 }
 .answersFeedback {
   font-size: xx-small;
@@ -34,20 +67,12 @@
   word-break: normal;
   text-align: left;
   display: inline;
+  text-indent: -2em;
 }
-.showDefault-questions {
-  position: relative;
-  min-height: 300px;
-}
-.showDefault-answers {
-  position: relative;
-  min-height: 150px;
-}
-.showDefault-questions div:nth-child(5n) {
-  display: none;
-}
-.showDefault-answers div:nth-child(2n) {
-  display: none;
+.loadAnswers {
+  font-size: x-small;
+  margin: 4%;
+  font-weight: bolder;
 }
 /* Ratings and Reviews */
 .reviews-list {
