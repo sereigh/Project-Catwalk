@@ -32,7 +32,7 @@ function Answerslist() {
             <strong>A:  </strong>
             {answer.body}
           </div>
-          <br />
+
           <span className="answersFeedback">
             by
             {' '}
@@ -41,11 +41,9 @@ function Answerslist() {
             {answer.date}
             {' '}
             |
-            {
-            status === 'Report' ?
+            {status === 'Report' ?
               <SendFeedback option={0} handleFeedback={toggleStatus} />
-              : <SendFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />
-          }
+              : <SendFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />}
           </span>
         </div>
       ))}
