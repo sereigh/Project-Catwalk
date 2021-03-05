@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import FeaturedProduct from './FeaturedProduct.jsx';
 // import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
-// import DescriptionBanner from './DescriptionBanner.jsx';
+import DescriptionBanner from './DescriptionBanner.jsx';
 
 class OverviewContainer extends React.Component {
   // selectProductId={selectProductId} viaApp
@@ -120,7 +120,9 @@ class OverviewContainer extends React.Component {
           {/* <CartInserter /> */}
         </div>
         <div className="showcaseDescription">
-          {/* <DescriptionBanner /> */}
+          <DescriptionBanner
+            selectProductInfo={selectProductInfo}
+          />
         </div>
       </div>
     );
