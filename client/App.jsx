@@ -15,10 +15,10 @@ class App extends React.Component {
         {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       selectProductId: 17763,
-      selectProductInfo: [
-        {"id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
-        "features": [{"feature":null,"value": null},{"feature":null,"value": null}]}
-      ]
+      selectProductInfo: {
+        "id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
+      }
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
@@ -101,7 +101,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RelatedListContainer />
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} />
         <span>
           ---Questions Answers Widget---
           <br />
@@ -113,7 +113,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RatingsAndReviews productId={productId} />
+        <RatingsAndReviews productId={productId || 1} productName={productList[0].name || 'placeholder'} />
       </div>
     );
   }

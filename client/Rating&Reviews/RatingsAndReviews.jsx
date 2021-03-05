@@ -63,19 +63,28 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
+    const {productId, productName} = this.props;
     const {reviewData, reviews, totalReviews} = this.state;
 
     return (
       <>
         <RatingsContainer reviewData={reviewData} />
-        <ReviewsListContainer reviews={reviews} totalReviews={totalReviews} handleSort={this.handleSort} />
+        <ReviewsListContainer
+          productId={productId}
+          productName={productName}
+          reviews={reviews}
+          totalReviews={totalReviews}
+          handleSort={this.handleSort}
+          characteristics={reviewData.characteristics || {}}
+        />
       </>
     )
   }
 }
 
 RatingsAndReviews.propTypes = {
-  productId: PropTypes.number.isRequired
+  productId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired
 }
 
 export default RatingsAndReviews;

@@ -7,6 +7,7 @@ import QAFeedback from './QAFeedback.jsx';
 function QuestionsList({ questions }) {
 
   const [view, setView] = useState(false);
+
   const toggleView = (index) => {
     if (view === index) {
       return setView(null);
@@ -14,11 +15,6 @@ function QuestionsList({ questions }) {
     return setView(index);
   };
 
-  // if (questions.length === 0) {
-  //   return (
-  //     <h1>Hi</h1>
-  //   );
-  // }
   return (
     <>
       <div className="showDefault-questions">

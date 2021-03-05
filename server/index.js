@@ -8,10 +8,11 @@ const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(express.json());
+app.use(express.json({limit: '500kb'}));
+app.use(express.urlencoded({limit: '500kb', extended: true}));
 
 // Products GET /products Retrieves the list of products
-app.get('/products', (req,res) => {
+app.get('/products', (req, res) => {
   helpers.getProductsList()
     .then((response) => {
       res.send(response.data)
@@ -46,12 +47,12 @@ app.get('/products/:product_id/styles', (req, res) => {
 // Products GET /products/:product_id/related Returns the id's of products related to the product specified
 app.get('/products/:product_id/related', (req, res) => {
   helpers.getRelatedProducts()
-  .then((response) => {
-    res.send(response.data)
-  })
-  .catch((error) => {
-    console.log(error.data);
-  })
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
 });
 
 // Reviews GET /reviewdata/:product_id Returns all review metadata for a specified product id
@@ -96,6 +97,86 @@ app.put('/reviews/:review_id/report', (req, res) => {
     .catch((error) => {
       console.log(error.data);
     })
+});
+
+// Reviews POST /upload/photo Uploads photo to cloudinary
+app.post('/upload/photo', (req, res) => {
+  helpers.uploadPhoto(req.body)
+    .then((response) => {
+      res.send(response.secure_url)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+// Reviews POST /reviews Posts a new review to the database
+app.post('/reviews', (req, res) => {
+  helpers.submitReview(req.body)
+    .then((response) => {
+      res.send(response.data)
+    })
+    .catch((error) => {
+      console.log(error.data);
+    })
+});
+
+app.get('/qa/questions/:product_id', (req, res) => {
+  const pId = req.params.product_id;
+  helpers.getQuestions(pId)
+  .then((response) => res.status(200).send(response.data))
+  .catch((err) => res.status(404).send(err))
+});
+
+app.get('/qa/questions/:question_id/answers', (req, res) => {
+  const pId = req.params.question_id;
+  helpers.getQuestions(pId)
+    .then((response) => res.status(200).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.post('/qa/questions/:product_id', (req, res) => {
+  const pId = req.params.question_id;
+  const info = req.body;
+  helpers.addQuestion(pId, info)
+    .then((response) => res.status(201).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.post('/qa/questions/:question_id/answers', (req, res) => {
+  const pId = req.params.question_id;
+  const info = req.body;
+  helpers.addAnswer(pId, info)
+    .then((response) => res.status(201).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.put('/qa/questions/:question_id/helpful', (req, res) => {
+  const pId = req.params.question_id;
+  helpers.markQuestionHelpful(pId)
+    .then((response) => res.status(204).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.put('/qa/answers/:answer_id/helpful', (req, res) => {
+  const pId = req.params.answer_id;
+  helpers.markAnswerHelpful(pId)
+    .then((response) => res.status(204).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.put('/qa/questions/:question_id/report', (req, res) => {
+  const pId = req.params.question_id;
+  helpers.reportQuestion(pId)
+    .then((response) => res.status(204).send(response.data))
+    .catch((err) => res.status(404).send(err))
+});
+
+app.put('/qa/answers/:answer_id/report', (req, res) => {
+  const pId = req.params.answer_id;
+  helpers.reportAnswer(pId)
+    .then((response) => res.status(204).send(response.data))
+    .catch((err) => res.status(404).send(err))
 });
 
 app.listen(port, () => {
