@@ -7,13 +7,13 @@ import SendFeedback from './SendFeedback.jsx';
 function QuestionsList({ questions }) {
 
   const [view, setView] = useState(false);
+
   const toggleView = (index) => {
     if (view === index) {
       return setView(null);
     }
     return setView(index);
   };
-
   if (questions.length === 0) {
     return (
       <h1>Hi</h1>
