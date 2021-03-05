@@ -26,7 +26,7 @@ class Photo extends React.Component {
   }
 
   render() {
-    const {photo} = this.props;
+    const {photo, uploaded, handleRemove} = this.props;
     const {showModal} = this.state;
 
     return (
@@ -43,7 +43,20 @@ class Photo extends React.Component {
         {
           showModal && (
             <>
-              <img className='modal' src={photo.url} alt='product' />
+              {!uploaded ?
+                <img className='review-modal' src={photo.url} alt='product' /> :
+                (
+                  <div>
+                    <img className='review-modal' src={photo.url} alt='preview' />
+                    <button
+                      className='review-modal remove-button'
+                      type='button'
+                      onClick={() => {handleRemove(photo.id); this.handleClick()}}
+                    >
+                      Remove Photo
+                    </button>
+                  </div>
+                )}
               <div
                 role='button'
                 tabIndex={0}
@@ -63,7 +76,13 @@ Photo.propTypes = {
   photo: PropTypes.shape({
     id: PropTypes.number,
     url: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  uploaded: PropTypes.bool.isRequired,
+  handleRemove: PropTypes.func
+}
+
+Photo.defaultProps = {
+  handleRemove: () => {}
 }
 
 export default Photo;
