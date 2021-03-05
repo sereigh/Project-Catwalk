@@ -9,19 +9,13 @@ class RelatedListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // relatedProductIds: [
-      //   17219,
-      //   17810,
-      //   17174
-      // ],
-      relatedProductCards: dummyProductCards
+      relatedProductCards: dummyProductCards,
     }
   }
 
-  // componentDidMount() {
-  //   const {selectProductId} = this.props;
-  //   this.getRelatedProductIds(selectProductId);
-  // }
+  componentDidMount() {
+
+  }
 
   // getRelatedProductIds(productId) {
   //   axios
@@ -31,6 +25,9 @@ class RelatedListContainer extends React.Component {
   //     this.setState({
   //       relatedProductIds: response.data
   //     })
+  //   })
+  //   .then(() => {
+  //     this.getRelatedProductCards();
   //   })
   //   .catch((error) => {
   //     console.log('Get related items failed...', error);
@@ -45,6 +42,44 @@ class RelatedListContainer extends React.Component {
  * styles
  * features
  */
+
+  // getRelatedProductCards() {
+  //   const {relatedProductIds} = this.state;
+  //   relatedProductIds.forEach(id => {
+  //     this.getProductInfo(id);
+  //     this.getProductStyle(id);
+  //   });
+  // }
+
+  // getProductStyle(id) {
+  //   return (
+  //     axios
+  //       .get(`products/${id}/style`)
+  //       .then((response) => {
+  //         console.log('stylessss: ', response);
+  //         const {relatedProductStyle} = this.state;
+  //         relatedProductStyle.push(response.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log('sytle err',err);
+  //       })
+  //   )
+  // }
+
+  // getProductInfo(id) {
+  //   return (
+  //     axios
+  //       .get(`products/${id}`)
+  //       .then((response) => {
+  //         console.log('infosss: ', response);
+  //         const {relatedProductInfos} = this.state;
+  //         relatedProductInfos.push(response.data);
+  //       })
+  //       .catch((err) => {
+  //         console.log('info err', err);
+  //       })
+  //   )
+  // }
 
   // getRelatedProductInformation() {
   //   //get details and styles
@@ -71,13 +106,16 @@ class RelatedListContainer extends React.Component {
 
   render() {
     const {relatedProductCards} = this.state;
-    const {selectProductInfo} = this.props;
+    const {selectProductInfo, selectProductId} = this.props;
+    const {relatedProductInfos, relatedProductStyle} = this.state;
+    console.log('style: ', relatedProductStyle);
+    console.log('info: ', relatedProductInfos);
     return (
       <div>
         <ul>
           <div>
             **RelatedProductList**
-            <RelatedProductList productCards={relatedProductCards} selectProductInfo={selectProductInfo} />
+            <RelatedProductList productCards={relatedProductCards} selectProductInfo={selectProductInfo} selectProductId={selectProductId} />
           </div>
           <div>**OutfitList**</div>
         </ul>

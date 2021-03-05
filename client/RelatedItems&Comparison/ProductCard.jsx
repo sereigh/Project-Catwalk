@@ -19,19 +19,27 @@ const ProductCard = ({productCard, selectProductInfo}) => {
 
   // const trimProductDetails = () => {
   //   if (selectProductInfo.features) {
-  //     console.log('selected', selectProductInfo.features);
-  //     console.log('card', productCard.features);
-  //     let allFeatures = productCard.features.slice(0).concat(selectProductInfo.features.slice(0));
-  //     const result = allFeatures.reduce((feature, i) => {
-  //       if (feature.includes(i)) {
-  //         return [...x, y];
+
+  //     let features1 = productCard.features.slice(0);
+  //     let features2 = selectProductInfo.features.slice(0);
+
+  //     let allFeatures = features1.map((feature) => {
+  //       const target = features2.find(item => item.feature === feature.feature);
+  //       if (target) {
+  //         return {value1: feature.value, value2: target.value, feature: feature.feature};
   //       }
-  //     }, []);
-  //     return result;
+  //       return
+  //     });
+
+  //     return allFeatures;
   //   }
-  // }
+  // };
 
   // console.log(trimProductDetails());
+
+  // retrieveProductInfo() {
+  //   axios.
+  // }
 
   return (
     <div>

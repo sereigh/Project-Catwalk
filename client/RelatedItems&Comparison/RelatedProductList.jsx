@@ -1,17 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import ProductCard from './ProductCard.jsx';
 
-const RelatedProductList = ({productCards, selectProductInfo}) => (
-  <div className="relatedProductList">
-    {productCards.map(productCard => (
-      <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} />
-    ))}
-  </div>
-);
+class RelatedProductList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      relatedProductIds: [
+        17219,
+        17810,
+        17174
+      ]
+    }
+  }
+
+  componentDidMount() {
+    this.getRelatedProductIds();
+  }
+
+  getRelatedProductIds() {
+    const {selectProductId} = this.props;
+    axios
+    .get(`/products/${selectProductId}/related`)
+    .then((response) => {
+      console.log('related', response.data);
+      this.setState({
+        relatedProductIds: response.data
+      })
+    })
+    .then(() => {
+      this.getRelatedProductCards();
+    })
+    .catch((error) => {
+      console.log('Get related items failed...', error);
+    })
+  }
+
+  render() {
+    const {productCards, selectProductInfo} = this.props;
+    return (
+      <div className="relatedProductList">
+        {productCards.map(productCard => (
+          <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} />
+        ))}
+      </div>
+    );
+  }
+}
 
 RelatedProductList.propTypes = {
+  selectProductId: PropTypes.number.isRequired,
   productCards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     category: PropTypes.string,
