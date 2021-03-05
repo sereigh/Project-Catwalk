@@ -101,7 +101,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RelatedListContainer />
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} />
         <span>
           ---Questions Answers Widget---
           <br />
