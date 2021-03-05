@@ -12,6 +12,7 @@ class ProductCard extends React.Component {
     this.state = {
       window: 'none',
       productStyles: [],
+      currentStyle: {},
       productInfo: {}
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
@@ -20,6 +21,14 @@ class ProductCard extends React.Component {
   componentDidMount() {
     this.retrieveProductStyle();
     this.retrieveProductInfo();
+  }
+
+  setCurrentStyle() {
+    const { productStyles } = this.state;
+    const curr = productStyles.filter(style => style['default?']);
+    this.setState({
+      currentStyle: curr
+    });
   }
 
   toggleModalWindow() {
@@ -44,6 +53,9 @@ class ProductCard extends React.Component {
           productStyles: response.data.results
         })
       })
+      .then(() => {
+        this.setCurrentStyle();
+      })
       .catch((error) => {
         console.log('Get product style options failed...', error);
       })
@@ -65,25 +77,29 @@ class ProductCard extends React.Component {
 
   render() {
     const { productCard, selectProductInfo } = this.props;
-    const { window } = this.state;
+    const { window, productInfo, currentStyle } = this.state;
     return (
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
           <PreviewImages styles={productCard.styles} />
           <div>
-            <div>{productCard.category}</div>
-            <div>{productCard.name}</div>
+            <div>{productInfo.category}</div>
+            <div>{productInfo.name}</div>
             <div>{`$${productCard.price}`}</div>
             <div>{productCard.starRating}</div>
           </div>
         </div>
-        <ComparisonModal name={productCard.name} features={productCard.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
+        <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
       </div>
     );
   }
 }
 
+// productCard.name -> productInfo.name
+// productCard.features -> productInfo.features
+// price -> currentStyle.original_price
+// startRating -> ?
 
 // const trimProductDetails = () => {
 //   if (selectProductInfo.features) {
