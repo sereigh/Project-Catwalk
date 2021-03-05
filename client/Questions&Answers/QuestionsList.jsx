@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import AnswersList from './AnswersList.jsx';
-import SendFeedback from './SendFeedback.jsx';
+import QAFeedback from './QAFeedback.jsx';
 
 function QuestionsList({ questions }) {
 
@@ -38,7 +38,7 @@ function QuestionsList({ questions }) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
+              <QAFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
             </div>
             {view === index && <AnswersList />}
           </div>

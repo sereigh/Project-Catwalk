@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 // import PropTypes from 'prop-types';
 
-import SendFeedback from './SendFeedback.jsx';
-import Test from './Test.jsx';
+import QAFeedback from './QAFeedback.jsx';
+// import Test from './Test.jsx';
 // eslint-disable-next-line import/extensions
 import answers from './answers.js';
 
@@ -32,19 +32,24 @@ function Answerslist() {
             <strong>A:  </strong>
             {answer.body}
           </div>
-
-          <span className="answersFeedback">
-            by
+          <br />
+          <div className="answersFeedback">
+            <span className="answersFeedback-left">
+              by
+              {' '}
+              {answer.answerer_name}
+              {' '}
+              {answer.date}
+              {' '}
+              |
+            </span>
             {' '}
-            {answer.answerer_name}
-            {' '}
-            {answer.date}
-            {' '}
-            |
-            {status === 'Report' ?
-              <SendFeedback option={0} handleFeedback={toggleStatus} />
-              : <SendFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />}
-          </span>
+            <span className="answersFeedback-right">
+              {status === 'Report' ?
+                <QAFeedback option={0} handleFeedback={toggleStatus} />
+              : <QAFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />}
+            </span>
+          </div>
         </div>
       ))}
       <span

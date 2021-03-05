@@ -56,20 +56,27 @@
   word-break: normal;
   width: 100%;
   text-align: left;
-  display: inline-block;
+  display: inline;
+  margin: -2%;
 }
 .questionFeedback {
   text-align: right;
   font-size: xx-small;
-  display: inline;
+  display: inline-block;
   width: 32%;
 }
 .answersFeedback {
   font-size: xx-small;
-  width: 50%;
+  width: 100%;
   text-align: left;
+  display: inline;
+  margin: -2%;
+}
+.answersFeedback-left {
   display: inline-block;
-  margin: 2%;
+}
+.answersFeedback-right {
+  display: inline-block;
 }
 .loadAnswers {
   font-size: x-small;
