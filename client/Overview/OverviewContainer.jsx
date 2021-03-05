@@ -14,8 +14,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // import ShowcaseImage from './ShowcaseImage.jsx';
-// import FeaturedProduct from './FeaturedProduct.jsx';
-import StyleSelector from './StyleSelector.jsx';
+import FeaturedProduct from './FeaturedProduct.jsx';
+// import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
 // import DescriptionBanner from './DescriptionBanner.jsx';
 
@@ -82,7 +82,7 @@ class OverviewContainer extends React.Component {
 
   render() {
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
-    const { selectProductId } = this.props;
+    const { selectProductId, selectProductInfo } = this.props;
     // console.log('OverviewC_render selectProductID:', selectProductId);
     // console.log('OverviewC_render selectProductInfo:', selectProductInfo);
     // console.log('OverviewC_render retrieveSelectProductInfo():', retrieveSelectProductInfo);
@@ -108,13 +108,15 @@ class OverviewContainer extends React.Component {
           {/* <ShowcaseImage /> */}
         </div>
         <div className="showcaseSelection">
-          {/* <FeaturedProduct /> */}
-          <StyleSelector
+          <FeaturedProduct
+            selectProductInfo={selectProductInfo}
+          />
+          {/* <StyleSelector
             selectStyleOptions={selectStyleOptions}
             retrieveSelectStyleOptions={this.retrieveSelectStyleOptions}
             selectStyleIndex={selectStyleIndex}
             setSelectStyleIndex={this.setSelectStyleIndex}
-          />
+          /> */}
           {/* <CartInserter /> */}
         </div>
         <div className="showcaseDescription">
@@ -127,18 +129,20 @@ class OverviewContainer extends React.Component {
 }
 
 OverviewContainer.propTypes = {
-  selectProductId: PropTypes.number.isRequired
+  selectProductId: PropTypes.number.isRequired,
   // selectProductInfo: PropTypes.arrayOf(PropTypes.shape({
-  //   "id": PropTypes.number,
-  //   "campus": PropTypes.string,
-  //   "name": PropTypes.string,
-  //   "slogan": PropTypes.string,
-  //   "description": PropTypes.string,
-  //   "category": PropTypes.string,
-  //   "default_price": PropTypes.string,
-  //   "created_at": PropTypes.string,
-  //   "updated_at": PropTypes.string
-  // })).isRequired,
+  // selectProductInfo: PropTypes.objectOf(PropTypes.shape({
+  selectProductInfo: PropTypes.shape({
+    "id": PropTypes.number,
+    "campus": PropTypes.string,
+    "name": PropTypes.string,
+    "slogan": PropTypes.string,
+    "description": PropTypes.string,
+    "category": PropTypes.string,
+    "default_price": PropTypes.string,
+    "created_at": PropTypes.string,
+    "updated_at": PropTypes.string
+  }).isRequired
   // retrieveSelectProductInfo: PropTypes.func.isRequired
 }
 
