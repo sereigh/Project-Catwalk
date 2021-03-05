@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class FeaturedProduct extends React.Component {
-  // selectProductInfo={selectProductInfo} viaOvC
-  // selectProductCategory={selectProductInfo.category} viaOvC
   // selectProductName={selectProductInfo.name} viaOvC
   constructor() {
     super();
