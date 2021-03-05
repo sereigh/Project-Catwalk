@@ -14,39 +14,33 @@ function QuestionsList({ questions }) {
     return setView(index);
   };
 
-  if (questions.length === 0) {
-    return (
-      <h1>Hi</h1>
-    );
-  }
+  // if (questions.length === 0) {
+  //   return (
+  //     <h1>Hi</h1>
+  //   );
+  // }
   return (
     <>
-      <div className="questionsList">
+      <div className="showDefault-questions">
         {questions.map((question, index) => (
           <div
+            className="view-question"
             key={question.question_id}
-            className="qBar"
           >
-            <span
-              className="question"
+            <div
+              className="questionText"
+              onClick={() => toggleView(index)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={() => toggleView(index)}
             >
-              <span
-                className="questionText"
-                onClick={() => toggleView(index)}
-                role="button"
-                tabIndex={0}
-                onKeyPress={() => toggleView(index)}
-              >
-
-                <h3>
-                  Q:
-                  {' '}
-                  {question.question_body}
-                </h3>
-              </span>
+              Q:
+              {question.question_body}
+            </div>
+            <div className="questionFeedback">
               <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
-            </span>
-            {view === index && <AnswersList />}
+              {view === index && <AnswersList />}
+            </div>
           </div>
         ))}
       </div>

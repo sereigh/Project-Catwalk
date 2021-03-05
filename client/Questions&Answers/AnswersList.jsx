@@ -25,7 +25,7 @@ function Answerslist() {
 
   return (
 
-    <div className={expand}>
+    <div className="showDefault-answers">
       {answers.map((answer) => (
         <div key={answer.answer_id} className="answer">
           <div className="answerText">

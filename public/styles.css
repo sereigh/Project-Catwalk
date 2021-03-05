@@ -4,20 +4,40 @@
 
 /* Questions and Answers */
 .qaContainer {
-  width: 100%;
+  width: 90%;
+  align-self: auto;
 }
-.questionText, .answerText {
+.questionText {
+  font-size: medium;
+  font-weight: bolder;
+  word-break: normal;
+  width: 68%;
+  text-align: left;
+  display: inline-block
+}
+.answerText {
+  font-size: small;
   width: 50%;
 }
-.question, .answer {
+.questionFeedback {
+  text-align: end;
+  font-size: xx-small;
+  display: inline-block;
+  width: 29%;
+}
+/* .question, .answer {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 .feedback {
   font-size: x-small;
+} */
+.showDefault-questions {
+  position: relative;
+  min-height: 150px;
 }
-.questionsList div:nth-child(5n) {
+.showDefault-questions div:nth-child(5n) {
   display: none;
 }
 .showDefault-answers div:nth-child(2n) {
