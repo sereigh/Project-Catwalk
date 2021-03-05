@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
@@ -9,13 +10,20 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      window: 'none'
+      window: 'none',
+      productStyles: [],
+      productInfo: {}
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
 
+  componentDidMount() {
+    this.retrieveProductStyle();
+    this.retrieveProductInfo();
+  }
+
   toggleModalWindow() {
-    const {window} = this.state;
+    const { window } = this.state;
     if (window === 'none') {
       this.setState({
         window: 'block'
@@ -25,14 +33,42 @@ class ProductCard extends React.Component {
         window: 'none'
       });
     }
-  };
+  }
+
+  retrieveProductStyle() {
+    const { productId } = this.props;
+    axios
+      .get(`/products/${productId}/styles`)
+      .then((response) => {
+        this.setState({
+          productStyles: response.data.results
+        })
+      })
+      .catch((error) => {
+        console.log('Get product style options failed...', error);
+      })
+  }
+
+  retrieveProductInfo() {
+    const { productId } = this.props;
+    axios
+      .get(`/products/${productId}`)
+      .then((response) => {
+        this.setState({
+          productInfo: response.data
+        })
+      })
+      .catch((error) => {
+        console.log('Get product information failed...', error);
+      })
+  }
 
   render() {
-    const {productCard, selectProductInfo} = this.props;
-    const {window} = this.state;
+    const { productCard, selectProductInfo } = this.props;
+    const { window } = this.state;
     return (
       <div>
-        <div className="productCard" style={{border: 'solid black 1px'}}>
+        <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
           <PreviewImages styles={productCard.styles} />
           <div>
@@ -49,29 +85,29 @@ class ProductCard extends React.Component {
 }
 
 
-  // const trimProductDetails = () => {
-  //   if (selectProductInfo.features) {
+// const trimProductDetails = () => {
+//   if (selectProductInfo.features) {
 
-  //     let features1 = productCard.features.slice(0);
-  //     let features2 = selectProductInfo.features.slice(0);
+//     let features1 = productCard.features.slice(0);
+//     let features2 = selectProductInfo.features.slice(0);
 
-  //     let allFeatures = features1.map((feature) => {
-  //       const target = features2.find(item => item.feature === feature.feature);
-  //       if (target) {
-  //         return {value1: feature.value, value2: target.value, feature: feature.feature};
-  //       }
-  //       return
-  //     });
+//     let allFeatures = features1.map((feature) => {
+//       const target = features2.find(item => item.feature === feature.feature);
+//       if (target) {
+//         return {value1: feature.value, value2: target.value, feature: feature.feature};
+//       }
+//       return
+//     });
 
-  //     return allFeatures;
-  //   }
-  // };
+//     return allFeatures;
+//   }
+// };
 
-  // console.log(trimProductDetails());
+// console.log(trimProductDetails());
 
-  // retrieveProductInfo() {
-  //   axios.
-  // }
+// retrieveProductInfo() {
+//   axios.
+// }
 
 ProductCard.propTypes = {
   productCard: PropTypes.shape({
