@@ -5,7 +5,7 @@ import Photo from './Photo.jsx';
 
 const PhotoList = ({photos}) => (
   <div>
-    {photos.map(photo => <Photo key={photo.id} photo={photo} />)}
+    {photos.map(photo => <Photo key={photo.id} photo={photo} uploaded={false} />)}
   </div>
 )
 

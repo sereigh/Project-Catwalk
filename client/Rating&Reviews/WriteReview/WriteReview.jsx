@@ -48,6 +48,7 @@ class WriteReview extends React.Component {
     this.handleCharacteristicRate = this.handleCharacteristicRate.bind(this);
     this.handleSummaryChange = this.handleSummaryChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
     this.handlePhotoChange = this.handlePhotoChange.bind(this);
     this.handleNicknameChange = this.handleNicknameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -127,6 +128,20 @@ class WriteReview extends React.Component {
     this.setState({
       photos: newPhotos
     })
+  }
+
+  handleRemove(id) {
+    const {photos} = this.state;
+
+    for (let i = 0; i < photos.length; i++) {
+      if (i === id) {
+        photos.splice(i, 1);
+        this.setState({
+          photos
+        });
+        break;
+      }
+    }
   }
 
   handleNicknameChange(event) {
@@ -311,7 +326,7 @@ class WriteReview extends React.Component {
         {
           showModal && (
             <>
-              <form className='modal submit-form' onSubmit={this.handleSubmit}>
+              <form className='review-modal submit-form' onSubmit={this.handleSubmit}>
                 <h1>Write Your Review</h1>
                 <h3>{`About the ${productName}`}</h3>
                 <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
@@ -332,7 +347,7 @@ class WriteReview extends React.Component {
                     <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} bodyError={bodyError} />
                     <br />
                     <br />
-                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} />
+                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} handleRemove={this.handleRemove} />
                     <br />
                     <br />
                     <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} photoError={photoError} />
