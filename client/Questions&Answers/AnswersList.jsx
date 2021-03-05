@@ -32,6 +32,7 @@ function Answerslist() {
             <strong>A:  </strong>
             {answer.body}
           </div>
+          <br />
           <span className="answersFeedback">
             by
             {' '}

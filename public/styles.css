@@ -16,7 +16,10 @@
 .qaSearch {
   margin: 2%;
   height: 50px;
-
+  text-align: left;
+}
+.searchText {
+  margin-left: 2%
 }
 .showDefault-questions {
   position: relative;
@@ -51,7 +54,7 @@
 .answerText {
   font-size: small;
   word-break: normal;
-  width: 68%;
+  width: 100%;
   text-align: left;
   display: inline;
 }
@@ -64,10 +67,10 @@
 .answersFeedback {
   font-size: xx-small;
   width: 100%;
-  word-break: normal;
   text-align: left;
   display: inline;
-  text-indent: -2em;
+  margin: 2%;
+
 }
 .loadAnswers {
   font-size: x-small;

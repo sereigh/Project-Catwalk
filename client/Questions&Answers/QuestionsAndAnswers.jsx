@@ -34,9 +34,12 @@ class QuestionsAndAnswers extends React.Component {
           QUESTIONS & ANSWERS
         </div>
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
-          HAVE A QUESTION? SEARCH FOR ANSWERS...
+          <span className="searchText">
+            HAVE A QUESTION? SEARCH FOR ANSWERS...
+          </span>
         </div>
         {questions && <QuestionsList questions={questions} reportOption={reportOption} />}
+        {/* <QuestionsMenu /> */}
       </div>
     );
   }
