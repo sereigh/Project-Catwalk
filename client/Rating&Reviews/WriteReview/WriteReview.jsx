@@ -247,6 +247,14 @@ class WriteReview extends React.Component {
         }
       }
 
+      // const bufferPromises = photos.map(photo => photo.arrayBuffer());
+
+      // Promise.all(bufferPromises)
+      //   .then(results => axios.post('/upload/photo', results)
+      //     .then(urls => console.log(urls))
+      //     .catch(error => console.log(error)))
+      //   .catch(error => console.log(error));
+
       const submission = {
         product_id: productId,
         rating: overallRating,

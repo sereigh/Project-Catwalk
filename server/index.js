@@ -98,6 +98,17 @@ app.put('/reviews/:review_id/report', (req, res) => {
     })
 });
 
+// // Reviews POST /upload/photo Uploads photos to cloudinary
+// app.post('/upload/photo', (req, res) => {
+//   helpers.uploadPhotos(req.body)
+//     .then((response) => {
+//       res.send(response.data)
+//     })
+//     .catch((error) => {
+//       console.log(error.data);
+//     })
+// });
+
 // Reviews POST /reviews Posts a new review to the database
 app.post('/reviews', (req, res) => {
   helpers.submitReview(req.body)
