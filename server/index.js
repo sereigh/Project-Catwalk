@@ -23,7 +23,7 @@ app.get('/products', (req,res) => {
 
 // Products GET /products/:product_id Returns all product level information for a specified product id
 app.get('/products/:product_id', (req, res) => {
-  helpers.getProductsList()
+  helpers.getProductById(req.params.product_id)
   .then((response) => {
     res.send(response.data)
   })
@@ -34,7 +34,7 @@ app.get('/products/:product_id', (req, res) => {
 
 // Products GET /products/:product_id/styles Returns all styles available for the given product
 app.get('/products/:product_id/styles', (req, res) => {
-  helpers.getStylesById()
+  helpers.getStylesById(req.params.product_id)
   .then((response) => {
     res.send(response.data)
   })

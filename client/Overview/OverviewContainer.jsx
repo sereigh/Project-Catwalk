@@ -26,6 +26,9 @@ class OverviewContainer extends React.Component {
   render() {
     // const { selectProductId } = this.props;
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
+    // console.log('OverviewContainer_render selectProductID', selectProductId);
+    // console.log('OverviewContainer_render selectProductInfo', selectProductInfo);
+    // console.log('OverviewContainer_render retrieveSelectProductInfo', retrieveSelectProductInfo);
     return (
       <div className="overviewWidget">
         {/* <div className="showcaseCarousel">
@@ -59,7 +62,19 @@ class OverviewContainer extends React.Component {
 }
 
 // OverviewContainer.propTypes = {
-//   selectProductId: PropTypes.number.isRequired
+  // selectProductId: PropTypes.number.isRequired
+  // selectProductInfo: PropTypes.arrayOf(PropTypes.shape({
+  //   "id": PropTypes.number,
+  //   "campus": PropTypes.string,
+  //   "name": PropTypes.string,
+  //   "slogan": PropTypes.string,
+  //   "description": PropTypes.string,
+  //   "category": PropTypes.string,
+  //   "default_price": PropTypes.string,
+  //   "created_at": PropTypes.string,
+  //   "updated_at": PropTypes.string
+  // })).isRequired,
+  // retrieveSelectProductInfo: PropTypes.func.isRequired
 // }
 
 export default OverviewContainer;
