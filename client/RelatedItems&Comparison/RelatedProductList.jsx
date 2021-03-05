@@ -13,13 +13,17 @@ class RelatedProductList extends React.Component {
       relatedProductIds: [
         17219,
         17810,
-        17174
+        17174,
+        17762,
+        17763,
+        17858,
+        18025
       ]
     }
   }
 
   componentDidMount() {
-    this.getRelatedProductIds();
+    // this.getRelatedProductIds();
   }
 
   getRelatedProductIds() {
@@ -41,12 +45,12 @@ class RelatedProductList extends React.Component {
   }
 
   render() {
-    const {relatedProductCards} = this.state;
+    const {relatedProductCards, relatedProductIds} = this.state;
     const {selectProductInfo} = this.props;
     return (
       <div className="relatedProductList">
-        {relatedProductCards.map(productCard => (
-          <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} productId={productCard.id} />
+        {relatedProductIds.map(productId => (
+          <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} />
         ))}
       </div>
     );

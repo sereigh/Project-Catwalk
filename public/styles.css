@@ -3,8 +3,10 @@
 /* Related Items and Comparison */
 .relatedProductList {
   display: flex;
+  flex-wrap: nowrap;
   width: 150px;
   height: 300px;
+
 }
 
 .modal {

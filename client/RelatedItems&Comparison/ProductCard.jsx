@@ -6,6 +6,7 @@ import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 import dummyStyleData from './dummyStyleData';
+import Stars from '../SharedComponents/Stars.jsx';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -34,7 +35,8 @@ class ProductCard extends React.Component {
             "value": "\"Cashmere\""
           }
         ]
-      }
+      },
+      starRating: '★★★★★'
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
@@ -42,6 +44,34 @@ class ProductCard extends React.Component {
   componentDidMount() {
     this.retrieveProductStyle();
     this.retrieveProductInfo();
+    this.getAverageRatings();
+  }
+
+  convertAverageRateToStarRating(ratings) {
+    let devider = 0;
+    const total = Object.values(ratings).reduce((sum, rating, i) => {
+      devider += rating;
+      return sum + (rating * (i + 1));
+    }, 0);
+    const average = total / devider;
+    const star = Stars(average);
+    console.log(average, star);
+    this.setState({
+      starRating: star
+    })
+  }
+
+  getAverageRatings() {
+    const { productId } = this.props;
+    axios
+    .get(`/reviews/meta?product_id=${productId}`)
+    .then((response) => {
+      console.log('meta: ', response);
+      this.convertAverageRateToStarRating(response.data.ratings);
+    })
+    .catch((error) => {
+      console.log('Get product review failed...', error);
+    })
   }
 
   setCurrentStyle() {
@@ -97,18 +127,18 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { productCard, selectProductInfo } = this.props;
-    const { window, productInfo, currentStyle } = this.state;
+    const { selectProductInfo } = this.props;
+    const { window, productInfo, currentStyle, starRating } = this.state;
     return (
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
-          <PreviewImages styles={productCard.styles} currentStyle={currentStyle} />
+          <PreviewImages currentStyle={currentStyle} />
           <div>
             <div>{productInfo.category}</div>
             <div>{productInfo.name}</div>
             <div>{`$${currentStyle[0].original_price}`}</div>
-            <div>{productCard.starRating}</div>
+            <div>{starRating}</div>
           </div>
         </div>
         <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
@@ -147,28 +177,6 @@ class ProductCard extends React.Component {
 // }
 
 ProductCard.propTypes = {
-  productCard: PropTypes.shape({
-    id: PropTypes.number,
-    category: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.string,
-    starRating: PropTypes.string,
-    styles: PropTypes.arrayOf(PropTypes.shape({
-      style_id: PropTypes.number,
-      name: PropTypes.string,
-      original_price: PropTypes.string,
-      sale_price: PropTypes.string,
-      default: PropTypes.bool,
-      photos: PropTypes.arrayOf(PropTypes.shape({
-        thumbnail_url: PropTypes.string,
-        url: PropTypes.string
-      }))
-    })),
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string
-    }))
-  }).isRequired,
   selectProductInfo: PropTypes.shape({
     name: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.shape({
