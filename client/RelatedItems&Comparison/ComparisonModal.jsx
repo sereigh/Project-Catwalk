@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ComparisonModal = ({name, features, window, toggleModalWindow, selectProductInfo}) => (
-  <div id="myModal" className="modal" style={{display: window}}>
+  <div className="modal" role="button" onClick={toggleModalWindow} style={{display: window}}>
     <div className="modal-content">
-      <button type="button" onClick={toggleModalWindow}>X</button>
       <div className="modal-header">
         <p>Comparing</p>
         <p>
