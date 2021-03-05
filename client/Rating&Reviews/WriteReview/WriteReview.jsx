@@ -30,9 +30,11 @@ const defaultState = {
   recommendError: false,
   characteristicsError: false,
   bodyError: false,
+  photoError: false,
   nicknameError: false,
   emailError: false,
-  errors: false
+  errors: false,
+  submitting: false
 }
 
 class WriteReview extends React.Component {
@@ -248,6 +250,9 @@ class WriteReview extends React.Component {
       }
 
       const urls = [];
+      this.setState({
+        submitting: true
+      });
 
       photos.forEach(photo => {
         const reader = new FileReader();
@@ -272,14 +277,21 @@ class WriteReview extends React.Component {
                   .post('/reviews', submission)
                   .then(results => {
                     event.target.reset();
-                    this.setState(this.setState(Object.assign(defaultState, {submitted: true})));
+                    this.setState(Object.assign(defaultState, {submitted: true}));
                     handleSort(selected);
                     console.log(results)
                   })
                   .catch(error => console.log(error))
               }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+              console.log(error);
+              this.setState({
+                photoError: true,
+                errors: true,
+                submitting: false
+              })
+            })
         }
         reader.readAsDataURL(photo);
       });
@@ -288,7 +300,7 @@ class WriteReview extends React.Component {
 
   render() {
     const {characteristics, productName} = this.props;
-    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, nicknameError, emailError, errors, submitted} = this.state;
+    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, photoError, nicknameError, emailError, errors, submitting, submitted} = this.state;
 
     const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
@@ -323,7 +335,7 @@ class WriteReview extends React.Component {
                     <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} />
                     <br />
                     <br />
-                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} />
+                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} photoError={photoError} />
                     <br />
                     <br />
                     <div className='final-submission-details'>
@@ -333,7 +345,7 @@ class WriteReview extends React.Component {
                       </div>
                       <div className='submit-details'>
                         <button type='submit' className='submit-review'>Submit</button>
-                        <h4 className={submitted ? 'success-message' : 'no-success-message'}>Success!</h4>
+                        <h4 className={submitting || submitted ? 'success-message' : 'no-success-message'}>{submitted ? 'Success!' : 'Submitting...'}</h4>
                       </div>
                     </div>
                   </div>

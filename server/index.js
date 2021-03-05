@@ -8,8 +8,8 @@ const app = express();
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json({limit: '500kb'}));
+app.use(express.urlencoded({limit: '500kb', extended: true}));
 
 // Products GET /products Retrieves the list of products
 app.get('/products', (req,res) => {
