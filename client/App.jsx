@@ -16,7 +16,8 @@ class App extends React.Component {
       ],
       selectProductId: 17763,
       selectProductInfo: [
-        {"id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "features": [{"feature":null,"value": null},{"feature":null,"value": null}]}
       ]
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
@@ -24,8 +25,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveSelectProductInfo();
     this.retrieveAllProductInfo();
+    this.retrieveSelectProductInfo();
   }
 
   retrieveAllProductInfo() {
@@ -57,29 +58,66 @@ class App extends React.Component {
 
   render() {
     const { productId, productList, selectProductId, selectProductInfo } = this.state;
-    // console.log('render productList:', productList);
-    // console.log('render selectProductInfo:', selectProductInfo);
+    // console.log('App_render productList:', productList);
+    // console.log('App_render selectProductInfo:', selectProductInfo);
     return (
       <div>
-        <span>Hello, world!</span>
-        <p>{selectProductId}</p>
-        <br />
-        <p>{selectProductInfo[0].category}</p>
-        <br />
-        <p>{productId}</p>
-        <br />
-        <p>{productList[0].category}</p>
+        <span>::: FEC-ELLIS :::</span>
+        <p>
+          <a href="http://localhost:3000/products">
+            localhost:3000/products
+          </a>
+          <br />
+          productId:&nbsp;
+          {productId}
+          <br />
+          productList[0].name:&nbsp;
+          {productList[0].name}
+        </p>
+        <p>
+          <a href="http://localhost:3000/products/17763/">
+            localhost:3000/products/
+            {selectProductId}
+          </a>
+          <br />
+          selectProductId:&nbsp;
+          {selectProductId}
+          <br />
+          selectProductInfo.feature[1].feature:&nbsp;
+          {selectProductInfo.category}
+        </p>
+        <span>
+          ---Overview Widget---
+          <br />
+          <br />
+        </span>
         <OverviewContainer
           selectProductId={selectProductId}
           selectProductInfo={selectProductInfo}
           retrieveSelectProductInfo={this.retrieveSelectProductInfo}
         />
-        <RelatedListContainer />
+        <span>
+          ---Related List Widget---
+          <br />
+          <br />
+        </span>
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} />
+        <span>
+          ---Questions Answers Widget---
+          <br />
+          <br />
+        </span>
         <QuestionsAndAnswers />
+        <span>
+          ---Ratings Reviews Widget---
+          <br />
+          <br />
+        </span>
         <RatingsAndReviews productId={productId || 1} productName={productList[0].name || 'placeholder'} />
       </div>
     );
   }
+
 }
 
 export default App;

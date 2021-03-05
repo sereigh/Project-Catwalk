@@ -9,6 +9,9 @@ cloudinary.config({
   api_secret: `${config.API_SECRET}`
 });
 
+const host = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+const header = { headers: { 'Authorization': `${config.TOKEN}` } };
+
 // Products GET /products Retrieves the list of products
 const getProductsList = () => {
   const options = {
@@ -181,6 +184,38 @@ const submitReview = (review) => {
 
 // Questions&Answers
 
+const getQuestions = (id) => axios.get(`${host}/qa/questions/?product_id=${id}`, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const getAnswers = (id) => axios.get(`${host}/qa/questions/${id}/answers`, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const addQuestion = (id, data) => axios.post(`${host}/qa/questions?product_id=${id}`, data, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const addAnswer = (id, data) => axios.post(`${host}/qa/questions/${id}/answers`, data, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const markQuestionHelpful = (id, req) => axios.put(`${host}/qa/questions/${id}/helpful`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const markAnswerHelpful = (id, req) => axios.put(`${host}/qa/answers/${id}/helpful`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const reportQuestion = (id, req) => axios.put(`${host}/qa/questions/${id}/report`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
+const reportAnswer = (id, req) => axios.put(`${host}/qa/answers/${id}/report`, req, header)
+  .then((response) => response)
+  .catch((err) => err)
+
 // Cart GET /cart Retrieves list of products added to the cart by a user
 // let getCartContents = (id) => {
 //   let options = {
@@ -217,6 +252,14 @@ const submitReview = (review) => {
 // Interactions
 
 module.exports = {
+  getQuestions,
+  getAnswers,
+  addQuestion,
+  addAnswer,
+  markQuestionHelpful,
+  markAnswerHelpful,
+  reportQuestion,
+  reportAnswer,
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
   getProductById,
@@ -230,6 +273,7 @@ module.exports = {
   uploadPhoto,
   submitReview
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
+
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
   // getCartContents,
   // postCartContents,
