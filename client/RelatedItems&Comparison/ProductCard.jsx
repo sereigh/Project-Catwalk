@@ -5,15 +5,36 @@ import axios from 'axios';
 import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
+import dummyStyleData from './dummyStyleData';
 
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       window: 'none',
-      productStyles: [],
-      currentStyle: {},
-      productInfo: {}
+      productStyles: dummyStyleData,
+      currentStyle: [dummyStyleData[0]],
+      productInfo: {
+        "id": 17810,
+        "campus": "hr-rfp",
+        "name": "Forrest Tank Top",
+        "slogan": "Id ut facere nesciunt aut omnis sapiente iste dolorum possimus.",
+        "description": "Delectus molestiae adipisci sint. At hic nulla voluptatem. Voluptates eos praesentium atque. Doloremque atque maxime deserunt fugit accusantium labore facere.",
+        "category": "Tank Top",
+        "default_price": "253.00",
+        "created_at": "2021-02-23T04:22:44.937Z",
+        "updated_at": "2021-02-23T04:22:44.937Z",
+        "features": [
+          {
+            "feature": "Green Leaf Certified",
+            "value": null
+          },
+          {
+            "feature": "Fabric",
+            "value": "\"Cashmere\""
+          }
+        ]
+      }
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
@@ -82,11 +103,11 @@ class ProductCard extends React.Component {
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
-          <PreviewImages styles={productCard.styles} />
+          <PreviewImages styles={productCard.styles} currentStyle={currentStyle} />
           <div>
             <div>{productInfo.category}</div>
             <div>{productInfo.name}</div>
-            <div>{`$${productCard.price}`}</div>
+            <div>{`$${currentStyle[0].original_price}`}</div>
             <div>{productCard.starRating}</div>
           </div>
         </div>

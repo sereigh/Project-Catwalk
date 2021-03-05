@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PreviewImages = ({styles}) => (
+const PreviewImages = ({styles, currentStyle}) => (
   <div>
-    <img src={styles[0].photos[0].url} alt='product' style={{width: '150px', height: '200px'}} />
+    <img src={currentStyle[0].photos[0].url} alt='product' style={{width: '150px', height: '200px'}} />
   </div>
 );
 
@@ -18,11 +18,18 @@ PreviewImages.propTypes = {
       thumbnail_url: PropTypes.string,
       url: PropTypes.string
     }))
-  }))
-}
-
-PreviewImages.defaultProps = {
-  styles: []
+  })).isRequired,
+  currentStyle: PropTypes.shape({
+    style_id: PropTypes.number,
+    name: PropTypes.string,
+    original_price: PropTypes.string,
+    sale_price: PropTypes.string,
+    default: PropTypes.bool,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      thumbnail_url: PropTypes.string,
+      url: PropTypes.string
+    }))
+  }).isRequired
 }
 
 export default PreviewImages;
