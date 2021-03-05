@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import ProductCard from './ProductCard.jsx';
+import dummyProductCards from './dummyProductCards';
 
 class RelatedProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      relatedProductCards: dummyProductCards,
       relatedProductIds: [
         17219,
         17810,
@@ -39,11 +41,12 @@ class RelatedProductList extends React.Component {
   }
 
   render() {
-    const {productCards, selectProductInfo} = this.props;
+    const {relatedProductCards} = this.state;
+    const {selectProductInfo} = this.props;
     return (
       <div className="relatedProductList">
-        {productCards.map(productCard => (
-          <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} />
+        {relatedProductCards.map(productCard => (
+          <ProductCard key={productCard.id} productCard={productCard} selectProductInfo={selectProductInfo} productId={productCard.id} />
         ))}
       </div>
     );

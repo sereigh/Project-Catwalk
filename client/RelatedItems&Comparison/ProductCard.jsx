@@ -5,17 +5,49 @@ import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
-const ProductCard = ({productCard, selectProductInfo}) => {
+class ProductCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      window: 'none'
+    }
+    this.toggleModalWindow = this.toggleModalWindow.bind(this);
+  }
 
-  const [window, setWindow] = React.useState('none');
-
-  const toggleModalWindow = () => {
+  toggleModalWindow() {
+    const {window} = this.state;
     if (window === 'none') {
-      setWindow('block');
+      this.setState({
+        window: 'block'
+      });
     } else {
-      setWindow('none');
+      this.setState({
+        window: 'none'
+      });
     }
   };
+
+  render() {
+    const {productCard, selectProductInfo} = this.props;
+    const {window} = this.state;
+    return (
+      <div>
+        <div className="productCard" style={{border: 'solid black 1px'}}>
+          <ActionButton toggleModalWindow={this.toggleModalWindow} />
+          <PreviewImages styles={productCard.styles} />
+          <div>
+            <div>{productCard.category}</div>
+            <div>{productCard.name}</div>
+            <div>{`$${productCard.price}`}</div>
+            <div>{productCard.starRating}</div>
+          </div>
+        </div>
+        <ComparisonModal name={productCard.name} features={productCard.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
+      </div>
+    );
+  }
+}
+
 
   // const trimProductDetails = () => {
   //   if (selectProductInfo.features) {
@@ -40,23 +72,6 @@ const ProductCard = ({productCard, selectProductInfo}) => {
   // retrieveProductInfo() {
   //   axios.
   // }
-
-  return (
-    <div>
-      <div className="productCard" style={{border: 'solid black 1px'}}>
-        <ActionButton toggleModalWindow={toggleModalWindow} />
-        <PreviewImages styles={productCard.styles} />
-        <div>
-          <div>{productCard.category}</div>
-          <div>{productCard.name}</div>
-          <div>{`$${productCard.price}`}</div>
-          <div>{productCard.starRating}</div>
-        </div>
-      </div>
-      <ComparisonModal name={productCard.name} features={productCard.features} window={window} toggleModalWindow={toggleModalWindow} selectProductInfo={selectProductInfo} />
-    </div>
-  );
-};
 
 ProductCard.propTypes = {
   productCard: PropTypes.shape({
@@ -87,7 +102,8 @@ ProductCard.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }).isRequired
+  }).isRequired,
+  productId: PropTypes.number.isRequired
 }
 
 export default ProductCard;
