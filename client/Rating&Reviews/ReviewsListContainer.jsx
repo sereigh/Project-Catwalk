@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ReviewsList from './ReviewsList.jsx';
+import ReviewsList from './ReviewsList/ReviewsList.jsx';
+import WriteReview from './WriteReview/WriteReview.jsx';
 
 class ReviewsListContainer extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class ReviewsListContainer extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleView = this.handleView.bind(this);
   }
 
   handleChange(event) {
@@ -25,7 +26,7 @@ class ReviewsListContainer extends React.Component {
     });
   }
 
-  handleClick() {
+  handleView() {
     const {minimized} = this.state;
 
     this.setState({
@@ -34,7 +35,7 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {reviews, totalReviews} = this.props;
+    const {productId, productName, reviews, totalReviews, characteristics, handleSort} = this.props;
     const {selected, minimized} = this.state;
 
     return (
@@ -48,14 +49,16 @@ class ReviewsListContainer extends React.Component {
           </select>
         </span>
         <ReviewsList minimized={minimized} reviews={reviews} />
-        <button type='button' onClick={this.handleClick}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <button type='button'>Add A Review +</button>
+        <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
+        <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
       </>
     )
   }
 }
 
 ReviewsListContainer.propTypes = {
+  productId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
@@ -72,11 +75,38 @@ ReviewsListContainer.propTypes = {
       id: PropTypes.number,
       url: PropTypes.string
     }))
-  }))
+  })),
+  characteristics: PropTypes.shape({
+    Comfort: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Fit: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Length: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Quality: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Size: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+    Width: PropTypes.shape({
+      id: PropTypes.number,
+      value: PropTypes.string
+    }),
+  })
 }
 
 ReviewsListContainer.defaultProps = {
-  reviews: []
+  reviews: [],
+  characteristics: {}
 }
 
 export default ReviewsListContainer;

@@ -113,7 +113,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RatingsAndReviews productId={productId} />
+        <RatingsAndReviews productId={productId || 1} productName={productList[0].name || 'placeholder'} />
       </div>
     );
   }

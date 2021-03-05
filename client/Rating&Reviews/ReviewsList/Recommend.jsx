@@ -5,7 +5,7 @@ const Recommend = ({recommend}) => {
   if (recommend) {
     return (
       <div>
-        <span>I recommend this product</span>
+        <span>✓ I recommend this product</span>
         <br />
         <br />
       </div>

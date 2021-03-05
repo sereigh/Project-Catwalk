@@ -10,13 +10,14 @@ const convertDate = date => {
   return `${month} ${day}, ${year}`;
 }
 
-const NameAndDate = ({name, date}) => (
+const NameAndDate = ({verified, name, date}) => (
   <span className='name-and-date'>
-    {`${name  }, ${  convertDate(date)}`}
+    {`${verified ? 'Verified purchaser  ' : ''}${name  }, ${  convertDate(date)}`}
   </span>
 )
 
 NameAndDate.propTypes = {
+  verified: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired
 }
