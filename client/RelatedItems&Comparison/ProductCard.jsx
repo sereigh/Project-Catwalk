@@ -36,7 +36,7 @@ class ProductCard extends React.Component {
           }
         ]
       },
-      starRating: '★★★★★'
+      averageRating: 5
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
@@ -50,21 +50,20 @@ class ProductCard extends React.Component {
   convertAverageRateToStarRating(ratings) {
     let devider = 0;
     const total = Object.values(ratings).reduce((sum, rating, i) => {
-      devider += rating;
+      devider += Number.parseInt(rating);
       return sum + (rating * (i + 1));
     }, 0);
     const average = total / devider;
-    const star = Stars(average);
-    console.log(average, star);
+    console.log(average);
     this.setState({
-      starRating: star
+      averageRating: average
     })
   }
 
   getAverageRatings() {
     const { productId } = this.props;
     axios
-    .get(`/reviews/meta?product_id=${productId}`)
+    .get(`/reviewdata/${productId}`)
     .then((response) => {
       console.log('meta: ', response);
       this.convertAverageRateToStarRating(response.data.ratings);
@@ -126,19 +125,44 @@ class ProductCard extends React.Component {
       })
   }
 
+  displayPrice() {
+    const {currentStyle} = this.state;
+    if (currentStyle[0].sale_price) {
+      return (
+        <div>
+          <span>
+            {`$${currentStyle[0].sale_price}`}
+          </span>
+          <span>
+            {`$${currentStyle[0].original_price}`}
+          </span>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <span>
+          {`$${currentStyle[0].original_price}`}
+        </span>
+      </div>
+    );
+  }
+
   render() {
     const { selectProductInfo } = this.props;
-    const { window, productInfo, currentStyle, starRating } = this.state;
+    const { window, productInfo, currentStyle, averageRating } = this.state;
     return (
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
           <PreviewImages currentStyle={currentStyle} />
-          <div>
+          <div className="productInfo">
             <div>{productInfo.category}</div>
             <div>{productInfo.name}</div>
-            <div>{`$${currentStyle[0].original_price}`}</div>
-            <div>{starRating}</div>
+            <div>{this.displayPrice()}</div>
+            <div className="review">
+              <Stars rating={averageRating} />
+            </div>
           </div>
         </div>
         <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
