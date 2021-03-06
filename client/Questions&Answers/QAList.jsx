@@ -29,34 +29,34 @@ class QAList extends React.Component {
   toggleView(e) {
     const { questionsView, answersView } = this.state;
 
-      if (e.target.name === 'questions') {
-        this.setState({questionsView: !questionsView});
-      }
-      if (e.target.name === 'answers') {
-        this.setState({answersView: !answersView});
-      }
+    if (e.target.name === 'answers') {
+      this.setState(() => {return { answersView: !answersView}})
+    }
+    this.setState(() => {return {questionsView: !questionsView}})
   }
 
   render() {
-    const { questions, questionsView, answersView } = this.props
+    const { questions } = this.props
+    const { questionsView, answersView } = this.state;
 
     return (
       <>
         {
-        (questions)
-        && (
-        <QuestionsList
-          questions={questions}
-          questionsView={questionsView}
-          // handleFeedback={this.handleFeedback}
-          answersView={answersView}
-        />
-      )
-}
+          (questions)
+          && (
+            <QuestionsList
+              questions={questions}
+              questionsView={questionsView}
+              // handleFeedback={this.handleFeedback}
+              answersView={answersView}
+              toggleView={this.toggleView}
+            />
+          )
+        }
         {' '}
         <>
-          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" handler={this.toggleView} /> }
-          <QAButton text="ADD A QUESTION +" handler={() => {console.log('create a modal!')}} />
+          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" handler={() => { this.toggleView() }} />}
+          <QAButton text="ADD A QUESTION +" handler={() => { console.log('create a modal!') }} />
         </>
       </>
     );
@@ -65,8 +65,6 @@ class QAList extends React.Component {
 
 QAList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  questionsView: PropTypes.bool.isRequired,
-  answersView: PropTypes.bool.isRequired,
 }
 
 QAList.showDefault = {

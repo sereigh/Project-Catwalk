@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import QAFeedback from './QAFeedback.jsx';
+import QuestionsFeedback from './QAFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './utility.jsx'
 
@@ -18,7 +18,7 @@ function QuestionsList(props) {
     return setPanel(i);
   };
 
-  const view = (questionsView ? "showAll-questions" : "showDefault-questions");
+  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions");
 
   return (
     <>
@@ -39,7 +39,7 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <QAFeedback option={2} helpfulness={question.question_helpfulness} />
+              <QuestionsFeedback option={2} helpfulness={question.question_helpfulness} />
             </div>
             {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={toggleView} />}
           </div>

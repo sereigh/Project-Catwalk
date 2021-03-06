@@ -70,13 +70,13 @@ function AnswersFeedback({ option, helpfulness }) {
 
 QuestionsFeedback.propTypes = {
   helpfulness: PropTypes.number.isRequired,
-  handleFeedback: PropTypes.func.isRequired,
+  // handleFeedback: PropTypes.func.isRequired,
 }
 
 AnswersFeedback.propTypes = {
   option: PropTypes.number.isRequired,
   helpfulness: PropTypes.number.isRequired,
-  handleFeedback: PropTypes.func.isRequired,
+  // handleFeedback: PropTypes.func.isRequired,
 }
 
 export default QuestionsFeedback;
