@@ -52,6 +52,11 @@
   display: none;
 }
 /* Ratings and Reviews */
+.ratings-and-reviews-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .reviews-list {
   display: flex;
   flex-direction: column;

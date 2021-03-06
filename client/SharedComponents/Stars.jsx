@@ -5,7 +5,7 @@ const Stars = ({rating}) => {
   const percent = rating / 5 * 100;
 
   const starStyle = {
-    'background': `-webkit-linear-gradient(0deg, black ${percent}%, transparent ${percent}% 100%)`,
+    'backgroundImage': `-webkit-linear-gradient(0deg, black ${percent}%, transparent ${percent}% 100%)`,
     'backgroundClip': 'text',
     'WebkitBackgroundClip': 'text',
     'WebkitTextFillColor': 'transparent'

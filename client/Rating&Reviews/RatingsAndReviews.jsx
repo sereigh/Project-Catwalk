@@ -67,8 +67,11 @@ class RatingsAndReviews extends React.Component {
     const {reviewData, reviews, totalReviews} = this.state;
 
     return (
-      <>
-        <RatingsContainer reviewData={reviewData} />
+      <div className='ratings-and-reviews-container'>
+        <RatingsContainer
+          reviewData={reviewData}
+          totalReviews={totalReviews}
+        />
         <ReviewsListContainer
           productId={productId}
           productName={productName}
@@ -77,7 +80,7 @@ class RatingsAndReviews extends React.Component {
           handleSort={this.handleSort}
           characteristics={reviewData.characteristics || {}}
         />
-      </>
+      </div>
     )
   }
 }
