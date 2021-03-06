@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const RatingBar = ({percent}) => {
   const containerStyle = {
-    'width': '80%',
+    'width': '75%',
     'height': '10px',
     'transform': 'translate(5px, 50%)',
     'backgroundColor': 'gray'

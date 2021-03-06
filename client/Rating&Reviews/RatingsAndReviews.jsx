@@ -27,11 +27,14 @@ class RatingsAndReviews extends React.Component {
       filters: [],
       reviews: [],
       filteredReviews: [],
+      searchTerm: '',
+      searchedReviews: [],
       totalReviews: 1,
       sort: 'relevant'
     }
 
     this.handleSort = this.handleSort.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
@@ -49,6 +52,33 @@ class RatingsAndReviews extends React.Component {
     const {totalReviews} = this.state;
 
     this.retrieveAllReviews(productId, sort, totalReviews);
+  }
+
+  handleSearch(event) {
+    const {filteredReviews} = this.state;
+    const searchTerm = event.target.value;
+    const searchedReviews = [];
+    const regex = new RegExp(searchTerm);
+
+    if (searchTerm.length >= 3) {
+      for (let i = 0; i < filteredReviews.length; i++) {
+        if (filteredReviews[i].summary && filteredReviews[i].summary.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
+        } else if (filteredReviews[i].body.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
+        }
+      }
+
+      this.setState({
+        searchTerm,
+        searchedReviews
+      });
+    } else {
+      this.setState({
+        searchTerm,
+        searchedReviews: []
+      })
+    }
   }
 
   handleFilter(rating) {
@@ -134,7 +164,7 @@ class RatingsAndReviews extends React.Component {
 
   render() {
     const {productId, productName} = this.props;
-    const {reviewData, filteredReviews, totalReviews, filters} = this.state;
+    const {reviewData, filteredReviews, searchTerm, searchedReviews, totalReviews, filters} = this.state;
 
     return (
       <div className='ratings-and-reviews-container'>
@@ -147,9 +177,10 @@ class RatingsAndReviews extends React.Component {
         <ReviewsListContainer
           productId={productId}
           productName={productName}
-          reviews={filteredReviews}
+          reviews={searchTerm.length < 3 ? filteredReviews : searchedReviews}
           totalReviews={totalReviews}
           handleSort={this.handleSort}
+          handleSearch={this.handleSearch}
           characteristics={reviewData.characteristics || {}}
         />
       </div>
