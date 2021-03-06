@@ -13,12 +13,11 @@ class QAList extends React.Component {
       answersView: false,
     };
     // this.handleSubmit = this.handleSubmit.bind(this);
-    this.toggleView = this.toggleView.bind(this);
     this.handleFeedback = this.handleFeedback.bind(this);
   }
 
   handleFeedback() {
-    // const { postFeedback } = this.props;
+
     console.log('feedback handled on top-level');
   }
 
@@ -26,18 +25,16 @@ class QAList extends React.Component {
   //   console.log('handle submit triggered');
   // }
 
-  toggleView(e) {
-    const { questionsView, answersView } = this.state;
-
-    if (e.target.name === 'answers') {
-      this.setState(() => {return { answersView: !answersView}})
-    }
-    this.setState(() => {return {questionsView: !questionsView}})
-  }
 
   render() {
     const { questions } = this.props
     const { questionsView, answersView } = this.state;
+    const toggleView = (e) => {
+      if (e.target.name === 'answers') {
+        this.setState(() => {return { answersView: !answersView}})
+      }
+      this.setState(() => {return {questionsView: !questionsView}})
+    };
 
     return (
       <>
@@ -49,13 +46,13 @@ class QAList extends React.Component {
               questionsView={questionsView}
               // handleFeedback={this.handleFeedback}
               answersView={answersView}
-              toggleView={this.toggleView}
+              toggleView={toggleView}
             />
           )
         }
         {' '}
         <>
-          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" handler={() => { this.toggleView() }} />}
+          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" handler={() => { toggleView() }} />}
           <QAButton text="ADD A QUESTION +" handler={() => { console.log('create a modal!') }} />
         </>
       </>
