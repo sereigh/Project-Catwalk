@@ -11,7 +11,7 @@ const RatingBreakdown = ({ratings, totalReviews}) => {
   const fiveStarPercent = parseInt(ratings['5'], 10) / totalReviews * 100;
 
   return (
-    <div>
+    <div className='filter-container'>
       <div className='filter'>
         <span>5 stars</span>
         <RatingBar percent={fiveStarPercent} />

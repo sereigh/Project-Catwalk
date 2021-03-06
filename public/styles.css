@@ -67,8 +67,19 @@
   font-size: xx-large;
 }
 
+.filter-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .filter {
   display: flex;
+  width: 180px;
+}
+
+.filter:hover {
+  background-color: gray;
+  cursor: pointer;
 }
 
 .review-total {

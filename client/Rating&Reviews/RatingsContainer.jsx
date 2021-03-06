@@ -25,7 +25,7 @@ const RatingsContainer = ({reviewData, totalReviews}) => {
       <span>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
       <br />
       <br />
-      <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews}/>
+      <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} />
       <br />
       <br />
       {/* <CharacteristicBreakdown characteristics={reviewData.characteristics} /> */}
