@@ -15,8 +15,8 @@ class QuestionsAndAnswers extends React.Component {
       filtered: false,
       filteredQuestions: []
     };
-    // this.getAllQuestions = this.getAllQuestions.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleSearchClear = this.handleSearchClear.bind(this);
   }
 
   componentDidMount() {
@@ -26,19 +26,26 @@ class QuestionsAndAnswers extends React.Component {
   handleSearchChange(e) {
     e.preventDefault();
     const { inputValue, questions } = this.state;
-    const allQuestions = questions.slice();
 
     this.setState({ inputValue: e.target.value });
 
     if (inputValue.length > 2) {
       this.setState({ filteredQuestions: filterQuestions(questions, e.target.value), filtered: true });
+    } else {
+      this.setState({ filtered: false });
     }
-    this.setState({ questions: allQuestions });
+};
+
+  handleSearchClear(e) {
+    const { inputValue } = this.state;
+    e.preventDefault();
+    if (!inputValue) {
+      this.setState({ filtered: false });
   }
+  };
 
   getAllQuestions() {
     const { productId } = this.props;
-    // const { questions, filteredQuestions, filtered, inputValue } = this.state;
 
     axios.get(`/qa/questions/${productId}`)
     .then((response) => sortQuestions(response))
@@ -53,11 +60,12 @@ class QuestionsAndAnswers extends React.Component {
     return (
       <div className="qaHeader" style={{ border: 'solid black thin' }}>
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <input
-              type="text"
-              className="search"
+              type="search"
+              className="searchBar"
               onChange={this.handleSearchChange}
+              onClick={this.handleSearchClear}
               value={inputValue}
               placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
             />
