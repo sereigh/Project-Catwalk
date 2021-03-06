@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Stars from '../SharedComponents/Stars.jsx';
 
-import RatingBreakdown from './RatingBreakdowns/RatingBreakdown.jsx';
+import RatingBreakdown from './Breakdowns/RatingBreakdown.jsx';
 
 const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => {
   const averageRating = (
