@@ -49,6 +49,12 @@
 .searchText {
   margin-left: 2%
 }
+.QAButton {
+  border: solid black thin;
+  height: 100px;
+  text-align: left;
+  margin: 2%;
+}
 .showDefault-questions {
   position: relative;
   min-height: 380px;
