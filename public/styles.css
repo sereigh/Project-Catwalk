@@ -54,23 +54,37 @@
 /* Ratings and Reviews */
 .ratings-and-reviews-container {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.ratings-container {
+  width: 25%;
+  border: 1px solid gray;
+}
+
+.average-rating {
+  font-size: xx-large;
+}
+
+.reviews-container {
+  width: 50%;
+  border: 1px solid gray;
 }
 
 .reviews-list {
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
 }
 
 .maximized {
-  height: 100vh;
+  height: 90vh;
   overflow: scroll;
 }
 
 .review {
   position: relative;
-  width: 50%;
+  width: 100%;
   border-bottom: 1px solid gray;
 }
 

@@ -39,7 +39,7 @@ class ReviewsListContainer extends React.Component {
     const {selected, minimized} = this.state;
 
     return (
-      <div>
+      <div className='reviews-container'>
         <span>
           {`${totalReviews} reviews, sorted by:`}
           <select defaultValue={selected} onBlur={this.handleChange}>

@@ -14,8 +14,8 @@ const RatingsContainer = ({reviewData, totalReviews}) => {
   : 1
 
   return (
-    <div>
-      <span>{averageRating.toFixed(1)}</span>
+    <div className='ratings-container'>
+      <span className='average-rating'>{averageRating.toFixed(1)}</span>
       <Stars rating={averageRating} />
     </div>
   )
