@@ -25,11 +25,13 @@ class RatingsAndReviews extends React.Component {
         characteristics: {}
       },
       reviews: [],
+      filters: [],
       totalReviews: 1,
       sort: 'relevant'
     }
 
     this.handleSort = this.handleSort.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
     this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
@@ -45,6 +47,27 @@ class RatingsAndReviews extends React.Component {
     const {totalReviews} = this.state;
 
     this.retrieveAllReviews(productId, sort, totalReviews);
+  }
+
+  handleFilter(rating) {
+    const {filters} = this.state;
+    const newFilters = [...filters];
+
+    if (rating === 0) {
+      this.setState({
+        filters: []
+      });
+    } else if (!newFilters.includes(rating)) {
+      newFilters.push(rating);
+      this.setState({
+        filters: newFilters
+      });
+    } else {
+      newFilters.splice(newFilters.indexOf(rating), 1);
+      this.setState({
+        filters: newFilters
+      });
+    }
   }
 
   retrieveReviewsAndData(id, sort) {
@@ -85,6 +108,7 @@ class RatingsAndReviews extends React.Component {
         <RatingsContainer
           reviewData={reviewData}
           totalReviews={totalReviews}
+          handleFilter={this.handleFilter}
         />
         <ReviewsListContainer
           productId={productId}

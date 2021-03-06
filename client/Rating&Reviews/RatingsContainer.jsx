@@ -5,7 +5,7 @@ import Stars from '../SharedComponents/Stars.jsx';
 
 import RatingBreakdown from './RatingBreakdowns/RatingBreakdown.jsx';
 
-const RatingsContainer = ({reviewData, totalReviews}) => {
+const RatingsContainer = ({reviewData, totalReviews, handleFilter}) => {
   const averageRating = (
     parseInt(reviewData.ratings['1'], 10)
     + 2 * parseInt(reviewData.ratings['2'], 10)
@@ -25,7 +25,7 @@ const RatingsContainer = ({reviewData, totalReviews}) => {
       <span>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
       <br />
       <br />
-      <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} />
+      <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} handleFilter={handleFilter} />
       <br />
       <br />
       {/* <CharacteristicBreakdown characteristics={reviewData.characteristics} /> */}
@@ -74,7 +74,8 @@ RatingsContainer.propTypes = {
       }),
     }),
   }).isRequired,
-  totalReviews: PropTypes.number.isRequired
+  totalReviews: PropTypes.number.isRequired,
+  handleFilter: PropTypes.func.isRequired
 }
 
 export default RatingsContainer;
