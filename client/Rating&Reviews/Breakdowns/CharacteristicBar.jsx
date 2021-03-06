@@ -12,7 +12,7 @@ const CharacteristicBar = ({value}) => {
   const pointerStyle = {
     'zIndex': '1',
     'marginLeft': `${parseInt(value, 10) / 5 * 100}%`,
-    'transform': 'translateY(-3px)'
+    'transform': 'translate(-8px, -3px)'
   }
 
   return (
