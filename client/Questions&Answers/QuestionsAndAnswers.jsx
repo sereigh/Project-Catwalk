@@ -45,7 +45,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <QAList questions={questions} postFeedback={this.postFeedback} handleSubmit={this.handleSubmit} />
+        <QAList questions={questions} postFeedback={this.postFeedback} />
         {/* <QuestionsMenu handleSubmit={this.handleSubmit} toggleView={this.toggleView} /> */}
       </div>
     );
