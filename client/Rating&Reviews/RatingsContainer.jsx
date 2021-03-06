@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Stars from '../SharedComponents/Stars.jsx';
 
 import RatingBreakdown from './Breakdowns/RatingBreakdown.jsx';
+import CharacteristicBreakdown from './Breakdowns/CharacteristicBreakdown.jsx';
 
 const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => {
   const averageRating = (
@@ -27,8 +28,7 @@ const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => 
       <br />
       <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} handleFilter={handleFilter} filters={filters} />
       <br />
-      <br />
-      {/* <CharacteristicBreakdown characteristics={reviewData.characteristics} /> */}
+      <CharacteristicBreakdown characteristics={reviewData.characteristics} />
     </div>
   )
 }
