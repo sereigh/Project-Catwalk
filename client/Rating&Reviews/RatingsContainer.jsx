@@ -8,11 +8,11 @@ import CharacteristicBreakdown from './Breakdowns/CharacteristicBreakdown.jsx';
 
 const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => {
   const averageRating = (
-    parseInt(reviewData.ratings['1'], 10)
-    + 2 * parseInt(reviewData.ratings['2'], 10)
-    + 3 * parseInt(reviewData.ratings['3'], 10)
-    + 4 * parseInt(reviewData.ratings['4'], 10)
-    + 5 * parseInt(reviewData.ratings['5'], 10)
+    (reviewData.ratings['1'] ? parseInt(reviewData.ratings['1'], 10) : 0)
+    + 2 * (reviewData.ratings['2'] ? parseInt(reviewData.ratings['2'], 10) : 0)
+    + 3 * (reviewData.ratings['3'] ? parseInt(reviewData.ratings['3'], 10) : 0)
+    + 4 * (reviewData.ratings['4'] ? parseInt(reviewData.ratings['4'], 10) : 0)
+    + 5 * (reviewData.ratings['5'] ? parseInt(reviewData.ratings['5'], 10) : 0)
   ) / totalReviews
 
   const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100;

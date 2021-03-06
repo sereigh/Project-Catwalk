@@ -19,10 +19,14 @@ const Filter = ({rating, ratingTotal, percent, handleFilter, filtered}) => (
 
 Filter.propTypes = {
   rating: PropTypes.number.isRequired,
-  ratingTotal: PropTypes.string.isRequired,
+  ratingTotal: PropTypes.string,
   percent: PropTypes.number.isRequired,
   handleFilter: PropTypes.func.isRequired,
   filtered: PropTypes.bool.isRequired
+}
+
+Filter.defaultProps = {
+  ratingTotal: '0'
 }
 
 export default Filter;
