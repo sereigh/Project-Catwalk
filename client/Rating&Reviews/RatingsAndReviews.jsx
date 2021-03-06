@@ -58,7 +58,7 @@ class RatingsAndReviews extends React.Component {
     const {filteredReviews} = this.state;
     const searchTerm = event.target.value;
     const searchedReviews = [];
-    const regex = new RegExp(searchTerm);
+    // const regex = new RegExp(searchTerm);
 
     if (searchTerm.length >= 3) {
       for (let i = 0; i < filteredReviews.length; i++) {
@@ -68,6 +68,31 @@ class RatingsAndReviews extends React.Component {
           searchedReviews.push(filteredReviews[i]);
         }
       }
+
+      // const newReview = {};
+      // newReview = Object.assign(newReview, filteredReviews[i]);
+
+      // if (filteredReviews[i].summary && filteredReviews[i].summary.includes(searchTerm)) {
+      //   found = true;
+      //   const newSummary = filteredReviews[i].summary.split(regex);
+      //   for (let j = 1; j < newSummary.length; j += 2) {
+      //     newSummary[j] = <mark key={j}>{searchTerm}</mark>;
+      //   }
+      //   newReview.summary = <>{newSummary}</>
+      // }
+
+      // if (filteredReviews[i].body.includes(searchTerm)) {
+      //   found = true;
+      //   const newBody = filteredReviews[i].body.split(regex);
+      //   for (let j = 1; j < newBody.length; j += 2) {
+      //     newBody[j] = <mark key={j}>{searchTerm}</mark>;
+      //   }
+      //   newReview.body = <>{newBody}</>
+      // }
+
+      // if (found) {
+      //   searchedReviews.push(newReview);
+      // }
 
       this.setState({
         searchTerm,
