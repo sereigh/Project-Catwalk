@@ -14,9 +14,10 @@ class QuestionsAndAnswers extends React.Component {
     super(props);
     this.state = {
       questions: [],
+      inputValue: 'HAVE A QUESTION? SEARCH FOR ANSWERS...',
     };
     this.getAllQuestions = this.getAllQuestions.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearchChange = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -24,26 +25,43 @@ class QuestionsAndAnswers extends React.Component {
   }
 
 
-  handleSubmit() {
-    console.log('handle submit triggered');
+  handleSearchChange(e) {
+    const { inputValue, questions } = this.state;
+    const filterQuestions =  questions.filter(question => question.body.toLowerCase().includes(inputValue.toLowerCase()));
+
+    this.setState({[inputValue]: e.target.value});
+    if (inputValue.length > 3) {
+      filterQuestions(inputValue);
+    }
   }
 
   getAllQuestions() {
     const { productId } = this.props;
+    const { questions } = this.state;
+
     axios.get(`/qa/questions/${productId}`)
     .then((response) => sortQuestions(response))
-    .then((response) => this.setState({ questions: response[1] }))
+    .then((response) => this.setState({ [questions]: response[1] }))
     .catch((err) => err)
   }
 
   render() {
 
-    const { questions } = this.state;
+    const { questions, inputValue } = this.state;
+
+    const filterQuestions =  questions.filter(question => question.body.toLowerCase().includes(inputValue.toLowerCase()));
 
     return (
       <div className="qaHeader" style={{ border: 'solid black thin' }}>
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
-          Search
+          <form>
+            <input
+              type="text"
+              name="search"
+              onChange={this.handleSearchChange}
+              value={inputValue}
+            />
+          </form>
         </div>
         <QAList questions={questions} postFeedback={this.postFeedback} />
         {/* <QuestionsMenu handleSubmit={this.handleSubmit} toggleView={this.toggleView} /> */}
