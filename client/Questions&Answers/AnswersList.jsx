@@ -3,12 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Feedback, { UserInfo } from './UserFeedback.jsx';
-import QAButton from './QAButton.jsx';
 
 function Answerslist(props) {
 
   const { answers, answersView, toggleView } = props;
-  const view = (answersView === true ? "showAll-answers" : "showDefault-answers");
+  const view = (answersView ? "showAll-answers" : "showDefault-answers");
 
   return (
 
@@ -30,7 +29,17 @@ function Answerslist(props) {
           </div>
         </div>
       ))}
-      {answers.length > 3 && <QAButton text="LOAD MORE ANSWERS" name="answers" handler={() => toggleView} />}
+      {answers.length > 2 && (
+      <span
+        name='answers'
+        onClick={() => {toggleView()}}
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => {toggleView()}}
+      >
+        LOAD MORE ANSWERS
+      </span>
+    )}
     </div>
   );
 }

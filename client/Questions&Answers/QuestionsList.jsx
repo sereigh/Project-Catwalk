@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Feedback from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import { sortAnswers } from './utility.jsx'
+import { sortAnswers } from './Utility.jsx'
 
 function QuestionsList(props) {
 
@@ -41,7 +41,7 @@ function QuestionsList(props) {
             <div className="questionFeedback">
               <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => console.log('question feedback clicked')} />
             </div>
-            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={toggleView} />}
+            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={() => toggleView} />}
           </div>
         ))}
       </div>

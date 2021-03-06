@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const QAButton = ({ text, name, handler }) => (
+const UserInput = ({ text, name, handler }) => (
 
   <span
-    className="QAButton"
+    className="UserInput"
     name={name}
-    onClick={() => handler()}
+    onClick={() => {handler()}}
     role="button"
     tabIndex={0}
-    onKeyPress={() => handler()}
+    onKeyPress={() => {handler()}}
   >
     {text}
   </span>
 )
 
-QAButton.propTypes = {
+UserInput.propTypes = {
   text: PropTypes.string.isRequired,
   handler: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 }
 
-export default QAButton;
+export default UserInput;

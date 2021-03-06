@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 // import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
-import QAButton from './QAButton.jsx';
+import UserInput from './UserInput.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -29,8 +29,10 @@ class QAList extends React.Component {
   render() {
     const { questions, postFeedback } = this.props
     const { questionsView, answersView } = this.state;
+
     const toggleView = (e) => {
       if (e.target.name === 'answers') {
+        console.log('toggled answer view');
         this.setState(() => {return { answersView: !answersView}})
       }
       this.setState(() => {return {questionsView: !questionsView}})
@@ -38,23 +40,18 @@ class QAList extends React.Component {
 
     return (
       <>
-        {
-          (questions)
-          && (
-            <QuestionsList
-              questions={questions}
-              questionsView={questionsView}
+        {questions && (
+        <QuestionsList
+          questions={questions}
+          questionsView={questionsView}
               // handleFeedback={this.handleFeedback}
-              answersView={answersView}
-              toggleView={toggleView}
-            />
-          )
-        }
-
-        {' '}
+          answersView={answersView}
+          toggleView={toggleView}
+        />
+)}
         <>
-          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <QAButton text="ADD A QUESTION +" name="questions" handler={postFeedback} />
+          {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
+          <UserInput text="ADD A QUESTION +" name="questions" handler={postFeedback} />
         </>
       </>
     );

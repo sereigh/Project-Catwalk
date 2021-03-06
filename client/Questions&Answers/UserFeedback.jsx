@@ -16,13 +16,13 @@ function Feedback({ option, helpfulness, handler }) {
 
 function TextLink({ option, handler }) {
 
-const options = ['Report', 'Reported', 'Add Comment', 'Yes'];
+const options = ['Report', 'Reported', 'Add Comment', 'Yes', 'LOAD MORE ANSWERS'];
 
   return (
     <span
       name={option}
-      onClick={() => {handler()}}
-      onKeyPress={() => {handler()}}
+      onClick={() => handler()}
+      onKeyPress={() => handler()}
       role="button"
       tabIndex={0}
     >
@@ -67,4 +67,3 @@ UserInfo.propTypes = {
 
 export default Feedback;
 export { TextLink, UserInfo };
-

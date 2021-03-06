@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import QAList from './QAList.jsx';
-import sortQuestions, {filterQuestions} from './utility.jsx'
-// import QuestionsMenu from './QuestionsMenu.jsx';
+import QAview from './QAview.jsx';
+import sortQuestions, {filterQuestions} from './Utility.jsx'
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -75,7 +74,7 @@ class QuestionsAndAnswers extends React.Component {
             />
           </form>
         </div>
-        {filtered ? <QAList questions={filteredQuestions} postFeedback={this.postFeedback} /> : <QAList questions={questions} postFeedback={this.postFeedback} />}
+        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} /> : <QAview questions={questions} postFeedback={this.postFeedback} />}
       </div>
     );
   }
