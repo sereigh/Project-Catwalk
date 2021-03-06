@@ -10,11 +10,16 @@ const RatingBreakdown = ({ratings, totalReviews, handleFilter, filters}) => {
   const fourStarPercent = parseInt(ratings['4'], 10) / totalReviews * 100;
   const fiveStarPercent = parseInt(ratings['5'], 10) / totalReviews * 100;
 
+  const sortedFilters = filters.sort();
   const filtersObj = {};
+  let filtersMessage = 'Viewing ratings:  ';
 
-  for (let i = 0; i < filters.length; i++) {
-    filtersObj[filters[i]] = true;
+  for (let i = 0; i < sortedFilters.length; i++) {
+    filtersObj[sortedFilters[i]] = true;
+    filtersMessage += `${sortedFilters[i]}, `;
   }
+
+  filtersMessage = filtersMessage.substring(0, filtersMessage.length - 2);
 
   return (
     <div className='filter-container'>
@@ -23,7 +28,10 @@ const RatingBreakdown = ({ratings, totalReviews, handleFilter, filters}) => {
       <Filter rating={3} ratingTotal={ratings['3']} percent={threeStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['3']} />
       <Filter rating={2} ratingTotal={ratings['2']} percent={twoStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['2']} />
       <Filter rating={1} ratingTotal={ratings['1']} percent={oneStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['1']} />
-      <button type='button' onClick={() => {handleFilter(0)}}>Reset Filters</button>
+      <div className={filters.length === 0 ? 'filter-message invisible' : 'filter-message'}>
+        <span className='filter-message-text'>{filtersMessage}</span>
+        <button className='reset-filters' type='button' onClick={() => {handleFilter(0)}}>Reset Filters</button>
+      </div>
     </div>
   )
 }

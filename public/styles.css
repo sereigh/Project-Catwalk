@@ -86,6 +86,26 @@
   cursor: pointer;
 }
 
+.filter-message {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.filter-message-text {
+  text-align: center;
+}
+
+.reset-filters {
+  width: 50%;
+  margin: auto;
+}
+
+.invisible {
+  opacity: 0;
+}
+
 .review-total {
   transform: translateX(120px);
 }
