@@ -46,6 +46,11 @@
   height: 50px;
   text-align: left;
 }
+.searchBar {
+  resize: horizontal;
+  width: 94%;
+  margin: 2%;
+}
 .searchText {
   margin-left: 2%
 }

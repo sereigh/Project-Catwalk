@@ -53,6 +53,10 @@ class QuestionsAndAnswers extends React.Component {
     .catch((err) => err)
   }
 
+  postFeedback() {
+    console.log('create post route');
+  }
+
   render() {
 
     const { questions, inputValue, filtered, filteredQuestions } = this.state;
