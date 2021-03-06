@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import generateDescription from '../generateDescription';
+
 import CharacteristicBar from './CharacteristicBar.jsx';
+
 
 const CharacteristicDisplay = ({characteristic, value}) => (
   <>
@@ -9,8 +12,8 @@ const CharacteristicDisplay = ({characteristic, value}) => (
       <div className='characteristic-label'>{characteristic}</div>
       <CharacteristicBar value={value} />
       <div className='breakdown-descriptions'>
-        <span>Description 1</span>
-        <span>Description 2</span>
+        <span>{generateDescription(characteristic, 1)}</span>
+        <span>{generateDescription(characteristic, 5)}</span>
       </div>
     </div>
     <br />

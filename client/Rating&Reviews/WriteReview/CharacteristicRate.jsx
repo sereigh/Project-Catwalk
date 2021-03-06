@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import generateDescription from './generateDescription';
+import generateDescription from '../generateDescription';
 
 class CharacteristicRate extends React.Component {
   constructor(props) {
