@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function SendFeedback({ option, handleFeedback }) {
+function QAFeedback({ option, helpfulness }) {
 
   const options = ['Report', 'Reported', 'Add Answer'];
   return (
@@ -11,19 +11,23 @@ function SendFeedback({ option, handleFeedback }) {
         Helpful?
         {' '}
         <span
-          onClick={() => console.log('Increase Helpfulness')}
-          onKeyPress={() => console.log('Increase Helpfulness')}
+          id={option}
+          onClick={() => console.log('clicked')}
+          onKeyPress={() => console.log('clicked')}
           role="button"
           tabIndex={0}
         >
           <u>Yes</u>
         </span>
-        (0)
+        (
+        {helpfulness}
+        )
         |
         {' '}
         <span
-          onClick={() => handleFeedback()}
-          onKeyPress={() => handleFeedback()}
+          id={option}
+          onClick={() => console.log('clicked')}
+          onKeyPress={() => console.log('clicked')}
           role="button"
           tabIndex={0}
         >
@@ -34,9 +38,10 @@ function SendFeedback({ option, handleFeedback }) {
   )
 }
 
-SendFeedback.propTypes = {
+QAFeedback.propTypes = {
   option: PropTypes.number.isRequired,
-  handleFeedback: PropTypes.func.isRequired,
+  helpfulness: PropTypes.number.isRequired,
+  // handleFeedback: PropTypes.func.isRequired,
 }
 
-export default SendFeedback;
+export default QAFeedback;

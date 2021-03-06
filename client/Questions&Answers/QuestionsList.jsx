@@ -1,42 +1,47 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import AnswersList from './AnswersList.jsx';
 import QAFeedback from './QAFeedback.jsx';
+import AnswersList from './AnswersList.jsx';
+import { sortAnswers } from './utility.jsx'
 
-function QuestionsList({ questions }) {
+function QuestionsList(props) {
 
-  const [view, setView] = useState(false);
+  const { questions, questionsView, answersView, toggleView } = props;
 
-  const toggleView = (index) => {
-    if (view === index) {
-      return setView(null);
+  const [panel, setPanel] = useState(false);
+
+  const togglePanel = (i) => {
+    if (panel === i) {
+      return setPanel(null);
     }
-    return setView(index);
+    return setPanel(i);
   };
+
+  const view = (questionsView ? "showAll-questions" : "showDefault-questions");
 
   return (
     <>
-      <div className="showDefault-questions">
-        {questions.map((question, index) => (
+      <div className={view}>
+        {questions.map((question, i) => (
           <div
             className="view-question"
             key={question.question_id}
           >
             <div
               className="questionText"
-              onClick={() => toggleView(index)}
+              onClick={() => togglePanel(i)}
               role="button"
               tabIndex={0}
-              onKeyPress={() => toggleView(index)}
+              onKeyPress={() => togglePanel(i)}
             >
               <strong>Q:  </strong>
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <QAFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
+              <QAFeedback option={2} helpfulness={question.question_helpfulness} />
             </div>
-            {view === index && <AnswersList />}
+            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={toggleView} />}
           </div>
         ))}
       </div>
@@ -46,6 +51,10 @@ function QuestionsList({ questions }) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  questionsView: PropTypes.bool.isRequired,
+  answersView: PropTypes.bool.isRequired,
+  toggleView: PropTypes.func.isRequired,
+  // handleFeedback: PropTypes.func.isRequired
 }
 
 export default QuestionsList;

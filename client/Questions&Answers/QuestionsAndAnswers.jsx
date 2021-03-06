@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import QAList from './QAList.jsx';
-import QuestionsMenu from './QuestionsMenu.jsx';
+import sortQuestions from './utility.jsx'
+// import QuestionsMenu from './QuestionsMenu.jsx';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -16,25 +17,21 @@ class QuestionsAndAnswers extends React.Component {
     };
     this.getAllQuestions = this.getAllQuestions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleFeedback = this.handleFeedback.bind(this);
   }
 
   componentDidMount() {
     this.getAllQuestions();
   }
 
-  handleFeedback() {
-    console.log('feedback handled');
-  }
 
   handleSubmit() {
     console.log('handle submit triggered');
   }
 
   getAllQuestions() {
-    const { productId} = this.props;
+    const { productId } = this.props;
     axios.get(`/qa/questions/${productId}`)
-    .then((response) => Object.values(response.data).sort((a, b) => b.question_helpfulness - a.question_helpfulness))
+    .then((response) => sortQuestions(response))
     .then((response) => this.setState({ questions: response[1] }))
     .catch((err) => err)
   }
@@ -48,7 +45,7 @@ class QuestionsAndAnswers extends React.Component {
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           Search
         </div>
-        <QAList questions={questions} handleFeedback={this.handleFeedback} handleSubmit={this.handleSubmit} />
+        <QAList questions={questions} postFeedback={this.postFeedback} handleSubmit={this.handleSubmit} />
         {/* <QuestionsMenu handleSubmit={this.handleSubmit} toggleView={this.toggleView} /> */}
       </div>
     );

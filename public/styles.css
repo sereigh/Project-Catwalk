@@ -64,7 +64,7 @@
 .showDefault-questions div:nth-child(5n) {
   display: none;
 }
-.showDefault-answers div:nth-child(2n) {
+.showDefault-answers div:nth-child(3n) {
   display: none;
 }
 .view-question {

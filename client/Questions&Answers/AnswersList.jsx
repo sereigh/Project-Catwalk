@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import QAFeedback from './QAFeedback.jsx';
-// import Test from './Test.jsx';
-// eslint-disable-next-line import/extensions
-import answers from './answers.js';
 
-function Answerslist() {
+function Answerslist(props) {
 
   const [status, setStatus] = useState('Report');
   const [expand, setExpansion] = useState('showDefault-answers');
+  const { answers, answersView, toggleView } = props;
 
   const toggleStatus = () => (
     setStatus('Reported')
@@ -25,7 +23,7 @@ function Answerslist() {
 
   return (
 
-    <div className={expand}>
+    <div className='showDefault-answers'>
       {answers.map((answer) => (
         <div key={answer.answer_id} className="view-answer">
           <div className="answerText">
@@ -45,9 +43,7 @@ function Answerslist() {
             </span>
             {' '}
             <span className="answersFeedback-right">
-              {status === 'Report' ?
-                <QAFeedback option={0} handleFeedback={toggleStatus} />
-              : <QAFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />}
+              <QAFeedback option={answer.reported ? 1 : 0} helpfulness={answer.helpfulness} />
             </span>
           </div>
         </div>
@@ -66,7 +62,8 @@ function Answerslist() {
 }
 
 Answerslist.propTypes = {
-  // answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
+  answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  // handleFeedback: PropTypes.func.isRequired
 }
 
 export default Answerslist;

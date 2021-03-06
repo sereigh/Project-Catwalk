@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
-import AnswersList from './AnswersList.jsx';
-import QuestionsMenu from './QuestionsMenu.jsx';
+// import QuestionsMenu from './QuestionsMenu.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      buttonView: false,
+      menuView: false,
       questionsView: false,
       answersView: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleView = this.toggleView.bind(this);
-    // this.handleFeedback = this.handleFeedback.bind(this);
+    this.handleFeedback = this.handleFeedback.bind(this);
   }
 
   handleFeedback() {
-    console.log('feedback handled');
+    // const { postFeedback } = this.props;
+    console.log('feedback handled on top-level');
   }
 
   handleSubmit() {
@@ -28,22 +28,24 @@ class QAList extends React.Component {
   }
 
   toggleView(e) {
-    const { questions } = this.state;
+    const { menuView, questionsView, answersView } = this.state;
+    const { questions } = this.props;
+
     if (questions) {
-      this.setState({ buttonView: true });
+      this.setState({ menuView: !menuView });
     } else {
       if (e.target.name === 'questions') {
-        this.setState({questionsView: true});
+        this.setState({questionsView: !questionsView});
       }
       if (e.target.name === 'answers') {
-        this.setState({answersView: true});
+        this.setState({answersView: !answersView});
       }
     }
   }
 
   render() {
     const { questions } = this.props
-    const { buttonView, questionsView, answersView } = this.state;
+    const { menuView, questionsView, answersView } = this.state;
 
     return (
       <>
@@ -52,14 +54,10 @@ class QAList extends React.Component {
         && (
         <QuestionsList
           questions={questions}
-          handleFeedback={this.handleFeedback}
           questionsView={questionsView}
-          AnswersList={(
-            <AnswersList
-              answersView={answersView}
-              handleFeedback={this.handleFeedback}
-            />
-        )}
+          // handleFeedback={this.handleFeedback}
+          answersView={answersView}
+          toggleView={this.toggleView}
         />
       )
 }
