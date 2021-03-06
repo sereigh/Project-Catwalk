@@ -74,7 +74,6 @@
 
 .filter {
   display: flex;
-  width: 180px;
 }
 
 .filtered {
@@ -107,7 +106,7 @@
 }
 
 .review-total {
-  transform: translateX(120px);
+  transform: translateX(10px);
 }
 
 .characteristic-label {
