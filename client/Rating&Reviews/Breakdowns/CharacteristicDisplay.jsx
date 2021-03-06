@@ -4,14 +4,17 @@ import PropTypes from 'prop-types';
 import CharacteristicBar from './CharacteristicBar.jsx';
 
 const CharacteristicDisplay = ({characteristic, value}) => (
-  <div>
-    <div>{characteristic}</div>
-    <CharacteristicBar value={value} />
+  <>
     <div>
-      <span>Description 1</span>
-      <span>Description 2</span>
+      <div className='characteristic-label'>{characteristic}</div>
+      <CharacteristicBar value={value} />
+      <div className='breakdown-descriptions'>
+        <span>Description 1</span>
+        <span>Description 2</span>
+      </div>
     </div>
-  </div>
+    <br />
+  </>
 )
 
 CharacteristicDisplay.propTypes = {

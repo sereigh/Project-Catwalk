@@ -110,6 +110,16 @@
   transform: translateX(120px);
 }
 
+.characteristic-label {
+  transform: translateY(-5px);
+}
+
+.breakdown-descriptions {
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(5px);
+}
+
 .reviews-container {
   width: 50%;
   border: 1px solid gray;
