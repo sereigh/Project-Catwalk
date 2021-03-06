@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { AnswersFeedback } from './QAFeedback.jsx';
+import Feedback, { UserInfo } from './UserFeedback.jsx';
 import QAButton from './QAButton.jsx';
 
 function Answerslist(props) {
@@ -15,29 +15,22 @@ function Answerslist(props) {
     <div className={view}>
       {answers.map((answer) => (
         <div key={answer.answer_id} className="view-answer">
-          <div className="answerText">
+          <span className="answerText">
             <strong>A:  </strong>
             {answer.body}
-          </div>
-          <br />
+          </span>
+
           <div className="answersFeedback">
             <span className="answersFeedback-left">
-              by
-              {' '}
-              {answer.answerer_name}
-              {' '}
-              {answer.date}
-              {' '}
-              |
+              <UserInfo name={answer.answerer_name} seller={false} date={answer.date} />
             </span>
-            {' '}
             <span className="answersFeedback-right">
-              <AnswersFeedback option={answer.reported ? 1 : 0} helpfulness={answer.helpfulness} />
+              <Feedback option={answer.reported ? 1 : 0} helpfulness={answer.helpfulness} handler={()=> console.log('answer feedback clicked')} />
             </span>
           </div>
         </div>
       ))}
-      {(answers.length > 3 && <QAButton text="LOAD MORE ANSWERS" handler={() => toggleView()} />)}
+      {answers.length > 3 && <QAButton text="LOAD MORE ANSWERS" name="answers" handler={() => toggleView} />}
     </div>
   );
 }

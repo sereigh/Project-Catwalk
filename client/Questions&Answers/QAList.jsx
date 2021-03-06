@@ -50,10 +50,11 @@ class QAList extends React.Component {
             />
           )
         }
+
         {' '}
         <>
-          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" handler={() => { toggleView() }} />}
-          <QAButton text="ADD A QUESTION +" handler={postFeedback()} />
+          {questions.length < 4 && <QAButton text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
+          <QAButton text="ADD A QUESTION +" name="questions" handler={postFeedback} />
         </>
       </>
     );

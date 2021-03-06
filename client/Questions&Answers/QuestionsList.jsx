@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import QuestionsFeedback from './QAFeedback.jsx';
+import Feedback from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './utility.jsx'
 
@@ -39,7 +39,7 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <QuestionsFeedback option={2} helpfulness={question.question_helpfulness} />
+              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => console.log('question feedback clicked')} />
             </div>
             {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={toggleView} />}
           </div>

@@ -108,7 +108,7 @@
   font-size: xx-small;
   width: 100%;
   text-align: left;
-  display: inline;
+  display: block;
   margin: -2%;
 }
 .answersFeedback-left {
