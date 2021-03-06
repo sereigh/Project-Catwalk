@@ -24,8 +24,9 @@ class RatingsAndReviews extends React.Component {
         },
         characteristics: {}
       },
-      reviews: [],
       filters: [],
+      reviews: [],
+      filteredReviews: [],
       totalReviews: 1,
       sort: 'relevant'
     }
@@ -51,29 +52,34 @@ class RatingsAndReviews extends React.Component {
   }
 
   handleFilter(rating) {
-    const {productId} = this.props;
-    const {filters, totalReviews, sort} = this.state;
+    const {filters, reviews} = this.state;
     const newFilters = [...filters];
 
     if (rating === 0) {
       this.setState({
         filters: []
       }, () => {
-        this.retrieveAllReviews(productId, sort, totalReviews);
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
       });
     } else if (!newFilters.includes(rating)) {
       newFilters.push(rating);
       this.setState({
         filters: newFilters
       }, () => {
-        this.retrieveAllReviews(productId, sort, totalReviews);
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
       });
     } else {
       newFilters.splice(newFilters.indexOf(rating), 1);
       this.setState({
         filters: newFilters
       }, () => {
-        this.retrieveAllReviews(productId, sort, totalReviews);
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
       });
     }
   }
@@ -117,7 +123,8 @@ class RatingsAndReviews extends React.Component {
       .then((response) => {
         const filteredReviews = this.filterReviews(response.data.results);
         this.setState({
-          reviews: filteredReviews
+          reviews: response.data.results,
+          filteredReviews
         });
       })
       .catch((error) => {
@@ -127,7 +134,7 @@ class RatingsAndReviews extends React.Component {
 
   render() {
     const {productId, productName} = this.props;
-    const {reviewData, reviews, totalReviews, filters} = this.state;
+    const {reviewData, filteredReviews, totalReviews, filters} = this.state;
 
     return (
       <div className='ratings-and-reviews-container'>
@@ -140,7 +147,7 @@ class RatingsAndReviews extends React.Component {
         <ReviewsListContainer
           productId={productId}
           productName={productName}
-          reviews={reviews}
+          reviews={filteredReviews}
           totalReviews={totalReviews}
           handleSort={this.handleSort}
           characteristics={reviewData.characteristics || {}}
