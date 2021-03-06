@@ -1,9 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CharacteristicBreakdown = ({characteristics}) => (
-  <div>{characteristics.Comfort ? 'Hello, world!' : 'Loading...'}</div>
-)
+import CharacteristicBar from './CharacteristicBar.jsx';
+
+const CharacteristicBreakdown = ({characteristics}) => {
+  const characteristicTuples = [];
+
+  for (const characteristic in characteristics) {
+    if ({}.hasOwnProperty.call(characteristics, characteristic)) {
+      const info = characteristics[characteristic];
+      characteristicTuples.push([characteristic, info]);
+    }
+  }
+
+  return (
+    <div>
+      {characteristicTuples.map(tuple => <CharacteristicBar key={tuple[1].id} characteristic={tuple[0]} value={tuple[1].value} />)}
+    </div>
+  )
+}
+
 
 CharacteristicBreakdown.propTypes = {
   characteristics: PropTypes.shape({
