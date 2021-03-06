@@ -9,9 +9,23 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewData: {},
+      reviewData: {
+        product_id: 1,
+        ratings: {
+          1: '0',
+          2: '0',
+          3: '0',
+          4: '0',
+          5: '0'
+        },
+        recommend: {
+          false: '0',
+          true: '0'
+        },
+        characteristics: {}
+      },
       reviews: [],
-      totalReviews: 0,
+      totalReviews: 1,
       sort: 'relevant'
     }
 

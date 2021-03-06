@@ -3,20 +3,23 @@ import PropTypes from 'prop-types';
 
 import Stars from '../SharedComponents/Stars.jsx';
 
+import RatingBreakdown from './RatingBreakdowns/RatingBreakdown.jsx';
+
 const RatingsContainer = ({reviewData, totalReviews}) => {
-  const averageRating = reviewData.ratings ? (
+  const averageRating = (
     parseInt(reviewData.ratings['1'], 10)
     + 2 * parseInt(reviewData.ratings['2'], 10)
     + 3 * parseInt(reviewData.ratings['3'], 10)
     + 4 * parseInt(reviewData.ratings['4'], 10)
     + 5 * parseInt(reviewData.ratings['5'], 10)
   ) / totalReviews
-  : 1
 
   return (
     <div className='ratings-container'>
       <span className='average-rating'>{averageRating.toFixed(1)}</span>
       <Stars rating={averageRating} />
+      <RatingBreakdown ratings={reviewData.ratings} />
+      {/* <CharacteristicBreakdown characteristics={reviewData.characteristics} /> */}
     </div>
   )
 }
@@ -61,14 +64,8 @@ RatingsContainer.propTypes = {
         value: PropTypes.string
       }),
     }),
-  }),
+  }).isRequired,
   totalReviews: PropTypes.number.isRequired
-}
-
-RatingsContainer.defaultProps = {
-  reviewData: {
-
-  }
 }
 
 export default RatingsContainer;
