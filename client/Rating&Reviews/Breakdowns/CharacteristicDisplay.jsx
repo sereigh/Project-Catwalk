@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CharacteristicBar = ({characteristic, value}) => (
+const CharacteristicDisplay = ({characteristic, value}) => (
   <div>{characteristic + value}</div>
 )
 
-CharacteristicBar.propTypes = {
+CharacteristicDisplay.propTypes = {
   characteristic: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 }
-export default CharacteristicBar;
+export default CharacteristicDisplay;

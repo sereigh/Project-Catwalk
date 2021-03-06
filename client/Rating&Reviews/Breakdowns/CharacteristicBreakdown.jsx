@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CharacteristicBar from './CharacteristicBar.jsx';
+import CharacteristicDisplay from './CharacteristicDisplay.jsx';
 
 const CharacteristicBreakdown = ({characteristics}) => {
   const characteristicTuples = [];
@@ -15,7 +15,7 @@ const CharacteristicBreakdown = ({characteristics}) => {
 
   return (
     <div>
-      {characteristicTuples.map(tuple => <CharacteristicBar key={tuple[1].id} characteristic={tuple[0]} value={tuple[1].value} />)}
+      {characteristicTuples.map(tuple => <CharacteristicDisplay key={tuple[1].id} characteristic={tuple[0]} value={tuple[1].value} />)}
     </div>
   )
 }
