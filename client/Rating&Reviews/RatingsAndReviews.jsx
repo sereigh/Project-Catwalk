@@ -32,6 +32,7 @@ class RatingsAndReviews extends React.Component {
 
     this.handleSort = this.handleSort.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
     this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
@@ -50,24 +51,48 @@ class RatingsAndReviews extends React.Component {
   }
 
   handleFilter(rating) {
-    const {filters} = this.state;
+    const {productId} = this.props;
+    const {filters, totalReviews, sort} = this.state;
     const newFilters = [...filters];
 
     if (rating === 0) {
       this.setState({
         filters: []
+      }, () => {
+        this.retrieveAllReviews(productId, sort, totalReviews);
       });
     } else if (!newFilters.includes(rating)) {
       newFilters.push(rating);
       this.setState({
         filters: newFilters
+      }, () => {
+        this.retrieveAllReviews(productId, sort, totalReviews);
       });
     } else {
       newFilters.splice(newFilters.indexOf(rating), 1);
       this.setState({
         filters: newFilters
+      }, () => {
+        this.retrieveAllReviews(productId, sort, totalReviews);
       });
     }
+  }
+
+  filterReviews(reviews) {
+    const {filters} = this.state;
+    const filteredReviews = [];
+
+    if (filters.length === 0 || filters.length === 5) {
+      return reviews;
+    }
+
+    for (let i = 0; i < reviews.length; i++) {
+      if (filters.includes(reviews[i].rating)) {
+        filteredReviews.push(reviews[i]);
+      }
+    }
+
+    return filteredReviews;
   }
 
   retrieveReviewsAndData(id, sort) {
@@ -90,8 +115,9 @@ class RatingsAndReviews extends React.Component {
     axios
       .get(`/reviews/${id}/${sort}/${totalReviews}`)
       .then((response) => {
+        const filteredReviews = this.filterReviews(response.data.results);
         this.setState({
-          reviews: response.data.results
+          reviews: filteredReviews
         });
       })
       .catch((error) => {
