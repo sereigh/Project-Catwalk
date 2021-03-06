@@ -101,7 +101,7 @@ class RatingsAndReviews extends React.Component {
 
   render() {
     const {productId, productName} = this.props;
-    const {reviewData, reviews, totalReviews} = this.state;
+    const {reviewData, reviews, totalReviews, filters} = this.state;
 
     return (
       <div className='ratings-and-reviews-container'>
@@ -109,6 +109,7 @@ class RatingsAndReviews extends React.Component {
           reviewData={reviewData}
           totalReviews={totalReviews}
           handleFilter={this.handleFilter}
+          filters={filters}
         />
         <ReviewsListContainer
           productId={productId}

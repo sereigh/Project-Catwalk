@@ -77,6 +77,10 @@
   width: 180px;
 }
 
+.filtered {
+ color: green;
+}
+
 .filter:hover {
   background-color: gray;
   cursor: pointer;
