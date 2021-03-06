@@ -10,7 +10,7 @@ class RatingsAndReviews extends React.Component {
     super(props);
     this.state = {
       reviewData: {
-        product_id: 1,
+        product_id: '1',
         ratings: {
           1: '0',
           2: '0',
@@ -18,7 +18,7 @@ class RatingsAndReviews extends React.Component {
           4: '0',
           5: '0'
         },
-        recommend: {
+        recommended: {
           false: '0',
           true: '0'
         },

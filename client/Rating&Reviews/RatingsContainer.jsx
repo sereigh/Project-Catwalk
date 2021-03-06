@@ -14,10 +14,15 @@ const RatingsContainer = ({reviewData, totalReviews}) => {
     + 5 * parseInt(reviewData.ratings['5'], 10)
   ) / totalReviews
 
+  const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100;
+
   return (
     <div className='ratings-container'>
       <span className='average-rating'>{averageRating.toFixed(1)}</span>
       <Stars rating={averageRating} />
+      <br />
+      <br />
+      <span>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
       <RatingBreakdown ratings={reviewData.ratings} />
       {/* <CharacteristicBreakdown characteristics={reviewData.characteristics} /> */}
     </div>
