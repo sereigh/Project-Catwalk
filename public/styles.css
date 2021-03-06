@@ -67,6 +67,14 @@
   font-size: xx-large;
 }
 
+.filter {
+  display: flex;
+}
+
+.review-total {
+  transform: translateX(120px);
+}
+
 .reviews-container {
   width: 50%;
   border: 1px solid gray;
