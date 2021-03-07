@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StyleCategory = (props) => {
+  // selectStyleOptions={selectStyleOptions} via StyleCategory
+  // selectStyleIndex={selectStyleIndex} via StyleCategory
   const { selectStyleOptions, selectStyleIndex } = props;
   return (
     <div id="styleCategory">

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StylePrice = (props) => {
+  // selectStyleOptions={selectStyleOptions} via StyleCategory
+  // selectStyleIndex={selectStyleIndex} via StyleCategory
   const { selectStyleOptions, selectStyleIndex } = props;
   let priceReadout = '';
   if (selectStyleOptions[selectStyleIndex].sale_price !== null) {

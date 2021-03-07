@@ -16,8 +16,6 @@ import PropTypes from 'prop-types';
 
 // import ShowcaseImage from './ShowcaseImage.jsx';
 import FeaturedProduct from './FeaturedProduct.jsx';
-import StylePrice from './StylePrice.jsx';
-import StyleCategory from './StyleCategory.jsx';
 import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
 import DescriptionBanner from './DescriptionBanner.jsx';
@@ -124,14 +122,6 @@ class OverviewContainer extends React.Component {
         <div className="showcaseSelection">
           <FeaturedProduct
             selectProductInfo={selectProductInfo}
-          />
-          <StylePrice
-            selectStyleOptions={selectStyleOptions}
-            selectStyleIndex={selectStyleIndex}
-          />
-          <StyleCategory
-            selectStyleOptions={selectStyleOptions}
-            selectStyleIndex={selectStyleIndex}
           />
           <StyleSelector
             selectStyleOptions={selectStyleOptions}
