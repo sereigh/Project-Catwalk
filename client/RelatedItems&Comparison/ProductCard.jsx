@@ -114,7 +114,7 @@ class ProductCard extends React.Component {
   convertAverageRateToStarRating(ratings) {
     let devider = 0;
     const total = Object.values(ratings).reduce((sum, rating, i) => {
-      devider += Number.parseInt(rating);
+      devider += Number.parseInt(rating, 10);
       return sum + (rating * (i + 1));
     }, 0);
     const average = total / devider;

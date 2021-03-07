@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
-  <div>
+  <div
+    tabIndex="0"
+    role="button"
+    onClick={() => ( selectAnotherProduct(productId) )}
+    onKeyPress={() => ( selectAnotherProduct(productId) )}
+  >
     <img
       src={currentStyle[0].photos[0].url}
       alt='product'
       style={{width: '150px', height: '200px'}}
-      onClick={(e) => {
-        console.log('clicked!');
-        selectAnotherProduct(productId);
-      }}
     />
   </div>
 );
