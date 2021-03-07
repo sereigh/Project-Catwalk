@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModalWindow}) => {
 
   return (
-    <div className="modal" style={{display: window}}>
-      <div className="modal-content">
-        <div className="modal-header">
+    <div className="comparison-modal-window" style={{display: window}}>
+      <div className="comparison-modal-content">
+        <div className="comparison-modal-header">
           <p>Comparing</p>
           <p>
             <span className="current-product">{product1}</span>
@@ -14,7 +14,7 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
           </p>
         </div>
         <br/>
-        <div className="modal-body">
+        <div className="comparison-modal-body">
           {Object.keys(commonFeatures).map((content, index) => (
             <p key={`key${index+1}`}>
               <span className="current-product">{commonFeatures[content].value1 || '[   ]'}</span>
