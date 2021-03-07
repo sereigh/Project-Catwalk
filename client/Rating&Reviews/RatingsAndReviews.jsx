@@ -9,13 +9,34 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewData: {},
+      reviewData: {
+        product_id: '1',
+        ratings: {
+          1: '0',
+          2: '0',
+          3: '0',
+          4: '0',
+          5: '0'
+        },
+        recommended: {
+          false: '0',
+          true: '0'
+        },
+        characteristics: {}
+      },
+      filters: [],
       reviews: [],
-      totalReviews: 0,
+      filteredReviews: [],
+      searchTerm: '',
+      searchedReviews: [],
+      totalReviews: 1,
       sort: 'relevant'
     }
 
     this.handleSort = this.handleSort.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
     this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
     this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
@@ -31,6 +52,108 @@ class RatingsAndReviews extends React.Component {
     const {totalReviews} = this.state;
 
     this.retrieveAllReviews(productId, sort, totalReviews);
+  }
+
+  handleSearch(event) {
+    const {filteredReviews} = this.state;
+    const searchTerm = event.target.value;
+    const searchedReviews = [];
+    // const regex = new RegExp(searchTerm);
+
+    if (searchTerm.length >= 3) {
+      for (let i = 0; i < filteredReviews.length; i++) {
+        if (filteredReviews[i].summary && filteredReviews[i].summary.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
+        } else if (filteredReviews[i].body.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
+        }
+      }
+
+      // const newReview = {};
+      // newReview = Object.assign(newReview, filteredReviews[i]);
+
+      // if (filteredReviews[i].summary && filteredReviews[i].summary.includes(searchTerm)) {
+      //   found = true;
+      //   const newSummary = filteredReviews[i].summary.split(regex);
+      //   for (let j = 1; j < newSummary.length; j += 2) {
+      //     newSummary[j] = <mark key={j}>{searchTerm}</mark>;
+      //   }
+      //   newReview.summary = <>{newSummary}</>
+      // }
+
+      // if (filteredReviews[i].body.includes(searchTerm)) {
+      //   found = true;
+      //   const newBody = filteredReviews[i].body.split(regex);
+      //   for (let j = 1; j < newBody.length; j += 2) {
+      //     newBody[j] = <mark key={j}>{searchTerm}</mark>;
+      //   }
+      //   newReview.body = <>{newBody}</>
+      // }
+
+      // if (found) {
+      //   searchedReviews.push(newReview);
+      // }
+
+      this.setState({
+        searchTerm,
+        searchedReviews
+      });
+    } else {
+      this.setState({
+        searchTerm,
+        searchedReviews: []
+      })
+    }
+  }
+
+  handleFilter(rating) {
+    const {filters, reviews} = this.state;
+    const newFilters = [...filters];
+
+    if (rating === 0) {
+      this.setState({
+        filters: []
+      }, () => {
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
+      });
+    } else if (!newFilters.includes(rating)) {
+      newFilters.push(rating);
+      this.setState({
+        filters: newFilters
+      }, () => {
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
+      });
+    } else {
+      newFilters.splice(newFilters.indexOf(rating), 1);
+      this.setState({
+        filters: newFilters
+      }, () => {
+        this.setState({
+          filteredReviews: this.filterReviews(reviews)
+        });
+      });
+    }
+  }
+
+  filterReviews(reviews) {
+    const {filters} = this.state;
+    const filteredReviews = [];
+
+    if (filters.length === 0 || filters.length === 5) {
+      return reviews;
+    }
+
+    for (let i = 0; i < reviews.length; i++) {
+      if (filters.includes(reviews[i].rating)) {
+        filteredReviews.push(reviews[i]);
+      }
+    }
+
+    return filteredReviews;
   }
 
   retrieveReviewsAndData(id, sort) {
@@ -53,8 +176,10 @@ class RatingsAndReviews extends React.Component {
     axios
       .get(`/reviews/${id}/${sort}/${totalReviews}`)
       .then((response) => {
+        const filteredReviews = this.filterReviews(response.data.results);
         this.setState({
-          reviews: response.data.results
+          reviews: response.data.results,
+          filteredReviews
         });
       })
       .catch((error) => {
@@ -64,20 +189,26 @@ class RatingsAndReviews extends React.Component {
 
   render() {
     const {productId, productName} = this.props;
-    const {reviewData, reviews, totalReviews} = this.state;
+    const {reviewData, filteredReviews, searchTerm, searchedReviews, totalReviews, filters} = this.state;
 
     return (
-      <>
-        <RatingsContainer reviewData={reviewData} />
+      <div className='ratings-and-reviews-container'>
+        <RatingsContainer
+          reviewData={reviewData}
+          totalReviews={totalReviews}
+          handleFilter={this.handleFilter}
+          filters={filters}
+        />
         <ReviewsListContainer
           productId={productId}
           productName={productName}
-          reviews={reviews}
+          reviews={searchTerm.length < 3 ? filteredReviews : searchedReviews}
           totalReviews={totalReviews}
           handleSort={this.handleSort}
+          handleSearch={this.handleSearch}
           characteristics={reviewData.characteristics || {}}
         />
-      </>
+      </div>
     )
   }
 }
