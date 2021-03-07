@@ -196,7 +196,6 @@ class ProductCard extends React.Component {
             <div>{productInfo.name}</div>
             <div>{this.displayPrice()}</div>
             <Stars rating={averageRating} />
-            <div>{Object.keys(commonFeatures)}</div>
           </div>
         </div>
         <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
