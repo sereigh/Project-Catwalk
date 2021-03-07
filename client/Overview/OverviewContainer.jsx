@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
 
 // import ShowcaseImage from './ShowcaseImage.jsx';
 import FeaturedProduct from './FeaturedProduct.jsx';
-// import StyleSelector from './StyleSelector.jsx';
+import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
 import DescriptionBanner from './DescriptionBanner.jsx';
 
@@ -52,19 +52,12 @@ class OverviewContainer extends React.Component {
     };
     this.setSelectStyleIndex = this.setSelectStyleIndex.bind(this);
     this.retrieveSelectStyleOptions = this.retrieveSelectStyleOptions.bind(this);
-    // this.checkForCompleteStylesLoaded = this.checkForCompleteStylesLoaded.bind(this);
   }
 
   componentDidMount() {
     this.setSelectStyleIndex();
     this.retrieveSelectStyleOptions();
   }
-
-  // componentDidUpdate() {
-  //   // [https://reactjs.org/docs/react-component.html#componentdidupdate]
-  //   // error: Do not use setState in componentDidUpdate
-  //   this.checkForCompleteStylesLoaded();
-  // }
 
   setSelectStyleIndex() {
     //   // const { selectProductId } = this.props;
@@ -73,14 +66,10 @@ class OverviewContainer extends React.Component {
 
   retrieveSelectStyleOptions() {
     const { selectProductId } = this.props;
-    // console.log('OverviewC_retrieveSelectStyleOptions selectProductId:', selectProductId);
     axios
       .get(`/products/${selectProductId}/styles`)
       .then((response) => {
-        // console.log('OverviewC_retrieveSelectStyleOptions response.data:', response.data);
-        // console.log('OverviewC_retrieveSelectStyleOptions response.data.results:', response.data.results);
         this.setState(
-          // selectStyleOptions: response.data.results
           () => {
             return {
               selectStyleOptions: response.data.results
@@ -97,48 +86,20 @@ class OverviewContainer extends React.Component {
           }
         )
       })
-      // .then(
-      //   this.setState({
-      //     stylesLoaded: true
-      //   })
-      // )
       .catch((error) => {
         console.log('Get product style options failed...', error);
       })
   }
 
-  // checkForCompleteStylesLoaded(prevState) {
-  // const { selectStyleOptions } = this.state
-  // console.log('OverviewC_checkStyleLoad selectStyleOptions:', selectStyleOptions);
-  // console.log('OverviewC_checkStyleLoad prevState:', prevState);
-  // console.log('OverviewC_checkStyleLoad stylesLoaded:', stylesLoaded);
-  //   if (selectStyleOptions !== prevState.selectStyleOptions) {
-  //     this.setState({
-  //       stylesLoaded: true
-  //     })
-  //   }
-  // }
-
   render() {
-    // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
     const { selectProductId, selectProductInfo } = this.props;
-    // console.log('OverviewC_render selectProductID:', selectProductId);
-    // console.log('OverviewC_render selectProductInfo:', selectProductInfo);
-    // console.log('OverviewC_render retrieveSelectProductInfo():', retrieveSelectProductInfo);
     const { selectStyleIndex, selectStyleOptions, stylesLoaded } = this.state
-    console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
-    // console.log('OverviewC_render selectStyleIndex:', selectStyleIndex);
-    console.log('OverviewC_render stylesLoaded:', stylesLoaded);
+    // console.log('OverviewC_render X:', X);
     if ( !stylesLoaded ) {
       return (
         <div>LOADING</div>
       );
     }
-  //   return (
-  //     <div>FINISHED LOAD</div>
-  //   );
-  // }
-    // if ( stylesLoaded ) {
     return (
       <div className="overviewWidget">
         <a href="http://localhost:3000/products/17763/styles/">
@@ -161,18 +122,17 @@ class OverviewContainer extends React.Component {
           <FeaturedProduct
             selectProductInfo={selectProductInfo}
           />
-          {/* <StyleSelector
+          <StyleSelector
             selectStyleOptions={selectStyleOptions}
             retrieveSelectStyleOptions={this.retrieveSelectStyleOptions}
             selectStyleIndex={selectStyleIndex}
             setSelectStyleIndex={this.setSelectStyleIndex}
-          /> */}
+          />
           {/* <CartInserter /> */}
         </div>
         <div className="showcaseDescription">
           <DescriptionBanner
             selectProductInfo={selectProductInfo}
-            stylesLoaded={stylesLoaded}
           />
         </div>
       </div>
