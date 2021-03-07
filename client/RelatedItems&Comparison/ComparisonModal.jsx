@@ -6,7 +6,7 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
     <div className="comparison-modal-content">
       <div className="comparison-modal-header">
         <p>Comparing</p>
-        <p>
+        <p className="productName-container">
           <span className="current-product">{product1}</span>
           <span className="related-product">{product2}</span>
         </p>
@@ -14,10 +14,10 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
       <br />
       <div className="comparison-modal-body">
         {Object.keys(commonFeatures).map((content, index) => (
-          <p key={`key${index+1}`}>
-            <span className="current-product">{commonFeatures[content].value1 || '[   ]'}</span>
+          <p key={`key${index+1}`} className="features-container">
+            <span className="current-product">{commonFeatures[content].value1 || '    '}</span>
             <span className="characteristic">{content}</span>
-            <span className="related-product">{commonFeatures[content].value2 || '[   ]'}</span>
+            <span className="related-product">{commonFeatures[content].value2 ||  '    '}</span>
           </p>
         ))}
       </div>

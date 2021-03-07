@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ActionButton = ({toggleModalWindow}) => (
-  <button className="actionBtn" type="button" onClick={toggleModalWindow}>☆</button>
+  <div>
+    <button className="actionBtn" type="button" onClick={toggleModalWindow}>☆</button>
+  </div>
 );
 
 ActionButton.propTypes = {

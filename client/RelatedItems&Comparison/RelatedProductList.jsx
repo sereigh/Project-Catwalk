@@ -21,7 +21,7 @@ class RelatedProductList extends React.Component {
         // 17479,
         // 17255,
         17431
-      ],
+      ]
       // liEls: document.querySelectorAll('ul li'),
       // index: 0
     }
@@ -69,9 +69,7 @@ class RelatedProductList extends React.Component {
         <div className="carousel">
           <ul style={{display: 'flex', margin: '0', padding: '0', overflow: 'hidden'}}>
             {relatedProductIds.map(productId => (
-              <li key={productId} style={{display: 'block', listStyle: 'none'}}>
-                <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
-              </li>
+              <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
             ))}
           </ul>
         </div>
