@@ -9,7 +9,7 @@ const DescriptionBanner = (props) => {
       <div id="descriptionAreaLeft">
         <h4>{selectProductInfo.slogan}</h4>
         <p>{selectProductInfo.description}</p>
-        <p>{selectProductInfo.overview}</p>
+        {/* <p>{selectProductInfo.overview}</p> */}
         {/* Business Requirements Document (page5): Product Overview: This free form text field may exist on some items. If it is available it should be displayed. */}
       </div>
       <div id="hrVertical">
