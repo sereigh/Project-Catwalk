@@ -6,7 +6,7 @@ import Feedback, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
 
-  const { answers, answersView, toggleView } = props;
+  const { answers, answersView, toggleAccordian } = props;
   const view = (answersView ? "showAll-answers" : "showDefault-answers");
 
   return (
@@ -32,10 +32,10 @@ function Answerslist(props) {
       {answers.length > 2 && (
       <span
         name='answers'
-        onClick={() => {toggleView()}}
+        onClick={() => {toggleAccordian()}}
         role="button"
         tabIndex={0}
-        onKeyPress={() => {toggleView()}}
+        onKeyPress={() => {toggleAccordian()}}
       >
         LOAD MORE ANSWERS
       </span>
@@ -47,7 +47,7 @@ function Answerslist(props) {
 Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   answersView: PropTypes.bool.isRequired,
-  toggleView: PropTypes.func.isRequired,
+  toggleAccordian: PropTypes.func.isRequired,
 }
 
 export default Answerslist;

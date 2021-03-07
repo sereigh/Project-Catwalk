@@ -4,8 +4,8 @@ const sortAnswers = (data) => Object.values(data).sort((a, b) => b.helpfulness -
 
 const filterQuestions = (list, query) => list.filter(question => question.question_body.toLowerCase().includes(query.toLowerCase()));
 
-const setValue = (value) => value;
-
+const setValue = () => {console.log('value')};
+// (ele, value) => (value) => ele;// = (value) => value
 const findPath = (option, id, type) => {
   let path;
   if (option === 'add') {

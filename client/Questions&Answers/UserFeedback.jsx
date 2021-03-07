@@ -16,7 +16,7 @@ function Feedback({ option, helpfulness, handler }) {
 
 function TextLink({ option, handler }) {
 
-const options = ['Report', 'Reported', 'Add Comment', 'Yes'];
+const options = ['Report', 'Reported', 'add', 'Helpful'];
 
   return (
     <span

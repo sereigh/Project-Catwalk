@@ -59,7 +59,7 @@ class QuestionsAndAnswers extends React.Component {
 
   postFeedback(type, i, id, option) {
     // remove after modal
-    if (option === 'add') { this.postInput(type, i, id, option) }
+    if (option === 'Add Comment') { this.postInput(type, i, id, option) }
     if (type === 'reported') { this.getAllQuestions() }
     console.log('after ifs');
     const endPoint = findPath(option, id, type);

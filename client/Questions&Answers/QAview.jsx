@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import QuestionsList from './QuestionsList.jsx';
 import UserInput from './UserInput.jsx';
+import Modal from './Modal.jsx';
 
 class QAList extends React.Component {
   constructor(props) {
@@ -11,24 +12,37 @@ class QAList extends React.Component {
     this.state = {
       questionsView: false,
       answersView: false,
+      modalView: false,
     };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleFeedback = this.handleFeedback.bind(this);
+    this.handleQuestionAdd = this.handleQuestionAdd.bind(this);
+    this.handleAnswerAdd = this.handleAnswerAdd.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  // handleFeedback() {
 
-  //   console.log('feedback handled on top-level');
-  // }
+  handleAnswerAdd(e, input) {
+    const { postFeedback } = this.props
+    event.preventDefault();
+    postFeedback('answer', input);
+    console.log('handle answer add triggered');
+  }
 
-  // handleSubmit() {
-  //   console.log('handle submit triggered');
-  // }
+  handleQuestionAdd(e, input) {
+    const { postFeedback } = this.props
+    event.preventDefault();
+    postFeedback('question', input);
+    console.log('handle question add triggered')
+  }
 
+  toggleModal() {
+    const { modalView } = this.state
+    console.log('handle modal close triggered');
+    this.setState({ modalView: !modalView });
+  }
 
   render() {
     const { questions, postFeedback } = this.props
-    const { questionsView, answersView } = this.state;
+    const { questionsView, answersView, viewModal } = this.state;
 
     const toggleView = (e) => {
       if (e.target.name === 'answers') {
@@ -52,7 +66,8 @@ class QAList extends React.Component {
 )}
         <>
           {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <UserInput text="ADD A QUESTION +" name="questions" handler={() => console.log('create a post route!')} />
+          <Modal buttonText="ADD A QUESTION +" viewModal={viewModal} handleAdd={this.handleQuestionAdd} toggleModal={this.toggleModal} />
+          {/* <UserInput text="ADD A QUESTION +" name="questions" handler={() => console.log('create a post route!')} /> */}
         </>
       </>
     );
@@ -67,6 +82,7 @@ QAList.propTypes = {
 QAList.showDefault = {
   questionsView: false,
   answersView: false,
+  viewModal: false,
 }
 
 export default QAList;

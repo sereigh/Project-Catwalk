@@ -21,8 +21,8 @@ function QuestionsList(props) {
   const view = (questionsView === true ? "showAll-questions" : "showDefault-questions");
 
   return (
-    <>
-      <div className={view}>
+    <div className={view}>
+      <div>
         {questions.map((question, i) => (
           <div
             className="view-question"
@@ -45,7 +45,7 @@ function QuestionsList(props) {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
