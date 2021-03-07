@@ -9,17 +9,17 @@ class RelatedProductList extends React.Component {
     super(props);
     this.state = {
       relatedProductIds: [
-        17219,
-        17810,
-        17174,
-        18027,
-        17419,
-        17286,
-        17797,
-        17126,
-        17876,
-        17479,
-        17255,
+        // 17219,
+        // 17810,
+        // 17174,
+        // 18027,
+        // 17419,
+        // 17286,
+        // 17797,
+        // 17126,
+        // 17876,
+        // 17479,
+        // 17255,
         17431
       ],
       liEls: document.querySelectorAll('ul li'),
@@ -28,15 +28,15 @@ class RelatedProductList extends React.Component {
   }
 
   componentDidMount() {
-    // this.getRelatedProductIds();
+    this.getRelatedProductIds();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const {selectProductId} = this.props;
-  //   if (selectProductId !== prevProps.selectProductId) {
-  //     this.getRelatedProductIds();
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const {selectProductId} = this.props;
+    if (selectProductId !== prevProps.selectProductId) {
+      this.getRelatedProductIds();
+    }
+  }
 
   getRelatedProductIds() {
     const {selectProductId} = this.props;

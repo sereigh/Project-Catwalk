@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import RelatedProductList from './RelatedProductList.jsx';
@@ -12,7 +12,7 @@ class RelatedListContainer extends React.Component {
   render() {
     const {selectProductInfo, selectProductId, selectAnotherProduct} = this.props;
     return (
-      <div>
+      <div className="list-container">
         <ul>
           <div>
             **RelatedProductList**
@@ -26,7 +26,7 @@ class RelatedListContainer extends React.Component {
 };
 
 RelatedListContainer.propTypes = {
-  selectProductId: PropTypes.number.isRequired,
+  // selectProductId: PropTypes.number.isRequired,
   selectProductInfo: PropTypes.shape({
     name: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.shape({

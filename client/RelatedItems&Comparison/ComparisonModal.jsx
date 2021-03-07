@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const ComparisonModal = ({name, features, window, toggleModalWindow, selectProductInfo}) => (
   <div className="modal" style={{display: window}}>
+
     <div className="modal-content">
       <div className="modal-header">
         <p>Comparing</p>
@@ -20,10 +21,10 @@ const ComparisonModal = ({name, features, window, toggleModalWindow, selectProdu
 
 ComparisonModal.propTypes = {
   name: PropTypes.string.isRequired,
-  features: PropTypes.arrayOf(PropTypes.shape({
-    feature: PropTypes.string,
-    value: PropTypes.string
-  })).isRequired,
+  // features: PropTypes.arrayOf(PropTypes.shape({
+  //   feature: PropTypes.string,
+  //   value: PropTypes.string
+  // })).isRequired,
   window: PropTypes.string.isRequired,
   toggleModalWindow: PropTypes.func.isRequired,
   selectProductInfo: PropTypes.shape({

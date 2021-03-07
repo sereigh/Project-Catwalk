@@ -36,7 +36,8 @@ class ProductCard extends React.Component {
           }
         ]
       },
-      averageRating: 5
+      averageRating: 5,
+      commonFeatures: {}
     }
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
@@ -45,7 +46,14 @@ class ProductCard extends React.Component {
     this.retrieveProductStyle();
     this.retrieveProductInfo();
     this.getAverageRatings();
+    // this.mergeFeatures();
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if(prevProps === {}) {
+  //     this.mergeFeatures();
+  //   }
+  // }
 
   getAverageRatings() {
     const { productId } = this.props;
@@ -106,6 +114,9 @@ class ProductCard extends React.Component {
           productInfo: response.data
         })
       })
+      .then(() => {
+        this.mergeFeatures();
+      })
       .catch((error) => {
         console.log('Get product information failed...', error);
       })
@@ -147,9 +158,34 @@ class ProductCard extends React.Component {
     );
   }
 
+  mergeFeatures() {
+    const {productInfo} = this.state;
+    const {selectProductInfo} = this.props;
+    const commonFeatures = {};
+    selectProductInfo.features.forEach(item => {
+      commonFeatures[item.feature] = {
+        value1: item.value,
+        value2: null
+      };
+    });
+    productInfo.features.forEach(item => {
+      if (commonFeatures[item.feature]) {
+        commonFeatures[item.feature].value2 = item.value;
+      } else {
+        commonFeatures[item.feature] = {
+          value1: null,
+          value2: item.value
+        };
+      }
+    });
+    this.setState({
+      commonFeatures: commonFeatures
+    });
+  }
+
   render() {
     const { selectProductInfo, selectAnotherProduct } = this.props;
-    const { window, productInfo, currentStyle, averageRating } = this.state;
+    const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
     return (
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
@@ -159,9 +195,8 @@ class ProductCard extends React.Component {
             <div>{productInfo.category}</div>
             <div>{productInfo.name}</div>
             <div>{this.displayPrice()}</div>
-            <div className="review">
-              <Stars rating={averageRating} />
-            </div>
+            <Stars rating={averageRating} />
+            <div>{Object.keys(commonFeatures)}</div>
           </div>
         </div>
         <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
@@ -187,8 +222,6 @@ class ProductCard extends React.Component {
 //     return allFeatures;
 //   }
 // };
-
-// console.log(trimProductDetails());
 
 // app.post('/repos', function (req, res) {
 //   let username = req.body.name;

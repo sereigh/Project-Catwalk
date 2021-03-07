@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
   <div
+    className="preview-image"
     tabIndex="0"
     role="button"
     onClick={() => ( selectAnotherProduct(productId) )}
