@@ -11,21 +11,32 @@ class RelatedProductList extends React.Component {
       relatedProductIds: [
         17219,
         17810,
-        17174
-      ]
+        17174,
+        18027,
+        17419,
+        17286,
+        17797,
+        17126,
+        17876,
+        17479,
+        17255,
+        17431
+      ],
+      liEls: document.querySelectorAll('ul li'),
+      index: 0
     }
   }
 
   componentDidMount() {
-    this.getRelatedProductIds();
+    // this.getRelatedProductIds();
   }
 
-  componentDidUpdate(prevProps) {
-    const {selectProductId} = this.props;
-    if (selectProductId !== prevProps.selectProductId) {
-      this.getRelatedProductIds();
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const {selectProductId} = this.props;
+  //   if (selectProductId !== prevProps.selectProductId) {
+  //     this.getRelatedProductIds();
+  //   }
+  // }
 
   getRelatedProductIds() {
     const {selectProductId} = this.props;
@@ -42,14 +53,34 @@ class RelatedProductList extends React.Component {
       });
   }
 
+  move (increase) {
+    const {index, liEls} = this.state;
+    this.setState({
+      index: Math.min(Math.max(index + increase,0), liEls.length-1)
+    });
+    liEls[index].scrollIntoView({behavior: 'smooth'});
+  }
+
   render() {
     const {relatedProductIds} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        {relatedProductIds.map(productId => (
-          <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
-        ))}
+        <button className="leftArrow">&lt;</button>
+        <div className="carousel">
+          <ul style={{display: 'flex', margin: '0', padding: '0', overflow: 'hidden'}}>
+            {relatedProductIds.map(productId => (
+              <li style={{display: 'block', listStyle: 'none'}}>
+                <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button className="rightArrow" onClick={(e) => {
+          e.preventDefault();
+          console.log('go right');
+          this.move(1);
+        }}>&gt;</button>
       </div>
     );
   }

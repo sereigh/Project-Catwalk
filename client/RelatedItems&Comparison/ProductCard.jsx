@@ -170,11 +170,6 @@ class ProductCard extends React.Component {
   }
 }
 
-// productCard.name -> productInfo.name
-// productCard.features -> productInfo.features
-// price -> currentStyle.original_price
-// startRating -> ?
-
 // const trimProductDetails = () => {
 //   if (selectProductInfo.features) {
 
@@ -195,9 +190,21 @@ class ProductCard extends React.Component {
 
 // console.log(trimProductDetails());
 
-// retrieveProductInfo() {
-//   axios.
-// }
+// app.post('/repos', function (req, res) {
+//   let username = req.body.name;
+//   helpers.getReposByUsername(username, (err, results) => {
+//      if (err) {
+//         console.error(err);
+//        } else {
+//          const filtered = results.map((repo) => (
+//              { "name": repo.name, "owner": repo.owner.login, "url": repo.html_url, "forks": repo.forks_count }
+//            )
+//          );
+//          db.save(filtered, (err, results) => {
+//            if (err) {
+//              res.send(err);
+//            } else
+
 
 ProductCard.propTypes = {
   selectProductInfo: PropTypes.shape({

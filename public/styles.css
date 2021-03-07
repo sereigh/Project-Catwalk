@@ -4,8 +4,16 @@
 .relatedProductList {
   display: flex;
   flex-wrap: nowrap;
-  width: 150px;
+  width: 1000px;
   height: 300px;
+}
+
+.carousel {
+  /* display: flex;
+  flex-wrap: nowrap; */
+  width: 1000px;
+  height: 300px;
+  /* overflow-x: scroll; */
 }
 
 .modal {
