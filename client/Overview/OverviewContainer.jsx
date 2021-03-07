@@ -60,9 +60,14 @@ class OverviewContainer extends React.Component {
     this.retrieveSelectStyleOptions();
   }
 
-  setSelectStyleIndex() {
-    //   // const { selectProductId } = this.props;
-    //   // const { selectStyleIndex } = this.state;
+  // setSelectStyleIndex() {
+  setSelectStyleIndex(indexValue) {
+    // const { selectStyleIndex } = this.state;
+    console.log('OverviewC_setSelectStyleIndex (indexValue):', indexValue);
+    // console.log('OverviewC_setSelectStyleIndex Number(indexValue):', Number(indexValue));
+    // this.setState({
+    //   selectStyleIndex: Number(index)
+    // })
   }
 
   retrieveSelectStyleOptions() {
@@ -125,7 +130,6 @@ class OverviewContainer extends React.Component {
           />
           <StyleSelector
             selectStyleOptions={selectStyleOptions}
-            retrieveSelectStyleOptions={this.retrieveSelectStyleOptions}
             selectStyleIndex={selectStyleIndex}
             setSelectStyleIndex={this.setSelectStyleIndex}
           />

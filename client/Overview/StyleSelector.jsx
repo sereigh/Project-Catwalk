@@ -6,17 +6,25 @@ import StyleCategory from './StyleCategory.jsx';
 
 class StyleSelector extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
-  // retrieveSelectStyleOptions={this.retrieveSelectStyleOptions} viaOvC
   // selectStyleIndex={selectStyleIndex} viaOvC
   // setSelectStyleIndex={this.setSelectStyleIndex} viaOvC
   constructor(props) {
     super(props);
     this.state = {};
+    this.uponStyleThumbnailClick = this.uponStyleThumbnailClick.bind(this);
+  }
+
+  // uponStyleThumbnailClick() {
+  uponStyleThumbnailClick(event) {
+    const { setSelectStyleIndex } = this.props;
+    console.log('StyleSelector_uponStyleThumbnailClick event.target.name:', event.target.name);
+    setSelectStyleIndex(event.target.name);
   }
 
   render() {
-    // const { selectStyleOptions, retrieveSelectStyleOptions, selectStyleIndex, setSelectStyleIndex } = this.props;
+    // const { selectStyleOptions, selectStyleIndex, setSelectStyleIndex } = this.props;
     const { selectStyleOptions, selectStyleIndex } = this.props;
+    const { uponStyleThumbnailClick } = this.state;
     console.log('StyleSelector_render selectStyleOptions:', selectStyleOptions);
     console.log('StyleSelector_render selectStyleIndex:', selectStyleIndex);
     // <StylePrice />
@@ -33,10 +41,20 @@ class StyleSelector extends React.Component {
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
         />
-        {selectStyleOptions.map((styleEntry) => (
-          <span key={styleEntry.style_id} className="styleEntryThumbnail">
-            <img src={styleEntry.photos[0].thumbnail_url} alt="style entry thumbnail_url" />
-          </span>
+        {selectStyleOptions.map((styleEntry, index) => (
+          <button
+            type="submit"
+            onClick={uponStyleThumbnailClick}
+            name={index}
+            key={styleEntry.name + styleEntry.style_id}
+            className="styleEntryThumbnail"
+          >
+            <img
+              src={styleEntry.photos[0].thumbnail_url}
+              name={index}
+              alt={styleEntry.name + styleEntry.style_id}
+            />
+          </button>
         ))}
       </div>
     );
@@ -62,9 +80,8 @@ StyleSelector.propTypes = {
       }))
     }))
   })).isRequired,
-  // retrieveSelectStyleOptions: PropTypes.func.isRequired,
-  selectStyleIndex: PropTypes.number.isRequired
-  // setSelectStyleIndex: PropTypes.func.isRequired
+  selectStyleIndex: PropTypes.number.isRequired,
+  setSelectStyleIndex: PropTypes.func.isRequired
 }
 
 export default StyleSelector;
