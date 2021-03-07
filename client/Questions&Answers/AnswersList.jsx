@@ -2,17 +2,20 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Feedback, { UserInfo } from './UserFeedback.jsx';
+import { TextLink, UserInfo } from './UserFeedback.jsx';
+import { setValue } from './Utility.jsx';
 
 function Answerslist(props) {
 
-  const { answers, answersView, toggleAccordian } = props;
+  const { answers, answersView, toggleAccordian, postFeedback } = props;
   const view = (answersView ? "showAll-answers" : "showDefault-answers");
+  const link = setValue;
+  const toggleLink = (i, link) => { if (link === i){ link(link, i) } link(link, null)}
 
   return (
 
     <div className={view}>
-      {answers.map((answer) => (
+      {answers.map((answer, i) => (
         <div key={answer.answer_id} className="view-answer">
           <span className="answerText">
             <strong>A:  </strong>
@@ -24,7 +27,12 @@ function Answerslist(props) {
               <UserInfo name={answer.answerer_name} seller={false} date={answer.date} />
             </span>
             <span className="answersFeedback-right">
-              <Feedback option={answer.reported ? 1 : 0} helpfulness={answer.helpfulness} handler={()=> console.log('answer feedback clicked')} />
+              <p>
+                {`   Helpful? `}
+                {link === i ? <TextLink option={3} handler={(i) => toggleLink(i)} /> : 'Yes'}
+                {` (${answer.helpfulness})   |   `}
+                {answer.reported ? 'Reported' : <TextLink option={0} handler={() => postFeedback('answers', answer.id, 'report')} />}
+              </p>
             </span>
           </div>
         </div>
@@ -48,6 +56,7 @@ Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleAccordian: PropTypes.func.isRequired,
+  postFeedback: PropTypes.func.isRequired,
 }
 
 export default Answerslist;

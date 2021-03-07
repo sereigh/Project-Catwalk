@@ -6,7 +6,7 @@ const UserInput = ({ text, name, handler }) => (
   <span
     className="UserInput"
     name={name}
-    onClick={() => {handler()}}
+    onClick={(e) => {handler(e)}}
     role="button"
     tabIndex={0}
     onKeyPress={() => {handler()}}

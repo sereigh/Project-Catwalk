@@ -14,56 +14,57 @@ class QuestionsAndAnswers extends React.Component {
       filtered: false,
       filteredQuestions: []
     };
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.handleSearchClear = this.handleSearchClear.bind(this);
-    this.postFeedback = this.postFeedback.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this)
+    this.handleSearchClear = this.handleSearchClear.bind(this)
+    this.postFeedback = this.postFeedback.bind(this)
+    this.postInput = this.postInput.bind(this);
   }
 
   componentDidMount() {
-    this.getAllQuestions();
+    this.getAllQuestions()
   }
 
   handleSearchChange(e) {
-    e.preventDefault();
-    const { inputValue, questions } = this.state;
-    this.setState({ inputValue: e.target.value });
+    e.preventDefault()
+    const { inputValue, questions } = this.state
+    this.setState({ inputValue: e.target.value })
 
     if (inputValue.length > 2) {
-      this.setState({ filteredQuestions: filterQuestions(questions, e.target.value), filtered: true });
+      this.setState({ filteredQuestions: filterQuestions(questions, e.target.value), filtered: true })
     } else {
-      this.setState({ filtered: false });
+      this.setState({ filtered: false })
     }
-};
+}
 
   handleSearchClear(e) {
     const { inputValue } = this.state;
-    e.preventDefault();
+    e.preventDefault()
     if (!inputValue) { this.setState({ filtered: false }) }
-  };
+  }
 
   getAllQuestions() {
-    const { productId } = this.props;
+    const { productId } = this.props
     axios.get(`/qa/questions/${productId}`)
     .then((response) => sortQuestions(response))
-    .then((response) => {this.setState({ questions: response[1] })})
+    .then((response) => {console.log(response[1].length, response[1]); this.setState({ questions: response[1] })})
     .catch((err) => err)
   }
 
-  postInput(type, i, id, option, text) {
-    console.log('create a modal');
-    const endPoint = findPath(option, id, type);
-    axios.put(endPoint, text)
+  postInput(type, id, option, input) {
+    console.log('create a modal')
+    const endPoint = findPath(type, id, option)
+    axios.put(endPoint, input)
           .then(() => this.getAllQuestions())
           .catch((err) => err)
   }
 
-  postFeedback(type, i, id, option) {
+  postFeedback(type, id, option) {
     // remove after modal
-    if (option === 'Add Comment') { this.postInput(type, i, id, option) }
+    if (option === 'Add Comment') { this.postInput(type, id, option) }
     if (type === 'reported') { this.getAllQuestions() }
-    console.log('after ifs');
-    const endPoint = findPath(option, id, type);
-    console.log(endPoint, option, id, type);
+    const endPoint = findPath(type, id, option)
+    // remove after modal
+    console.log(endPoint, type, id, option)
         axios.put(endPoint)
           .then(() => this.getAllQuestions())
           .catch((err) => err)
@@ -71,10 +72,10 @@ class QuestionsAndAnswers extends React.Component {
 
   render() {
 
-    const { questions, inputValue, filtered, filteredQuestions } = this.state;
+    const { questions, inputValue, filtered, filteredQuestions } = this.state
 
     return (
-      <div className="qaHeader" style={{ border: 'solid black thin' }}>
+      <div className="qaHeader">
         <div className="qaSearch" style={{ border: 'solid black thin' }}>
           <form onSubmit={(e) => e.preventDefault()}>
             <input
@@ -87,7 +88,7 @@ class QuestionsAndAnswers extends React.Component {
             />
           </form>
         </div>
-        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} /> : <QAview questions={questions} postFeedback={this.postFeedback} />}
+        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} /> : <QAview questions={questions} postFeedback={this.postFeedback} />}
       </div>
     );
   }

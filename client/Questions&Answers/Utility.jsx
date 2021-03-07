@@ -4,9 +4,9 @@ const sortAnswers = (data) => Object.values(data).sort((a, b) => b.helpfulness -
 
 const filterQuestions = (list, query) => list.filter(question => question.question_body.toLowerCase().includes(query.toLowerCase()));
 
-const setValue = () => {console.log('value')};
+const setValue = (currentValue, newValue) => newValue;
 // (ele, value) => (value) => ele;// = (value) => value
-const findPath = (option, id, type) => {
+const findPath = (type, id, option) => {
   let path;
   if (option === 'add') {
     if (type === 'questions') {
@@ -22,12 +22,6 @@ const findPath = (option, id, type) => {
     }
     return path;
   }
-
-  if (type === 'questions') { path = `/qa/questions/${id}` }
-  if (type === 'answers') { path = `/qa/questions/${id}/answers` }
-  if (option === 'report') { path = `/qa/${type}/${id}/report` }
-  if (option === 'helpful') { path = `/qa/${type}/${id}/helpful` }
-
   return path;
 }
 

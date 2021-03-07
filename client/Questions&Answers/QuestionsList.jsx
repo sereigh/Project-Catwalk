@@ -7,7 +7,7 @@ import { sortAnswers } from './Utility.jsx'
 
 function QuestionsList(props) {
 
-  const { questions, questionsView, answersView, toggleView, postFeedback } = props;
+  const { questions, questionsView, answersView, toggleAccordian, postFeedback } = props;
 
   const [panel, setPanel] = useState(false);
 
@@ -39,9 +39,9 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback('questions', i, question.question_id, 'helpful')} />
+              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback('questions', question.question_id, 'helpful')} />
             </div>
-            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={() => toggleView} />}
+            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleAccordian={() => toggleAccordian} postFeedback={postFeedback} />}
           </div>
         ))}
       </div>
@@ -53,7 +53,7 @@ QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
-  toggleView: PropTypes.func.isRequired,
+  toggleAccordian: PropTypes.func.isRequired,
   postFeedback: PropTypes.func.isRequired
 }
 

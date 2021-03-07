@@ -14,43 +14,45 @@ class QAList extends React.Component {
       answersView: false,
       modalView: false,
     };
-    this.handleQuestionAdd = this.handleQuestionAdd.bind(this);
-    this.handleAnswerAdd = this.handleAnswerAdd.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.handleQuestionAdd = this.handleQuestionAdd.bind(this)
+    this.handleAnswerAdd = this.handleAnswerAdd.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
 
 
   handleAnswerAdd(e, input) {
-    const { postFeedback } = this.props
-    event.preventDefault();
-    postFeedback('answer', input);
-    console.log('handle answer add triggered');
+    const { postInput } = this.props
+    event.preventDefault()
+    postInput('answer', input)
+    console.log('handle answer add triggered')
   }
 
   handleQuestionAdd(e, input) {
-    const { postFeedback } = this.props
-    event.preventDefault();
-    postFeedback('question', input);
+    const { postInput } = this.props
+    event.preventDefault()
+    postInput('question', input)
     console.log('handle question add triggered')
   }
 
   toggleModal() {
     const { modalView } = this.state
-    console.log('handle modal close triggered');
-    this.setState({ modalView: !modalView });
+    console.log('toggle modal triggered')
+    this.setState(() => {return { modalView: !modalView }})
   }
+
 
   render() {
     const { questions, postFeedback } = this.props
-    const { questionsView, answersView, viewModal } = this.state;
+    const { questionsView, answersView, modalView } = this.state
+    const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
-    const toggleView = (e) => {
+    const toggleAccordian = (e) => {
       if (e.target.name === 'answers') {
-        console.log('toggled answer view');
-        this.setState(() => {return { answersView: !answersView}})
+        console.log('toggled answer view', e.target.name)
+        this.setState(() => { return { answersView: !answersView } })
       }
-      this.setState(() => {return {questionsView: !questionsView}})
-    };
+      this.setState(() => { return { questionsView: !questionsView } })
+    }
 
     return (
       <>
@@ -58,16 +60,16 @@ class QAList extends React.Component {
         <QuestionsList
           questions={questions}
           questionsView={questionsView}
-              // handleFeedback={this.handleFeedback}
           answersView={answersView}
-          toggleView={toggleView}
+          toggleAccordian={toggleAccordian}
           postFeedback={postFeedback}
+          handleAdd={this.handleQuestionAdd}
         />
 )}
         <>
-          {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <Modal buttonText="ADD A QUESTION +" viewModal={viewModal} handleAdd={this.handleQuestionAdd} toggleModal={this.toggleModal} />
-          {/* <UserInput text="ADD A QUESTION +" name="questions" handler={() => console.log('create a post route!')} /> */}
+          <UserInput text={questionText} name="questions" handler={toggleAccordian} />
+
+          <Modal buttonText="ADD A QUESTION +" modalView={modalView} handleQuestionAdd={this.handleQuestionAdd} toggleModal={this.toggleModal} />
         </>
       </>
     );
@@ -77,12 +79,13 @@ class QAList extends React.Component {
 QAList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   postFeedback: PropTypes.func.isRequired,
+  postInput: PropTypes.func.isRequired,
 }
 
 QAList.showDefault = {
   questionsView: false,
   answersView: false,
-  viewModal: false,
+  modalView: false,
 }
 
 export default QAList;

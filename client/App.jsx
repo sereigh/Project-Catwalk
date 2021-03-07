@@ -10,13 +10,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 17762,
+      productId: 17858,
       productList: [
-        {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17763,
+      selectProductId: 17858,
       selectProductInfo: {
-        "id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       }
     };

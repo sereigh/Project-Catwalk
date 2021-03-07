@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Modal = ({buttonText, viewModal, handleAdd, toggleModal}) => (
+const Modal = ({buttonText, modalView, handleQuestionAdd, toggleModal}) => (
   <>
     <div
       className="open-modal"
@@ -12,11 +12,12 @@ const Modal = ({buttonText, viewModal, handleAdd, toggleModal}) => (
     >
       {buttonText}
     </div>
-    {viewModal && (
+    {modalView && (
       <div>
         <div>
           <div>
             <h1>HELLO</h1>
+            <button type="submit" onSubmit={handleQuestionAdd()}>Submit</button>
             <div
               className="close-modal"
               onClick={() => {toggleModal()}}
@@ -37,7 +38,7 @@ export default Modal;
 
 Modal.propTypes = {
   buttonText: PropTypes.string.isRequired,
-  viewModal: PropTypes.bool.isRequired,
-  handleAdd: PropTypes.func.isRequired,
+  modalView: PropTypes.bool.isRequired,
+  handleQuestionAdd: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
 }
