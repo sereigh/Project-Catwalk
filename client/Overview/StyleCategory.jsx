@@ -8,7 +8,7 @@ const StyleCategory = (props) => {
   return (
     <div id="styleCategory">
       <p>
-        {"STYLE > "}
+        <strong>{"STYLE > "}</strong>
         {selectStyleOptions[selectStyleIndex].name.toUpperCase()}
       </p>
     </div>
