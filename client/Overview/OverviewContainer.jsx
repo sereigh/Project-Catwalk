@@ -36,26 +36,35 @@ class OverviewContainer extends React.Component {
       //   }
       // ]
       selectStyleIndex: 0,
-      selectStyleOptions: [
-        {
-          "style_id":94747,"name":null,"original_price":null,"sale_price":null,"default?":true,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
-        },
-        {
-          "style_id":94748,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
-        },
-        {
-          "style_id": 94749,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
-        }
-      ]
+      selectStyleOptions: [],
+      // selectStyleOptions: [
+      //   {
+      //     "style_id":94747,"name":null,"original_price":null,"sale_price":null,"default?":true,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
+      //   },
+      //   {
+      //     "style_id":94748,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
+      //   },
+      //   {
+      //     "style_id": 94749,"name":null,"original_price":null,"sale_price":null,"default?":false,"photos":[{"thumbnail_url":null,"url":null}],"skus":{"547962":{"quantity":null,"size":null}}
+      //   }
+      // ],
+      stylesLoaded: false
     };
     this.setSelectStyleIndex = this.setSelectStyleIndex.bind(this);
     this.retrieveSelectStyleOptions = this.retrieveSelectStyleOptions.bind(this);
+    // this.checkForCompleteStylesLoaded = this.checkForCompleteStylesLoaded.bind(this);
   }
 
   componentDidMount() {
     this.setSelectStyleIndex();
     this.retrieveSelectStyleOptions();
   }
+
+  // componentDidUpdate() {
+  //   // [https://reactjs.org/docs/react-component.html#componentdidupdate]
+  //   // error: Do not use setState in componentDidUpdate
+  //   this.checkForCompleteStylesLoaded();
+  // }
 
   setSelectStyleIndex() {
     //   // const { selectProductId } = this.props;
@@ -70,15 +79,45 @@ class OverviewContainer extends React.Component {
       .then((response) => {
         // console.log('OverviewC_retrieveSelectStyleOptions response.data:', response.data);
         // console.log('OverviewC_retrieveSelectStyleOptions response.data.results:', response.data.results);
-        this.setState({
-          // selectStyleOptions: response.data
-          selectStyleOptions: response.data.results
-        })
+        this.setState(
+          // selectStyleOptions: response.data.results
+          () => {
+            return {
+              selectStyleOptions: response.data.results
+            }
+          }
+        )
       })
+      .then(() => {
+        this.setState(
+          () => {
+            return {
+              stylesLoaded: true
+            }
+          }
+        )
+      })
+      // .then(
+      //   this.setState({
+      //     stylesLoaded: true
+      //   })
+      // )
       .catch((error) => {
         console.log('Get product style options failed...', error);
       })
   }
+
+  // checkForCompleteStylesLoaded(prevState) {
+  // const { selectStyleOptions } = this.state
+  // console.log('OverviewC_checkStyleLoad selectStyleOptions:', selectStyleOptions);
+  // console.log('OverviewC_checkStyleLoad prevState:', prevState);
+  // console.log('OverviewC_checkStyleLoad stylesLoaded:', stylesLoaded);
+  //   if (selectStyleOptions !== prevState.selectStyleOptions) {
+  //     this.setState({
+  //       stylesLoaded: true
+  //     })
+  //   }
+  // }
 
   render() {
     // const { selectProductId, selectProductInfo, retrieveSelectProductInfo } = this.props;
@@ -86,9 +125,20 @@ class OverviewContainer extends React.Component {
     // console.log('OverviewC_render selectProductID:', selectProductId);
     // console.log('OverviewC_render selectProductInfo:', selectProductInfo);
     // console.log('OverviewC_render retrieveSelectProductInfo():', retrieveSelectProductInfo);
-    const { selectStyleOptions, selectStyleIndex } = this.state
-    // console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
+    const { selectStyleIndex, selectStyleOptions, stylesLoaded } = this.state
+    console.log('OverviewC_render selectStyleOptions:', selectStyleOptions);
     // console.log('OverviewC_render selectStyleIndex:', selectStyleIndex);
+    console.log('OverviewC_render stylesLoaded:', stylesLoaded);
+    if ( !stylesLoaded ) {
+      return (
+        <div>LOADING</div>
+      );
+    }
+  //   return (
+  //     <div>FINISHED LOAD</div>
+  //   );
+  // }
+    // if ( stylesLoaded ) {
     return (
       <div className="overviewWidget">
         <a href="http://localhost:3000/products/17763/styles/">
@@ -122,6 +172,7 @@ class OverviewContainer extends React.Component {
         <div className="showcaseDescription">
           <DescriptionBanner
             selectProductInfo={selectProductInfo}
+            stylesLoaded={stylesLoaded}
           />
         </div>
       </div>
@@ -143,9 +194,32 @@ OverviewContainer.propTypes = {
     "category": PropTypes.string,
     "default_price": PropTypes.string,
     "created_at": PropTypes.string,
-    "updated_at": PropTypes.string
+    "updated_at": PropTypes.string,
+    "features": PropTypes.arrayOf(PropTypes.shape({
+      "feature": PropTypes.string,
+      "value": PropTypes.string,
+      "map": PropTypes.node
+    }))
   }).isRequired
+  // stylesLoaded: PropTypes.bool.isRequired
   // retrieveSelectProductInfo: PropTypes.func.isRequired
+  // selectStyleOptions: PropTypes.arrayOf(PropTypes.shape({
+  //   "style_id": PropTypes.number,
+  //   "name": PropTypes.string,
+  //   "original_price": PropTypes.string,
+  //   "sale_price": PropTypes.string,
+  //   "default?": PropTypes.bool,
+  //   "photos": PropTypes.arrayOf(PropTypes.shape({
+  //     "thumbnail_url": PropTypes.string,
+  //     "url": PropTypes.string,
+  //   })),
+  //   "skus": PropTypes.objectOf(PropTypes.shape({
+  //     "547962": PropTypes.arrayOf(PropTypes.shape({
+  //       "quantity": PropTypes.number,
+  //       "size": PropTypes.string,
+  //     }))
+  //   }))
+  // })).isRequired
 }
 
 export default OverviewContainer;
