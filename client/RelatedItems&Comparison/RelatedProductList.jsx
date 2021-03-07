@@ -13,44 +13,50 @@ class RelatedProductList extends React.Component {
       relatedProductIds: [
         17219,
         17810,
-        17174,
-        17762,
-        17763,
-        17858,
-        18025
+        17174
       ]
     }
   }
 
   componentDidMount() {
-    // this.getRelatedProductIds();
+    console.log('mounterdjflsdjkf');
+    this.getRelatedProductIds();
+  }
+
+  componentDidUpdate(prevProps) {
+    const {selectProductId} = this.props;
+    console.log('udaated id: ', selectProductId);
+    if (selectProductId !== prevProps.selectProductId) {
+      this.getRelatedProductIds();
+    }
   }
 
   getRelatedProductIds() {
     const {selectProductId} = this.props;
+    console.log(selectProductId);
     axios
-    .get(`/products/${selectProductId}/related`)
-    .then((response) => {
-      console.log('related', response.data);
-      this.setState({
-        relatedProductIds: response.data
+      .get(`/products/${selectProductId}/related`)
+      .then((response) => {
+        console.log('related', response.data);
+        this.setState({
+          relatedProductIds: response.data
+        });
       })
-    })
-    .then(() => {
-      this.getRelatedProductCards();
-    })
-    .catch((error) => {
-      console.log('Get related items failed...', error);
-    })
+      // .then(() => {
+      //   this.getRelatedProductCards();
+      // })
+      .catch((error) => {
+        console.log('Get related items failed...', error);
+      });
   }
 
   render() {
     const {relatedProductCards, relatedProductIds} = this.state;
-    const {selectProductInfo} = this.props;
+    const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
         {relatedProductIds.map(productId => (
-          <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} />
+          <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
         ))}
       </div>
     );
@@ -87,7 +93,8 @@ RelatedProductList.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }).isRequired
+  }).isRequired,
+  selectAnotherProduct: PropTypes.func
 }
 
 RelatedProductList.defaultProps = {

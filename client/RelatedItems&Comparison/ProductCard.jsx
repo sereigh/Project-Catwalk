@@ -47,25 +47,11 @@ class ProductCard extends React.Component {
     this.getAverageRatings();
   }
 
-  convertAverageRateToStarRating(ratings) {
-    let devider = 0;
-    const total = Object.values(ratings).reduce((sum, rating, i) => {
-      devider += Number.parseInt(rating);
-      return sum + (rating * (i + 1));
-    }, 0);
-    const average = total / devider;
-    console.log(average);
-    this.setState({
-      averageRating: average
-    })
-  }
-
   getAverageRatings() {
     const { productId } = this.props;
     axios
     .get(`/reviewdata/${productId}`)
     .then((response) => {
-      console.log('meta: ', response);
       this.convertAverageRateToStarRating(response.data.ratings);
     })
     .catch((error) => {
@@ -125,15 +111,28 @@ class ProductCard extends React.Component {
       })
   }
 
+  convertAverageRateToStarRating(ratings) {
+    let devider = 0;
+    const total = Object.values(ratings).reduce((sum, rating, i) => {
+      devider += Number.parseInt(rating);
+      return sum + (rating * (i + 1));
+    }, 0);
+    const average = total / devider;
+    console.log(average);
+    this.setState({
+      averageRating: average
+    })
+  }
+
   displayPrice() {
     const {currentStyle} = this.state;
     if (currentStyle[0].sale_price) {
       return (
         <div>
-          <span>
+          <span className="sale-price">
             {`$${currentStyle[0].sale_price}`}
           </span>
-          <span>
+          <span className="original-price">
             {`$${currentStyle[0].original_price}`}
           </span>
         </div>
@@ -149,13 +148,13 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { selectProductInfo } = this.props;
+    const { selectProductInfo, selectAnotherProduct } = this.props;
     const { window, productInfo, currentStyle, averageRating } = this.state;
     return (
       <div>
         <div className="productCard" style={{ border: 'solid black 1px' }}>
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
-          <PreviewImages currentStyle={currentStyle} />
+          <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">
             <div>{productInfo.category}</div>
             <div>{productInfo.name}</div>
@@ -208,7 +207,8 @@ ProductCard.propTypes = {
       value: PropTypes.string
     }))
   }).isRequired,
-  productId: PropTypes.number.isRequired
+  productId: PropTypes.number.isRequired,
+  selectAnotherProduct: PropTypes.func.isRequired
 }
 
 export default ProductCard;

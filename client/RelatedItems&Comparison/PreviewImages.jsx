@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PreviewImages = ({currentStyle}) => (
+const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
   <div>
-    <img src={currentStyle[0].photos[0].url} alt='product' style={{width: '150px', height: '200px'}} />
+    <img
+      src={currentStyle[0].photos[0].url}
+      alt='product'
+      style={{width: '150px', height: '200px'}}
+      onClick={(e) => {
+        console.log('clicked!');
+        selectAnotherProduct(productId);
+      }}
+    />
   </div>
 );
 
@@ -29,7 +37,9 @@ PreviewImages.propTypes = {
       thumbnail_url: PropTypes.string,
       url: PropTypes.string
     }))
-  })).isRequired
+  })).isRequired,
+  selectAnotherProduct: PropTypes.func.isRequired,
+  productId: PropTypes.number.isRequired
 }
 
 export default PreviewImages;

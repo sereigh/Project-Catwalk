@@ -9,6 +9,14 @@ class RelatedListContainer extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log('this is container!@@@@@@@@@@@@@');
+  }
+
+  componentDidUpdate() {
+    console.log('this is container%%%%%%%%%%%%%%%%');
+  }
+
   // getRelatedProductIds(productId) {
   //   axios
   //   .get(`/products/${productId}/related`)
@@ -97,13 +105,13 @@ class RelatedListContainer extends React.Component {
   // }
 
   render() {
-    const {selectProductInfo, selectProductId} = this.props;
+    const {selectProductInfo, selectProductId, selectAnotherProduct} = this.props;
     return (
       <div>
         <ul>
           <div>
             **RelatedProductList**
-            <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} />
+            <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
           </div>
           <div>**OutfitList**</div>
         </ul>
@@ -120,7 +128,8 @@ RelatedListContainer.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }).isRequired
+  }).isRequired,
+  selectAnotherProduct: PropTypes.func.isRequired
 };
 
 

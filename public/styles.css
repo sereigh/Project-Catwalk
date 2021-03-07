@@ -6,7 +6,6 @@
   flex-wrap: nowrap;
   width: 150px;
   height: 300px;
-
 }
 
 .modal {
@@ -27,6 +26,22 @@
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
+}
+
+.sale-price {
+  color: red;
+}
+
+.original-price {
+  color: gray;
+}
+
+.actionBtn {
+  display: contents;
+}
+
+.actionBtn:hover {
+  color: red;
 }
 
 /* Questions and Answers */
