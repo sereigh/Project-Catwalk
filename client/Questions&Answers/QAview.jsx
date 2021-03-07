@@ -68,8 +68,9 @@ class QAList extends React.Component {
 )}
         <>
           <UserInput text={questionText} name="questions" handler={toggleAccordian} />
-
-          <Modal buttonText="ADD A QUESTION +" modalView={modalView} handleQuestionAdd={this.handleQuestionAdd} toggleModal={this.toggleModal} />
+          <span className="UserInput">
+            <Modal buttonText="ADD A QUESTION +" modalView={modalView} handleQuestionAdd={this.handleQuestionAdd} toggleModal={this.toggleModal} />
+          </span>
         </>
       </>
     );

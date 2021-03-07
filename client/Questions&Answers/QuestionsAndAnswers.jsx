@@ -75,19 +75,19 @@ class QuestionsAndAnswers extends React.Component {
     const { questions, inputValue, filtered, filteredQuestions } = this.state
 
     return (
-      <div className="qaHeader">
-        <div className="qaSearch" style={{ border: 'solid black thin' }}>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="search"
-              className="searchBar"
-              onChange={this.handleSearchChange}
-              onClick={this.handleSearchClear}
-              value={inputValue}
-              placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-            />
-          </form>
-        </div>
+      <div className="qaContainer">
+
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="search"
+            className="searchBar"
+            onChange={this.handleSearchChange}
+            onClick={this.handleSearchClear}
+            value={inputValue}
+            placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
+          />
+        </form>
+
         {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} /> : <QAview questions={questions} postFeedback={this.postFeedback} />}
       </div>
     );

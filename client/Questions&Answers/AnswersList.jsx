@@ -39,7 +39,7 @@ function Answerslist(props) {
       ))}
       {answers.length > 2 && (
       <span
-        name='answers'
+        className='loadAnswers'
         onClick={() => {toggleAccordian()}}
         role="button"
         tabIndex={0}
