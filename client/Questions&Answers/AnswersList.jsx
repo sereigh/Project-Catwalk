@@ -1,60 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-import SendFeedback from './SendFeedback.jsx';
-import Test from './Test.jsx';
-// eslint-disable-next-line import/extensions
-import answers from './answers.js';
+import Feedback, { UserInfo } from './UserFeedback.jsx';
 
-function Answerslist() {
+function Answerslist(props) {
 
-  const [status, setStatus] = useState('Report');
-  const [expand, setExpansion] = useState('showDefault-answers');
-
-  const toggleStatus = () => (
-    setStatus('Reported')
-  );
-
-  const toggleExpansion = () => {
-    if (expand === 'showDefault-answers') {
-      return setExpansion('showAll-answers');
-    }
-    return setExpansion('showDefault-answers');
-  };
+  const { answers, answersView, toggleView } = props;
+  const view = (answersView ? "showAll-answers" : "showDefault-answers");
 
   return (
 
-    <div className={expand}>
+    <div className={view}>
       {answers.map((answer) => (
-        <div key={answer.answer_id} className="answer">
-          <div className="answerText">
+        <div key={answer.answer_id} className="view-answer">
+          <span className="answerText">
             <strong>A:  </strong>
             {answer.body}
+          </span>
+
+          <div className="answersFeedback">
+            <span className="answersFeedback-left">
+              <UserInfo name={answer.answerer_name} seller={false} date={answer.date} />
+            </span>
+            <span className="answersFeedback-right">
+              <Feedback option={answer.reported ? 1 : 0} helpfulness={answer.helpfulness} handler={()=> console.log('answer feedback clicked')} />
+            </span>
           </div>
-          <Test />
-          {
-            status === 'Report' ?
-              <SendFeedback option={0} handleFeedback={toggleStatus} />
-              : <SendFeedback option={1} handleFeedback={() => { console.log('This answer has already been reported.') }} />
-          }
         </div>
       ))}
+      {answers.length > 2 && (
       <span
-        className="loadAnswers"
-        onClick={() => toggleExpansion()}
+        name='answers'
+        onClick={() => {toggleView()}}
         role="button"
         tabIndex={0}
-        onKeyPress={() => toggleExpansion()}
+        onKeyPress={() => {toggleView()}}
       >
         LOAD MORE ANSWERS
       </span>
+    )}
     </div>
   );
 }
 
 Answerslist.propTypes = {
-  // answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired
+  answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  answersView: PropTypes.bool.isRequired,
+  toggleView: PropTypes.func.isRequired,
 }
 
 export default Answerslist;

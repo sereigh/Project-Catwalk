@@ -32,24 +32,95 @@
 
 /* Questions and Answers */
 .qaContainer {
+  width: 90%;
+  align-self: auto;
+  padding-left: 50px;
+}
+.qaHeader {
   width: 100%;
+  text-align: left;
+  margin: 2%;
 }
-.questionText, .answerText {
-  width: 50%;
+.qaSearch {
+  margin: 2%;
+  height: 50px;
+  text-align: left;
 }
-.question, .answer {
-  display: flex;
+.searchBar {
+  resize: horizontal;
+  width: 94%;
+  margin: 2%;
+}
+.searchText {
+  margin-left: 2%
+}
+.UserInput {
+  border: solid black thin;
+  height: 100px;
+  text-align: left;
+  margin: 2%;
+}
+.showDefault-questions {
+  position: relative;
+  min-height: 380px;
+  margin: 2%;
+  border: solid black thin;
+}
+.showDefault-answers {
+  position: relative;
+  min-height: 50px;
+  margin: 2%;
+
+}
+.showDefault-questions div:nth-child(5n) {
+  display: none;
+}
+.showDefault-answers div:nth-child(3n) {
+  display: none;
+}
+.view-question {
+  margin: 2%;
+}
+.questionText {
+  font-size: medium;
+  font-weight: bolder;
+  word-break: normal;
+  width: 68%;
+  text-align: left;
+  text-indent:0vw;
+  display: inline-block;
+}
+.answerText {
+  font-size: small;
+  word-break: normal;
   width: 100%;
-  justify-content: space-between;
+  text-align: left;
+  display: inline;
+  margin: -2%;
 }
-.feedback {
+.questionFeedback {
+  text-align: right;
+  font-size: xx-small;
+  display: inline-block;
+  width: 32%;
+}
+.answersFeedback {
+  font-size: xx-small;
+  width: 100%;
+  text-align: left;
+  display: block;
+  margin: -2%;
+}
+.answersFeedback-left {
+  display: inline-block;
+}
+.answersFeedback-right {
+  display: inline-block;
+}
+.loadAnswers {
   font-size: x-small;
-}
-.questionsList div:nth-child(5n) {
-  display: none;
-}
-.showDefault-answers div:nth-child(2n) {
-  display: none;
+  margin: 4%;
+  font-weight: bolder;
 }
 /* Ratings and Reviews */
 .reviews-list {

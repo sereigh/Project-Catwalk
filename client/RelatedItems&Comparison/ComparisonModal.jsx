@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ComparisonModal = ({name, features, window, toggleModalWindow, selectProductInfo}) => (
+const ComparisonModal = ({name, window, toggleModalWindow}) => (
   <div id="myModal" className="modal" style={{display: window}}>
     <div className="modal-content">
       <button type="button" onClick={toggleModalWindow}>X</button>
@@ -21,10 +21,10 @@ const ComparisonModal = ({name, features, window, toggleModalWindow, selectProdu
 
 ComparisonModal.propTypes = {
   name: PropTypes.string.isRequired,
-  features: PropTypes.arrayOf(PropTypes.shape({
-    feature: PropTypes.string,
-    value: PropTypes.string
-  })).isRequired,
+  // features: PropTypes.arrayOf(PropTypes.shape({
+  //   feature: PropTypes.string,
+  //   value: PropTypes.string
+  // })).isRequired,
   window: PropTypes.string.isRequired,
   toggleModalWindow: PropTypes.func.isRequired,
   selectProductInfo: PropTypes.shape({

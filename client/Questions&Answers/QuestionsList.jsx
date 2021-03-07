@@ -1,52 +1,47 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Feedback from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import SendFeedback from './SendFeedback.jsx';
+import { sortAnswers } from './Utility.jsx'
 
-function QuestionsList({ questions }) {
+function QuestionsList(props) {
 
-  const [view, setView] = useState(false);
+  const { questions, questionsView, answersView, toggleView } = props;
 
-  const toggleView = (index) => {
-    if (view === index) {
-      return setView(null);
+  const [panel, setPanel] = useState(false);
+
+  const togglePanel = (i) => {
+    if (panel === i) {
+      return setPanel(null);
     }
-    return setView(index);
+    return setPanel(i);
   };
-  if (questions.length === 0) {
-    return (
-      <h1>Hi</h1>
-    );
-  }
+
+  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions");
+
   return (
     <>
-      <div className="questionsList">
-        {questions.map((question, index) => (
+      <div className={view}>
+        {questions.map((question, i) => (
           <div
+            className="view-question"
             key={question.question_id}
-            className="qBar"
           >
-            <span
-              className="question"
+            <div
+              className="questionText"
+              onClick={() => togglePanel(i)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={() => togglePanel(i)}
             >
-              <span
-                className="questionText"
-                onClick={() => toggleView(index)}
-                role="button"
-                tabIndex={0}
-                onKeyPress={() => toggleView(index)}
-              >
-
-                <h3>
-                  Q:
-                  {' '}
-                  {question.question_body}
-                </h3>
-              </span>
-              <SendFeedback option={2} handleFeedback={() => {console.log('Should add  an answer')}} />
-            </span>
-            {view === index && <AnswersList />}
+              <strong>Q:  </strong>
+              {question.question_body}
+            </div>
+            <div className="questionFeedback">
+              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => console.log('question feedback clicked')} />
+            </div>
+            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={() => toggleView} />}
           </div>
         ))}
       </div>
@@ -56,6 +51,10 @@ function QuestionsList({ questions }) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  questionsView: PropTypes.bool.isRequired,
+  answersView: PropTypes.bool.isRequired,
+  toggleView: PropTypes.func.isRequired,
+  // handleFeedback: PropTypes.func.isRequired
 }
 
 export default QuestionsList;
