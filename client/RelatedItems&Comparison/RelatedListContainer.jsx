@@ -4,29 +4,20 @@ import PropTypes from 'prop-types';
 
 import RelatedProductList from './RelatedProductList.jsx';
 
-class RelatedListContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {selectProductInfo, selectProductId, selectAnotherProduct} = this.props;
-    return (
-      <div className="list-container">
-        <ul>
-          <div>
-            **RelatedProductList**
-            <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
-          </div>
-          <div>**OutfitList**</div>
-        </ul>
+const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct}) => (
+  <div className="list-container">
+    <ul>
+      <div>
+        **RelatedProductList**
+        <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
       </div>
-    );
-  }
-};
+      <div>**OutfitList**</div>
+    </ul>
+  </div>
+);
 
 RelatedListContainer.propTypes = {
-  // selectProductId: PropTypes.number.isRequired,
+  selectProductId: PropTypes.number.isRequired,
   selectProductInfo: PropTypes.shape({
     name: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.shape({

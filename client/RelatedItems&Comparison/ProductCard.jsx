@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import Stars from '../SharedComponents/Stars.jsx';
+
 import ActionButton from './ActionButton.jsx';
 import PreviewImages from './PreviewImages.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 import dummyStyleData from './dummyStyleData';
-import Stars from '../SharedComponents/Stars.jsx';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -172,7 +173,7 @@ class ProductCard extends React.Component {
       }
     });
     this.setState({
-      commonFeatures: commonFeatures
+      commonFeatures
     });
   }
 

@@ -66,21 +66,27 @@ class RelatedProductList extends React.Component {
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <button className="leftArrow">&lt;</button>
+        <button type="button" className="leftArrow">&lt;</button>
         <div className="carousel">
           <ul style={{display: 'flex', margin: '0', padding: '0', overflow: 'hidden'}}>
             {relatedProductIds.map(productId => (
-              <li style={{display: 'block', listStyle: 'none'}}>
+              <li key={productId} style={{display: 'block', listStyle: 'none'}}>
                 <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} />
               </li>
             ))}
           </ul>
         </div>
-        <button className="rightArrow" onClick={(e) => {
-          e.preventDefault();
-          console.log('go right');
-          this.move(1);
-        }}>&gt;</button>
+        <button
+          type="button"
+          className="rightArrow"
+          onClick={(e) => {
+            e.preventDefault();
+            console.log('go right');
+            this.move(1);
+          }}
+        >
+          &gt;
+        </button>
       </div>
     );
   }
