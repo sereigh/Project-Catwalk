@@ -14,9 +14,9 @@ class App extends React.Component {
       productList: [
         {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17075,
+      selectProductId: 17073,
       selectProductInfo: {
-        "id":17075,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":17073,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       },
       productSpecificsLoaded: false
