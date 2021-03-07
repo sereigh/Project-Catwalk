@@ -7,7 +7,7 @@ import { sortAnswers } from './Utility.jsx'
 
 function QuestionsList(props) {
 
-  const { questions, questionsView, answersView, toggleView } = props;
+  const { questions, questionsView, answersView, toggleView, postFeedback } = props;
 
   const [panel, setPanel] = useState(false);
 
@@ -39,7 +39,7 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => console.log('question feedback clicked')} />
+              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback()} />
             </div>
             {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleView={() => toggleView} />}
           </div>
@@ -54,7 +54,7 @@ QuestionsList.propTypes = {
   questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleView: PropTypes.func.isRequired,
-  // handleFeedback: PropTypes.func.isRequired
+  postFeedback: PropTypes.func.isRequired
 }
 
 export default QuestionsList;

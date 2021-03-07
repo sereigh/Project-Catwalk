@@ -47,11 +47,12 @@ class QAList extends React.Component {
               // handleFeedback={this.handleFeedback}
           answersView={answersView}
           toggleView={toggleView}
+          postFeedback={postFeedback}
         />
 )}
         <>
           {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <UserInput text="ADD A QUESTION +" name="questions" handler={postFeedback} />
+          <UserInput text="ADD A QUESTION +" name="questions" handler={() => console.log('create a post route!')} />
         </>
       </>
     );

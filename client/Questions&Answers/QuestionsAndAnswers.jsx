@@ -16,6 +16,7 @@ class QuestionsAndAnswers extends React.Component {
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearchClear = this.handleSearchClear.bind(this);
+    this.postFeedback = this.postFeedback.bind(this);
   }
 
   componentDidMount() {
