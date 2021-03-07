@@ -16,12 +16,12 @@ function Feedback({ option, helpfulness, handler }) {
 
 function TextLink({ option, handler }) {
 
-const options = ['Report', 'Reported', 'Add Comment', 'Yes', 'LOAD MORE ANSWERS'];
+const options = ['Report', 'Reported', 'Add Comment', 'Yes'];
 
   return (
     <span
       name={option}
-      onClick={() => handler()}
+      onClick={(type, i, id, opt) => handler(type, i, id, opt)}
       onKeyPress={() => handler()}
       role="button"
       tabIndex={0}
