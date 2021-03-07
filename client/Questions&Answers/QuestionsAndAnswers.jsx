@@ -53,7 +53,7 @@ class QuestionsAndAnswers extends React.Component {
   postInput(type, id, option, input) {
     console.log('create a modal')
     const endPoint = findPath(type, id, option)
-    axios.put(endPoint, input)
+    axios.post(endPoint, input)
           .then(() => this.getAllQuestions())
           .catch((err) => err)
   }
@@ -73,6 +73,7 @@ class QuestionsAndAnswers extends React.Component {
   render() {
 
     const { questions, inputValue, filtered, filteredQuestions } = this.state
+    const { productName } = this.props
 
     return (
       <div className="qaContainer">
@@ -88,7 +89,7 @@ class QuestionsAndAnswers extends React.Component {
           />
         </form>
 
-        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} /> : <QAview questions={questions} postFeedback={this.postFeedback} />}
+        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} /> : <QAview questions={questions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} />}
       </div>
     );
   }
@@ -96,6 +97,7 @@ class QuestionsAndAnswers extends React.Component {
 
 QuestionsAndAnswers.propTypes = {
   productId: PropTypes.number.isRequired,
+  productName: PropTypes.string.isRequired,
 }
 
 export default QuestionsAndAnswers;

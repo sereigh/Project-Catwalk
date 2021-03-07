@@ -61,20 +61,19 @@
 }
 .showDefault-questions {
   position: relative;
-  max-height: 400px;
+  max-height: 380px;
   margin: 2%;
+  overflow: hide;
   border: solid black thin;
 }
 .showDefault-answers {
-  position: relative;
-  min-height: 50px;
+  max-height: 100px;
   margin: 2%;
-
 }
 .showDefault-questions div:nth-child(5n) {
   display: none;
 }
-.showDefault-answers div:nth-child(3n) {
+.showDefault-answers div:nth-child(2n) {
   display: none;
 }
 .showAll-questions {
@@ -84,9 +83,18 @@
   max-height: 400px;
   margin: 2%;
   border: solid black thin;
-
+}
+.showAll-answers {
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hide;
+  max-height: 400px;
+  margin: 2%;
 }
 .view-question {
+  margin: 2%;
+}
+.view-answers {
   margin: 2%;
 }
 .questionText {
@@ -103,7 +111,7 @@
   width: 100%;
   text-align: left;
   display: inline;
-  margin: -2%;
+  margin: -1%;
 }
 .questionFeedback {
   text-align: right;

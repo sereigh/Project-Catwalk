@@ -1,44 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Modal = ({buttonText, modalView, handleQuestionAdd, toggleModal}) => (
-  <>
-    <div
-      className="open-modal"
-      onClick={() => {toggleModal()}}
-      role="button"
-      tabIndex={0}
-      onKeyPress={() => {toggleModal()}}
-    >
-      {buttonText}
-    </div>
-    {modalView && (
-      <div>
+class Modal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalView: false
+    }
+    this.toggleModal = this.toggleModal.bind(this)
+  }
+
+  // const buttonText, modaelView, handleQuestionAdd, toggleModal = props;
+  toggleModal() {
+    const { modalView } = this.state
+    console.log('toggle modal triggered')
+    this.setState(() => {return { modalView: !modalView }})
+  }
+
+  render() {
+    const { modalView } = this.state
+    const {handleQuestionAdd, productName } = this.props
+    return (
+      <>
+        <div
+          className="open-modal"
+          onClick={() => {this.toggleModal()}}
+          role="button"
+          tabIndex={0}
+          onKeyPress={() => {this.toggleModal()}}
+        >
+          Add A Question +
+        </div>
+        {modalView && (
         <div>
+          <title>Ask Your Question</title>
+          <subtitle>
+            About The Product
+            {productName}
+          </subtitle>
           <div>
-            <h1>HELLO</h1>
-            <button type="submit" onSubmit={handleQuestionAdd()}>Submit</button>
-            <div
-              className="close-modal"
-              onClick={() => {toggleModal()}}
-              role="button"
-              tabIndex={0}
-              onKeyPress={() => {toggleModal()}}
-            >
-              CLOSE
+            <div>
+              <h1>HELLO</h1>
+              <button type="submit" onSubmit={handleQuestionAdd()}>Submit</button>
+              <div
+                className="close-modal"
+                onClick={() => {this.toggleModal()}}
+                role="button"
+                tabIndex={0}
+                onKeyPress={() => {this.toggleModal()}}
+              >
+                CLOSE
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    )}
-  </>
-);
+        )}
+      </>
+    );
+  }
+}
 
 export default Modal;
 
 Modal.propTypes = {
-  buttonText: PropTypes.string.isRequired,
-  modalView: PropTypes.bool.isRequired,
   handleQuestionAdd: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
+
 }

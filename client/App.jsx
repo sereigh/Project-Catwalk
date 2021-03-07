@@ -107,7 +107,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <QuestionsAndAnswers productId={productId} />
+        <QuestionsAndAnswers productId={productId} productName={productList[0].name} />
         <span>
           ---Ratings Reviews Widget---
           <br />
