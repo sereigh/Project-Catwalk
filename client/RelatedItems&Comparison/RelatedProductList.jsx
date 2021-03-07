@@ -22,8 +22,8 @@ class RelatedProductList extends React.Component {
         // 17255,
         17431
       ],
-      liEls: document.querySelectorAll('ul li'),
-      index: 0
+      // liEls: document.querySelectorAll('ul li'),
+      // index: 0
     }
   }
 
@@ -43,7 +43,6 @@ class RelatedProductList extends React.Component {
     axios
       .get(`/products/${selectProductId}/related`)
       .then((response) => {
-        // console.log('related', response.data);
         this.setState({
           relatedProductIds: response.data
         });
@@ -53,13 +52,13 @@ class RelatedProductList extends React.Component {
       });
   }
 
-  move (increase) {
-    const {index, liEls} = this.state;
-    this.setState({
-      index: Math.min(Math.max(index + increase,0), liEls.length-1)
-    });
-    liEls[index].scrollIntoView({behavior: 'smooth'});
-  }
+  // move (increase) {
+  //   const {index, liEls} = this.state;
+  //   this.setState({
+  //     index: Math.min(Math.max(index + increase,0), liEls.length-1)
+  //   });
+  //   liEls[index].scrollIntoView({behavior: 'smooth'});
+  // }
 
   render() {
     const {relatedProductIds} = this.state;
@@ -79,11 +78,11 @@ class RelatedProductList extends React.Component {
         <button
           type="button"
           className="rightArrow"
-          onClick={(e) => {
-            e.preventDefault();
-            console.log('go right');
-            this.move(1);
-          }}
+          // onClick={(e) => {
+          //   e.preventDefault();
+          //   console.log('go right');
+          //   this.move(1);
+          // }}
         >
           &gt;
         </button>
@@ -94,28 +93,6 @@ class RelatedProductList extends React.Component {
 
 RelatedProductList.propTypes = {
   selectProductId: PropTypes.number.isRequired,
-  // productCards: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number,
-  //   category: PropTypes.string,
-  //   name: PropTypes.string,
-  //   price: PropTypes.string,
-  //   starRating: PropTypes.string,
-  //   styles: PropTypes.arrayOf(PropTypes.shape({
-  //     style_id: PropTypes.number,
-  //     name: PropTypes.string,
-  //     original_price: PropTypes.string,
-  //     sale_price: PropTypes.string,
-  //     default: PropTypes.bool,
-  //     photos: PropTypes.arrayOf(PropTypes.shape({
-  //       thumbnail_url: PropTypes.string,
-  //       url: PropTypes.string
-  //     }))
-  //   })),
-  //   features: PropTypes.arrayOf(PropTypes.shape({
-  //     feature: PropTypes.string,
-  //     value: PropTypes.string
-  //   }))
-  // })),
   selectProductInfo: PropTypes.shape({
     name: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.shape({
