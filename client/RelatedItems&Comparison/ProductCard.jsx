@@ -46,14 +46,7 @@ class ProductCard extends React.Component {
     this.retrieveProductStyle();
     this.retrieveProductInfo();
     this.getAverageRatings();
-    // this.mergeFeatures();
   }
-
-  // componentDidUpdate(prevProps) {
-  //   if(prevProps === {}) {
-  //     this.mergeFeatures();
-  //   }
-  // }
 
   getAverageRatings() {
     const { productId } = this.props;
@@ -198,45 +191,11 @@ class ProductCard extends React.Component {
             <Stars rating={averageRating} />
           </div>
         </div>
-        <ComparisonModal name={productInfo.name} features={productInfo.features} window={window} toggleModalWindow={this.toggleModalWindow} selectProductInfo={selectProductInfo} />
+        <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />
       </div>
     );
   }
 }
-
-// const trimProductDetails = () => {
-//   if (selectProductInfo.features) {
-
-//     let features1 = productCard.features.slice(0);
-//     let features2 = selectProductInfo.features.slice(0);
-
-//     let allFeatures = features1.map((feature) => {
-//       const target = features2.find(item => item.feature === feature.feature);
-//       if (target) {
-//         return {value1: feature.value, value2: target.value, feature: feature.feature};
-//       }
-//       return
-//     });
-
-//     return allFeatures;
-//   }
-// };
-
-// app.post('/repos', function (req, res) {
-//   let username = req.body.name;
-//   helpers.getReposByUsername(username, (err, results) => {
-//      if (err) {
-//         console.error(err);
-//        } else {
-//          const filtered = results.map((repo) => (
-//              { "name": repo.name, "owner": repo.owner.login, "url": repo.html_url, "forks": repo.forks_count }
-//            )
-//          );
-//          db.save(filtered, (err, results) => {
-//            if (err) {
-//              res.send(err);
-//            } else
-
 
 ProductCard.propTypes = {
   selectProductInfo: PropTypes.shape({

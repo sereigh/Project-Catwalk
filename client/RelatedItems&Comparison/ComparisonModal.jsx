@@ -1,39 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ComparisonModal = ({name, features, window, toggleModalWindow, selectProductInfo}) => (
-  <div className="modal" style={{display: window}}>
+const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModalWindow}) => {
 
-    <div className="modal-content">
-      <div className="modal-header">
-        <p>Comparing</p>
-        <p>
-          <span className="current-product-name">{name}</span>
-          <span className="related-product-name">Product name2</span>
-        </p>
+  return (
+    <div className="modal" style={{display: window}}>
+      <div className="modal-content">
+        <div className="modal-header">
+          <p>Comparing</p>
+          <p>
+            <span className="current-product">{product1}</span>
+            <span className="related-product">{product2}</span>
+          </p>
+        </div>
+        <br/>
+        <div className="modal-body">
+          {Object.keys(commonFeatures).map((content, index) => (
+            <p key={`key${index+1}`}>
+              <span className="current-product">{commonFeatures[content].value1 || '[   ]'}</span>
+              <span className="characteristic">{content}</span>
+              <span className="related-product">{commonFeatures[content].value2 || '[   ]'}</span>
+            </p>
+          ))}
+        </div>
       </div>
-      <div className="modal-body">
-        <p>Some text in the Modal..</p>
-      </div>
+      <div role="button" tabindex="0" className="overlay" onClick={toggleModalWindow}></div>
     </div>
-  </div>
-);
+  );
+}
 
 ComparisonModal.propTypes = {
-  name: PropTypes.string.isRequired,
-  // features: PropTypes.arrayOf(PropTypes.shape({
-  //   feature: PropTypes.string,
-  //   value: PropTypes.string
-  // })).isRequired,
+  product1: PropTypes.string.isRequired,
+  product2: PropTypes.string.isRequired,
+  commonFeatures: PropTypes.objectOf(PropTypes.shape({
+    value1: PropTypes.string,
+    value2: PropTypes.string
+  })).isRequired,
   window: PropTypes.string.isRequired,
-  toggleModalWindow: PropTypes.func.isRequired,
-  selectProductInfo: PropTypes.shape({
-    name: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string
-    }))
-  }).isRequired
+  toggleModalWindow: PropTypes.func.isRequired
 }
 
 
