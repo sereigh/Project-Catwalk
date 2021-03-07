@@ -2,7 +2,8 @@
 // f import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
 // f import FeaturedReviewLink from './FeaturedReviewLink.jsx';
 // c import FeaturedProduct from './FeaturedProduct.jsx';
-// f import StylePriceCategory from './StylePriceCategory.jsx';
+// f import StylePrice from './StylePrice.jsx';
+// f import StyleCategory from './StyleCategory.jsx';
 // c import StyleSelector from './StyleSelector.jsx';
 // f import CartFormSize from './CartFormSize.jsx';
 // f import CartFormQuantity from './CartFormQuantity.jsx';
@@ -15,6 +16,7 @@ import PropTypes from 'prop-types';
 
 // import ShowcaseImage from './ShowcaseImage.jsx';
 import FeaturedProduct from './FeaturedProduct.jsx';
+import StylePrice from './StylePrice.jsx';
 import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
 import DescriptionBanner from './DescriptionBanner.jsx';
@@ -121,6 +123,10 @@ class OverviewContainer extends React.Component {
         <div className="showcaseSelection">
           <FeaturedProduct
             selectProductInfo={selectProductInfo}
+          />
+          <StylePrice
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
           />
           <StyleSelector
             selectStyleOptions={selectStyleOptions}

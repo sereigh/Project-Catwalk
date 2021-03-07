@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import StylePriceCategory from './StylePriceCategory.jsx';
-
 class StyleSelector extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
   // retrieveSelectStyleOptions={this.retrieveSelectStyleOptions} viaOvC
@@ -18,12 +16,12 @@ class StyleSelector extends React.Component {
     const { selectStyleOptions, selectStyleIndex } = this.props;
     console.log('StyleSelector_render selectStyleOptions:', selectStyleOptions);
     console.log('StyleSelector_render selectStyleIndex:', selectStyleIndex);
-    // <StylePriceCategory />
+    // <StylePrice />
+    // <StyleCategory />
     // [] [] [] []
     // [] [] [] []
     return(
       <div id="styleSelector">
-        {/* <StylePriceCategory /> */}
         {selectStyleOptions.map((styleEntry) => (
           <span key={styleEntry.style_id} className="styleEntryThumbnail">
             <img src={styleEntry.photos[0].thumbnail_url} alt="style entry thumbnail_url" />
