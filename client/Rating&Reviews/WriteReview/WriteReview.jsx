@@ -53,6 +53,7 @@ class WriteReview extends React.Component {
     this.handleNicknameChange = this.handleNicknameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.submitReview = this.submitReview.bind(this);
   }
 
   handleModal() {
@@ -158,7 +159,7 @@ class WriteReview extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {productId, characteristics, handleSort, selected} = this.props;
+    const {productId, characteristics} = this.props;
     const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, photos, nickname, email} = this.state;
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
     const characteristicNames = Object.keys(characteristics);
@@ -269,48 +270,59 @@ class WriteReview extends React.Component {
         submitting: true
       });
 
-      photos.forEach(photo => {
-        const reader = new FileReader();
-        reader.onload = readEvent => {
-          axios.post('/upload/photo', [readEvent.target.result])
-            .then(url => {
-              urls.push(url.data);
-              if (urls.length === photos.length) {
-                const submission = {
-                  product_id: productId,
-                  rating: overallRating,
-                  summary,
-                  body,
-                  recommend: recommend === 'yes',
-                  name: nickname,
-                  email,
-                  photos: urls,
-                  characteristics: characteristicsInfo
-                }
+      const submission = {
+        product_id: productId,
+        rating: overallRating,
+        summary,
+        body,
+        recommend: recommend === 'yes',
+        name: nickname,
+        email,
+        photos: urls,
+        characteristics: characteristicsInfo
+      }
 
-                axios
-                  .post('/reviews', submission)
-                  .then(results => {
-                    event.target.reset();
-                    this.setState(Object.assign(defaultState, {submitted: true}));
-                    handleSort(selected);
-                    console.log(results)
-                  })
-                  .catch(error => console.log(error))
-              }
-            })
-            .catch(error => {
-              console.log(error);
-              this.setState({
-                photoError: true,
-                errors: true,
-                submitting: false
+      if (photos.length === 0) {
+        this.submitReview(event, submission);
+      } else {
+        photos.forEach(photo => {
+          const reader = new FileReader();
+          reader.onload = readEvent => {
+            axios.post('/upload/photo', [readEvent.target.result])
+              .then(url => {
+                urls.push(url.data);
+                if (urls.length === photos.length) {
+                  submission.photos = urls;
+                  this.submitReview(event, submission);
+                }
               })
-            })
-        }
-        reader.readAsDataURL(photo);
-      });
+              .catch(error => {
+                console.log(error);
+                this.setState({
+                  photoError: true,
+                  errors: true,
+                  submitting: false
+                })
+              })
+          }
+          reader.readAsDataURL(photo);
+        });
+      }
     }
+  }
+
+  submitReview(event, submission) {
+    const {handleSort, selected} = this.props;
+
+    axios
+      .post('/reviews', submission)
+      .then(results => {
+        event.target.reset();
+        this.setState(Object.assign(defaultState, {submitted: true}));
+        handleSort(selected);
+        console.log(results)
+      })
+      .catch(error => console.log(error))
   }
 
   render() {

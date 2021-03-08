@@ -1,14 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PreviewImages = ({styles}) => (
-  <div>
-    <img src={styles[0].photos[0].url} alt='product' style={{width: '150px', height: '200px'}} />
+const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
+  <div
+    className="preview-image"
+    tabIndex="0"
+    role="button"
+    onClick={() => ( selectAnotherProduct(productId) )}
+    onKeyPress={() => ( selectAnotherProduct(productId) )}
+  >
+    <img
+      src={currentStyle[0].photos[0].url}
+      alt='product'
+      style={{width: '150px', height: '200px'}}
+    />
   </div>
 );
 
 PreviewImages.propTypes = {
-  styles: PropTypes.arrayOf(PropTypes.shape({
+  // styles: PropTypes.arrayOf(PropTypes.shape({
+  //   style_id: PropTypes.number,
+  //   name: PropTypes.string,
+  //   original_price: PropTypes.string,
+  //   sale_price: PropTypes.string,
+  //   default: PropTypes.bool,
+  //   photos: PropTypes.arrayOf(PropTypes.shape({
+  //     thumbnail_url: PropTypes.string,
+  //     url: PropTypes.string
+  //   }))
+  // })).isRequired,
+  currentStyle: PropTypes.arrayOf(PropTypes.shape({
     style_id: PropTypes.number,
     name: PropTypes.string,
     original_price: PropTypes.string,
@@ -18,11 +39,9 @@ PreviewImages.propTypes = {
       thumbnail_url: PropTypes.string,
       url: PropTypes.string
     }))
-  }))
-}
-
-PreviewImages.defaultProps = {
-  styles: []
+  })).isRequired,
+  selectAnotherProduct: PropTypes.func.isRequired,
+  productId: PropTypes.number.isRequired
 }
 
 export default PreviewImages;
