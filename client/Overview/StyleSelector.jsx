@@ -58,22 +58,24 @@ class StyleSelector extends React.Component {
             />
           </div>
         ))} */}
-        {selectStyleOptions.map((styleEntry, index) => (
-          <button
-            type="submit"
-            onClick={this.uponStyleThumbnailClick}
-            id={index}
-            key={styleEntry.name + styleEntry.style_id}
-            className="styleEntryThumbnail"
-          >
-            <img
-              src={styleEntry.photos[0].thumbnail_url}
-              // onClick={this.uponStyleThumbnailClick}
+        <div id="styleThumbnails">
+          {selectStyleOptions.map((styleEntry, index) => (
+            <button
+              type="submit"
+              onClick={this.uponStyleThumbnailClick}
               id={index}
-              alt={styleEntry.name + styleEntry.style_id}
-            />
-          </button>
-        ))}
+              key={styleEntry.name + styleEntry.style_id}
+              className="styleEntryThumbnail"
+            >
+              <img
+                src={styleEntry.photos[0].thumbnail_url}
+                // onClick={this.uponStyleThumbnailClick}
+                id={index}
+                alt={styleEntry.name + styleEntry.style_id}
+              />
+            </button>
+          ))}
+        </div>
       </div>
     );
   }
