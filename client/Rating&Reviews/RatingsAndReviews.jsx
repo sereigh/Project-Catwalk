@@ -9,27 +9,11 @@ class RatingsAndReviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviewData: {
-        product_id: '1',
-        ratings: {
-          1: '0',
-          2: '0',
-          3: '0',
-          4: '0',
-          5: '0'
-        },
-        recommended: {
-          false: '0',
-          true: '0'
-        },
-        characteristics: {}
-      },
       filters: [],
       reviews: [],
       filteredReviews: [],
       searchTerm: '',
       searchedReviews: [],
-      totalReviews: 1,
       sort: 'relevant'
     }
 
@@ -37,14 +21,14 @@ class RatingsAndReviews extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleFilter = this.handleFilter.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
-    this.retrieveReviewsAndData = this.retrieveReviewsAndData.bind(this);
     this.retrieveAllReviews = this.retrieveAllReviews.bind(this);
   }
 
   componentDidMount() {
-    const {productId} = this.props;
+    const {productId, totalReviews, retrieveReviewData} = this.props;
     const {sort} = this.state;
-    this.retrieveReviewsAndData(productId, sort);
+
+    retrieveReviewData(() => this.retrieveAllReviews(productId, sort, totalReviews));
   }
 
   handleSort(sort) {
@@ -156,22 +140,6 @@ class RatingsAndReviews extends React.Component {
     return filteredReviews;
   }
 
-  retrieveReviewsAndData(id, sort) {
-    axios
-      .get(`/reviewdata/${id}`)
-      .then((response) => {
-        const totalReviews = parseInt(response.data.recommended.false, 10) + parseInt(response.data.recommended.true, 10);
-        this.setState({
-          reviewData: response.data,
-          totalReviews
-        });
-        this.retrieveAllReviews(id, sort, totalReviews);
-      })
-      .catch((error) => {
-        console.log('Get review data failed...', error);
-      })
-  }
-
   retrieveAllReviews(id, sort, totalReviews) {
     axios
       .get(`/reviews/${id}/${sort}/${totalReviews}`)
@@ -188,8 +156,8 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const {productId, productName} = this.props;
-    const {reviewData, filteredReviews, searchTerm, searchedReviews, totalReviews, filters} = this.state;
+    const {productId, productName, reviewData, totalReviews} = this.props;
+    const {filteredReviews, searchTerm, searchedReviews, filters} = this.state;
 
     return (
       <div className='ratings-and-reviews-container'>
@@ -215,7 +183,49 @@ class RatingsAndReviews extends React.Component {
 
 RatingsAndReviews.propTypes = {
   productId: PropTypes.number.isRequired,
-  productName: PropTypes.string.isRequired
+  productName: PropTypes.string.isRequired,
+  reviewData: PropTypes.shape({
+    product_id: PropTypes.string,
+    ratings: PropTypes.shape({
+      1: PropTypes.string,
+      2: PropTypes.string,
+      3: PropTypes.string,
+      4: PropTypes.string,
+      5: PropTypes.string
+    }),
+    recommended: PropTypes.shape({
+      false: PropTypes.string,
+      true: PropTypes.string
+    }),
+    characteristics: PropTypes.shape({
+      Comfort: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Fit: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Length: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Quality: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Size: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Width: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+    }),
+  }).isRequired,
+  totalReviews: PropTypes.number.isRequired,
+  retrieveReviewData: PropTypes.func.isRequired
 }
 
 export default RatingsAndReviews;
