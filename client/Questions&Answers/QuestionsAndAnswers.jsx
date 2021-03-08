@@ -88,7 +88,6 @@ class QuestionsAndAnswers extends React.Component {
             placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
           />
         </form>
-
         {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} /> : <QAview questions={questions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} />}
       </div>
     );

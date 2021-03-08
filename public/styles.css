@@ -261,20 +261,22 @@
 .qa-modal-view {
   position: fixed;
   z-index: 1;
-  left: 10%;
-  top: 10%;
-  width: 80%;
-  height: 80%;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
   overflow: auto;
   background-color: white;
   border: thick solid black;
+  text-align: center;
 }
 .qa-modal-box {
   background-color: white;
   margin: 15% auto;
   padding: 20px;
   width: 40%;
-  text-align: center;
+  text-align: left;
+  margin: 2%;
 }
 /* Ratings and Reviews */
 .ratings-and-reviews-container {
