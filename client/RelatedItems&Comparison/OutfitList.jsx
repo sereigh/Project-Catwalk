@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ProductCard from './ProductCard.jsx';
+import PlusCard from './PlusCard.jsx';
 
 class OutfitList extends React.Component {
   constructor(props) {
@@ -14,9 +15,7 @@ class OutfitList extends React.Component {
     return (
       <div className="OutfitList">
         <div className="carousel">
-          <div>
-            AdditonCard
-          </div>
+          <PlusCard />
           <ProductCard productId={17762} selectProductInfo={selectProductInfo} selectAnotherProduct={selectAnotherProduct} />
         </div>
       </div>
