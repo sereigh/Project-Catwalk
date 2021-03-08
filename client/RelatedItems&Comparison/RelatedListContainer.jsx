@@ -10,7 +10,7 @@ const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnother
     **RelatedProductList**
     <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
     **OutfitList**
-    <OutfitList />
+    <OutfitList selectProductInfo={selectProductInfo} selectAnotherProduct={selectAnotherProduct} />
   </div>
 );
 

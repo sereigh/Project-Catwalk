@@ -18,24 +18,15 @@ class ProductCard extends React.Component {
       currentStyle: [dummyStyleData[0]],
       productInfo: {
         "id": 17810,
-        "campus": "hr-rfp",
-        "name": "Forrest Tank Top",
-        "slogan": "Id ut facere nesciunt aut omnis sapiente iste dolorum possimus.",
-        "description": "Delectus molestiae adipisci sint. At hic nulla voluptatem. Voluptates eos praesentium atque. Doloremque atque maxime deserunt fugit accusantium labore facere.",
-        "category": "Tank Top",
-        "default_price": "253.00",
-        "created_at": "2021-02-23T04:22:44.937Z",
-        "updated_at": "2021-02-23T04:22:44.937Z",
-        "features": [
-          {
-            "feature": "Green Leaf Certified",
-            "value": null
-          },
-          {
-            "feature": "Fabric",
-            "value": "\"Cashmere\""
-          }
-        ]
+        "campus": null,
+        "name": null,
+        "slogan": null,
+        "description": null,
+        "category": null,
+        "default_price": null,
+        "created_at": null,
+        "updated_at": null,
+        "features": []
       },
       averageRating: 5,
       commonFeatures: {}
@@ -123,7 +114,6 @@ class ProductCard extends React.Component {
       return sum + (rating * (i + 1));
     }, 0);
     const average = total / devider;
-    console.log(average);
     this.setState({
       averageRating: average
     })
@@ -178,12 +168,12 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { selectProductInfo, selectAnotherProduct } = this.props;
+    const { selectProductInfo, selectAnotherProduct, isRelated } = this.props;
     const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
     return (
       <div className="productCard-container">
         <div className="productCard">
-          <ActionButton toggleModalWindow={this.toggleModalWindow} />
+          <ActionButton toggleModalWindow={this.toggleModalWindow} isRelated={isRelated} />
           <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">
             <div>{productInfo.category}</div>
@@ -192,7 +182,7 @@ class ProductCard extends React.Component {
             <Stars rating={averageRating} />
           </div>
         </div>
-        <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />
+       {isRelated && <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />}
       </div>
     );
   }
@@ -207,7 +197,12 @@ ProductCard.propTypes = {
     }))
   }).isRequired,
   productId: PropTypes.number.isRequired,
-  selectAnotherProduct: PropTypes.func.isRequired
+  selectAnotherProduct: PropTypes.func.isRequired,
+  isRelated: PropTypes.bool
+}
+
+ProductCard.defaultProps = {
+  isRelated: false
 }
 
 export default ProductCard;
