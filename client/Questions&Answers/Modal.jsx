@@ -34,10 +34,10 @@ class Modal extends React.Component {
         {modalView && (
         <div>
           <title>Ask Your Question</title>
-          <subtitle>
-            About The Product
+
+          About The Product
+          <br />
             {productName}
-          </subtitle>
           <div>
             <div>
               <h1>HELLO</h1>
