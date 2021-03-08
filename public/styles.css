@@ -140,6 +140,16 @@
   margin: 2%;
   font-weight: bolder;
 }
+.qa-modal-view {
+  position: fixed;
+  z-index: 1;
+  left: center;
+  top: -1;
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  background-color: white;
+}
 /* Ratings and Reviews */
 .reviews-list {
   display: flex;

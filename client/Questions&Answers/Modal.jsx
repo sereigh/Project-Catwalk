@@ -32,7 +32,7 @@ class Modal extends React.Component {
           Add A Question +
         </div>
         {modalView && (
-        <div>
+        <div className="qa-modal-view">
           <title>Ask Your Question</title>
 
           About The Product
