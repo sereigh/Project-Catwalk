@@ -19,34 +19,64 @@ class ShowcaseImage extends React.Component {
   onClickRight() {
     const { galleryBrowsingIndex } = this.state
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] === undefined ) {
+    if ( !selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] ) {
       this.setState({
         galleryBrowsingIndex: 0
       })
     }
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] !== undefined ) {
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] ) {
       this.setState({
         galleryBrowsingIndex: galleryBrowsingIndex+1
       })
     }
-    console.log('ShowcaseImage_onClickRight error');
   }
+
+  // onClickRight() {
+  //   const { galleryBrowsingIndex } = this.state
+  //   const { selectStyleOptions, selectStyleIndex } = this.props;
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] === undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: 0
+  //     })
+  //   }
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] !== undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: galleryBrowsingIndex+1
+  //     })
+  //   }
+  //   console.log('ShowcaseImage_onClickRight error');
+  // }
 
   onClickLeft() {
     const { galleryBrowsingIndex } = this.state
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] === undefined ) {
+    if ( !selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] ) {
       this.setState({
         galleryBrowsingIndex: selectStyleOptions[selectStyleIndex].photos.length-1
       })
     }
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] !== undefined ) {
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] ) {
       this.setState({
         galleryBrowsingIndex: galleryBrowsingIndex-1
       })
     }
-    console.log('ShowcaseImage_onClickLeft error');
   }
+
+  // onClickLeft() {
+  //   const { galleryBrowsingIndex } = this.state
+  //   const { selectStyleOptions, selectStyleIndex } = this.props;
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] === undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: selectStyleOptions[selectStyleIndex].photos.length-1
+  //     })
+  //   }
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] !== undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: galleryBrowsingIndex-1
+  //     })
+  //   }
+  //   console.log('ShowcaseImage_onClickLeft error');
+  // }
 
   uponGalleryBrowsingClick() {
   // uponGalleryBrowsingClick(event) {
