@@ -69,10 +69,12 @@ class App extends React.Component {
 
   addNewOutfit(id) {
     const {userOutfits} = this.state;
-    userOutfits.push(id);
-    this.setState({
-      userOutfits
-    });
+    if (!userOutfits.includes(id)) {
+      userOutfits.push(id);
+      this.setState({
+        userOutfits
+      });
+    }
   }
 
   deleteOutfit(id) {
