@@ -10,7 +10,7 @@ const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
     onKeyPress={() => ( selectAnotherProduct(productId) )}
   >
     <img
-      src={currentStyle[0].photos[0].url}
+      src={currentStyle.photos[0].url}
       alt='product'
       style={{width: '100%', height: '200px'}}
     />

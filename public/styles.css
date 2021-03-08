@@ -30,14 +30,14 @@
 
 .productCard-container {
   margin: 3%;
-  width: 150px;
+  width: 200px;
 }
 
 .productCard {
   display: grid;
   /* flex-direction: column; */
   /* flex-wrap: wrap; */
-  width: 100%;
+  width: 200px;
   height: 100%;
   border: 1px solid white;
 }

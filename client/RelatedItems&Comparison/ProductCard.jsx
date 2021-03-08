@@ -15,7 +15,7 @@ class ProductCard extends React.Component {
     this.state = {
       window: 'none',
       productStyles: dummyStyleData,
-      currentStyle: [dummyStyleData[0]],
+      currentStyle: dummyStyleData[0],
       productInfo: {
         "id": 17810,
         "campus": null,
@@ -56,7 +56,7 @@ class ProductCard extends React.Component {
     const { productStyles } = this.state;
     const curr = productStyles.filter(style => style['default?']);
     this.setState({
-      currentStyle: curr
+      currentStyle: curr[0] || productStyles[0]
     });
   }
 
@@ -78,6 +78,7 @@ class ProductCard extends React.Component {
     axios
       .get(`/products/${productId}/styles`)
       .then((response) => {
+        console.log(response);
         this.setState({
           productStyles: response.data.results
         })
@@ -86,7 +87,7 @@ class ProductCard extends React.Component {
         this.setCurrentStyle();
       })
       .catch((error) => {
-        console.log('Get product style options failed...', error);
+        console.log('Get product style options failed...', error, this.state.productStyles);
       })
   }
 
@@ -123,14 +124,14 @@ class ProductCard extends React.Component {
 
   displayPrice() {
     const {currentStyle} = this.state;
-    if (currentStyle[0].sale_price) {
+    if (currentStyle.sale_price) {
       return (
         <div>
           <span className="sale-price">
-            {`$${currentStyle[0].sale_price}`}
+            {`$${currentStyle.sale_price}`}
           </span>
           <span className="original-price">
-            {`$${currentStyle[0].original_price}`}
+            {`$${currentStyle.original_price}`}
           </span>
         </div>
       );
@@ -138,7 +139,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <span>
-          {`$${currentStyle[0].original_price}`}
+          {`$${currentStyle.original_price}`}
         </span>
       </div>
     );

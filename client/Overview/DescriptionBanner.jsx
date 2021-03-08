@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const DescriptionBanner = (props) => {
-  // selectProductName={selectProductInfo.name} viaOvC
   const { selectProductInfo } = props;
+  // console.log('DescriptionBanner_return X:', X);
   return (
     <div className="descriptionBanner">
       <div id="descriptionAreaLeft">
@@ -17,16 +17,19 @@ const DescriptionBanner = (props) => {
       </div>
       <div id="descriptionAreaRight">
         <ul>
-          {/* {selectProductInfo.features.map(item => {
+          {selectProductInfo.features.map((item) => (
             <li key={item.feature} className="checkIt">
-              <h3>✓</h3>
-              <span>{item.feature}</span>
+              <span>
+                ✓
+                {item.feature}
+              </span>
             </li>
-          })} */}
+          ))}
         </ul>
       </div>
     </div>
   );
+
 }
 
 DescriptionBanner.propTypes = {
@@ -39,7 +42,12 @@ DescriptionBanner.propTypes = {
     "category": PropTypes.string,
     "default_price": PropTypes.string,
     "created_at": PropTypes.string,
-    "updated_at": PropTypes.string
+    "updated_at": PropTypes.string,
+    "features": PropTypes.arrayOf(PropTypes.shape({
+      "feature": PropTypes.string,
+      "value": PropTypes.string,
+      "map": PropTypes.node
+    }))
   }).isRequired
 }
 
