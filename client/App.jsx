@@ -126,12 +126,11 @@ class App extends React.Component {
     axios
       .get(`/reviewdata/${productId}`)
       .then((response) => {
-        const totalReviews = parseInt(response.data.recommended.false, 10) + parseInt(response.data.recommended.true, 10);
+        const totalReviews = (parseInt(response.data.recommended.false, 10) || 0) + (parseInt(response.data.recommended.true, 10) || 0);
         this.setState({
           reviewData: response.data,
           totalReviews
-        });
-        callback();
+        }, callback);
       })
       .catch((error) => {
         console.log(callback)

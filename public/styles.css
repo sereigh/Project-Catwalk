@@ -451,6 +451,11 @@
   color: red;
 }
 
+.review-buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .submit-form{
   width: 80vw;
   height: 80vh;

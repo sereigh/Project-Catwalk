@@ -25,15 +25,17 @@ class RatingsAndReviews extends React.Component {
   }
 
   componentDidMount() {
-    const {productId, totalReviews, retrieveReviewData} = this.props;
+    const {retrieveReviewData} = this.props;
     const {sort} = this.state;
 
-    retrieveReviewData(() => this.retrieveAllReviews(productId, sort, totalReviews));
+    retrieveReviewData(() => {
+      const {productId, totalReviews} = this.props;
+      this.retrieveAllReviews(productId, sort, totalReviews);
+    })
   }
 
   handleSort(sort) {
-    const {productId} = this.props;
-    const {totalReviews} = this.state;
+    const {productId, totalReviews} = this.props;
 
     this.retrieveAllReviews(productId, sort, totalReviews);
   }
