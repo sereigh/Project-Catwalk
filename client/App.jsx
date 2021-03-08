@@ -10,11 +10,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 17072,
+      productId: 17762,
       productList: [
         {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17072,
+      selectProductId: 17762,
       selectProductInfo: {
         "id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
@@ -104,7 +104,7 @@ class App extends React.Component {
     axios
       .get(`/reviewdata/${productId}`)
       .then((response) => {
-        const totalReviews = parseInt(response.data.recommended.false, 10) || 0 + parseInt(response.data.recommended.true, 10) || 0;
+        const totalReviews = (parseInt(response.data.recommended.false, 10) || 0) + (parseInt(response.data.recommended.true, 10) || 0);
         this.setState({
           reviewData: response.data,
           totalReviews
