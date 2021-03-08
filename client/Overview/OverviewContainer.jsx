@@ -14,7 +14,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-// import ShowcaseImage from './ShowcaseImage.jsx';
+import ShowcaseImage from './ShowcaseImage.jsx';
 import FeaturedProduct from './FeaturedProduct.jsx';
 import StyleSelector from './StyleSelector.jsx';
 // import CartInserter from './CartInserter.jsx';
@@ -122,7 +122,11 @@ class OverviewContainer extends React.Component {
         <br />
         <br />
         <div className="showcaseCarousel">
-          {/* <ShowcaseImage /> */}
+          <ShowcaseImage
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+            setSelectStyleIndex={this.setSelectStyleIndex}
+          />
         </div>
         <div className="showcaseSelection">
           <FeaturedProduct
