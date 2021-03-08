@@ -10,9 +10,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 17762,
+      productId: 17858,
       productList: [
-        {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       selectProductId: 17762,
       selectProductInfo: {
@@ -172,7 +172,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <QuestionsAndAnswers productId={productId} />
+        <QuestionsAndAnswers productId={productId} productName={productList[0].name} />
         <span>
           ---Ratings Reviews Widget---
           <br />

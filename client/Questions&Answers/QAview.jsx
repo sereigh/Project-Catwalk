@@ -4,39 +4,46 @@ import PropTypes from 'prop-types';
 
 import QuestionsList from './QuestionsList.jsx';
 import UserInput from './UserInput.jsx';
+import Modal from './Modal.jsx';
 
-class QAList extends React.Component {
+class QAview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       questionsView: false,
       answersView: false,
     };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleFeedback = this.handleFeedback.bind(this);
+    this.handleQuestionAdd = this.handleQuestionAdd.bind(this)
+    this.handleAnswerAdd = this.handleAnswerAdd.bind(this)
   }
 
-  // handleFeedback() {
 
-  //   console.log('feedback handled on top-level');
-  // }
+  handleAnswerAdd(e, input) {
+    const { postInput } = this.props
+    event.preventDefault()
+    postInput('answer', input)
+    console.log('handle answer add triggered')
+  }
 
-  // handleSubmit() {
-  //   console.log('handle submit triggered');
-  // }
-
+  handleQuestionAdd(e, input) {
+    const { postInput } = this.props
+    event.preventDefault()
+    postInput('question', input)
+    console.log('handle question add triggered')
+  }
 
   render() {
-    const { questions, postFeedback } = this.props
-    const { questionsView, answersView } = this.state;
+    const { questions, postFeedback, productName } = this.props
+    const { questionsView, answersView } = this.state
+    const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
-    const toggleView = (e) => {
+    const toggleAccordian = (e) => {
       if (e.target.name === 'answers') {
-        console.log('toggled answer view');
-        this.setState(() => {return { answersView: !answersView}})
+        console.log('toggled answer view', e.target.name)
+        this.setState(() => { return { answersView: !answersView } })
       }
-      this.setState(() => {return {questionsView: !questionsView}})
-    };
+      this.setState(() => { return { questionsView: !questionsView } })
+    }
 
     return (
       <>
@@ -44,28 +51,33 @@ class QAList extends React.Component {
         <QuestionsList
           questions={questions}
           questionsView={questionsView}
-              // handleFeedback={this.handleFeedback}
           answersView={answersView}
-          toggleView={toggleView}
+          toggleAccordian={toggleAccordian}
+          postFeedback={postFeedback}
         />
 )}
         <>
-          {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <UserInput text="ADD A QUESTION +" name="questions" handler={postFeedback} />
+          <UserInput text={questionText} name="questions" handler={toggleAccordian} />
+          <span className="UserInput">
+            <Modal handleQuestionAdd={this.handleQuestionAdd} productName={productName} />
+          </span>
         </>
       </>
     );
   }
 };
 
-QAList.propTypes = {
+QAview.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   postFeedback: PropTypes.func.isRequired,
+  postInput: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 }
 
-QAList.showDefault = {
+QAview.showDefault = {
   questionsView: false,
   answersView: false,
+  modalView: false,
 }
 
-export default QAList;
+export default QAview;

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getDate } from './Utility.jsx';
+
 function Feedback({ option, helpfulness, handler }) {
   return (
     <>
@@ -16,12 +18,14 @@ function Feedback({ option, helpfulness, handler }) {
 
 function TextLink({ option, handler }) {
 
-const options = ['Report', 'Reported', 'Add Comment', 'Yes', 'LOAD MORE ANSWERS'];
+const options = ['Report', 'Reported', 'Add Answer', 'Helpful'];
+
 
   return (
     <span
+      className="answersFeedback-right"
       name={option}
-      onClick={() => handler()}
+      onClick={(type, id, opt) => handler(type, id, opt)}
       onKeyPress={() => handler()}
       role="button"
       tabIndex={0}
@@ -35,16 +39,16 @@ const UserInfo = ({ name, seller, date }) => (
 
 
   (seller ? (
-    <>
+    <span className="answersFeedback-left">
       {`by ${name} - `}
       <strong>Seller</strong>
       ,
-      {` ${date}  |  `}
-    </>
+      {` ${getDate(date)}  |  `}
+    </span>
 ) : (
-  <>
-    {`by ${name} -  ${date}  |  `}
-  </>
+  <span className="answersFeedback-left">
+    {`by ${name} -  ${getDate(date)}  |  `}
+  </span>
 ))
 
 
