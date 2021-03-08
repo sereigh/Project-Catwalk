@@ -17,30 +17,32 @@ class ShowcaseImage extends React.Component {
   }
 
   onClickRight() {
-    const { galleryBrowsingIndex, galleryArray } = this.state
-    if ( galleryBrowsingIndex < galleryArray.length ) {
-      this.setState({
-        galleryBrowsingIndex: galleryBrowsingIndex+1
-      })
-    }
-    if ( galleryBrowsingIndex === galleryArray.length ) {
+    const { galleryBrowsingIndex } = this.state
+    const { selectStyleOptions, selectStyleIndex } = this.props;
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] === undefined ) {
       this.setState({
         galleryBrowsingIndex: 0
+      })
+    }
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] !== undefined ) {
+      this.setState({
+        galleryBrowsingIndex: galleryBrowsingIndex+1
       })
     }
     console.log('ShowcaseImage_onClickRight error');
   }
 
   onClickLeft() {
-    const { galleryBrowsingIndex, galleryArray } = this.state
-    if ( galleryBrowsingIndex <= galleryArray.length ) {
+    const { galleryBrowsingIndex } = this.state
+    const { selectStyleOptions, selectStyleIndex } = this.props;
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] === undefined ) {
       this.setState({
-        galleryBrowsingIndex: galleryBrowsingIndex-1
+        galleryBrowsingIndex: selectStyleOptions[selectStyleIndex].photos.length-1
       })
     }
-    if ( galleryBrowsingIndex === galleryArray.length ) {
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] !== undefined ) {
       this.setState({
-        galleryBrowsingIndex: galleryArray.length-1
+        galleryBrowsingIndex: galleryBrowsingIndex-1
       })
     }
     console.log('ShowcaseImage_onClickLeft error');
@@ -60,22 +62,25 @@ class ShowcaseImage extends React.Component {
     // const { galleryBrowsingIndex, uponGalleryBrowsingClick } = this.state;
     const { galleryBrowsingIndex } = this.state;
     let { galleryArray } = this.state;
-    console.log('ShowcaseImage_render galleryBrowsingIndex:', galleryBrowsingIndex);
-    console.log('ShowcaseImage_render galleryArray:', galleryArray);
+    // console.log('ShowcaseImage_render galleryBrowsingIndex:', galleryBrowsingIndex);
+    // console.log('ShowcaseImage_render galleryArray:', galleryArray);
+    // console.log('ShowcaseImage_render photos.length-1', selectStyleOptions[selectStyleIndex].photos.length-1);
     // [0] >   OR   < [#] >
-    galleryArray = selectStyleOptions[selectStyleIndex].photos.map((styleGallery, index) => (
-      <div
-        key={styleGallery.url}
-        name={index}
-        className="styleGalleryImage"
-      >
-        <img
-          src={styleGallery.url}
+    galleryArray = galleryArray.concat(
+      selectStyleOptions[selectStyleIndex].photos.map((styleGallery, index) => (
+        <div
+          key={styleGallery.url}
           name={index}
-          alt={styleGallery.url}
-        />
-      </div>
-    ));
+          className="styleGalleryImage"
+        >
+          <img
+            src={styleGallery.url}
+            name={index}
+            alt={styleGallery.url}
+          />
+        </div>
+      ))
+    )
     if ( galleryBrowsingIndex === 0 && galleryArray.length === 1 ) {
       return (
         <div id="showcaseGallery">
