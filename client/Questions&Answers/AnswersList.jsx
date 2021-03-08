@@ -21,15 +21,14 @@ function Answerslist(props) {
             <strong>A:  </strong>
             {answer.body}
           </span>
-
-          <div className="answersFeedback">
+          <span className="answersFeedback">
             <UserInfo name={answer.answerer_name} seller={false} date={answer.date} />
             {`   Helpful? `}
             <TextLink option={3} handler={() => postFeedback('answers', answer.id, 'helpful')} />
             {` (${answer.helpfulness})   |   `}
             {!answer.reported && <TextLink option={0} handler={() => postFeedback('answers', answer.id, 'report')} />}
             {answer.reported && <TextLink option={1} handler={() => console.error('This answer has already been reported')} />}
-          </div>
+          </span>
         </div>
       ))}
       {answers.length > 2 && (

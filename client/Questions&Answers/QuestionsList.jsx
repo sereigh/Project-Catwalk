@@ -41,7 +41,9 @@ function QuestionsList(props) {
             <div className="questionFeedback">
               <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback('questions', question.question_id, 'helpful')} />
             </div>
-            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleAccordian={() => toggleAccordian} postFeedback={postFeedback} />}
+            <span className="answers-per-question">
+              {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleAccordian={() => toggleAccordian} postFeedback={postFeedback} />}
+            </span>
           </div>
         ))}
       </div>

@@ -34,7 +34,7 @@
 .qaContainer {
   width: 90%;
   margin: auto;
-  max-height: 500px;
+  max-height: 800px;
   border: solid black thin;
 }
 .qaHeader {
@@ -61,7 +61,7 @@
 }
 .showDefault-questions {
   position: relative;
-  max-height: 250px;
+  max-height: 500px;
   margin: 2%;
   border: solid black thin;
 
@@ -69,13 +69,11 @@
 .showDefault-answers {
   min-height: 50px;
   margin: 2%;
-
-
 }
 .showDefault-questions div:nth-child(5n) {
   display: none;
 }
-.showDefault-answers div:nth-child(3n) {
+.showDefault-answers div:nth-child(2n) {
   display: none;
 }
 .showAll-questions {
@@ -143,12 +141,20 @@
 .qa-modal-view {
   position: fixed;
   z-index: 1;
-  left: center;
-  top: -1;
+  left: 25%;
+  top: 25%;
   width: 50%;
   height: 50%;
   overflow: auto;
   background-color: white;
+}
+.qa-modal-box {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  text-align: center;
 }
 /* Ratings and Reviews */
 .reviews-list {
