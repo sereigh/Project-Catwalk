@@ -17,16 +17,17 @@ class StyleSelector extends React.Component {
   // uponStyleThumbnailClick() {
   uponStyleThumbnailClick(event) {
     const { setSelectStyleIndex } = this.props;
-    console.log('StyleSelector_uponStyleThumbnailClick event.target.name:', event.target.name);
-    setSelectStyleIndex(event.target.name);
+    // console.log('StyleSelector_uponStyleThumbnailClick event.target.id:', event.target.id);
+    // console.log('StyleSelector_uponStyleThumbnailClick Number(event.target.id):', Number(event.target.id));
+    setSelectStyleIndex(event.target.id);
   }
 
   render() {
     // const { selectStyleOptions, selectStyleIndex, setSelectStyleIndex } = this.props;
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    const { uponStyleThumbnailClick } = this.state;
-    console.log('StyleSelector_render selectStyleOptions:', selectStyleOptions);
-    console.log('StyleSelector_render selectStyleIndex:', selectStyleIndex);
+    // const { uponStyleThumbnailClick } = this.state;
+    // console.log('StyleSelector_render selectStyleOptions:', selectStyleOptions);
+    // console.log('StyleSelector_render selectStyleIndex:', selectStyleIndex);
     // <StylePrice />
     // <StyleCategory />
     // [] [] [] []
@@ -41,17 +42,34 @@ class StyleSelector extends React.Component {
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
         />
+        {/* {selectStyleOptions.map((styleEntry, index) => (
+          <div
+            type="submit"
+            onClick={this.uponStyleThumbnailClick}
+            id={index}
+            className="styleEntryThumbnail"
+            key={styleEntry.name + styleEntry.style_id}
+          >
+            <img
+              src={styleEntry.photos[0].thumbnail_url}
+              // onClick={this.uponStyleThumbnailClick}
+              id={index}
+              alt={styleEntry.name + styleEntry.style_id}
+            />
+          </div>
+        ))} */}
         {selectStyleOptions.map((styleEntry, index) => (
           <button
             type="submit"
-            onClick={uponStyleThumbnailClick}
-            name={index}
+            onClick={this.uponStyleThumbnailClick}
+            id={index}
             key={styleEntry.name + styleEntry.style_id}
             className="styleEntryThumbnail"
           >
             <img
               src={styleEntry.photos[0].thumbnail_url}
-              name={index}
+              // onClick={this.uponStyleThumbnailClick}
+              id={index}
               alt={styleEntry.name + styleEntry.style_id}
             />
           </button>
