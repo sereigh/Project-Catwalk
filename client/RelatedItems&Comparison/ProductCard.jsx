@@ -15,27 +15,18 @@ class ProductCard extends React.Component {
     this.state = {
       window: 'none',
       productStyles: dummyStyleData,
-      currentStyle: [dummyStyleData[0]],
+      currentStyle: dummyStyleData[0],
       productInfo: {
         "id": 17810,
-        "campus": "hr-rfp",
-        "name": "Forrest Tank Top",
-        "slogan": "Id ut facere nesciunt aut omnis sapiente iste dolorum possimus.",
-        "description": "Delectus molestiae adipisci sint. At hic nulla voluptatem. Voluptates eos praesentium atque. Doloremque atque maxime deserunt fugit accusantium labore facere.",
-        "category": "Tank Top",
-        "default_price": "253.00",
-        "created_at": "2021-02-23T04:22:44.937Z",
-        "updated_at": "2021-02-23T04:22:44.937Z",
-        "features": [
-          {
-            "feature": "Green Leaf Certified",
-            "value": null
-          },
-          {
-            "feature": "Fabric",
-            "value": "\"Cashmere\""
-          }
-        ]
+        "campus": null,
+        "name": null,
+        "slogan": null,
+        "description": null,
+        "category": null,
+        "default_price": null,
+        "created_at": null,
+        "updated_at": null,
+        "features": []
       },
       averageRating: 5,
       commonFeatures: {}
@@ -65,7 +56,7 @@ class ProductCard extends React.Component {
     const { productStyles } = this.state;
     const curr = productStyles.filter(style => style['default?']);
     this.setState({
-      currentStyle: curr
+      currentStyle: curr[0] || productStyles[0]
     });
   }
 
@@ -87,6 +78,7 @@ class ProductCard extends React.Component {
     axios
       .get(`/products/${productId}/styles`)
       .then((response) => {
+        console.log(response);
         this.setState({
           productStyles: response.data.results
         })
@@ -100,7 +92,7 @@ class ProductCard extends React.Component {
   }
 
   retrieveProductInfo() {
-    const { productId } = this.props;
+    const { productId, isRelated } = this.props;
     axios
       .get(`/products/${productId}`)
       .then((response) => {
@@ -109,7 +101,9 @@ class ProductCard extends React.Component {
         })
       })
       .then(() => {
-        this.mergeFeatures();
+        if(isRelated) {
+          this.mergeFeatures();
+        }
       })
       .catch((error) => {
         console.log('Get product information failed...', error);
@@ -123,7 +117,6 @@ class ProductCard extends React.Component {
       return sum + (rating * (i + 1));
     }, 0);
     const average = total / devider;
-    console.log(average);
     this.setState({
       averageRating: average
     })
@@ -131,14 +124,14 @@ class ProductCard extends React.Component {
 
   displayPrice() {
     const {currentStyle} = this.state;
-    if (currentStyle[0].sale_price) {
+    if (currentStyle.sale_price) {
       return (
         <div>
           <span className="sale-price">
-            {`$${currentStyle[0].sale_price}`}
+            {`$${currentStyle.sale_price}`}
           </span>
           <span className="original-price">
-            {`$${currentStyle[0].original_price}`}
+            {`$${currentStyle.original_price}`}
           </span>
         </div>
       );
@@ -146,7 +139,7 @@ class ProductCard extends React.Component {
     return (
       <div>
         <span>
-          {`$${currentStyle[0].original_price}`}
+          {`$${currentStyle.original_price}`}
         </span>
       </div>
     );
@@ -178,12 +171,12 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { selectProductInfo, selectAnotherProduct } = this.props;
+    const { selectProductInfo, selectAnotherProduct, isRelated, deleteOutfit, productId } = this.props;
     const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
     return (
       <div className="productCard-container">
-        <div className="productCard" >
-          <ActionButton toggleModalWindow={this.toggleModalWindow} />
+        <div className="productCard">
+          <ActionButton toggleModalWindow={this.toggleModalWindow} deleteOutfit={deleteOutfit} isRelated={isRelated} productId={productId} />
           <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">
             <div>{productInfo.category}</div>
@@ -192,7 +185,7 @@ class ProductCard extends React.Component {
             <Stars rating={averageRating} />
           </div>
         </div>
-        <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />
+        {isRelated && <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />}
       </div>
     );
   }
@@ -205,9 +198,17 @@ ProductCard.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }).isRequired,
+  }),
   productId: PropTypes.number.isRequired,
-  selectAnotherProduct: PropTypes.func.isRequired
+  selectAnotherProduct: PropTypes.func.isRequired,
+  isRelated: PropTypes.bool,
+  deleteOutfit: PropTypes.func
+}
+
+ProductCard.defaultProps = {
+  selectProductInfo: {},
+  isRelated: false,
+  deleteOutfit: null
 }
 
 export default ProductCard;
