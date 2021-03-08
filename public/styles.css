@@ -261,18 +261,18 @@
 .qa-modal-view {
   position: fixed;
   z-index: 1;
-  left: 25%;
-  top: 25%;
-  width: 50%;
-  height: 50%;
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 80%;
   overflow: auto;
   background-color: white;
+  border: thick solid black;
 }
 .qa-modal-box {
   background-color: white;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 40%;
   text-align: center;
 }

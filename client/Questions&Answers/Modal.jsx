@@ -5,7 +5,12 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalView: false
+      modalView: false,
+      text: '',
+      nickname: '',
+      email: '',
+      question: false,
+      answer: false
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -14,7 +19,17 @@ class Modal extends React.Component {
   toggleModal() {
     const { modalView } = this.state
     console.log('toggle modal triggered')
+    if (event.target.name === 'question') {
+      this.setState({ question: true })
+    }
+    if (event.target.name === 'answer') {
+      this.setState({ answer: true })
+    }
     this.setState(() => {return { modalView: !modalView }})
+  }
+
+  submitForm() {
+    // set state to false for both q and a
   }
 
   render() {
@@ -33,15 +48,34 @@ class Modal extends React.Component {
         </div>
         {modalView && (
         <div className="qa-modal-view">
-          <title>Ask Your Question</title>
-
+          <h3>Ask Your Question</h3>
           About The Product
-          <br />
-            {productName}
+          {' '}
+          {productName}
           <div>
             <div>
-              <h1>HELLO</h1>
+              <form>
+              <input type="text"
+              name="nickname"
+              placeholder="Example: jackson11!"
+              >
+              </input>
+              For privacy reasons, do not use your full name or email address.
+              <input
+              type="text"
+              name="email"
+              placeholder="Example: someone@gmail.com"
+              >
+              </input>
+              For authentication reasons you will not be e-mailed.
+              <input
+              type="text-area"
+              name="text"
+              placeholder=type
+              >
+              </input>
               <button type="submit" onSubmit={handleQuestionAdd()}>Submit</button>
+              </form>
               <div
                 className="close-modal"
                 onClick={() => {this.toggleModal()}}
