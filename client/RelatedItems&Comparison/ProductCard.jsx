@@ -87,7 +87,7 @@ class ProductCard extends React.Component {
         this.setCurrentStyle();
       })
       .catch((error) => {
-        console.log('Get product style options failed...', error, this.state.productStyles);
+        console.log('Get product style options failed...', error);
       })
   }
 
