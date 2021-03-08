@@ -3,12 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RelatedProductList from './RelatedProductList.jsx';
+import OutfitList from './OutfitList.jsx';
 
 const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct}) => (
   <div className="list-container">
     **RelatedProductList**
     <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
-    <div>**OutfitList**</div>
+    **OutfitList**
+    <OutfitList />
   </div>
 );
 

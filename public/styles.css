@@ -51,7 +51,7 @@
 .rightArrow {
   position: relative;
   top: 50%;
-  visibility: hidden;
+  visibility: visible;
   opacity: .5;
   /* cursor: pointer; */
   z-index: 1;
