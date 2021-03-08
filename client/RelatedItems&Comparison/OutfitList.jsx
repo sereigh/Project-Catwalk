@@ -10,13 +10,15 @@ class OutfitList extends React.Component {
   }
 
   render() {
-    const {selectProductInfo, selectAnotherProduct} = this.props;
+    const {selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits} = this.props;
 
     return (
       <div className="OutfitList">
         <div className="carousel">
-          <PlusCard />
-          <ProductCard productId={17762} selectProductInfo={selectProductInfo} selectAnotherProduct={selectAnotherProduct} />
+          <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
+          {userOutfits.map(productId => (
+            <ProductCard key={productId} productId={productId} selectAnotherProduct={selectAnotherProduct} deleteOutfit={deleteOutfit} />
+          ))}
         </div>
       </div>
     )
@@ -25,14 +27,11 @@ class OutfitList extends React.Component {
 }
 
 OutfitList.propTypes = {
-  selectProductInfo: PropTypes.shape({
-    name: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string
-    }))
-  }).isRequired,
-  selectAnotherProduct: PropTypes.func.isRequired
+  selectProductId: PropTypes.number.isRequired,
+  selectAnotherProduct: PropTypes.func.isRequired,
+  addNewOutfit: PropTypes.func.isRequired,
+  deleteOutfit: PropTypes.func.isRequired,
+  userOutfits: PropTypes.arrayOf(PropTypes.number).isRequired
 }
 
 export default OutfitList;

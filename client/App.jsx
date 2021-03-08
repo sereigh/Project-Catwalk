@@ -18,11 +18,14 @@ class App extends React.Component {
       selectProductInfo: {
         "id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
-      }
+      },
+      userOutfits: []
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
     this.selectAnotherProduct = this.selectAnotherProduct.bind(this);
+    this.addNewOutfit = this.addNewOutfit.bind(this);
+    this.deleteOutfit = this.deleteOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -64,8 +67,25 @@ class App extends React.Component {
     this.retrieveSelectProductInfo();
   }
 
+  addNewOutfit(id) {
+    const {userOutfits} = this.state;
+    userOutfits.push(id);
+    this.setState({
+      userOutfits
+    });
+  }
+
+  deleteOutfit(id) {
+    const {userOutfits} = this.state;
+    const index = userOutfits.indexOf(id);
+    userOutfits.splice(index, 1);
+    this.setState({
+      userOutfits
+    });
+  }
+
   render() {
-    const { productId, productList, selectProductId, selectProductInfo } = this.state;
+    const { productId, productList, selectProductId, selectProductInfo, userOutfits } = this.state;
     // console.log('App_render productList:', productList);
     // console.log('App_render selectProductInfo:', selectProductInfo);
     return (
@@ -109,7 +129,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} />
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} addNewOutfit={this.addNewOutfit} deleteOutfit={this.deleteOutfit} userOutfits={userOutfits} />
         <span>
           ---Questions Answers Widget---
           <br />

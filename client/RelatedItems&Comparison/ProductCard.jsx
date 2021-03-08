@@ -91,7 +91,7 @@ class ProductCard extends React.Component {
   }
 
   retrieveProductInfo() {
-    const { productId } = this.props;
+    const { productId, isRelated } = this.props;
     axios
       .get(`/products/${productId}`)
       .then((response) => {
@@ -100,7 +100,9 @@ class ProductCard extends React.Component {
         })
       })
       .then(() => {
-        this.mergeFeatures();
+        if(isRelated) {
+          this.mergeFeatures();
+        }
       })
       .catch((error) => {
         console.log('Get product information failed...', error);
@@ -168,12 +170,12 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    const { selectProductInfo, selectAnotherProduct, isRelated } = this.props;
+    const { selectProductInfo, selectAnotherProduct, isRelated, deleteOutfit, productId } = this.props;
     const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
     return (
       <div className="productCard-container">
         <div className="productCard">
-          <ActionButton toggleModalWindow={this.toggleModalWindow} isRelated={isRelated} />
+          <ActionButton toggleModalWindow={this.toggleModalWindow} deleteOutfit={deleteOutfit} isRelated={isRelated} productId={productId} />
           <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">
             <div>{productInfo.category}</div>
@@ -195,14 +197,17 @@ ProductCard.propTypes = {
       feature: PropTypes.string,
       value: PropTypes.string
     }))
-  }).isRequired,
+  }),
   productId: PropTypes.number.isRequired,
   selectAnotherProduct: PropTypes.func.isRequired,
-  isRelated: PropTypes.bool
+  isRelated: PropTypes.bool,
+  deleteOutfit: PropTypes.func
 }
 
 ProductCard.defaultProps = {
-  isRelated: false
+  selectProductInfo: {},
+  isRelated: false,
+  deleteOutfit: null
 }
 
 export default ProductCard;
