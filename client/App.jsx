@@ -108,8 +108,7 @@ class App extends React.Component {
         this.setState({
           reviewData: response.data,
           totalReviews
-        });
-        callback();
+        }, callback);
       })
       .catch((error) => {
         console.log(callback)
