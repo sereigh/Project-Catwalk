@@ -9,10 +9,13 @@ const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
     onClick={() => ( selectAnotherProduct(productId) )}
     onKeyPress={() => ( selectAnotherProduct(productId) )}
   >
-    {currentStyle.photos[0].url && <img
-      src={currentStyle.photos[0].url}
-      alt='product'
-    />}
+    {currentStyle.photos[0].url &&
+    (
+      <img
+        src={currentStyle.photos[0].url}
+        alt='product'
+      />
+    )}
   </div>
 );
 
