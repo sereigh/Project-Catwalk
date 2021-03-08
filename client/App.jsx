@@ -14,11 +14,12 @@ class App extends React.Component {
       productList: [
         {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17763,
+      selectProductId: 17073,
       selectProductInfo: {
-        "id":17763,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":17073,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
-      }
+      },
+      productSpecificsLoaded: false
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
@@ -47,10 +48,26 @@ class App extends React.Component {
     const { selectProductId } = this.state;
     axios
       .get(`/products/${selectProductId}`)
+      // .then((response) => {
+      //   this.setState({
+      //     selectProductInfo: response.data
+      //   })
+      // })
       .then((response) => {
-        this.setState({
-          selectProductInfo: response.data
+        this.setState(() => {
+          return {
+            selectProductInfo: response.data
+          }
         })
+      })
+      .then(() => {
+        this.setState(
+          () => {
+            return {
+              productSpecificsLoaded: true
+            }
+          }
+        )
       })
       .catch((error) => {
         console.log('Get product data by id failed...', error);
@@ -65,9 +82,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { productId, productList, selectProductId, selectProductInfo } = this.state;
-    // console.log('App_render productList:', productList);
-    // console.log('App_render selectProductInfo:', selectProductInfo);
+    const { productId, productList, selectProductId, selectProductInfo, productSpecificsLoaded } = this.state;
+    // console.log('App_render X:', X);
+    if ( !productSpecificsLoaded ) {
+      return (
+        <div>LOADING</div>
+      );
+    }
     return (
       <div>
         <span>::: FEC-ELLIS :::</span>
