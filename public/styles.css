@@ -228,6 +228,7 @@
 }
 .showAll-answers {
   position: relative;
+  overflow: scroll;
   overflow-y: scroll;
   overflow-x: hide;
   max-height: 400px;

@@ -40,7 +40,7 @@ class QAview extends React.Component {
     const toggleAccordian = (e) => {
       if (e.target.name === 'answers') {
         console.log('toggled answer view', e.target.name)
-        this.setState(() => { return { answersView: !answersView } })
+        this.setState(() => { return { answersView: true } })
       }
       this.setState(() => { return { questionsView: !questionsView } })
     }

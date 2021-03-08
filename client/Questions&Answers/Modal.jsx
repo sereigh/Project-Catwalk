@@ -102,11 +102,12 @@ class Modal extends React.Component {
               <span className="answersFeedback-left">For authentication reasons you will not be e-mailed.</span>
               <br />
               <label htmlFor={areaText}>
+                {areaText}
                 <textarea
                   name="text"
                   maxLength="1000"
                   rows="5"
-                  cols="25"
+                  cols="20"
                   required="true"
                   onChange={this.handleFormChange()}
                 />
