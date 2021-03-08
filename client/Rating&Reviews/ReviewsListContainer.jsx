@@ -41,7 +41,7 @@ class ReviewsListContainer extends React.Component {
     return (
       <div className='reviews-container'>
         <span>
-          {`${totalReviews} reviews, sorted by:`}
+          {`${totalReviews || 0} reviews, sorted by:`}
           <select defaultValue={selected} onBlur={this.handleDropdownChange}>
             <option value='relevant'>relevance</option>
             <option value='helpful'>helpfulness</option>

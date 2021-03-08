@@ -13,9 +13,9 @@ const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => 
     + 3 * (reviewData.ratings['3'] ? parseInt(reviewData.ratings['3'], 10) : 0)
     + 4 * (reviewData.ratings['4'] ? parseInt(reviewData.ratings['4'], 10) : 0)
     + 5 * (reviewData.ratings['5'] ? parseInt(reviewData.ratings['5'], 10) : 0)
-  ) / totalReviews
+  ) / totalReviews || 0
 
-  const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100;
+  const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100 || 0;
 
   return (
     <div className='ratings-container'>
