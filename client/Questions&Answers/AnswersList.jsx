@@ -3,19 +3,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { TextLink, UserInfo } from './UserFeedback.jsx';
-import { setValue } from './Utility.jsx';
+// import { setValue } from './Utility.jsx';
 
 function Answerslist(props) {
 
   const { answers, answersView, toggleAccordian, postFeedback } = props;
   const view = (answersView ? "showAll-answers" : "showDefault-answers");
-  const link = setValue;
-  const toggleLink = (i, link) => { if (link === i){ link(link, i) } link(link, null)}
+  // const link = setValue;
+  // const toggleLink = (i, link) => { if (link === i){ link(link, i) } link(link, null)}
 
   return (
 
     <div className={view}>
-      {answers.map((answer, i) => (
+      {answers.map((answer) => (
         <div key={answer.answer_id} className="view-answer">
           <span className="answerText">
             <strong>A:  </strong>
@@ -29,9 +29,12 @@ function Answerslist(props) {
             <span className="answersFeedback-right">
               <p>
                 {`   Helpful? `}
-                {link === i ? <TextLink option={3} handler={(i) => toggleLink(i)} /> : 'Yes'}
+                <TextLink option={3} handler={() => postFeedback('answers', answer.id, 'helpful')} />
                 {` (${answer.helpfulness})   |   `}
-                {answer.reported ? 'Reported' : <TextLink option={0} handler={() => postFeedback('answers', answer.id, 'report')} />}
+
+                {!answer.reported && <TextLink option={0} handler={() => postFeedback('answers', answer.id, 'report')} />}
+
+                {answer.reported && <TextLink option={1} handler={() => console.error('This answer has already been reported')} />}
               </p>
             </span>
           </div>

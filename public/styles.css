@@ -61,19 +61,21 @@
 }
 .showDefault-questions {
   position: relative;
-  max-height: 380px;
+  max-height: 250px;
   margin: 2%;
-  overflow: hide;
   border: solid black thin;
+
 }
 .showDefault-answers {
-  max-height: 100px;
+  min-height: 50px;
   margin: 2%;
+
+
 }
 .showDefault-questions div:nth-child(5n) {
   display: none;
 }
-.showDefault-answers div:nth-child(2n) {
+.showDefault-answers div:nth-child(3n) {
   display: none;
 }
 .showAll-questions {
