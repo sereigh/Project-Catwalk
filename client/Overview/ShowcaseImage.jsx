@@ -8,36 +8,62 @@ class ShowcaseImage extends React.Component {
   constructor() {
     super();
     this.state = {
-      galleryBrowsingIndex: 0
+      galleryBrowsingIndex: 0,
+      galleryArray: []
     };
     this.onClickLeft = this.onClickLeft.bind(this);
     this.onClickRight = this.onClickRight.bind(this);
-    this.uponStyleGalleryClick = this.uponStyleGalleryClick.bind(this);
+    this.uponGalleryBrowsingClick = this.uponGalleryBrowsingClick.bind(this);
   }
 
   onClickRight() {
-
+    const { galleryBrowsingIndex, galleryArray } = this.state
+    if ( galleryBrowsingIndex < galleryArray.length ) {
+      this.setState({
+        galleryBrowsingIndex: galleryBrowsingIndex+1
+      })
+    }
+    if ( galleryBrowsingIndex === galleryArray.length ) {
+      this.setState({
+        galleryBrowsingIndex: 0
+      })
+    }
+    console.log('ShowcaseImage_onClickRight error');
   }
 
   onClickLeft() {
-
+    const { galleryBrowsingIndex, galleryArray } = this.state
+    if ( galleryBrowsingIndex <= galleryArray.length ) {
+      this.setState({
+        galleryBrowsingIndex: galleryBrowsingIndex-1
+      })
+    }
+    if ( galleryBrowsingIndex === galleryArray.length ) {
+      this.setState({
+        galleryBrowsingIndex: galleryArray.length-1
+      })
+    }
+    console.log('ShowcaseImage_onClickLeft error');
   }
 
-  uponStyleGalleryClick() {
-  // uponStyleGalleryClick(event) {
-  //   const { setSelectStyleIndex } = this.props;
-  //   console.log('ShowcaseImage_uponStyleGalleryClick event.target.name:', event.target.name);
-  //   setSelectStyleIndex(event.target.name);
+  uponGalleryBrowsingClick() {
+  // uponGalleryBrowsingClick(event) {
+  //   console.log('ShowcaseImage_uponGalleryBrowsingClick event.target.name:', event.target.name);
+  //   this.setState({
+  //     galleryBrowsingIndex: ____
+  //   })
   }
 
   render() {
     // const { selectStyleOptions, selectStyleIndex, setSelectStyleIndex } = this.props;
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    // const { galleryBrowsingIndex, uponStyleGalleryClick } = this.state;
+    // const { galleryBrowsingIndex, uponGalleryBrowsingClick } = this.state;
     const { galleryBrowsingIndex } = this.state;
+    let { galleryArray } = this.state;
     console.log('ShowcaseImage_render galleryBrowsingIndex:', galleryBrowsingIndex);
+    console.log('ShowcaseImage_render galleryArray:', galleryArray);
     // [0] >   OR   < [#] >
-    const galleryArray = selectStyleOptions[selectStyleIndex].photos.map((styleGallery, index) => (
+    galleryArray = selectStyleOptions[selectStyleIndex].photos.map((styleGallery, index) => (
       <div
         key={styleGallery.url}
         name={index}
@@ -63,6 +89,8 @@ class ShowcaseImage extends React.Component {
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
+            id="arrowRight"
+            onClick={this.onClickRight}
           >
             {"[  > ]"}
           </button>
@@ -75,6 +103,8 @@ class ShowcaseImage extends React.Component {
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
+            id="arrowLeft"
+            onClick={this.onClickLeft}
           >
             {"[ <  ]"}
           </button>
@@ -87,11 +117,15 @@ class ShowcaseImage extends React.Component {
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
+            id="arrowLeft"
+            onClick={this.onClickLeft}
           >
             {"[ <  ]"}
           </button>
           <button
             type="submit"
+            id="arrowRight"
+            onClick={this.onClickRight}
           >
             {"[  > ]"}
           </button>
