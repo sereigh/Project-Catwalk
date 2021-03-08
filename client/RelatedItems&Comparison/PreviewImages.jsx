@@ -9,11 +9,13 @@ const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
     onClick={() => ( selectAnotherProduct(productId) )}
     onKeyPress={() => ( selectAnotherProduct(productId) )}
   >
-    <img
-      src={currentStyle[0].photos[0].url}
-      alt='product'
-      style={{width: '150px', height: '200px'}}
-    />
+    {currentStyle.photos[0].url &&
+    (
+      <img
+        src={currentStyle.photos[0].url}
+        alt='product'
+      />
+    )}
   </div>
 );
 
@@ -29,7 +31,7 @@ PreviewImages.propTypes = {
   //     url: PropTypes.string
   //   }))
   // })).isRequired,
-  currentStyle: PropTypes.arrayOf(PropTypes.shape({
+  currentStyle: PropTypes.shape({
     style_id: PropTypes.number,
     name: PropTypes.string,
     original_price: PropTypes.string,
@@ -39,7 +41,7 @@ PreviewImages.propTypes = {
       thumbnail_url: PropTypes.string,
       url: PropTypes.string
     }))
-  })).isRequired,
+  }).isRequired,
   selectAnotherProduct: PropTypes.func.isRequired,
   productId: PropTypes.number.isRequired
 }

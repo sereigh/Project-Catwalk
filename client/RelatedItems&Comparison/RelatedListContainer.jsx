@@ -3,16 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RelatedProductList from './RelatedProductList.jsx';
+import OutfitList from './OutfitList.jsx';
 
-const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct}) => (
+const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits}) => (
   <div className="list-container">
-    <ul>
-      <div>
-        **RelatedProductList**
-        <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
-      </div>
-      <div>**OutfitList**</div>
-    </ul>
+    **RelatedProductList**
+    <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
+    **OutfitList**
+    <OutfitList selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} addNewOutfit={addNewOutfit} deleteOutfit={deleteOutfit} userOutfits={userOutfits} />
   </div>
 );
 
@@ -25,7 +23,10 @@ RelatedListContainer.propTypes = {
       value: PropTypes.string
     }))
   }).isRequired,
-  selectAnotherProduct: PropTypes.func.isRequired
+  selectAnotherProduct: PropTypes.func.isRequired,
+  addNewOutfit: PropTypes.func.isRequired,
+  deleteOutfit: PropTypes.func.isRequired,
+  userOutfits: PropTypes.arrayOf(PropTypes.number).isRequired
 };
 
 

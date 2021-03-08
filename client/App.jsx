@@ -19,6 +19,7 @@ class App extends React.Component {
         "id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       },
+      userOutfits: [],
       productSpecificsLoaded: false,
       reviewData: {
         product_id: '1',
@@ -40,6 +41,8 @@ class App extends React.Component {
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
     this.selectAnotherProduct = this.selectAnotherProduct.bind(this);
+    this.addNewOutfit = this.addNewOutfit.bind(this);
+    this.deleteOutfit = this.deleteOutfit.bind(this);
     this.retrieveReviewData = this.retrieveReviewData.bind(this);
   }
 
@@ -99,6 +102,25 @@ class App extends React.Component {
     this.retrieveSelectProductInfo();
   }
 
+  addNewOutfit(id) {
+    const {userOutfits} = this.state;
+    if (!userOutfits.includes(id)) {
+      userOutfits.push(id);
+      this.setState({
+        userOutfits
+      });
+    }
+  }
+
+  deleteOutfit(id) {
+    const {userOutfits} = this.state;
+    const index = userOutfits.indexOf(id);
+    userOutfits.splice(index, 1);
+    this.setState({
+      userOutfits
+    });
+  }
+
   retrieveReviewData(callback = () => {}) {
     const {productId} = this.state;
     axios
@@ -118,7 +140,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { productId, productList, selectProductId, selectProductInfo, productSpecificsLoaded, reviewData, totalReviews } = this.state;
+    const { productId, productList, selectProductId, selectProductInfo, productSpecificsLoaded, reviewData, totalReviews, userOutfits } = this.state;
     // console.log('App_render X:', X);
     if ( !productSpecificsLoaded ) {
       return (
@@ -166,7 +188,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} />
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} addNewOutfit={this.addNewOutfit} deleteOutfit={this.deleteOutfit} userOutfits={userOutfits} />
         <span>
           ---Questions Answers Widget---
           <br />
