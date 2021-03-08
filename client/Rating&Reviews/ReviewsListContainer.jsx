@@ -12,11 +12,11 @@ class ReviewsListContainer extends React.Component {
       minimized: true
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDropdownChange = this.handleDropdownChange.bind(this);
     this.handleView = this.handleView.bind(this);
   }
 
-  handleChange(event) {
+  handleDropdownChange(event) {
     const {handleSort} = this.props;
 
     handleSort(event.target.value);
@@ -35,23 +35,24 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {productId, productName, reviews, totalReviews, characteristics, handleSort} = this.props;
+    const {productId, productName, reviews, totalReviews, characteristics, handleSort, handleSearch} = this.props;
     const {selected, minimized} = this.state;
 
     return (
-      <>
+      <div className='reviews-container'>
         <span>
           {`${totalReviews} reviews, sorted by:`}
-          <select defaultValue={selected} onBlur={this.handleChange}>
+          <select defaultValue={selected} onBlur={this.handleDropdownChange}>
             <option value='relevant'>relevance</option>
             <option value='helpful'>helpfulness</option>
             <option value='newest'>newest</option>
           </select>
         </span>
+        <input type='text' placeholder='Search Reviews...' onChange={handleSearch} />
         <ReviewsList minimized={minimized} reviews={reviews} />
         <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
         <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
-      </>
+      </div>
     )
   }
 }
@@ -60,6 +61,7 @@ ReviewsListContainer.propTypes = {
   productId: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
+  handleSearch: PropTypes.func.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
     review_id: PropTypes.number,

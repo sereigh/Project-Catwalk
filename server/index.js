@@ -46,7 +46,7 @@ app.get('/products/:product_id/styles', (req, res) => {
 
 // Products GET /products/:product_id/related Returns the id's of products related to the product specified
 app.get('/products/:product_id/related', (req, res) => {
-  helpers.getRelatedProducts()
+  helpers.getRelatedProducts(req.params.product_id)
     .then((response) => {
       res.send(response.data)
     })
