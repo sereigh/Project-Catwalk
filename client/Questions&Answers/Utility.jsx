@@ -25,5 +25,13 @@ const findPath = (type, id, option) => {
   return path;
 }
 
+const dateFormat = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'utc'
+ }
+const getDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
+
 export default sortQuestions;
-export { sortAnswers, filterQuestions, setValue, findPath };
+export { sortAnswers, filterQuestions, setValue, findPath, getDate };
