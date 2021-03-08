@@ -182,7 +182,7 @@ class ProductCard extends React.Component {
     const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
     return (
       <div className="productCard-container">
-        <div className="productCard" >
+        <div className="productCard">
           <ActionButton toggleModalWindow={this.toggleModalWindow} />
           <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">

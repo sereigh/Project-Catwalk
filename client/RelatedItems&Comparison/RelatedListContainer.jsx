@@ -6,13 +6,9 @@ import RelatedProductList from './RelatedProductList.jsx';
 
 const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct}) => (
   <div className="list-container">
-    <ul>
-      <div>
-        **RelatedProductList**
-        <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
-      </div>
-      <div>**OutfitList**</div>
-    </ul>
+    **RelatedProductList**
+    <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
+    <div>**OutfitList**</div>
   </div>
 );
 
