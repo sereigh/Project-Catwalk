@@ -50,7 +50,8 @@ class ReviewsListContainer extends React.Component {
         </span>
         <input type='text' placeholder='Search Reviews...' onChange={handleSearch} />
         <ReviewsList minimized={minimized} reviews={reviews} />
-        <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
+        {totalReviews > 3 &&
+          <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>}
         <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
       </div>
     )
