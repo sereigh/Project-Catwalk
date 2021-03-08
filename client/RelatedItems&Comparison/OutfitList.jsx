@@ -13,7 +13,7 @@ class OutfitList extends React.Component {
     const {selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits} = this.props;
 
     return (
-      <div className="OutfitList">
+      <div className="outfitList">
         <div className="carousel">
           <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
           {userOutfits.map(productId => (
