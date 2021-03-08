@@ -14,21 +14,39 @@ class App extends React.Component {
       productList: [
         {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17073,
+      selectProductId: 17762,
       selectProductInfo: {
-        "id":17073,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       },
-      productSpecificsLoaded: false
+      productSpecificsLoaded: false,
+      reviewData: {
+        product_id: '1',
+        ratings: {
+          1: '0',
+          2: '0',
+          3: '0',
+          4: '0',
+          5: '0'
+        },
+        recommended: {
+          false: '0',
+          true: '0'
+        },
+        characteristics: {}
+      },
+      totalReviews: 1
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
     this.selectAnotherProduct = this.selectAnotherProduct.bind(this);
+    this.retrieveReviewData = this.retrieveReviewData.bind(this);
   }
 
   componentDidMount() {
     this.retrieveAllProductInfo();
     this.retrieveSelectProductInfo();
+    this.retrieveReviewData();
   }
 
   retrieveAllProductInfo() {
@@ -81,8 +99,26 @@ class App extends React.Component {
     this.retrieveSelectProductInfo();
   }
 
+  retrieveReviewData(callback = () => {}) {
+    const {productId} = this.state;
+    axios
+      .get(`/reviewdata/${productId}`)
+      .then((response) => {
+        const totalReviews = parseInt(response.data.recommended.false, 10) + parseInt(response.data.recommended.true, 10);
+        this.setState({
+          reviewData: response.data,
+          totalReviews
+        });
+        callback();
+      })
+      .catch((error) => {
+        console.log(callback)
+        console.log('Get review data failed...', error);
+      })
+  }
+
   render() {
-    const { productId, productList, selectProductId, selectProductInfo, productSpecificsLoaded } = this.state;
+    const { productId, productList, selectProductId, selectProductInfo, productSpecificsLoaded, reviewData, totalReviews } = this.state;
     // console.log('App_render X:', X);
     if ( !productSpecificsLoaded ) {
       return (
@@ -142,7 +178,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RatingsAndReviews productId={productId || 1} productName={productList[0].name || 'placeholder'} />
+        <RatingsAndReviews productId={productId || 1} productName={productList[0].name || 'placeholder'} reviewData={reviewData} totalReviews={totalReviews} retrieveReviewData={this.retrieveReviewData} />
       </div>
     );
   }
