@@ -22,6 +22,7 @@ class App extends React.Component {
     };
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
+    this.selectAnotherProduct = this.selectAnotherProduct.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +55,13 @@ class App extends React.Component {
       .catch((error) => {
         console.log('Get product data by id failed...', error);
       })
+  }
+
+  selectAnotherProduct(id) {
+    this.setState({
+      selectProductId: id
+    });
+    this.retrieveSelectProductInfo();
   }
 
   render() {
@@ -101,7 +109,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} />
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} />
         <span>
           ---Questions Answers Widget---
           <br />
