@@ -4,27 +4,16 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard.jsx';
 import PlusCard from './PlusCard.jsx';
 
-class OutfitList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits} = this.props;
-
-    return (
-      <div className="outfitList">
-        <div className="carousel">
-          <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
-          {userOutfits.map(productId => (
-            <ProductCard key={productId} productId={productId} selectAnotherProduct={selectAnotherProduct} deleteOutfit={deleteOutfit} />
-          ))}
-        </div>
-      </div>
-    )
-  }
-
-}
+const OutfitList = ({selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits}) => (
+  <div className="outfitList">
+    <div className="carousel">
+      <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
+      {userOutfits.map(productId => (
+        <ProductCard key={productId} productId={productId} selectAnotherProduct={selectAnotherProduct} deleteOutfit={deleteOutfit} />
+      ))}
+    </div>
+  </div>
+);
 
 OutfitList.propTypes = {
   selectProductId: PropTypes.number.isRequired,
