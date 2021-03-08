@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ActionButton = ({toggleModalWindow, isRelated}) => {
   const selectButton = () => (
     isRelated ? <button className="actionBtn" type="button" onClick={toggleModalWindow}>☆</button> :
-      <button className="actionBtn" type="button">X</button>
+    <button className="actionBtn" type="button">X</button>
   );
 
   return (

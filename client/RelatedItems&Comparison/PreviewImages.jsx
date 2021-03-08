@@ -12,7 +12,7 @@ const PreviewImages = ({currentStyle, selectAnotherProduct, productId}) => (
     <img
       src={currentStyle[0].photos[0].url}
       alt='product'
-      style={{width: '150px', height: '200px'}}
+      style={{width: '100%', height: '200px'}}
     />
   </div>
 );
