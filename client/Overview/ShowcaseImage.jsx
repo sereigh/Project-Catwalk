@@ -203,10 +203,10 @@ ShowcaseImage.propTypes = {
       "url": PropTypes.string
     })),
     "skus": PropTypes.objectOf(PropTypes.shape({
-      "547962": PropTypes.objectOf(PropTypes.shape({
-        "quantity": PropTypes.number,
-        "size": PropTypes.string
-      }))
+      // "547962": PropTypes.objectOf(PropTypes.shape({
+      "quantity": PropTypes.number,
+      "size": PropTypes.string
+      // }))
     }))
   })).isRequired,
   selectStyleIndex: PropTypes.number.isRequired,

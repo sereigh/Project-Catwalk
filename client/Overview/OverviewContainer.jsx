@@ -1,15 +1,3 @@
-// c import ShowcaseImage from './ShowcaseImage.jsx';
-// f import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
-// f import FeaturedReviewLink from './FeaturedReviewLink.jsx';
-// c import FeaturedProduct from './FeaturedProduct.jsx';
-// f import StylePrice from './StylePrice.jsx';
-// f import StyleCategory from './StyleCategory.jsx';
-// c import StyleSelector from './StyleSelector.jsx';
-// f import CartFormSize from './CartFormSize.jsx';
-// f import CartFormQuantity from './CartFormQuantity.jsx';
-// c import CartInserter from './CartInserter.jsx';
-// c import DescriptionBanner from './DescriptionBanner.jsx';
-
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -17,7 +5,7 @@ import PropTypes from 'prop-types';
 import ShowcaseImage from './ShowcaseImage.jsx';
 import FeaturedProduct from './FeaturedProduct.jsx';
 import StyleSelector from './StyleSelector.jsx';
-// import CartInserter from './CartInserter.jsx';
+import CartInserter from './CartInserter.jsx';
 import DescriptionBanner from './DescriptionBanner.jsx';
 
 class OverviewContainer extends React.Component {
@@ -61,9 +49,15 @@ class OverviewContainer extends React.Component {
   }
 
   setSelectStyleIndex(idValue) {
-    if ( idValue === undefined ) {
+    // if ( idValue === undefined ) {
+    if ( !idValue ) {
       idValue = 0
     }
+    // if ( !idValue ) {
+    //   this.setState({
+    //     selectStyleIndex: 0
+    //   })
+    // }
     this.setState({
       selectStyleIndex: Number(idValue)
     })
@@ -136,7 +130,10 @@ class OverviewContainer extends React.Component {
             selectStyleIndex={selectStyleIndex}
             setSelectStyleIndex={this.setSelectStyleIndex}
           />
-          {/* <CartInserter /> */}
+          <CartInserter
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+          />
         </div>
         <div className="showcaseDescription">
           <DescriptionBanner
