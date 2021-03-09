@@ -12,7 +12,9 @@ class RelatedProductList extends React.Component {
         17431
       ],
       leftCordinate: 0,
-      slideLength: 800
+      slideLength: 800,
+      leftArrowVisibility: 'hidden',
+      rightArrowVisibility: 'visible'
     }
     this.myRef = React.createRef();
     this.moveToNextCard = this.moveToNextCard.bind(this);
@@ -28,6 +30,8 @@ class RelatedProductList extends React.Component {
     if (selectProductId !== prevProps.selectProductId) {
       this.getRelatedProductIds();
     }
+    this.setRightArrowVisibility();
+    this.setLeftArrowVisibility();
   }
 
   getRelatedProductIds() {
@@ -45,6 +49,36 @@ class RelatedProductList extends React.Component {
       .catch((error) => {
         console.log('Get related items failed...', error);
       });
+  }
+
+  setLeftArrowVisibility() {
+    const {leftCordinate, leftArrowVisibility} = this.state;
+    if (leftCordinate < 0) {
+      if (leftArrowVisibility === 'hidden') {
+        this.setState({
+          leftArrowVisibility: 'visible'
+        });
+      }
+    } else if (leftArrowVisibility === 'visible') {
+      this.setState({
+        leftArrowVisibility: 'hidden'
+      });
+    }
+  }
+
+  setRightArrowVisibility() {
+    const {leftCordinate, slideLength, rightArrowVisibility} = this.state;
+    if (this.myRef.current.offsetWidth < slideLength + leftCordinate ) {
+      if (rightArrowVisibility === 'hidden') {
+        this.setState({
+          rightArrowVisibility: 'visible'
+        });
+      }
+    } else if (rightArrowVisibility === 'visible') {
+      this.setState({
+        rightArrowVisibility: 'hidden'
+      });
+    }
   }
 
   moveToNextCard() {
@@ -73,13 +107,12 @@ class RelatedProductList extends React.Component {
     });
   }
 
-
   render() {
-    const {relatedProductIds, leftCordinate, slideLength} = this.state;
+    const {relatedProductIds, leftCordinate, slideLength, leftArrowVisibility, rightArrowVisibility} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <button type="button" className="leftArrow" onClick={this.moveToPrevCard}>&lt;</button>
+        <button type="button" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard}>&lt;</button>
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
@@ -87,7 +120,7 @@ class RelatedProductList extends React.Component {
             ))}
           </div>
         </div>
-        <button type="button" className="rightArrow" onClick={this.moveToNextCard}>&gt;</button>
+        <button type="button" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard}>&gt;</button>
       </div>
     );
   }
