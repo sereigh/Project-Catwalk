@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
 import UserInput from './UserInput.jsx';
@@ -13,36 +12,31 @@ class QAview extends React.Component {
       questionsView: false,
       answersView: false,
     };
-    this.handleQuestionAdd = this.handleQuestionAdd.bind(this)
-    this.handleAnswerAdd = this.handleAnswerAdd.bind(this)
+    this.handleInput = this.handleInput.bind(this)
   }
 
-
-  handleAnswerAdd(e, input) {
+  handleInput(type, id, input) {
     const { postInput } = this.props
-    event.preventDefault()
-    postInput('answer', input)
-    console.log('handle answer add triggered')
-  }
-
-  handleQuestionAdd(e, input) {
-    const { postInput } = this.props
-    event.preventDefault()
-    postInput('question', input)
-    console.log('handle question add triggered')
+    // remove after answer modal
+    console.log('handle input triggered', type, id, input)
+    postInput(type, id, 'add', input)
   }
 
   render() {
-    const { questions, postFeedback, productName } = this.props
+    const { questions, productName, productId, postFeedback } = this.props
     const { questionsView, answersView } = this.state
     const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
     const toggleAccordian = (e) => {
       if (e.target.name === 'answers') {
         console.log('toggled answer view', e.target.name)
-        this.setState(() => { return { answersView: !answersView } })
+        this.setState(() => {
+          return { answersView: true }
+        })
       }
-      this.setState(() => { return { questionsView: !questionsView } })
+      this.setState(() =>
+      { return { questionsView: !questionsView }
+    })
     }
 
     return (
@@ -53,13 +47,22 @@ class QAview extends React.Component {
           questionsView={questionsView}
           answersView={answersView}
           toggleAccordian={toggleAccordian}
+          handleInput={this.handleInput}
           postFeedback={postFeedback}
+          productName={productName}
         />
 )}
         <>
           <UserInput text={questionText} name="questions" handler={toggleAccordian} />
           <span className="UserInput">
-            <Modal handleQuestionAdd={this.handleQuestionAdd} productName={productName} />
+            <Modal
+              handleInput={this.handleInput}
+              productName={productName}
+              id={productId}
+              buttonText="Add A Question +"
+              qText='About the Product: '
+              type="question"
+            />
           </span>
         </>
       </>
@@ -69,9 +72,10 @@ class QAview extends React.Component {
 
 QAview.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  postFeedback: PropTypes.func.isRequired,
   postInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
+  postFeedback: PropTypes.func.isRequired,
 }
 
 QAview.showDefault = {
