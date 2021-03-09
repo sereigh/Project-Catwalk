@@ -28,7 +28,7 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
 
 ComparisonModal.propTypes = {
   product1: PropTypes.string.isRequired,
-  product2: PropTypes.string.isRequired,
+  product2: PropTypes.string,
   commonFeatures: PropTypes.objectOf(PropTypes.shape({
     value1: PropTypes.string,
     value2: PropTypes.string
@@ -37,5 +37,8 @@ ComparisonModal.propTypes = {
   toggleModalWindow: PropTypes.func.isRequired
 }
 
+ComparisonModal.defaultProps = {
+  product2: null
+}
 
 export default ComparisonModal;

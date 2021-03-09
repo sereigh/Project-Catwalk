@@ -9,22 +9,12 @@ class RelatedProductList extends React.Component {
     super(props);
     this.state = {
       relatedProductIds: [
-        // 17219,
-        // 17810,
-        // 17174,
-        // 18027,
-        // 17419,
-        // 17286,
-        // 17797,
-        // 17126,
-        // 17876,
-        // 17479,
-        // 17255,
         17431
-      ]
-      // liEls: document.querySelectorAll('ul li'),
-      // index: 0
+      ],
+      leftCordinate: 0
     }
+    this.moveToNextCard = this.moveToNextCard.bind(this);
+    this.moveToPrevCard = this.moveToPrevCard.bind(this);
   }
 
   componentDidMount() {
@@ -52,28 +42,35 @@ class RelatedProductList extends React.Component {
       });
   }
 
-  // move (increase) {
-  //   const {index, liEls} = this.state;
-  //   this.setState({
-  //     index: Math.min(Math.max(index + increase,0), liEls.length-1)
-  //   });
-  //   liEls[index].scrollIntoView({behavior: 'smooth'});
-  // }
+  moveToNextCard() {
+    const {leftCordinate} = this.state;
+    this.setState({
+      leftCordinate: leftCordinate - 200
+    });
+  }
+
+  moveToPrevCard() {
+    const {leftCordinate} = this.state;
+    this.setState({
+      leftCordinate: leftCordinate + 200
+    });
+  }
+
 
   render() {
-    const {relatedProductIds} = this.state;
+    const {relatedProductIds, leftCordinate} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <button type="button" className="leftArrow">&lt;</button>
+        <button type="button" className="leftArrow" onClick={this.moveToPrevCard}>&lt;</button>
         <div className="carousel-container">
-          <div className="carousel">
+          <div className="carousel" style={{left: `${leftCordinate}px`}}>
             {relatedProductIds.map(productId => (
               <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
             ))}
           </div>
         </div>
-        <button type="button" className="rightArrow">&gt;</button>
+        <button type="button" className="rightArrow" onClick={this.moveToNextCard}>&gt;</button>
       </div>
     );
   }
