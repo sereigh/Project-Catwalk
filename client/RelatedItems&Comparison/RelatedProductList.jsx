@@ -14,6 +14,7 @@ class RelatedProductList extends React.Component {
       leftCordinate: 0,
       slideLength: 800
     }
+    this.myRef = React.createRef();
     this.moveToNextCard = this.moveToNextCard.bind(this);
     this.moveToPrevCard = this.moveToPrevCard.bind(this);
   }
@@ -48,7 +49,7 @@ class RelatedProductList extends React.Component {
 
   moveToNextCard() {
     const {leftCordinate, slideLength} = this.state;
-    if (leftCordinate > -1 * slideLength) {
+    if (this.myRef.current.offsetWidth < slideLength + leftCordinate ) {
       this.setState({
         leftCordinate: leftCordinate - 220
       });
@@ -79,7 +80,7 @@ class RelatedProductList extends React.Component {
     return (
       <div className="relatedProductList">
         <button type="button" className="leftArrow" onClick={this.moveToPrevCard}>&lt;</button>
-        <div className="carousel-container">
+        <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
               <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
