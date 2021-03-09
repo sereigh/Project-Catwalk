@@ -64,9 +64,9 @@ class RelatedProductList extends React.Component {
     const {relatedProductIds} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
-      <div className="relatedProductList">
+      <div className="carousel">
         <button type="button" className="leftArrow">&lt;</button>
-        <div className="carousel">
+        <div className="relatedProductList">
           {relatedProductIds.map(productId => (
             <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
           ))}
