@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Feedback from './UserFeedback.jsx';
+import Modal from './Modal.jsx';
+import TextLink from './UserFeedback.jsx';
+// import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import { sortAnswers } from './Utility.jsx'
+import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-
-  const { questions, questionsView, answersView, toggleAccordian, postFeedback } = props;
-
+  const { questions, questionsView, answersView, toggleAccordian, handleInput, postFeedback, productName } = props
   const [panel, setPanel] = useState(false);
+  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
 
   const togglePanel = (i) => {
     if (panel === i) {
-      return setPanel(null);
+      return setPanel(null)
     }
-    return setPanel(i);
+    return setPanel(i)
   };
-
-  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions");
 
   return (
     <div className={view}>
@@ -39,9 +38,33 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback('questions', question.question_id, 'helpful')} />
+              {`   Helpful? `}
+              <TextLink
+                option={1}
+                handler={() => postFeedback('questions', question.question_id, 'helpful')}
+              />
+              {` (${question.question_helpfulness})   |   `}
+              <Modal
+                handleInput={handleInput}
+                productName={productName}
+                id={question.question_id}
+                qText={question.question_body}
+                buttonText="Add Answer"
+                type="answer"
+              />
             </div>
-            {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleAccordian={() => toggleAccordian} postFeedback={postFeedback} />}
+            <span
+              className="answers-per-question"
+            >
+              {panel === i && (
+              <AnswersList
+                answers={sortAnswers(questions[i].answers)}
+                answersView={answersView}
+                toggleAccordian={() => toggleAccordian}
+                postFeedback={postFeedback}
+              />
+)}
+            </span>
           </div>
         ))}
       </div>
@@ -54,7 +77,9 @@ QuestionsList.propTypes = {
   questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleAccordian: PropTypes.func.isRequired,
-  postFeedback: PropTypes.func.isRequired
+  handleInput: PropTypes.func.isRequired,
+  postFeedback: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 }
 
 export default QuestionsList;

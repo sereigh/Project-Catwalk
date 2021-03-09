@@ -9,10 +9,10 @@ const setValue = (currentValue, newValue) => newValue;
 const findPath = (type, id, option) => {
   let path;
   if (option === 'add') {
-    if (type === 'questions') {
-      path = `/qa/questions/${id}`
-    } else {
+    if (type === 'answers') {
       path = `/qa/questions/${id}/answers`;
+    } else {
+      path = `/qa/questions/${id}`
     }
   } else {
     if (option === 'report') {
@@ -31,7 +31,8 @@ const dateFormat = {
   day: 'numeric',
   timeZone: 'utc'
  }
-const getDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
+
+const setDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
 
 export default sortQuestions;
-export { sortAnswers, filterQuestions, setValue, findPath, getDate };
+export { sortAnswers, filterQuestions, setValue, findPath, setDate };
