@@ -2,10 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import TextLink, { UserInfo } from './UserFeedback.jsx';
+import { index } from './Utility.jsx';
 
 function Answerslist(props) {
   const { answers, answersView, toggleAccordian, postFeedback } = props;
   const view = (answersView ? "showAll-answers" : "showDefault-answers");
+
+  const canClick = (id) => {
+    if (index.includes(id)) {
+      return console.error('Invalid action')
+    }
+      index.push(id)
+      return postFeedback('questions', id, 'helpful')
+  }
 
   return (
     <div className={view}>
@@ -26,7 +35,7 @@ function Answerslist(props) {
             {`   Helpful? `}
             <TextLink
               option={1}
-              handler={() => postFeedback('answers', answer.id, 'helpful')}
+              handler={() => canClick(answer.id)}
             />
             {` (${answer.helpfulness})   |   `}
             {!answer.reported && (

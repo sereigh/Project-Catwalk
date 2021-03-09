@@ -5,12 +5,22 @@ import Modal from './Modal.jsx';
 import TextLink from './UserFeedback.jsx';
 // import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import { sortAnswers } from './Utility.jsx';
+import { sortAnswers, index } from './Utility.jsx';
 
 function QuestionsList(props) {
   const { questions, questionsView, answersView, toggleAccordian, handleInput, postFeedback, productName } = props
   const [panel, setPanel] = useState(false);
   const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
+
+
+
+  const canClick = (id) => {
+    if (index.includes(id)) {
+      return console.error('Invalid action')
+    }
+      index.push(id)
+      return postFeedback('questions', id, 'helpful')
+  }
 
   const togglePanel = (i) => {
     if (panel === i) {
@@ -41,7 +51,7 @@ function QuestionsList(props) {
               {`   Helpful? `}
               <TextLink
                 option={1}
-                handler={() => postFeedback('questions', question.question_id, 'helpful')}
+                handler={() => canClick(question.question_id)}
               />
               {` (${question.question_helpfulness})   |   `}
               <Modal
