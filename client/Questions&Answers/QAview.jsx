@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
 import UserInput from './UserInput.jsx';
@@ -16,18 +15,11 @@ class QAview extends React.Component {
     this.handleInput = this.handleInput.bind(this)
   }
 
-
-  // handleAnswerAdd(e, input) {
-  //   const { postInput } = this.props
-  //   event.preventDefault()
-  //   postInput('answer', input)
-  //   console.log('handle answer add triggered')
-  // }
-
-  handleInput(type, input) {
+  handleInput(type, id, input) {
     const { postInput } = this.props
-    postInput(type, input)
-    console.log('handle question add triggered')
+    // remove after answer modal
+    console.log('handle input triggered', type, id, input)
+    postInput(type, id, 'add', input)
   }
 
   render() {
@@ -60,8 +52,9 @@ class QAview extends React.Component {
             <Modal
               handleInput={this.handleInput}
               productName={productName}
-              productId={productId}
-              type="question"
+              id={productId}
+              buttonText="Add A Question +"
+              type="questions"
             />
           </span>
         </>

@@ -51,9 +51,10 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   postInput(type, id, option, input) {
-    console.log('create a modal')
     const endPoint = findPath(type, id, option)
     axios.post(endPoint, input)
+    // remove after modal
+          .then((response) => console.log(response))
           .then(() => this.getAllQuestions())
           .catch((err) => err)
   }

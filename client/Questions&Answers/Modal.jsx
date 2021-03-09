@@ -9,17 +9,14 @@ class Modal extends React.Component {
       body: '',
       name: '',
       email: '',
+      photos: [],
       question: false,
       answer: false,
-
     }
     this.toggleModal = this.toggleModal.bind(this)
     this.submitForm = this.submitForm.bind(this)
     this.handleFormChange = this.handleFormChange.bind(this);
   }
-
-  // const buttonText, modaelView, handleQuestionAdd, toggleModal = props;
-
 
   handleFormChange(e) {
     this.setState({
@@ -27,8 +24,19 @@ class Modal extends React.Component {
       })
   }
 
-  submitForm() {
-    // set state to false for both q and a
+  submitForm(e) {
+    const {name, body, email, photos, type, answer } = this.state
+    const { handleInput, id } = this.props
+    const input = ( answer ? {name, body, email, photos} : {name, body, email, id})
+    e.preventDefault()
+    // remove after answers modal
+    console.log(input)
+    handleInput(type, id, input)
+    this.setState({
+      body: '',
+      name: '',
+      email: '',
+    })
   }
 
   toggleModal() {
@@ -50,13 +58,11 @@ class Modal extends React.Component {
 
   render() {
     const { modalView } = this.state
-    const { productName, handleInput } = this.props
-    //id
+    const { productName, buttonText } = this.props
     const areaText = 'yourQuestion';
     // (question ? 'Question: ' : 'Answer: ')
     return (
       <>
-        {/* make a open button component for modal to display differently for q and a */}
         <div
           className="open-modal"
           onClick={() => {this.toggleModal()}}
@@ -64,7 +70,7 @@ class Modal extends React.Component {
           tabIndex={0}
           onKeyPress={() => {this.toggleModal()}}
         >
-          Add A Question +
+          {buttonText}
         </div>
         {modalView && (
         <div className="qa-modal-view">
@@ -74,14 +80,15 @@ class Modal extends React.Component {
           {productName}
           {' '}
           <div className="modal-form">
-
-            <form>
+            <form
+              onSubmit={(e) => {this.submitForm(e)}}
+            >
               <span>
                 <label htmlFor="nickame">
                   Nickname:
                   <input
                     type="text"
-                    name="nickname"
+                    name="name"
                     placeholder="Example: jackson11!"
                     onChange={(e) => {this.handleFormChange(e)}}
                   />
@@ -106,12 +113,12 @@ class Modal extends React.Component {
                 {areaText}
                 <input
                   type="textarea"
-                  name="text"
+                  name="body"
                   onChange={(e) => {this.handleFormChange(e)}}
                 />
               </label>
               <br />
-              <button type="submit" onSubmit={() => console.log('nope')}>Submit</button>
+              <button type="submit">Submit</button>
               <br />
             </form>
           </div>
@@ -137,5 +144,6 @@ Modal.propTypes = {
   handleInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  // id: PropTypes.number.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 }
