@@ -11,7 +11,8 @@ class RelatedProductList extends React.Component {
       relatedProductIds: [
         17431
       ],
-      leftCordinate: 0
+      leftCordinate: 0,
+      slideLength: 800
     }
     this.moveToNextCard = this.moveToNextCard.bind(this);
     this.moveToPrevCard = this.moveToPrevCard.bind(this);
@@ -37,34 +38,49 @@ class RelatedProductList extends React.Component {
           relatedProductIds: response.data
         });
       })
+      .then(() => {
+        this.updateSlideLength();
+      })
       .catch((error) => {
         console.log('Get related items failed...', error);
       });
   }
 
   moveToNextCard() {
-    const {leftCordinate} = this.state;
-    this.setState({
-      leftCordinate: leftCordinate - 200
-    });
+    const {leftCordinate, slideLength} = this.state;
+    if (leftCordinate > -1 * slideLength) {
+      this.setState({
+        leftCordinate: leftCordinate - 220
+      });
+    }
   }
 
   moveToPrevCard() {
     const {leftCordinate} = this.state;
+    if (leftCordinate < 0) {
+      this.setState({
+        leftCordinate: leftCordinate + 220
+      });
+    }
+  }
+
+  updateSlideLength() {
+    const{relatedProductIds} = this.state;
+    const numberOfCards = relatedProductIds.length;
     this.setState({
-      leftCordinate: leftCordinate + 200
+      slideLength:  numberOfCards * 220
     });
   }
 
 
   render() {
-    const {relatedProductIds, leftCordinate} = this.state;
+    const {relatedProductIds, leftCordinate, slideLength} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
         <button type="button" className="leftArrow" onClick={this.moveToPrevCard}>&lt;</button>
         <div className="carousel-container">
-          <div className="carousel" style={{left: `${leftCordinate}px`}}>
+          <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
               <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
             ))}
