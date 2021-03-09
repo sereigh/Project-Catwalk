@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
+
 class ShowcaseImage extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
   // selectStyleIndex={selectStyleIndex} viaOvC
@@ -113,14 +115,16 @@ class ShowcaseImage extends React.Component {
     )
     if ( galleryBrowsingIndex === 0 && galleryArray.length === 1 ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
         </div>
       );
     }
     if ( galleryBrowsingIndex === 0 && galleryArray.length > 1 ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
@@ -134,7 +138,8 @@ class ShowcaseImage extends React.Component {
     }
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex === galleryArray.length ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
@@ -148,7 +153,8 @@ class ShowcaseImage extends React.Component {
     }
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex < galleryArray.length ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
