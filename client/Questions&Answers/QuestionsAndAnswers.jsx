@@ -7,7 +7,7 @@ import sortQuestions, {filterQuestions, findPath} from './Utility.jsx'
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       questions: [],
       inputValue: '',
@@ -17,7 +17,7 @@ class QuestionsAndAnswers extends React.Component {
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleSearchClear = this.handleSearchClear.bind(this)
     this.postFeedback = this.postFeedback.bind(this)
-    this.postInput = this.postInput.bind(this);
+    this.postInput = this.postInput.bind(this)
   }
 
   componentDidMount() {
@@ -44,7 +44,7 @@ class QuestionsAndAnswers extends React.Component {
 }
 
   handleSearchClear(e) {
-    const { inputValue } = this.state;
+    const { inputValue } = this.state
     e.preventDefault()
     if (!inputValue) {
       this.setState({

@@ -8,19 +8,22 @@ function Feedback({ option, helpfulness, handler }) {
     <>
       <p>
         {`   Helpful? `}
-        <TextLink option={3} handler={() => handler()} />
+        <TextLink
+          option={3}
+          handler={() => handler()}
+        />
         {` (${helpfulness})   |   `}
-        <TextLink option={option} handler={() => handler()} />
+        <TextLink
+          option={option}
+          handler={() => handler()}
+        />
       </p>
     </>
   )
 }
 
 function TextLink({ option, handler }) {
-
 const options = ['Report', 'Reported', 'Add Answer', 'Yes'];
-
-
   return (
     <span
       className="answersFeedback-right"
@@ -35,23 +38,12 @@ const options = ['Report', 'Reported', 'Add Answer', 'Yes'];
   )
 }
 
-const UserInfo = ({ name, seller, date }) => (
-
-
-  (seller ? (
-    <span className="answersFeedback-left">
-      {`by ${name} - `}
-      <strong>Seller</strong>
-      ,
-      {` ${setDate(date)}  |  `}
-    </span>
-) : (
-  <span className="answersFeedback-left">
+const UserInfo = ({ name, date }) => (
+  <span
+    className="answersFeedback-left"
+  >
     {`by ${name} -  ${setDate(date)}  |  `}
   </span>
-))
-
-
 )
 
 Feedback.propTypes = {
@@ -65,7 +57,6 @@ TextLink.propTypes = {
 }
 UserInfo.propTypes = {
   name: PropTypes.string.isRequired,
-  seller: PropTypes.bool.isRequired,
   date: PropTypes.string.isRequired,
   }
 

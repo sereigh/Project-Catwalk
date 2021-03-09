@@ -3,22 +3,19 @@ import PropTypes from 'prop-types';
 
 import Feedback from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import { sortAnswers } from './Utility.jsx'
+import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-
-  const { questions, questionsView, answersView, toggleAccordian, postFeedback } = props;
-
+  const { questions, questionsView, answersView, toggleAccordian, postFeedback } = props
   const [panel, setPanel] = useState(false);
+  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
 
   const togglePanel = (i) => {
     if (panel === i) {
-      return setPanel(null);
+      return setPanel(null)
     }
-    return setPanel(i);
+    return setPanel(i)
   };
-
-  const view = (questionsView === true ? "showAll-questions" : "showDefault-questions");
 
   return (
     <div className={view}>
@@ -39,10 +36,23 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <Feedback option={2} helpfulness={question.question_helpfulness} handler={() => postFeedback('questions', question.question_id, 'helpful')} />
+              <Feedback
+                option={2}
+                helpfulness={question.question_helpfulness}
+                handler={() => postFeedback('questions', question.question_id, 'helpful')}
+              />
             </div>
-            <span className="answers-per-question">
-              {panel === i && <AnswersList answers={sortAnswers(questions[i].answers)} answersView={answersView} toggleAccordian={() => toggleAccordian} postFeedback={postFeedback} />}
+            <span
+              className="answers-per-question"
+            >
+              {panel === i && (
+              <AnswersList
+                answers={sortAnswers(questions[i].answers)}
+                answersView={answersView}
+                toggleAccordian={() => toggleAccordian}
+                postFeedback={postFeedback}
+              />
+)}
             </span>
           </div>
         ))}
