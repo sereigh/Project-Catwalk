@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from './Modal.jsx';
-// import Feedback from './UserFeedback.jsx';
+import TextLink from './UserFeedback.jsx';
+// import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
@@ -37,11 +38,12 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              {/* <Feedback
-                option={2}
-                helpfulness={question.question_helpfulness}
+              {`   Helpful? `}
+              <TextLink
+                option={1}
                 handler={() => postFeedback('questions', question.question_id, 'helpful')}
-              /> */}
+              />
+              {` (${question.question_helpfulness})   |   `}
               <Modal
                 handleInput={handleInput}
                 productName={productName}

@@ -9,10 +9,10 @@ const setValue = (currentValue, newValue) => newValue;
 const findPath = (type, id, option) => {
   let path;
   if (option === 'add') {
-    if (type === 'questions') {
-      path = `/qa/questions/${id}`
-    } else {
+    if (type === 'answers') {
       path = `/qa/questions/${id}/answers`;
+    } else {
+      path = `/qa/questions/${id}`
     }
   } else {
     if (option === 'report') {

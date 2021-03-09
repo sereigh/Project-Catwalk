@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { TextLink, UserInfo } from './UserFeedback.jsx';
+import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
   const { answers, answersView, toggleAccordian, postFeedback } = props;
@@ -25,7 +25,7 @@ function Answerslist(props) {
             />
             {`   Helpful? `}
             <TextLink
-              option={3}
+              option={1}
               handler={() => postFeedback('answers', answer.id, 'helpful')}
             />
             {` (${answer.helpfulness})   |   `}

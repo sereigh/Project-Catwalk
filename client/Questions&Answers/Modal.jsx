@@ -25,18 +25,24 @@ class Modal extends React.Component {
   }
 
   submitForm(e) {
-    const {name, body, email, photos, type, answer } = this.state
+    const {name, body, email, photos, answer } = this.state
     const { handleInput, id } = this.props
     const input = ( answer ? {name, body, email, photos} : {name, body, email, id})
+
     e.preventDefault()
-    // remove after answers modal
-    console.log(input)
-    handleInput(type, id, input)
+
+    if (answer)
+    { handleInput('answers', id, input) }
+    else
+    { handleInput('questions', id, input) }
+
     this.setState({
       body: '',
       name: '',
       email: '',
+      photos: [],
     })
+    this.toggleModal()
   }
 
   toggleModal() {
