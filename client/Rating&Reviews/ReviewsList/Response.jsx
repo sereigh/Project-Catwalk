@@ -5,9 +5,9 @@ const Response = ({response}) => {
   if (response) {
     return (
       <>
-        <div>
-          Response:
-          {response}
+        <div className='review-response'>
+          <p><strong>Response:</strong></p>
+          <p>{response}</p>
         </div>
         <br />
       </>

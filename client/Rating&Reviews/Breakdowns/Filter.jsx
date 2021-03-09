@@ -11,7 +11,7 @@ const Filter = ({rating, ratingTotal, percent, handleFilter, filtered}) => (
     onClick={() => {handleFilter(rating)}}
     onKeyPress={() => {handleFilter(rating)}}
   >
-    <span>{`${rating} stars`}</span>
+    <span className='star-amounts'>{`${rating} stars`}</span>
     <RatingBar percent={percent} />
     <span className='review-total'>{ratingTotal}</span>
   </div>

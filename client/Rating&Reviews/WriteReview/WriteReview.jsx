@@ -334,7 +334,7 @@ class WriteReview extends React.Component {
 
     return (
       <>
-        <button type='button' onClick={this.handleModal}>Add A Review +</button>
+        <button type='button' onClick={this.handleModal}>ADD A REVIEW +</button>
         {
           showModal && (
             <>

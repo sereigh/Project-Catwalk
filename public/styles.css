@@ -286,16 +286,24 @@
 .ratings-and-reviews-container {
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin: auto;
+  width: 57%;
+  font-family: 'Inter', sans-serif;
+  font-size: small;
 }
 
 .ratings-container {
-  width: 25%;
-  border: 1px solid gray;
+  width: 31%;
+  padding-right: 5%;
 }
 
 .average-rating {
-  font-size: xx-large;
+  font-size: 40pt;
+  font-weight: bold;
+}
+
+.recommend-percent-message {
+  white-space: nowrap;
 }
 
 .filter-container {
@@ -305,6 +313,7 @@
 
 .filter {
   display: flex;
+  transition: color 200ms;
 }
 
 .filtered {
@@ -312,13 +321,35 @@
 }
 
 .filter:hover {
-  background-color: gray;
+  color: green;
   cursor: pointer;
+}
+
+.filter-hover {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateX(-100%);
+  width: 100%;
+  height: 10px;
+  background-color: transparent;
+  transition: background-color 200ms;
+}
+
+.filter:hover .filter-hover {
+  background-color: rgb(204, 255, 204);
+  outline: 1px solid green;
+  outline-offset: -1px;
+}
+
+.star-amounts {
+  text-decoration: underline;
 }
 
 .filter-message {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
   opacity: 1;
   transition: opacity 200ms;
 }
@@ -327,9 +358,19 @@
   text-align: center;
 }
 
-.reset-filters {
+.reset-filters, .expand-review, .review-buttons > button {
   width: 50%;
   margin: auto;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: bold;
+  transition: background-color 200ms;
+}
+
+.reset-filters:hover, .expand-review:hover, .review-buttons > button:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .invisible {
@@ -347,12 +388,28 @@
 .breakdown-descriptions {
   display: flex;
   justify-content: space-between;
+  font-size: smaller;
   transform: translateY(5px);
 }
 
 .reviews-container {
-  width: 50%;
-  border: 1px solid gray;
+  width: 66%;
+}
+
+.reviews-container > h3, .review > h3 {
+  margin-top: 0;
+  font-size: 10pt;
+}
+
+.review-dropdown {
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0;
+  font-weight: bold;
+}
+
+.review-dropdown option {
+  font-weight: bold;
 }
 
 .reviews-list {
@@ -361,8 +418,13 @@
 }
 
 .maximized {
-  height: 90vh;
-  overflow: scroll;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.maximized::-webkit-scrollbar {
+  width: 5px;
 }
 
 .review {
@@ -372,7 +434,19 @@
 }
 
 .name-and-date {
+  margin-top: 10px;
+  font-size: x-small;
   float: right;
+}
+
+.show-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.expand-review {
+  width: 20%;
 }
 
 .photo-container {
@@ -386,6 +460,12 @@
   max-width: 20%;
   max-height: 50px;
   object-fit: scale-down;
+  transition: transform 200ms;
+}
+
+.photo:hover {
+  transform: translate(-5%, -5%);
+  cursor: pointer;
 }
 
 .review-modal {
@@ -439,8 +519,31 @@
   }
 }
 
-.vote {
-  color: blue;
+.review-response {
+  padding: 2px;
+  padding-left: 6px;
+  background-color: lightgray;
+}
+
+.review-voting {
+  font-size: smaller;
+}
+
+.yes-vote, .no-vote, .reported-vote {
+  transition: color 200ms;
+  cursor: pointer;
+}
+
+.yes-vote:hover {
+  color: lightgreen;
+}
+
+.no-vote:hover {
+  color: rgb(255, 112, 112)
+}
+
+.reported-vote:hover {
+  color: rgb(155, 0, 0);
 }
 
 .yes {
@@ -451,9 +554,12 @@
   color: red;
 }
 
-.review-buttons {
-  display: flex;
-  justify-content: center;
+.review-buttons > button {
+  width: 25%;
+  margin-top: 5%;
+  margin-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 .submit-form{
