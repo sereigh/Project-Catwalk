@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import withClickTracker from '../SharedComponents/withClickTracker.jsx'
+
 import RatingsContainer from './RatingsContainer.jsx';
 import ReviewsListContainer from './ReviewsListContainer.jsx';
+
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -158,11 +161,17 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const {productId, productName, reviewData, totalReviews} = this.props;
+    const {productId, productName, reviewData, totalReviews, handleClickTrack} = this.props;
     const {filteredReviews, searchTerm, searchedReviews, filters} = this.state;
 
     return (
-      <div className='ratings-and-reviews-container'>
+      <div
+        className='ratings-and-reviews-container'
+        role='button'
+        tabIndex={0}
+        onClick={handleClickTrack}
+        onKeyPress={handleClickTrack}
+      >
         <RatingsContainer
           reviewData={reviewData}
           totalReviews={totalReviews}
@@ -227,7 +236,8 @@ RatingsAndReviews.propTypes = {
     }),
   }).isRequired,
   totalReviews: PropTypes.number.isRequired,
-  retrieveReviewData: PropTypes.func.isRequired
+  retrieveReviewData: PropTypes.func.isRequired,
+  handleClickTrack: PropTypes.func.isRequired
 }
 
-export default RatingsAndReviews;
+export default withClickTracker(RatingsAndReviews);
