@@ -11,15 +11,15 @@ const withClickTracker = WrappedComponent => {
         'time': event.timeStamp
       }
 
-      // axios
-      //   .post('/interactions', postBody)
-      //   .then(results => console.log(results))
-      //   .catch(error => console.log(error))
+      axios
+        .post('/interactions', postBody)
+        .then(results => console.log(results))
+        .catch(error => console.log(error))
     }
 
     render() {
       return (
-        <WrappedComponent {...props} handleClickTrack={this.handleClickTrack} />
+        <WrappedComponent {...this.props} handleClickTrack={this.handleClickTrack} />
       )
     }
   }
