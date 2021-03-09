@@ -41,7 +41,7 @@ class ReviewsListContainer extends React.Component {
     return (
       <div className='reviews-container'>
         <span>
-          {`${totalReviews} reviews, sorted by:`}
+          {`${totalReviews || 0} reviews, sorted by:`}
           <select defaultValue={selected} onBlur={this.handleDropdownChange}>
             <option value='relevant'>relevance</option>
             <option value='helpful'>helpfulness</option>
@@ -50,8 +50,11 @@ class ReviewsListContainer extends React.Component {
         </span>
         <input type='text' placeholder='Search Reviews...' onChange={handleSearch} />
         <ReviewsList minimized={minimized} reviews={reviews} />
-        <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
+        <div className='review-buttons'>
+          {totalReviews >= 3 &&
+            <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>}
+          <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
+        </div>
       </div>
     )
   }

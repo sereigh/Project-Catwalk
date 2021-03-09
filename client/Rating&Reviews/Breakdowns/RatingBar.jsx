@@ -11,7 +11,7 @@ const RatingBar = ({percent}) => {
 
   const filledStyle = {
     'zIndex': '1',
-    'width': `${percent}%`,
+    'width': `${percent || 0}%`,
     'height': '10px',
     'backgroundColor': 'green'
   }

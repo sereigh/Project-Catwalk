@@ -7,6 +7,7 @@ const EmailSubmit = ({handleEmailChange, emailError}) => (
     <input
       className='email'
       type='text'
+      placeholder='Example: jackson11@email.com'
       maxLength={60}
       onChange={handleEmailChange}
     />
