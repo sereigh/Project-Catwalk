@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import StylePrice from './StylePrice.jsx';
 import StyleCategory from './StyleCategory.jsx';
-import StyleOutbound from './StyleOutbound.jsx';
 
 class StyleSelector extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
@@ -43,7 +42,6 @@ class StyleSelector extends React.Component {
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
         />
-        <StyleOutbound />
         {/* {selectStyleOptions.map((styleEntry, index) => (
           <div
             type="submit"

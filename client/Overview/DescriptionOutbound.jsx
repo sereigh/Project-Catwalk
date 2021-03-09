@@ -1,8 +1,8 @@
 import React from 'react';
 
-function StyleOutbound() {
+function DescriptionOutbound() {
   return (
-    <div id="styleOutbound">
+    <div id="descriptionOutbound">
       <span id="shareToFacebook">
         <a href="https://www.Facebook.com">[ Fb ]</a>
       </span>
@@ -16,4 +16,4 @@ function StyleOutbound() {
   );
 }
 
-export default StyleOutbound;
+export default DescriptionOutbound;
