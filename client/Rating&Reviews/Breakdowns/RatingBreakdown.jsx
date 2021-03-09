@@ -24,13 +24,17 @@ const RatingBreakdown = ({ratings, totalReviews, handleFilter, filters}) => {
   return (
     <div className='filter-container'>
       <Filter rating={5} ratingTotal={ratings['5']} percent={fiveStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['5']} />
+      <br />
       <Filter rating={4} ratingTotal={ratings['4']} percent={fourStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['4']} />
+      <br />
       <Filter rating={3} ratingTotal={ratings['3']} percent={threeStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['3']} />
+      <br />
       <Filter rating={2} ratingTotal={ratings['2']} percent={twoStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['2']} />
+      <br />
       <Filter rating={1} ratingTotal={ratings['1']} percent={oneStarPercent} handleFilter={handleFilter} filtered={!!filtersObj['1']} />
       <div className={filters.length === 0 ? 'filter-message invisible' : 'filter-message'}>
         <span className='filter-message-text'>{filtersMessage}</span>
-        <button className='reset-filters' type='button' onClick={() => {handleFilter(0)}}>Reset Filters</button>
+        <button className='reset-filters' type='button' onClick={() => {handleFilter(0)}}>RESET FILTERS</button>
       </div>
     </div>
   )

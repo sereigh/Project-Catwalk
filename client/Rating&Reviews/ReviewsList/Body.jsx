@@ -34,18 +34,20 @@ class Body extends React.Component {
     if (!fullyVisible) {
       const bodyBeginning = body.substring(0, 250);
       return (
-        <>
+        <div className='show-review'>
           <p>{`${bodyBeginning  }...`}</p>
-          <button type='button' onClick={this.handleClick}>Show More</button>
-        </>
+          <button className='expand-review' type='button' onClick={this.handleClick}>SHOW MORE</button>
+          <br />
+        </div>
       )
     }
 
     return (
-      <>
+      <div className='show-review'>
         <p>{body}</p>
-        <button type='button' onClick={this.handleClick}>Show Less</button>
-      </>
+        <button className='expand-review' type='button' onClick={this.handleClick}>SHOW LESS</button>
+        <br />
+      </div>
     )
   }
 }

@@ -5,6 +5,7 @@ const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
   <span>
     <span className={ratingError ? 'error' : null}>{'*Overall Rating: '}</span>
     <span
+      className='star-submit'
       role='button'
       tabIndex={0}
       onClick={() => handleRate(1)}
@@ -13,6 +14,7 @@ const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
       {overallRating < 1 ? '☆' : '★'}
     </span>
     <span
+      className='star-submit'
       role='button'
       tabIndex={0}
       onClick={() => handleRate(2)}
@@ -21,6 +23,7 @@ const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
       {overallRating < 2 ? '☆' : '★'}
     </span>
     <span
+      className='star-submit'
       role='button'
       tabIndex={0}
       onClick={() => handleRate(3)}
@@ -29,6 +32,7 @@ const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
       {overallRating < 3 ? '☆' : '★'}
     </span>
     <span
+      className='star-submit'
       role='button'
       tabIndex={0}
       onClick={() => handleRate(4)}
@@ -37,6 +41,7 @@ const RatingSubmit = ({handleRate, overallRating, ratingError}) => (
       {overallRating < 4 ? '☆' : '★'}
     </span>
     <span
+      className='star-submit'
       role='button'
       tabIndex={0}
       onClick={() => handleRate(5)}

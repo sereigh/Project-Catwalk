@@ -23,7 +23,7 @@ const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => 
       <Stars rating={averageRating} />
       <br />
       <br />
-      <span>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
+      <span className='recommend-percent-message'>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
       <br />
       <br />
       <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} handleFilter={handleFilter} filters={filters} />

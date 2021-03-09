@@ -7,18 +7,14 @@ const Summary = ({summary}) => {
     const summaryEnding = summary.substring(60);
     return (
       <>
-        <div>{`Summary: ${summaryBeginning  }...`}</div>
-        <br />
+        <h3>{`${summaryBeginning  }...`}</h3>
         <div>{`...${summaryEnding}`}</div>
       </>
     )
   }
 
   return (
-    <div>
-      Summary:
-      {summary}
-    </div>
+    <h3>{summary}</h3>
   )
 }
 

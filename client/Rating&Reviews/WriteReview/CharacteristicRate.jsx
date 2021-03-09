@@ -36,9 +36,15 @@ class CharacteristicRate extends React.Component {
             <input type='radio' name={`${characteristic}-rating`} value='1' onChange={event => this.handleChange(event, characteristic)} />
             <span>{generateDescription(characteristic, 1)}</span>
           </div>
-          <input type='radio' name={`${characteristic}-rating`} value='2' onChange={event => this.handleChange(event, characteristic)} />
-          <input type='radio' name={`${characteristic}-rating`} value='3' onChange={event => this.handleChange(event, characteristic)} />
-          <input type='radio' name={`${characteristic}-rating`} value='4' onChange={event => this.handleChange(event, characteristic)} />
+          <div className='flex-column'>
+            <input type='radio' name={`${characteristic}-rating`} value='2' onChange={event => this.handleChange(event, characteristic)} />
+          </div>
+          <div className='flex-column'>
+            <input type='radio' name={`${characteristic}-rating`} value='3' onChange={event => this.handleChange(event, characteristic)} />
+          </div>
+          <div className='flex-column'>
+            <input type='radio' name={`${characteristic}-rating`} value='4' onChange={event => this.handleChange(event, characteristic)} />
+          </div>
           <div className='flex-column'>
             <input type='radio' name={`${characteristic}-rating`} value='5' onChange={event => this.handleChange(event, characteristic)} />
             <span>{generateDescription(characteristic, 5)}</span>
