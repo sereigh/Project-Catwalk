@@ -13,27 +13,25 @@ class QAview extends React.Component {
       questionsView: false,
       answersView: false,
     };
-    this.handleQuestionAdd = this.handleQuestionAdd.bind(this)
-    this.handleAnswerAdd = this.handleAnswerAdd.bind(this)
+    this.handleInput = this.handleInput.bind(this)
   }
 
 
-  handleAnswerAdd(e, input) {
-    const { postInput } = this.props
-    event.preventDefault()
-    postInput('answer', input)
-    console.log('handle answer add triggered')
-  }
+  // handleAnswerAdd(e, input) {
+  //   const { postInput } = this.props
+  //   event.preventDefault()
+  //   postInput('answer', input)
+  //   console.log('handle answer add triggered')
+  // }
 
-  handleQuestionAdd(e, input) {
+  handleInput(type, input) {
     const { postInput } = this.props
-    event.preventDefault()
-    postInput('question', input)
+    postInput(type, input)
     console.log('handle question add triggered')
   }
 
   render() {
-    const { questions, postFeedback, productName } = this.props
+    const { questions, postFeedback, productName, productId } = this.props
     const { questionsView, answersView } = this.state
     const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
@@ -59,7 +57,12 @@ class QAview extends React.Component {
         <>
           <UserInput text={questionText} name="questions" handler={toggleAccordian} />
           <span className="UserInput">
-            <Modal handleQuestionAdd={this.handleQuestionAdd} productName={productName} />
+            <Modal
+              handleInput={this.handleInput}
+              productName={productName}
+              productId={productId}
+              type="question"
+            />
           </span>
         </>
       </>
@@ -72,6 +75,7 @@ QAview.propTypes = {
   postFeedback: PropTypes.func.isRequired,
   postInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
 }
 
 QAview.showDefault = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getDate } from './Utility.jsx';
+import { setDate } from './Utility.jsx';
 
 function Feedback({ option, helpfulness, handler }) {
   return (
@@ -43,11 +43,11 @@ const UserInfo = ({ name, seller, date }) => (
       {`by ${name} - `}
       <strong>Seller</strong>
       ,
-      {` ${getDate(date)}  |  `}
+      {` ${setDate(date)}  |  `}
     </span>
 ) : (
   <span className="answersFeedback-left">
-    {`by ${name} -  ${getDate(date)}  |  `}
+    {`by ${name} -  ${setDate(date)}  |  `}
   </span>
 ))
 

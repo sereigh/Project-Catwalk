@@ -31,7 +31,7 @@ const dateFormat = {
   day: 'numeric',
   timeZone: 'utc'
  }
-const getDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
+const setDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
 
 export default sortQuestions;
-export { sortAnswers, filterQuestions, setValue, findPath, getDate };
+export { sortAnswers, filterQuestions, setValue, findPath, setDate };

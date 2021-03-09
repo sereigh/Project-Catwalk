@@ -73,7 +73,7 @@ class QuestionsAndAnswers extends React.Component {
   render() {
 
     const { questions, inputValue, filtered, filteredQuestions } = this.state
-    const { productName } = this.props
+    const { productName, productId } = this.props
 
     return (
       <div className="qaContainer">
@@ -88,7 +88,7 @@ class QuestionsAndAnswers extends React.Component {
             placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
           />
         </form>
-        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} /> : <QAview questions={questions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} />}
+        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} productId={productId} /> : <QAview questions={questions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} productId={productId} />}
       </div>
     );
   }
