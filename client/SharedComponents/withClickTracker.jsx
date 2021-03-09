@@ -4,11 +4,10 @@ import axios from 'axios';
 const withClickTracker = WrappedComponent => {
   class WithClickTracker extends React.Component {
     handleClickTrack(event) {
-      console.log(event, WrappedComponent);
       const postBody = {
-        'element': event.target,
-        'widget': 'hi',
-        'time': event.timeStamp
+        element: event.target.toString(),
+        widget: WrappedComponent.name,
+        time: new Date().toString()
       }
 
       axios
@@ -19,6 +18,7 @@ const withClickTracker = WrappedComponent => {
 
     render() {
       return (
+        // eslint-disable-next-line react/jsx-props-no-spreading
         <WrappedComponent {...this.props} handleClickTrack={this.handleClickTrack} />
       )
     }

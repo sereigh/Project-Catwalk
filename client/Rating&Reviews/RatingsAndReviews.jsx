@@ -165,10 +165,9 @@ class RatingsAndReviews extends React.Component {
     const {filteredReviews, searchTerm, searchedReviews, filters} = this.state;
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
         className='ratings-and-reviews-container'
-        role='button'
-        tabIndex={0}
         onClick={handleClickTrack}
         onKeyPress={handleClickTrack}
       >
