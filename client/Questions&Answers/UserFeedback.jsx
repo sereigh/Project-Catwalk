@@ -3,25 +3,6 @@ import PropTypes from 'prop-types';
 
 import { setDate } from './Utility.jsx';
 
-// function Feedback({ option, helpfulness, handler }) {
-//   return (
-//     <>
-//       <p>
-//         {`   Helpful? `}
-//         <TextLink
-//           option={3}
-//           handler={() => handler()}
-//         />
-//         {` (${helpfulness})   |   `}
-//         <TextLink
-//           option={option}
-//           handler={() => handler()}
-//         />
-//       </p>
-//     </>
-//   )
-// }
-
 function TextLink({ option, handler }) {
 const options = ['Report', 'Yes'];
   return (
@@ -46,11 +27,6 @@ const UserInfo = ({ name, date }) => (
   </span>
 )
 
-// Feedback.propTypes = {
-//   option: PropTypes.number.isRequired,
-//   helpfulness: PropTypes.number.isRequired,
-//   handler: PropTypes.func.isRequired,
-// }
 TextLink.propTypes = {
   option: PropTypes.number.isRequired,
   handler: PropTypes.func.isRequired,
