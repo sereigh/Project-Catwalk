@@ -27,26 +27,39 @@ class QuestionsAndAnswers extends React.Component {
   handleSearchChange(e) {
     e.preventDefault()
     const { inputValue, questions } = this.state
-    this.setState({ inputValue: e.target.value })
+    this.setState({
+      inputValue: e.target.value
+    })
 
     if (inputValue.length > 2) {
-      this.setState({ filteredQuestions: filterQuestions(questions, e.target.value), filtered: true })
+      this.setState({
+        filteredQuestions: filterQuestions(questions, e.target.value),
+        filtered: true
+      })
     } else {
-      this.setState({ filtered: false })
+      this.setState({
+        filtered: false
+      })
     }
 }
 
   handleSearchClear(e) {
     const { inputValue } = this.state;
     e.preventDefault()
-    if (!inputValue) { this.setState({ filtered: false }) }
+    if (!inputValue) {
+      this.setState({
+        filtered: false
+      })}
   }
 
   getAllQuestions() {
     const { productId } = this.props
     axios.get(`/qa/questions/${productId}`)
     .then((response) => sortQuestions(response))
-    .then((response) => {console.log(response[1].length, response[1]); this.setState({ questions: response[1] })})
+    .then((response) => {console.log(response[1].length, response[1]);
+      this.setState({
+        questions: response[1]
+      })})
     .catch((err) => err)
   }
 
@@ -61,7 +74,7 @@ class QuestionsAndAnswers extends React.Component {
 
   postFeedback(type, id, option) {
     // remove after modal
-    if (option === 'Add Comment') { this.postInput(type, id, option) }
+    if (option === 'add') { this.postInput(type, id, option) }
     if (type === 'reported') { this.getAllQuestions() }
     const endPoint = findPath(type, id, option)
     // remove after modal
@@ -78,7 +91,6 @@ class QuestionsAndAnswers extends React.Component {
 
     return (
       <div className="qaContainer">
-
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="search"
@@ -89,7 +101,23 @@ class QuestionsAndAnswers extends React.Component {
             placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
           />
         </form>
-        {filtered ? <QAview questions={filteredQuestions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} productId={productId} /> : <QAview questions={questions} postFeedback={this.postFeedback} postInput={this.postInput} productName={productName} productId={productId} />}
+        {filtered ? (
+          <QAview
+            questions={filteredQuestions}
+            postFeedback={this.postFeedback}
+            postInput={this.postInput}
+            productName={productName}
+            productId={productId}
+          />
+      ) : (
+        <QAview
+          questions={questions}
+          postFeedback={this.postFeedback}
+          postInput={this.postInput}
+          productName={productName}
+          productId={productId}
+        />
+)}
       </div>
     );
   }
