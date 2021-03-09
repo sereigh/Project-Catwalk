@@ -322,7 +322,7 @@
 }
 
 .recommend-percent-message {
-  white-space: nowrap;
+  font-size: smaller;
 }
 
 .filter-container {
