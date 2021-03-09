@@ -23,7 +23,7 @@ class QAview extends React.Component {
   }
 
   render() {
-    const { questions, postFeedback, productName, productId } = this.props
+    const { questions, productName, productId, postFeedback } = this.props
     const { questionsView, answersView } = this.state
     const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
@@ -47,7 +47,9 @@ class QAview extends React.Component {
           questionsView={questionsView}
           answersView={answersView}
           toggleAccordian={toggleAccordian}
+          handleInput={this.handleInput}
           postFeedback={postFeedback}
+          productName={productName}
         />
 )}
         <>
@@ -58,7 +60,8 @@ class QAview extends React.Component {
               productName={productName}
               id={productId}
               buttonText="Add A Question +"
-              type="questions"
+              qText='About the Product: '
+              type="question"
             />
           </span>
         </>
@@ -69,10 +72,10 @@ class QAview extends React.Component {
 
 QAview.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  postFeedback: PropTypes.func.isRequired,
   postInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
   productId: PropTypes.number.isRequired,
+  postFeedback: PropTypes.func.isRequired,
 }
 
 QAview.showDefault = {

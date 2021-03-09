@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Feedback from './UserFeedback.jsx';
+import Modal from './Modal.jsx';
+// import Feedback from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, questionsView, answersView, toggleAccordian, postFeedback } = props
+  const { questions, questionsView, answersView, toggleAccordian, handleInput, postFeedback, productName } = props
   const [panel, setPanel] = useState(false);
   const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
 
@@ -36,10 +37,18 @@ function QuestionsList(props) {
               {question.question_body}
             </div>
             <div className="questionFeedback">
-              <Feedback
+              {/* <Feedback
                 option={2}
                 helpfulness={question.question_helpfulness}
                 handler={() => postFeedback('questions', question.question_id, 'helpful')}
+              /> */}
+              <Modal
+                handleInput={handleInput}
+                productName={productName}
+                id={question.question_id}
+                qText={question.question_body}
+                buttonText="Add Answer"
+                type="answer"
               />
             </div>
             <span
@@ -66,7 +75,9 @@ QuestionsList.propTypes = {
   questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleAccordian: PropTypes.func.isRequired,
-  postFeedback: PropTypes.func.isRequired
+  handleInput: PropTypes.func.isRequired,
+  postFeedback: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
 }
 
 export default QuestionsList;

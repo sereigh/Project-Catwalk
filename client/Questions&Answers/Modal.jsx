@@ -57,10 +57,12 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { modalView } = this.state
-    const { productName, buttonText } = this.props
-    const areaText = 'yourQuestion';
-    // (question ? 'Question: ' : 'Answer: ')
+    const { modalView, question } = this.state
+    const { productName, buttonText, qText } = this.props
+    const areaText = (question ? 'Question: ' : 'Answer: ')
+    const titleText = (question ? 'Ask Your Question' : 'Submit Your Answer')
+    const subtitleText = (question? 'About the Product: ' : `${productName}: ${qText}`)
+
     return (
       <>
         <div
@@ -74,10 +76,10 @@ class Modal extends React.Component {
         </div>
         {modalView && (
         <div className="qa-modal-view">
-          <h3>Ask Your Question</h3>
-          About the Product:
+          <h3>{titleText}</h3>
+          {subtitleText}
           {' '}
-          {productName}
+          {question && productName}
           {' '}
           <div className="modal-form">
             <form
@@ -100,7 +102,7 @@ class Modal extends React.Component {
               <label htmlFor="email">
                 E-mail:
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   placeholder="Example: someone@gmail.com"
                   onChange={(e) => {this.handleFormChange(e)}}
@@ -146,4 +148,5 @@ Modal.propTypes = {
   type: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  qText: PropTypes.string.isRequired,
 }
