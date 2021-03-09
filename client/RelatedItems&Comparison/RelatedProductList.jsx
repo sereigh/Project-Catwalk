@@ -66,7 +66,7 @@ class RelatedProductList extends React.Component {
     return (
       <div className="relatedProductList">
         <button type="button" className="leftArrow">&lt;</button>
-        <div className="carousel" style={{display: 'flex', overflow: 'hidden'}}>
+        <div className="carousel">
           {relatedProductIds.map(productId => (
             <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
           ))}

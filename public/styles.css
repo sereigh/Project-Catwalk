@@ -26,6 +26,8 @@
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .productCard-container {
