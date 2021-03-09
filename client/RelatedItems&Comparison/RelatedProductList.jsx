@@ -64,24 +64,16 @@ class RelatedProductList extends React.Component {
     const {relatedProductIds} = this.state;
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
-      <div className="carousel">
+      <div className="relatedProductList">
         <button type="button" className="leftArrow">&lt;</button>
-        <div className="relatedProductList">
-          {relatedProductIds.map(productId => (
-            <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
-          ))}
+        <div className="carousel-container">
+          <div className="carousel">
+            {relatedProductIds.map(productId => (
+              <ProductCard key={productId} selectProductInfo={selectProductInfo} productId={productId} selectAnotherProduct={selectAnotherProduct} isRelated />
+            ))}
+          </div>
         </div>
-        <button
-          type="button"
-          className="rightArrow"
-          // onClick={(e) => {
-          //   e.preventDefault();
-          //   console.log('go right');
-          //   this.move(1);
-          // }}
-        >
-          &gt;
-        </button>
+        <button type="button" className="rightArrow">&gt;</button>
       </div>
     );
   }

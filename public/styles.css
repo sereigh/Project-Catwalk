@@ -7,22 +7,28 @@
   width: 75%;
 }
 
-.carousel {
+.relatedProductList {
   display: flex;
-  overflow: hidden;
-  /* position: relative; */
   width: 100%;
   height: 350px;
 }
 
 .outfitList {
   display: flex;
-  flex-wrap: nowrap;
   width: 100%;
   height: 350px;
 }
 
-.relatedProductList {
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
   display: flex;
   width: 100%;
   height: 100%;
@@ -47,7 +53,7 @@
   top: 50%;
   visibility: hidden;
   opacity: .5;
-  /* cursor: pointer; */
+  cursor: pointer;
   z-index: 1;
   right: -1.25rem;
   /* transform: translateY(-50%); */
@@ -61,7 +67,7 @@
   top: 50%;
   visibility: visible;
   opacity: .5;
-  /* cursor: pointer; */
+  cursor: pointer;
   z-index: 1;
   left: -1.25rem;
   /* transform: translateY(-50%); */
