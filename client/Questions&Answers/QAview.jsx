@@ -12,8 +12,8 @@ class QAview extends React.Component {
       questionsView: false,
       answersView: false,
       idList: [],
-      qIndex: 3,
-      aIndex: 1,
+      qIndex: 4,
+      aIndex: 2,
     };
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
@@ -35,22 +35,31 @@ class QAview extends React.Component {
         return postFeedback(type, id, option)
   }
 
+  toggleQindex(i) {
+    const { qIndex } = this.state
+
+    if (i > qIndex) {this.setState({
+      qIndex: i
+    })}
+  }
+
   render() {
     const { questions, productName, productId, postFeedback } = this.props
-    const { questionsView, answersView } = this.state
+    const { questionsView, answersView, qIndex, aIndex } = this.state
     const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
-    const toggleAccordian = (e) => {
-      if (e.target.name === 'answers') {
-        console.log('toggled answer view', e.target.name)
-        this.setState(() => {
-          return { answersView: true }
-        })
-      }
-      this.setState(() =>
-      { return { questionsView: !questionsView }
-    })
-    }
+    // const toggleAccordian = (e) => {
+    //   if (e.target.name === 'answers') {
+    //     console.log('toggled answer view', e.target.name)
+    //     this.setState(() => {
+    //       return { answersView: true }
+    //     })
+    //   }
+    //   this.setState(() =>
+    //   { return {
+    //     questionsView: !questionsView
+    //   }})
+    // }
 
     return (
       <>
@@ -59,15 +68,21 @@ class QAview extends React.Component {
           questions={questions}
           questionsView={questionsView}
           answersView={answersView}
-          toggleAccordian={toggleAccordian}
+          // toggleAccordian={toggleAccordian}
           handleInput={this.handleInput}
           postFeedback={postFeedback}
           productName={productName}
           canClick={this.canClick}
+          qIndex={qIndex}
+          aIndex={aIndex}
         />
 )}
         <>
-          <UserInput text={questionText} name="questions" handler={toggleAccordian} />
+          <UserInput
+            text={questionText}
+            name="questions"
+            // handler={toggleAccordian}
+          />
           <span className="UserInput">
             <Modal
               handleInput={this.handleInput}
