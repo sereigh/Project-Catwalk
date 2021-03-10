@@ -1,5 +1,3 @@
-const index = []
-
 const sortQuestions = (response) => Object.values(response.data).sort((a, b) => b.question_helpfulness - a.question_helpfulness);
 
 const sortAnswers = (data) => Object.values(data).sort((a, b) => b.helpfulness - a.helpfulness);
@@ -37,4 +35,4 @@ const dateFormat = {
 const setDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
 
 export default sortQuestions;
-export { sortAnswers, filterQuestions, setValue, findPath, setDate, index };
+export { sortAnswers, filterQuestions, setValue, findPath, setDate };

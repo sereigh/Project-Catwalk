@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { setDate } from './Utility.jsx';
 
 function TextLink({ option, handler }) {
-const options = ['Report', 'Yes'];
+const options = ['Report', 'Yes']
   return (
     <span
       className="answersFeedback-right"

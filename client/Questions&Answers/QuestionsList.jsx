@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Modal from './Modal.jsx';
 import TextLink from './UserFeedback.jsx';
-// import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 

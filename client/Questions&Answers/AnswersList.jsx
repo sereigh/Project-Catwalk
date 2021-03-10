@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, answersView, toggleAccordian, canClick } = props;
-  const view = (answersView ? "showAll-answers" : "showDefault-answers");
+  const { answers, answersView, toggleAccordian, canClick } = props
+  const view = (answersView ? "showAll-answers" : "showDefault-answers")
 
   return (
     <div className={view}>
