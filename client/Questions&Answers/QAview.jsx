@@ -1,42 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 
 import QuestionsList from './QuestionsList.jsx';
 import UserInput from './UserInput.jsx';
+import Modal from './Modal.jsx';
 
-class QAList extends React.Component {
+class QAview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       questionsView: false,
       answersView: false,
     };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleFeedback = this.handleFeedback.bind(this);
+    this.handleInput = this.handleInput.bind(this)
   }
 
-  // handleFeedback() {
-
-  //   console.log('feedback handled on top-level');
-  // }
-
-  // handleSubmit() {
-  //   console.log('handle submit triggered');
-  // }
-
+  handleInput(type, id, input) {
+    const { postInput } = this.props
+    // remove after answer modal
+    console.log('handle input triggered', type, id, input)
+    postInput(type, id, 'add', input)
+  }
 
   render() {
-    const { questions, postFeedback } = this.props
-    const { questionsView, answersView } = this.state;
+    const { questions, productName, productId, postFeedback } = this.props
+    const { questionsView, answersView } = this.state
+    const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
-    const toggleView = (e) => {
+    const toggleAccordian = (e) => {
       if (e.target.name === 'answers') {
-        console.log('toggled answer view');
-        this.setState(() => {return { answersView: !answersView}})
+        console.log('toggled answer view', e.target.name)
+        this.setState(() => {
+          return { answersView: true }
+        })
       }
-      this.setState(() => {return {questionsView: !questionsView}})
-    };
+      this.setState(() =>
+      { return { questionsView: !questionsView }
+    })
+    }
 
     return (
       <>
@@ -44,28 +45,43 @@ class QAList extends React.Component {
         <QuestionsList
           questions={questions}
           questionsView={questionsView}
-              // handleFeedback={this.handleFeedback}
           answersView={answersView}
-          toggleView={toggleView}
+          toggleAccordian={toggleAccordian}
+          handleInput={this.handleInput}
+          postFeedback={postFeedback}
+          productName={productName}
         />
 )}
         <>
-          {questions.length < 4 && <UserInput text="MORE ANSWERED QUESTIONS" name="questions" handler={toggleView} />}
-          <UserInput text="ADD A QUESTION +" name="questions" handler={postFeedback} />
+          <UserInput text={questionText} name="questions" handler={toggleAccordian} />
+          <span className="UserInput">
+            <Modal
+              handleInput={this.handleInput}
+              productName={productName}
+              id={productId}
+              buttonText="Add A Question +"
+              qText='About the Product: '
+              type="question"
+            />
+          </span>
         </>
       </>
     );
   }
 };
 
-QAList.propTypes = {
+QAview.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  postInput: PropTypes.func.isRequired,
+  productName: PropTypes.string.isRequired,
+  productId: PropTypes.number.isRequired,
   postFeedback: PropTypes.func.isRequired,
 }
 
-QAList.showDefault = {
+QAview.showDefault = {
   questionsView: false,
   answersView: false,
+  modalView: false,
 }
 
-export default QAList;
+export default QAview;

@@ -11,6 +11,7 @@ const Stars = ({rating}) => {
   const starStyle = {
     'position': 'absolute',
     'left': '0',
+    'fontSize': 'large',
     'backgroundImage': `-webkit-linear-gradient(0deg, black ${percent}%, transparent ${percent}% 100%)`,
     'backgroundClip': 'text',
     'WebkitBackgroundClip': 'text',
@@ -19,7 +20,8 @@ const Stars = ({rating}) => {
 
   const emptyStarStyle = {
     'position': 'absolute',
-    'left': '0'
+    'left': '0',
+    'font-size': 'large'
   }
 
   return (

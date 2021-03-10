@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       productId: 17762,
       productList: [
-        {"id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       selectProductId: 17762,
       selectProductInfo: {
@@ -126,15 +126,13 @@ class App extends React.Component {
     axios
       .get(`/reviewdata/${productId}`)
       .then((response) => {
-        const totalReviews = parseInt(response.data.recommended.false, 10) + parseInt(response.data.recommended.true, 10);
+        const totalReviews = (parseInt(response.data.recommended.false, 10) || 0) + (parseInt(response.data.recommended.true, 10) || 0);
         this.setState({
           reviewData: response.data,
           totalReviews
-        });
-        callback();
+        }, callback);
       })
       .catch((error) => {
-        console.log(callback)
         console.log('Get review data failed...', error);
       })
   }
@@ -194,7 +192,7 @@ class App extends React.Component {
           <br />
           <br />
         </span>
-        <QuestionsAndAnswers productId={productId} />
+        <QuestionsAndAnswers productId={productId} productName={productList[0].name} />
         <span>
           ---Ratings Reviews Widget---
           <br />

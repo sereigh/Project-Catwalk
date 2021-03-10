@@ -7,6 +7,7 @@ const NicknameSubmit = ({handleNicknameChange, nicknameError}) => (
     <input
       className='nickname'
       type='text'
+      placeholder='Example: jackson11!'
       maxLength={60}
       onChange={handleNicknameChange}
     />

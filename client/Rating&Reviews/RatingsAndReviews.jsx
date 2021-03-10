@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import withClickTracker from '../SharedComponents/withClickTracker.jsx'
+
 import RatingsContainer from './RatingsContainer.jsx';
 import ReviewsListContainer from './ReviewsListContainer.jsx';
+
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -25,15 +28,17 @@ class RatingsAndReviews extends React.Component {
   }
 
   componentDidMount() {
-    const {productId, totalReviews, retrieveReviewData} = this.props;
+    const {retrieveReviewData} = this.props;
     const {sort} = this.state;
 
-    retrieveReviewData(() => this.retrieveAllReviews(productId, sort, totalReviews));
+    retrieveReviewData(() => {
+      const {productId, totalReviews} = this.props;
+      this.retrieveAllReviews(productId, sort, totalReviews);
+    })
   }
 
   handleSort(sort) {
-    const {productId} = this.props;
-    const {totalReviews} = this.state;
+    const {productId, totalReviews} = this.props;
 
     this.retrieveAllReviews(productId, sort, totalReviews);
   }
@@ -42,7 +47,6 @@ class RatingsAndReviews extends React.Component {
     const {filteredReviews} = this.state;
     const searchTerm = event.target.value;
     const searchedReviews = [];
-    // const regex = new RegExp(searchTerm);
 
     if (searchTerm.length >= 3) {
       for (let i = 0; i < filteredReviews.length; i++) {
@@ -50,33 +54,10 @@ class RatingsAndReviews extends React.Component {
           searchedReviews.push(filteredReviews[i]);
         } else if (filteredReviews[i].body.includes(searchTerm)) {
           searchedReviews.push(filteredReviews[i]);
+        } else if (filteredReviews[i].reviewer_name.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
         }
       }
-
-      // const newReview = {};
-      // newReview = Object.assign(newReview, filteredReviews[i]);
-
-      // if (filteredReviews[i].summary && filteredReviews[i].summary.includes(searchTerm)) {
-      //   found = true;
-      //   const newSummary = filteredReviews[i].summary.split(regex);
-      //   for (let j = 1; j < newSummary.length; j += 2) {
-      //     newSummary[j] = <mark key={j}>{searchTerm}</mark>;
-      //   }
-      //   newReview.summary = <>{newSummary}</>
-      // }
-
-      // if (filteredReviews[i].body.includes(searchTerm)) {
-      //   found = true;
-      //   const newBody = filteredReviews[i].body.split(regex);
-      //   for (let j = 1; j < newBody.length; j += 2) {
-      //     newBody[j] = <mark key={j}>{searchTerm}</mark>;
-      //   }
-      //   newReview.body = <>{newBody}</>
-      // }
-
-      // if (found) {
-      //   searchedReviews.push(newReview);
-      // }
 
       this.setState({
         searchTerm,
@@ -156,11 +137,16 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
-    const {productId, productName, reviewData, totalReviews} = this.props;
+    const {productId, productName, reviewData, totalReviews, handleClickTrack} = this.props;
     const {filteredReviews, searchTerm, searchedReviews, filters} = this.state;
 
     return (
-      <div className='ratings-and-reviews-container'>
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div
+        className='ratings-and-reviews-container'
+        onClick={handleClickTrack}
+        onKeyPress={handleClickTrack}
+      >
         <RatingsContainer
           reviewData={reviewData}
           totalReviews={totalReviews}
@@ -175,6 +161,7 @@ class RatingsAndReviews extends React.Component {
           handleSort={this.handleSort}
           handleSearch={this.handleSearch}
           characteristics={reviewData.characteristics || {}}
+          searchTerm={searchTerm}
         />
       </div>
     )
@@ -225,7 +212,8 @@ RatingsAndReviews.propTypes = {
     }),
   }).isRequired,
   totalReviews: PropTypes.number.isRequired,
-  retrieveReviewData: PropTypes.func.isRequired
+  retrieveReviewData: PropTypes.func.isRequired,
+  handleClickTrack: PropTypes.func.isRequired
 }
 
-export default RatingsAndReviews;
+export default withClickTracker(RatingsAndReviews);

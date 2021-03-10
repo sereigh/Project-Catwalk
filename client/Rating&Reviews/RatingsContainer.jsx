@@ -13,9 +13,9 @@ const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => 
     + 3 * (reviewData.ratings['3'] ? parseInt(reviewData.ratings['3'], 10) : 0)
     + 4 * (reviewData.ratings['4'] ? parseInt(reviewData.ratings['4'], 10) : 0)
     + 5 * (reviewData.ratings['5'] ? parseInt(reviewData.ratings['5'], 10) : 0)
-  ) / totalReviews
+  ) / totalReviews || 0
 
-  const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100;
+  const recommendPercent = parseInt(reviewData.recommended.true, 10) / totalReviews * 100 || 0;
 
   return (
     <div className='ratings-container'>
@@ -23,7 +23,7 @@ const RatingsContainer = ({reviewData, totalReviews, handleFilter, filters}) => 
       <Stars rating={averageRating} />
       <br />
       <br />
-      <span>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
+      <span className='recommend-percent-message'>{`${recommendPercent.toFixed(0)}% of reviews recommend this product`}</span>
       <br />
       <br />
       <RatingBreakdown ratings={reviewData.ratings} totalReviews={totalReviews} handleFilter={handleFilter} filters={filters} />

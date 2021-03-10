@@ -6,7 +6,7 @@ const CharacteristicBar = ({value}) => {
     'width': '100%',
     'margin': 'auto',
     'height': '7px',
-    'backgroundColor': 'gray'
+    'backgroundImage': 'linear-gradient(to right, white 0% 1%, lightGray 1% 19%, white 19% 21%, lightGray 21% 39%, white 39% 41%, lightGray 41% 59%, white 59% 61%, lightGray 61% 79%, white 79% 81%, lightGray 81% 99%, white 99% 100%)'
   }
 
   const pointerStyle = {

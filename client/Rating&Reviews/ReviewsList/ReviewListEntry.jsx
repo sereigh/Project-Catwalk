@@ -59,24 +59,25 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
-    const {review} = this.props;
+    const {review, searchTerm} = this.props;
     const {vote, reported} = this.state;
 
     return (
       <div className='review'>
         <Stars rating={review.rating} />
-        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} />
+        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} searchTerm={searchTerm} />
         <br />
-        <Summary summary={review.summary} />
-        <Body body={review.body} />
+        <br />
+        <Summary summary={review.summary} searchTerm={searchTerm} />
+        <Body body={review.body} searchTerm={searchTerm} />
         <PhotoList photos={review.photos} />
         <br />
         <Recommend recommend={review.recommend} />
         <Response response={review.response} />
-        <span>
+        <span className='review-voting'>
           Helpful?
           <span
-            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'yes' ? 'yes' : 'vote'}
+            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'yes' ? 'yes' : 'yes-vote'}
             onClick={() => this.handleVote('yes', review.review_id)}
             onKeyPress={() => this.handleVote('yes', review.review_id)}
             role='button'
@@ -86,7 +87,7 @@ class ReviewListEntry extends React.Component {
           </span>
           <span> | </span>
           <span
-            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'no' ? 'no' : 'vote'}
+            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'no' ? 'no' : 'no-vote'}
             onClick={() => this.handleVote('no', review.review_id)}
             onKeyPress={() => this.handleVote('no', review.review_id)}
             role='button'
@@ -96,7 +97,7 @@ class ReviewListEntry extends React.Component {
           </span>
           <span> | </span>
           <span
-            className={localStorage.getItem(`hasReported${review.review_id}`) ? 'reported' : ''}
+            className={localStorage.getItem(`hasReported${review.review_id}`) ? 'reported' : 'reported-vote'}
             onClick={() => this.handleReport(review.review_id)}
             onKeyPress={() => this.handleReport(review.review_id)}
             role='button'
@@ -105,6 +106,8 @@ class ReviewListEntry extends React.Component {
             {reported ? 'Reported' : 'Report'}
           </span>
         </span>
+        <br />
+        <br />
       </div>
     )
   }
@@ -126,7 +129,8 @@ ReviewListEntry.propTypes = {
       id: PropTypes.number,
       url: PropTypes.string
     }))
-  }).isRequired
+  }).isRequired,
+  searchTerm: PropTypes.string.isRequired
 }
 
 export default ReviewListEntry;

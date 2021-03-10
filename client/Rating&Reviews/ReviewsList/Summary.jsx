@@ -1,29 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Summary = ({summary}) => {
+import highlightSearchTerm from './highlightSearchTerm.jsx';
+
+const Summary = ({summary, searchTerm}) => {
+  let summaryFull = summary;
+  let summaryBeginning = `${summary.substring(0, 60)  }...`;
+  let summaryEnding = `...${  summary.substring(60)}`;
+
+  if (searchTerm.length >= 3) {
+    summaryFull = highlightSearchTerm(summary, searchTerm);
+    summaryBeginning = highlightSearchTerm(summaryBeginning, searchTerm);
+    summaryEnding = highlightSearchTerm(summaryEnding, searchTerm);
+  }
+
   if (summary.length > 60) {
-    const summaryBeginning = summary.substring(0, 60);
-    const summaryEnding = summary.substring(60);
     return (
       <>
-        <div>{`Summary: ${summaryBeginning  }...`}</div>
-        <br />
-        <div>{`...${summaryEnding}`}</div>
+        <h3>{summaryBeginning}</h3>
+        <div>{summaryEnding}</div>
       </>
     )
   }
 
   return (
-    <div>
-      Summary:
-      {summary}
-    </div>
+    <h3>{summaryFull}</h3>
   )
 }
 
 Summary.propTypes = {
-  summary: PropTypes.string.isRequired
+  summary: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string.isRequired
 }
 
 export default Summary;

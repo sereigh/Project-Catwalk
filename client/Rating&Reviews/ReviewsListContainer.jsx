@@ -35,23 +35,28 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {productId, productName, reviews, totalReviews, characteristics, handleSort, handleSearch} = this.props;
+    const {productId, productName, reviews, totalReviews, characteristics, handleSort, handleSearch, searchTerm} = this.props;
     const {selected, minimized} = this.state;
 
     return (
       <div className='reviews-container'>
-        <span>
-          {`${totalReviews} reviews, sorted by:`}
-          <select defaultValue={selected} onBlur={this.handleDropdownChange}>
+        <h3>
+          {`${totalReviews || 0} reviews, sorted by `}
+          <select className='review-dropdown' defaultValue={selected} onBlur={this.handleDropdownChange}>
             <option value='relevant'>relevance</option>
             <option value='helpful'>helpfulness</option>
             <option value='newest'>newest</option>
           </select>
-        </span>
+        </h3>
         <input type='text' placeholder='Search Reviews...' onChange={handleSearch} />
-        <ReviewsList minimized={minimized} reviews={reviews} />
-        <button type='button' onClick={this.handleView}>{minimized ? 'More Reviews' : 'Fewer Reviews'}</button>
-        <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
+        <br />
+        <br />
+        <ReviewsList minimized={minimized} reviews={reviews} searchTerm={searchTerm} />
+        <div className='review-buttons'>
+          {totalReviews >= 3 &&
+            <button type='button' onClick={this.handleView}>{minimized ? 'MORE REVIEWS' : 'FEWER REVIEWS'}</button>}
+          <WriteReview characteristics={characteristics} productId={productId} productName={productName} handleSort={handleSort} selected={selected} />
+        </div>
       </div>
     )
   }
@@ -62,6 +67,7 @@ ReviewsListContainer.propTypes = {
   productName: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
     review_id: PropTypes.number,

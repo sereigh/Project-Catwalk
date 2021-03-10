@@ -178,52 +178,69 @@
 /* Questions and Answers */
 .qaContainer {
   width: 90%;
-  align-self: auto;
-  padding-left: 50px;
+  margin: auto;
+  max-height: 800px;
+  border: solid black thin;
 }
 .qaHeader {
-  width: 100%;
+  width: 90%;
   text-align: left;
   margin: 2%;
-}
-.qaSearch {
-  margin: 2%;
-  height: 50px;
-  text-align: left;
 }
 .searchBar {
-  resize: horizontal;
-  width: 94%;
-  margin: 2%;
+  width: 96%;
+  height: 50px;
+  margin: auto;
+  margin-left: 2%;
 }
 .searchText {
   margin-left: 2%
 }
 .UserInput {
   border: solid black thin;
-  height: 100px;
-  text-align: left;
+  text-align: center;
+  font-size: small;
   margin: 2%;
+  display: inline-block;
+  padding: 2%;
 }
 .showDefault-questions {
   position: relative;
-  min-height: 380px;
+  max-height: 500px;
   margin: 2%;
   border: solid black thin;
-}
-.showDefault-answers {
-  position: relative;
-  min-height: 50px;
-  margin: 2%;
 
 }
-.showDefault-questions div:nth-child(5n) {
+.showDefault-answers {
+  min-height: 50px;
+  margin: 2%;
+}
+.showDefault-questions div:nth-child(4n) {
   display: none;
 }
 .showDefault-answers div:nth-child(3n) {
   display: none;
 }
+.showAll-questions {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  max-height: 400px;
+  margin: 2%;
+  border: solid black thin;
+}
+.showAll-answers {
+  position: relative;
+  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hide;
+  max-height: 400px;
+  margin: 2%;
+}
 .view-question {
+  margin: 2%;
+}
+.view-answers {
   margin: 2%;
 }
 .questionText {
@@ -232,7 +249,6 @@
   word-break: normal;
   width: 68%;
   text-align: left;
-  text-indent:0vw;
   display: inline-block;
 }
 .answerText {
@@ -241,7 +257,7 @@
   width: 100%;
   text-align: left;
   display: inline;
-  margin: -2%;
+  margin: -1%;
 }
 .questionFeedback {
   text-align: right;
@@ -254,7 +270,8 @@
   width: 100%;
   text-align: left;
   display: block;
-  margin: -2%;
+  margin: 0%;
+  padding: 2%;
 }
 .answersFeedback-left {
   display: inline-block;
@@ -264,23 +281,51 @@
 }
 .loadAnswers {
   font-size: x-small;
-  margin: 4%;
+  margin: 2%;
   font-weight: bolder;
+}
+.qa-modal-view {
+  position: fixed;
+  z-index: 1;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  overflow: auto;
+  background-color: white;
+  border: thick solid black;
+  text-align: center;
+}
+.qa-modal-box {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  width: 40%;
+  text-align: left;
+  margin: 2%;
 }
 /* Ratings and Reviews */
 .ratings-and-reviews-container {
   display: flex;
   justify-content: center;
-  width: 100%;
+  margin: auto;
+  width: 57%;
+  font-family: 'Inter', sans-serif;
+  font-size: small;
 }
 
 .ratings-container {
-  width: 25%;
-  border: 1px solid gray;
+  width: 31%;
+  padding-right: 5%;
 }
 
 .average-rating {
-  font-size: xx-large;
+  font-size: 40pt;
+  font-weight: bold;
+}
+
+.recommend-percent-message {
+  font-size: smaller;
 }
 
 .filter-container {
@@ -290,6 +335,7 @@
 
 .filter {
   display: flex;
+  transition: color 200ms;
 }
 
 .filtered {
@@ -297,13 +343,35 @@
 }
 
 .filter:hover {
-  background-color: gray;
+  color: green;
   cursor: pointer;
+}
+
+.filter-hover {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateX(-100%);
+  width: 100%;
+  height: 10px;
+  background-color: transparent;
+  transition: background-color 200ms;
+}
+
+.filter:hover .filter-hover {
+  background-color: rgb(204, 255, 204);
+  outline: 1px solid green;
+  outline-offset: -1px;
+}
+
+.star-amounts {
+  text-decoration: underline;
 }
 
 .filter-message {
   display: flex;
   flex-direction: column;
+  margin-top: 5px;
   opacity: 1;
   transition: opacity 200ms;
 }
@@ -312,9 +380,19 @@
   text-align: center;
 }
 
-.reset-filters {
+.reset-filters, .expand-review, .review-buttons > button, .submit-review {
   width: 50%;
   margin: auto;
+  padding: 5px;
+  background-color: white;
+  border: 1px solid black;
+  font-weight: bold;
+  transition: background-color 200ms;
+}
+
+.reset-filters:hover, .expand-review:hover, .review-buttons > button:hover, .submit-review:hover {
+  background-color: lightgray;
+  cursor: pointer;
 }
 
 .invisible {
@@ -332,12 +410,28 @@
 .breakdown-descriptions {
   display: flex;
   justify-content: space-between;
+  font-size: smaller;
   transform: translateY(5px);
 }
 
 .reviews-container {
-  width: 50%;
-  border: 1px solid gray;
+  width: 66%;
+}
+
+.reviews-container > h3, .review > h3 {
+  margin-top: 0;
+  font-size: 10pt;
+}
+
+.review-dropdown {
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0;
+  font-weight: bold;
+}
+
+.review-dropdown option {
+  font-weight: bold;
 }
 
 .reviews-list {
@@ -346,8 +440,13 @@
 }
 
 .maximized {
-  height: 90vh;
-  overflow: scroll;
+  height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.maximized::-webkit-scrollbar {
+  width: 5px;
 }
 
 .review {
@@ -357,7 +456,19 @@
 }
 
 .name-and-date {
+  margin-top: 10px;
+  font-size: x-small;
   float: right;
+}
+
+.show-review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.expand-review {
+  width: 20%;
 }
 
 .photo-container {
@@ -371,6 +482,12 @@
   max-width: 20%;
   max-height: 50px;
   object-fit: scale-down;
+  transition: transform 200ms;
+}
+
+.photo:hover {
+  transform: translate(-5%, -5%);
+  cursor: pointer;
 }
 
 .review-modal {
@@ -383,6 +500,8 @@
   margin-right: auto;
   max-width: 50%;
   max-height: 50%;
+  outline: 1px solid black;
+  outline-offset: -1px;
   transform: translate(-50%, -50%);
   animation: modalFadeIn 0.5s;
 }
@@ -424,8 +543,31 @@
   }
 }
 
-.vote {
-  color: blue;
+.review-response {
+  padding: 2px;
+  padding-left: 6px;
+  background-color: lightgray;
+}
+
+.review-voting {
+  font-size: smaller;
+}
+
+.yes-vote, .no-vote, .reported-vote {
+  transition: color 200ms;
+  cursor: pointer;
+}
+
+.yes-vote:hover {
+  color: lightgreen;
+}
+
+.no-vote:hover {
+  color: rgb(255, 112, 112)
+}
+
+.reported-vote:hover {
+  color: rgb(155, 0, 0);
 }
 
 .yes {
@@ -434,6 +576,14 @@
 
 .no, .reported {
   color: red;
+}
+
+.review-buttons > button {
+  width: 25%;
+  margin-top: 5%;
+  margin-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 .submit-form{
@@ -494,7 +644,20 @@
 }
 
 .flex-column, .flex-row input {
-  width: 20%
+  width: 20%;
+}
+
+.star-submit {
+  font-size: large;
+}
+
+.star-submit:hover, input[type='radio']:hover {
+  cursor: pointer;
+}
+
+.recommend-options {
+  display: inline-block;
+  transform: translateX(5px);
 }
 
 .dynamic-description {
