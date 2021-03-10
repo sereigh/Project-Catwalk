@@ -11,6 +11,8 @@ class QAview extends React.Component {
     this.state = {
       questionsView: false,
       answersView: false,
+      qIndex: 3,
+      aIndex: 1,
     };
     this.handleInput = this.handleInput.bind(this)
   }
@@ -82,6 +84,8 @@ QAview.showDefault = {
   questionsView: false,
   answersView: false,
   modalView: false,
+  qIndex: 3,
+  aIndex: 1,
 }
 
 export default QAview;
