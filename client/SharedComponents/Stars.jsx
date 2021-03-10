@@ -12,13 +12,15 @@ const Stars = ({rating}) => {
     'position': 'absolute',
     'left': '0',
     'fontSize': 'large',
-    'backgroundImage': `-webkit-linear-gradient(0deg, black ${percent}%, transparent ${percent}% 100%)`,
+    'backgroundImage': `-webkit-linear-gradient(0deg, lightGreen ${percent}%, transparent ${percent}% 100%)`,
     'backgroundClip': 'text',
     'WebkitBackgroundClip': 'text',
     'WebkitTextFillColor': 'transparent'
   }
 
   const emptyStarStyle = {
+    'zIndex': '1',
+    'color': 'green',
     'position': 'absolute',
     'left': '0',
     'font-size': 'large'
