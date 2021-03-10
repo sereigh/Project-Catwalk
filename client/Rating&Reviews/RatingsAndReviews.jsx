@@ -54,6 +54,8 @@ class RatingsAndReviews extends React.Component {
           searchedReviews.push(filteredReviews[i]);
         } else if (filteredReviews[i].body.includes(searchTerm)) {
           searchedReviews.push(filteredReviews[i]);
+        } else if (filteredReviews[i].reviewer_name.includes(searchTerm)) {
+          searchedReviews.push(filteredReviews[i]);
         }
       }
 

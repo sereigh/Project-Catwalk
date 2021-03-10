@@ -65,7 +65,7 @@ class ReviewListEntry extends React.Component {
     return (
       <div className='review'>
         <Stars rating={review.rating} />
-        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} />
+        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} searchTerm={searchTerm} />
         <br />
         <br />
         <Summary summary={review.summary} searchTerm={searchTerm} />
