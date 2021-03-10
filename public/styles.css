@@ -327,7 +327,7 @@ body {
   height: 60%;
   overflow: auto;
   background-color: white;
-  border: thin solid gray;
+  border: thin solid green;
   text-align: center;
   border-radius: 20px;
   animation: qaModalUp 0.5s;
@@ -401,6 +401,7 @@ form[name="qa"] input:active {
 }
 form[name="qa"] button:hover {
   font-size: larger;
+  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] button {
   border-radius: 6px;
