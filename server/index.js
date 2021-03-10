@@ -59,10 +59,10 @@ app.get('/products/:product_id/related', (req, res) => {
 app.get('/reviewdata/:product_id', (req, res) => {
   helpers.getReviewData(req.params.product_id)
     .then((response) => {
-      res.send(response.data)
+      res.status(200).send(response.data)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -70,10 +70,10 @@ app.get('/reviewdata/:product_id', (req, res) => {
 app.get('/reviews/:product_id/:sort/:count', (req, res) => {
   helpers.getAllReviews(req.params.product_id, req.params.sort, req.params.count)
     .then((response) => {
-      res.send(response.data)
+      res.status(200).send(response.data)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -81,10 +81,10 @@ app.get('/reviews/:product_id/:sort/:count', (req, res) => {
 app.put('/reviews/:review_id/helpful', (req, res) => {
   helpers.voteHelpful(req.params.review_id)
     .then((response) => {
-      res.send(response.data)
+      res.status(200).send(response.data)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -92,10 +92,10 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
 app.put('/reviews/:review_id/report', (req, res) => {
   helpers.reportReview(req.params.review_id)
     .then((response) => {
-      res.send(response.data)
+      res.status(200).send(response.data)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -103,10 +103,10 @@ app.put('/reviews/:review_id/report', (req, res) => {
 app.post('/upload/photo', (req, res) => {
   helpers.uploadPhoto(req.body)
     .then((response) => {
-      res.send(response.secure_url)
+      res.status(201).send(response.secure_url)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -114,10 +114,10 @@ app.post('/upload/photo', (req, res) => {
 app.post('/reviews', (req, res) => {
   helpers.submitReview(req.body)
     .then((response) => {
-      res.send(response.data)
+      res.status(201).send(response.data)
     })
     .catch((error) => {
-      console.log(error.data);
+      res.status(400).send(error);
     })
 });
 
@@ -183,7 +183,7 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
 app.post('/interactions', (req, res) => {
   helpers.postClick(req.body)
     .then((response) => res.send(response.data))
-    .catch((err) => res.send(err))
+    .catch((err) => res.status(404).send(err))
 })
 
 app.listen(port, () => {
