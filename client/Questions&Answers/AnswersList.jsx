@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAccordian, canClick, aIndex } = props
+  const { answers, toggleAnswers, canClick, aIndex } = props
   // const view = (answersView ? "showAll-answers" : "showDefault-answers")
 
   return (
@@ -42,10 +42,10 @@ function Answerslist(props) {
       <span
         className='loadAnswers'
         name="answers"
-        onClick={() => {toggleAccordian()}}
+        onClick={() => {toggleAnswers()}}
         role="button"
         tabIndex={0}
-        onKeyPress={() => {toggleAccordian()}}
+        onKeyPress={() => {toggleAnswers()}}
       >
         LOAD MORE ANSWERS
       </span>
@@ -57,7 +57,7 @@ function Answerslist(props) {
 Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   // answersView: PropTypes.bool.isRequired,
-  toggleAccordian: PropTypes.func.isRequired,
+  toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
   aIndex: PropTypes.number.isRequired,
 }

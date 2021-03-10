@@ -7,7 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAccordian, handleInput, canClick, productName, qIndex, aIndex } = props
+  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, qIndex, aIndex } = props
   // const [panel, setPanel] = useState(false);
   // const view = (questionsView === true ? "showAll-questions" : "showNo-questions")
 
@@ -59,7 +59,7 @@ function QuestionsList(props) {
               <AnswersList
                 answers={sortAnswers(questions[i].answers)}
                 answersView={answersView}
-                toggleAccordian={() => toggleAccordian}
+                toggleAnswers={() => toggleAnswers}
                 canClick={canClick}
                 aIndex={aIndex}
               />
@@ -75,7 +75,7 @@ QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   // questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
-  toggleAccordian: PropTypes.func.isRequired,
+  toggleAnswers: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
   canClick: PropTypes.func.isRequired,

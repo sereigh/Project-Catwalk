@@ -17,6 +17,8 @@ class QAview extends React.Component {
     };
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
+    this.toggleQuestions = this.toggleQuestions.bind(this)
+    this.toggleAnswers = this.toggleAnswers.bind(this)
   }
 
   handleInput(type, id, input) {
@@ -83,7 +85,7 @@ class QAview extends React.Component {
           questions={questions}
           questionsView={questionsView}
           answersView={answersView}
-          // toggleAccordian={toggleAccordian}
+          toggleAnswers={this.toggleAnswers}
           handleInput={this.handleInput}
           postFeedback={postFeedback}
           productName={productName}
@@ -96,7 +98,7 @@ class QAview extends React.Component {
           <UserInput
             text={questionText}
             name="questions"
-            // handler={toggleAccordian}
+            handler={this.toggleQuestions}
           />
           <span className="UserInput">
             <Modal

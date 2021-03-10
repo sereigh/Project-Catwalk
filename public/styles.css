@@ -267,10 +267,9 @@
 }
 .showAll-answers {
   position: relative;
-  overflow: scroll;
-  overflow-y: scroll;
   overflow-x: hide;
   max-height: 400px;
+  width: 100%;
   margin: 2%;
 }
 .view-question {
