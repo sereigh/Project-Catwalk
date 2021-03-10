@@ -33,7 +33,7 @@ class StyleSelector extends React.Component {
     // [] [] [] []
     // [] [] [] []
     return(
-      <div id="styleSelector">
+      <div className="styleSelector">
         <StylePrice
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
@@ -64,14 +64,20 @@ class StyleSelector extends React.Component {
               type="submit"
               onClick={this.uponStyleThumbnailClick}
               id={index}
+              // id="style-thumbnail-button"
               key={styleEntry.name + styleEntry.style_id}
-              className="styleEntryThumbnail"
+              className="style-thumbnail-button"
+              // class="style-thumbnail-button"
             >
               <img
                 src={styleEntry.photos[0].thumbnail_url}
                 // onClick={this.uponStyleThumbnailClick}
                 id={index}
+                // id="style-thumbnail"
+                type="style-thumbnail"
                 alt={styleEntry.name + styleEntry.style_id}
+                className="style-thumbnail"
+                // class="style-thumbnail"
               />
             </button>
           ))}

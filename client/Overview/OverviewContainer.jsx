@@ -91,7 +91,8 @@ class OverviewContainer extends React.Component {
   }
 
   render() {
-    const { selectProductId, selectProductInfo } = this.props;
+    // const { selectProductId, selectProductInfo } = this.props;
+    const { selectProductInfo } = this.props;
     const { selectStyleIndex, selectStyleOptions, stylesLoaded } = this.state
     // console.log('OverviewC_render X:', X);
     if ( !stylesLoaded ) {
@@ -101,19 +102,21 @@ class OverviewContainer extends React.Component {
     }
     return (
       <div className="overviewWidget">
-        <a href="http://localhost:3000/products/17763/styles/">
-          localhost:3000/products/
-          {selectProductId}
-          /styles
-        </a>
-        <br />
-        selectStyleOptions[0].name:&nbsp;
-        {selectStyleOptions[0].name}
-        <br />
-        selectStyleIndex:&nbsp;
-        {selectStyleIndex}
-        <br />
-        <br />
+        {/* <div className="styleTestingOnly">
+          <a href="http://localhost:3000/products/17763/styles/">
+            localhost:3000/products/
+            {selectProductId}
+            /styles
+          </a>
+          <br />
+          selectStyleOptions[0].name:&nbsp;
+          {selectStyleOptions[0].name}
+          <br />
+          selectStyleIndex:&nbsp;
+          {selectStyleIndex}
+          <br />
+          <br />
+        </div> */}
         <div className="showcaseCarousel">
           <ShowcaseImage
             selectStyleOptions={selectStyleOptions}

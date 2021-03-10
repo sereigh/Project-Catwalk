@@ -37,6 +37,168 @@ body {
 }
 
 /* Overview */
+.overviewWidget {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 10% 51% 5% 34%;
+  /* grid-column-gap: 30px; */
+  grid-template-rows: auto auto auto auto;
+  /* grid-template-rows: 3fr 1fr; */
+  /* grid-row-gap: 15px; */
+}
+
+.showcaseGallery {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  /* background-color: gray; */
+}
+
+/* OvC Carousel */
+.showcaseCarousel {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.showcaseGallery {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 18% 8% auto 8%;
+  /* grid-column-gap: 30px; */
+  /* grid-template-rows: auto; */
+  /* grid-template-rows: 3fr 1fr; */
+  position: relative;
+}
+
+.styleGalleryImage {
+  grid-column: 1 / 5;
+  grid-row: 1;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
+.showcaseThumbnails {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: transparent;
+  /* position: absolute; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+}
+
+button#arrowLeft {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: transparent;
+}
+
+button#arrowRight {
+  grid-column: 4;
+  grid-row: 1;
+  background-color: transparent;
+}
+
+/* OvC Product Selector */
+.showcaseSelection {
+  grid-column: 4;
+  grid-row: 1 / 4;
+  width: 100%;
+  margin: 0.5%;
+}
+
+.productAreaItem {
+ grid-row: 1;
+}
+
+.styleSelector {
+ grid-row: 2;
+}
+
+#styleThumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  justify-content: center;
+  align-items: center;
+}
+
+/* #style-thumbnail-button {
+  height: 75px;
+  width: 75px;
+  background-color: transparent;
+  border: 0px;
+}
+
+#style-thumbnail {
+  border-radius: 50%;
+  border: 2px solid #888;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+} */
+
+.style-thumbnail-button {
+  height: 75px;
+  width: 75px;
+  background-color: transparent;
+  border: 0px;
+}
+
+.style-thumbnail {
+  border-radius: 50%;
+  border: 2px solid #888;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+.cartCrates {
+ grid-row: 3;
+}
+
+/* OvC Product Banner */
+.showcaseDescription {
+  grid-column: 1 / 5;
+  grid-row: 4;
+}
+
+.descriptionBanner {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 66% 2% 32%;
+}
+
+#descriptionAreaLeft {
+
+}
+
+#hrVertical {
+  height: 100%;
+  width: 0;
+  border: thin solid black;
+}
+
+#descriptionAreaRight {
+  text-align: left;
+  transform: translate(0px, 15%);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li:before {
+  content: '✓';
+}
 
 /* Related Items and Comparison */
 .list-container {
