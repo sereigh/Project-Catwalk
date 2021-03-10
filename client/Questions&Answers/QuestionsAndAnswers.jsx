@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import withClickTracker from '../SharedComponents/withClickTracker.jsx';
+
 import QAview from './QAview.jsx';
-import sortQuestions, {filterQuestions, findPath} from './Utility.jsx'
+import sortQuestions, {filterQuestions, findPath} from './Utility.jsx';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -93,10 +95,15 @@ class QuestionsAndAnswers extends React.Component {
   render() {
 
     const { questions, inputValue, filtered, filteredQuestions } = this.state
-    const { productName, productId } = this.props
+    const { productName, productId, handleClickTrack } = this.props
 
     return (
-      <div className="qaContainer">
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+      <div
+        className="qaContainer"
+        onClick={handleClickTrack}
+        onKeyPress={handleClickTrack}
+      >
         <form onSubmit={(e) => e.preventDefault()}>
           <input
             type="search"
@@ -132,6 +139,7 @@ class QuestionsAndAnswers extends React.Component {
 QuestionsAndAnswers.propTypes = {
   productId: PropTypes.number.isRequired,
   productName: PropTypes.string.isRequired,
+  handleClickTrack: PropTypes.func.isRequired,
 }
 
-export default QuestionsAndAnswers;
+export default withClickTracker(QuestionsAndAnswers);
