@@ -357,7 +357,7 @@
   outline: none;
   }
   .qa-close-modal:hover {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(204, 255, 204);
     outline: none;
     border-radius: 25px;
     font-size: larger;
@@ -384,16 +384,16 @@ form[name="qa"] input {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  border: solid thin gray;
+  border: solid thin green;
   outline: none;
   border-radius: 9px;
 }
 form[name="qa"] input:valid {
-  box-shadow: 0 0 1px 1px darkgreen;
-  background-color: lightgreen;
+  box-shadow: 0 0 1px 1px green;
+  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] input:hover {
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] input:active {
   border: none;
