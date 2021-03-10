@@ -24,6 +24,13 @@ class QuestionsAndAnswers extends React.Component {
     this.getAllQuestions()
   }
 
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props
+    if (productId !== prevProps.productId) {
+      this.getAllQuestions();
+    }
+  }
+
   handleSearchChange(e) {
     e.preventDefault()
     const { inputValue, questions } = this.state
