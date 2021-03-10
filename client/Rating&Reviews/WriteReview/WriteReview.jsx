@@ -339,6 +339,15 @@ class WriteReview extends React.Component {
           showModal && (
             <>
               <form className='review-modal submit-form' onSubmit={this.handleSubmit}>
+                <span
+                  role='button'
+                  tabIndex={0}
+                  className='review-close-modal'
+                  onClick={this.handleModal}
+                  onKeyPress={this.handleModal}
+                >
+                  x
+                </span>
                 <h1>Write Your Review</h1>
                 <h3>{`About the ${productName}`}</h3>
                 <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
