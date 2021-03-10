@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSearch: 17762,
       productId: 17762,
       productList: [
         {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
@@ -38,6 +39,8 @@ class App extends React.Component {
       },
       totalReviews: 1
     };
+    this.handleSearchChange = this.handleSearchChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
     this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
     this.selectAnotherProduct = this.selectAnotherProduct.bind(this);
@@ -51,6 +54,24 @@ class App extends React.Component {
     this.retrieveSelectProductInfo();
     this.retrieveReviewData();
   }
+
+  handleSearchChange(event) {
+    this.setState({
+      currentSearch: parseInt(event.target.value, 10) || 17762
+    });
+  }
+
+  handleSearch() {
+    const {currentSearch} = this.state;
+    this.setState({
+      productId: currentSearch
+    }, () => {
+      this.retrieveAllProductInfo();
+      this.retrieveSelectProductInfo();
+      this.retrieveReviewData();
+    })
+  }
+
 
   retrieveAllProductInfo() {
     axios
@@ -147,7 +168,19 @@ class App extends React.Component {
     }
     return (
       <div>
-        <span>::: FEC-ELLIS :::</span>
+        <div className='website-header'>
+          <div className='logo'>LOGO</div>
+          <div className='website-search-bar'>
+            <input type='text' onChange={this.handleSearchChange} />
+            <i
+              className="fas fa-search"
+              role='button'
+              tabIndex={0}
+              onClick={this.handleSearch}
+              onKeyPress={this.handleSearch}
+            />
+          </div>
+        </div>
         <p>
           <a href="http://localhost:3000/products">
             localhost:3000/products

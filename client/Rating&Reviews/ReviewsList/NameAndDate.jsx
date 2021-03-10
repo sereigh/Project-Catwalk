@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import highlightSearchTerm from './highlightSearchTerm.jsx';
+import getDate from '../../SharedComponents/DateConversion.jsx';
 
-const convertDate = date => {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const dateObj = new Date(date);
-  const day = dateObj.getDate() + 1;
-  const month = months[dateObj.getMonth()];
-  const year = dateObj.getFullYear();
-  return `${month} ${day}, ${year}`;
-}
+import highlightSearchTerm from './highlightSearchTerm.jsx';
 
 const NameAndDate = ({verified, name, date, searchTerm}) => {
   let highlightedName = name;
@@ -23,7 +16,7 @@ const NameAndDate = ({verified, name, date, searchTerm}) => {
     <span className='name-and-date'>
       {`${verified ? 'Verified purchaser  ' : ''}`}
       {highlightedName}
-      {`, ${  convertDate(date)}`}
+      {`, ${  getDate(date)}`}
     </span>
     )
 }
