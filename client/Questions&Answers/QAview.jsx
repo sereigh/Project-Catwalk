@@ -19,20 +19,18 @@ class QAview extends React.Component {
 
   handleInput(type, id, input) {
     const { postInput } = this.props
-    // remove after answer modal
-    console.log('handle input triggered', type, id, input)
     postInput(type, id, 'add', input)
   }
 
-  canClick(id) {
+  canClick(type, id, option) {
     const { idList } = this.state
     const {postFeedback } = this.props
+
       if (idList.includes(id)) {
         return console.error('Invalid action')
       }
       idList.push(id)
-        return postFeedback('questions', id, 'helpful')
-
+        return postFeedback(type, id, option)
   }
 
   render() {
