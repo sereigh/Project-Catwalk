@@ -19,6 +19,11 @@ class OutfitList extends React.Component {
   }
 
   componentDidUpdate() {
+    const {userOutfits} = this.props;
+    const {slideLength} = this.state;
+    if (userOutfits.length !== slideLength / 220) {
+      this.updateSlideLength();
+    }
     this.setRightArrowVisibility();
     this.setLeftArrowVisibility();
   }
