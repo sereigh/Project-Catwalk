@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 import Modal from './Modal.jsx';
 import TextLink from './UserFeedback.jsx';
-// import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, questionsView, answersView, toggleAccordian, handleInput, postFeedback, productName } = props
+  const { questions, questionsView, answersView, toggleAccordian, handleInput, canClick, productName } = props
   const [panel, setPanel] = useState(false);
   const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
 
@@ -41,7 +40,7 @@ function QuestionsList(props) {
               {`   Helpful? `}
               <TextLink
                 option={1}
-                handler={() => postFeedback('questions', question.question_id, 'helpful')}
+                handler={() => canClick('questions', question.question_id, 'helpful')}
               />
               {` (${question.question_helpfulness})   |   `}
               <Modal
@@ -61,7 +60,7 @@ function QuestionsList(props) {
                 answers={sortAnswers(questions[i].answers)}
                 answersView={answersView}
                 toggleAccordian={() => toggleAccordian}
-                postFeedback={postFeedback}
+                canClick={canClick}
               />
 )}
             </span>
@@ -78,8 +77,8 @@ QuestionsList.propTypes = {
   answersView: PropTypes.bool.isRequired,
   toggleAccordian: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
-  postFeedback: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
+  canClick: PropTypes.func.isRequired,
 }
 
 export default QuestionsList;
