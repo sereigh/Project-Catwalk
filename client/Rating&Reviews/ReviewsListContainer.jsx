@@ -35,7 +35,7 @@ class ReviewsListContainer extends React.Component {
   }
 
   render() {
-    const {productId, productName, reviews, totalReviews, characteristics, handleSort, handleSearch} = this.props;
+    const {productId, productName, reviews, totalReviews, characteristics, handleSort, handleSearch, searchTerm} = this.props;
     const {selected, minimized} = this.state;
 
     return (
@@ -51,7 +51,7 @@ class ReviewsListContainer extends React.Component {
         <input type='text' placeholder='Search Reviews...' onChange={handleSearch} />
         <br />
         <br />
-        <ReviewsList minimized={minimized} reviews={reviews} />
+        <ReviewsList minimized={minimized} reviews={reviews} searchTerm={searchTerm} />
         <div className='review-buttons'>
           {totalReviews >= 3 &&
             <button type='button' onClick={this.handleView}>{minimized ? 'MORE REVIEWS' : 'FEWER REVIEWS'}</button>}
@@ -67,6 +67,7 @@ ReviewsListContainer.propTypes = {
   productName: PropTypes.string.isRequired,
   handleSort: PropTypes.func.isRequired,
   handleSearch: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
   totalReviews: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape({
     review_id: PropTypes.number,
