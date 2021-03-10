@@ -27,8 +27,8 @@ class QuestionsAndAnswers extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { productId } = this.props
-    if (productId !== prevProps.productId) {
+    const { productId, productName } = this.props
+    if (productId !== prevProps.productId || productName !== prevProps.productName) {
       this.getAllQuestions();
     }
   }
