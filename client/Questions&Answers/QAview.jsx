@@ -11,8 +11,10 @@ class QAview extends React.Component {
     this.state = {
       questionsView: false,
       answersView: false,
+      idList: [],
     };
     this.handleInput = this.handleInput.bind(this)
+    this.canClick = this.canClick.bind(this)
   }
 
   handleInput(type, id, input) {
@@ -20,6 +22,17 @@ class QAview extends React.Component {
     // remove after answer modal
     console.log('handle input triggered', type, id, input)
     postInput(type, id, 'add', input)
+  }
+
+  canClick(id) {
+    const { idList } = this.state
+    const {postFeedback } = this.props
+      if (idList.includes(id)) {
+        return console.error('Invalid action')
+      }
+      idList.push(id)
+        return postFeedback('questions', id, 'helpful')
+
   }
 
   render() {
@@ -50,6 +63,7 @@ class QAview extends React.Component {
           handleInput={this.handleInput}
           postFeedback={postFeedback}
           productName={productName}
+          canClick={this.canClick}
         />
 )}
         <>

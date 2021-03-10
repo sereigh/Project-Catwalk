@@ -5,22 +5,12 @@ import Modal from './Modal.jsx';
 import TextLink from './UserFeedback.jsx';
 // import  from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
-import { sortAnswers, index } from './Utility.jsx';
+import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, questionsView, answersView, toggleAccordian, handleInput, postFeedback, productName } = props
+  const { questions, questionsView, answersView, toggleAccordian, handleInput, canClick, productName, postFeedback } = props
   const [panel, setPanel] = useState(false);
   const view = (questionsView === true ? "showAll-questions" : "showDefault-questions")
-
-
-
-  const canClick = (id) => {
-    if (index.includes(id)) {
-      return console.error('Invalid action')
-    }
-      index.push(id)
-      return postFeedback('questions', id, 'helpful')
-  }
 
   const togglePanel = (i) => {
     if (panel === i) {
@@ -90,6 +80,7 @@ QuestionsList.propTypes = {
   handleInput: PropTypes.func.isRequired,
   postFeedback: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
+  canClick: PropTypes.func.isRequired,
 }
 
 export default QuestionsList;
