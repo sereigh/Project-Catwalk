@@ -45,6 +45,7 @@ class QuestionsAndAnswers extends React.Component {
 
   handleSearchClear(e) {
     const { inputValue } = this.state
+
     e.preventDefault()
     if (!inputValue) {
       this.setState({
@@ -54,9 +55,10 @@ class QuestionsAndAnswers extends React.Component {
 
   getAllQuestions() {
     const { productId } = this.props
+
     axios.get(`/qa/questions/${productId}`)
     .then((response) => sortQuestions(response))
-    .then((response) => {console.log(response[1].length, response[1]);
+    .then((response) => {console.log(response[1].length, response[1])
       this.setState({
         questions: response[1]
       })})
@@ -65,20 +67,17 @@ class QuestionsAndAnswers extends React.Component {
 
   postInput(type, id, option, input) {
     const endPoint = findPath(type, id, option)
+
     axios.post(endPoint, input)
-    // remove after modal
           .then((response) => console.log(response))
           .then(() => this.getAllQuestions())
           .catch((err) => err)
   }
 
   postFeedback(type, id, option) {
-    // remove after modal
-    if (option === 'add') { this.postInput(type, id, option) }
-    if (type === 'reported') { this.getAllQuestions() }
     const endPoint = findPath(type, id, option)
-    // remove after modal
-    console.log(endPoint, type, id, option)
+
+    if (type === 'reported') { this.getAllQuestions() }
         axios.put(endPoint)
           .then(() => this.getAllQuestions())
           .catch((err) => err)

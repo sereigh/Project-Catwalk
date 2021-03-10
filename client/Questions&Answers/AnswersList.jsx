@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, answersView, toggleAccordian, postFeedback } = props;
-  const view = (answersView ? "showAll-answers" : "showDefault-answers");
+  const { answers, answersView, toggleAccordian, canClick } = props
+  const view = (answersView ? "showAll-answers" : "showDefault-answers")
 
   return (
     <div className={view}>
@@ -26,13 +26,13 @@ function Answerslist(props) {
             {`   Helpful? `}
             <TextLink
               option={1}
-              handler={() => postFeedback('answers', answer.id, 'helpful')}
+              handler={() => canClick('answers', answer.id, 'helpful')}
             />
             {` (${answer.helpfulness})   |   `}
             {!answer.reported && (
             <TextLink
               option={0}
-              handler={() => postFeedback('answers', answer.id, 'report')}
+              handler={() => canClick('answers', answer.id, 'report')}
             />
           )}
           </span>
@@ -58,7 +58,7 @@ Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleAccordian: PropTypes.func.isRequired,
-  postFeedback: PropTypes.func.isRequired,
+  canClick: PropTypes.func.isRequired,
 }
 
 export default Answerslist;

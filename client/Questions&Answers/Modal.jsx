@@ -15,7 +15,7 @@ class Modal extends React.Component {
     }
     this.toggleModal = this.toggleModal.bind(this)
     this.submitForm = this.submitForm.bind(this)
-    this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this)
   }
 
   handleFormChange(e) {
