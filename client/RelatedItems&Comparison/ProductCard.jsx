@@ -78,7 +78,6 @@ class ProductCard extends React.Component {
     axios
       .get(`/products/${productId}/styles`)
       .then((response) => {
-        console.log(response);
         this.setState({
           productStyles: response.data.results
         })
