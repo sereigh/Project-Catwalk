@@ -321,23 +321,97 @@ body {
 .qa-modal-view {
   position: fixed;
   z-index: 1;
-  left: 25%;
-  top: 25%;
-  width: 50%;
-  height: 50%;
+  left: 35%;
+  top: 20%;
+  width: 30%;
+  height: 60%;
   overflow: auto;
   background-color: white;
-  border: thick solid black;
+  border: thin solid gray;
   text-align: center;
+  border-radius: 20px;
+  animation: qaModalUp 0.5s;
 }
 .qa-modal-box {
-  background-color: white;
+  background-color: black;
   margin: 15% auto;
   padding: 20px;
   width: 40%;
   text-align: left;
   margin: 2%;
+  display: inline-block;
+  animation: qaModalUp 0.5s;
 }
+
+.qa-close-modal {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  }
+  .qa-close-modal:hover {
+    background-color: rgb(204, 255, 204);
+    outline: none;
+    border-radius: 25px;
+    font-size: larger;
+  }
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0
+}
+
+form[name="qa"] {
+  max-width: 400px;
+  padding: 20px;
+}
+label {
+  display: block;
+  text-align: left;
+}
+input[type="textarea"] {
+  height: 60px;
+}
+form[name="qa"] input {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  border: solid thin green;
+  outline: none;
+  border-radius: 9px;
+}
+form[name="qa"] input:valid {
+  box-shadow: 0 0 1px 1px green;
+  background-color: rgb(204, 255, 204);
+}
+form[name="qa"] input:hover {
+  background-color: rgb(204, 255, 204);
+}
+form[name="qa"] input:active {
+  border: none;
+}
+form[name="qa"] button:hover {
+  font-size: larger;
+}
+form[name="qa"] button {
+  border-radius: 6px;
+  outline: none;
+  border: none;
+}
+.small {
+  font-size: xx-small;
+  text-align: center;
+}
+
 /* Ratings and Reviews */
 .ratings-reviews-title {
   margin: auto;
