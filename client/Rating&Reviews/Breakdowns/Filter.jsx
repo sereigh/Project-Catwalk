@@ -6,7 +6,8 @@ import RatingBar from './RatingBar.jsx';
 const Filter = ({rating, ratingTotal, percent, handleFilter, filtered}) => (
   <div
     className={filtered ? 'filter filtered' : 'filter'}
-    role='button'
+    role='link'
+    title={`${ratingTotal} total ${rating} star reviews`}
     tabIndex={0}
     onClick={() => {handleFilter(rating)}}
     onKeyPress={() => {handleFilter(rating)}}

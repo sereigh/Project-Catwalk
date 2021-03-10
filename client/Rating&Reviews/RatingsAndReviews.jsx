@@ -150,29 +150,33 @@ class RatingsAndReviews extends React.Component {
     const {filteredReviews, searchTerm, searchedReviews, filters} = this.state;
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <div
-        className='ratings-and-reviews-container'
-        onClick={handleClickTrack}
-        onKeyPress={handleClickTrack}
-      >
-        <RatingsContainer
-          reviewData={reviewData}
-          totalReviews={totalReviews}
-          handleFilter={this.handleFilter}
-          filters={filters}
-        />
-        <ReviewsListContainer
-          productId={productId}
-          productName={productName}
-          reviews={searchTerm.length < 3 ? filteredReviews : searchedReviews}
-          totalReviews={totalReviews}
-          handleSort={this.handleSort}
-          handleSearch={this.handleSearch}
-          characteristics={reviewData.characteristics || {}}
-          searchTerm={searchTerm}
-        />
-      </div>
+      <>
+        <div className='ratings-reviews-title'>RATINGS & REVIEWS</div>
+        <br />
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div
+          className='ratings-and-reviews-container'
+          onClick={handleClickTrack}
+          onKeyPress={handleClickTrack}
+        >
+          <RatingsContainer
+            reviewData={reviewData}
+            totalReviews={totalReviews}
+            handleFilter={this.handleFilter}
+            filters={filters}
+          />
+          <ReviewsListContainer
+            productId={productId}
+            productName={productName}
+            reviews={searchTerm.length < 3 ? filteredReviews : searchedReviews}
+            totalReviews={totalReviews}
+            handleSort={this.handleSort}
+            handleSearch={this.handleSearch}
+            characteristics={reviewData.characteristics || {}}
+            searchTerm={searchTerm}
+          />
+        </div>
+      </>
     )
   }
 }

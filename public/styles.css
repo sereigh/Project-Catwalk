@@ -1,27 +1,32 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
 /* Header */
 .website-header {
   width: 70%;
   height: 40px;
   margin: auto;
   padding: 20px 20px 0 20px;
-  background-color: rgba(82,82,82,255);
+  border: 1px solid green;
+  background-color: lightgreen;
 }
 
 .logo {
   float: left;
-  color: white;
+  color: black;
 }
 
 .website-search-bar {
   float: right;
-  color: white;
+  color: black;
 }
 
 .website-search-bar input {
-  color: white;
-  background-color: rgba(82,82,82,255);
+  color: black;
+  background-color: lightgreen;
   border: none;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid black;
   width: 100px;
   margin-right: 15px;
   transform: translateY(-5px);
@@ -338,12 +343,17 @@
   margin: 2%;
 }
 /* Ratings and Reviews */
+.ratings-reviews-title {
+  margin: auto;
+  width: 57%;
+  font-size: small;
+}
+
 .ratings-and-reviews-container {
   display: flex;
   justify-content: center;
   margin: auto;
   width: 57%;
-  font-family: 'Inter', sans-serif;
   font-size: small;
 }
 
@@ -378,6 +388,7 @@
 .filter:hover {
   color: green;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .filter-hover {
@@ -395,10 +406,6 @@
   background-color: rgb(204, 255, 204);
   outline: 1px solid green;
   outline-offset: -1px;
-}
-
-.star-amounts {
-  text-decoration: underline;
 }
 
 .filter-message {
@@ -533,7 +540,7 @@
   margin-right: auto;
   max-width: 50%;
   max-height: 50%;
-  outline: 1px solid black;
+  outline: 1px solid green;
   outline-offset: -1px;
   transform: translate(-50%, -50%);
   animation: modalFadeIn 0.5s;
@@ -592,7 +599,7 @@
 }
 
 .yes-vote:hover {
-  color: lightgreen;
+  color: rgb(0, 150, 0);
 }
 
 .no-vote:hover {
@@ -682,6 +689,7 @@
 
 .star-submit {
   font-size: large;
+  color: green;
 }
 
 .star-submit:hover, input[type='radio']:hover {
