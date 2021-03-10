@@ -328,20 +328,45 @@
   background-color: white;
   border: thin solid gray;
   text-align: center;
+  border-radius: 20px;
+  animation: qaModalUp 0.5s;
 }
 .qa-modal-box {
-  background-color: white;
+  background-color: black;
   margin: 15% auto;
   padding: 20px;
   width: 40%;
   text-align: left;
   margin: 2%;
   display: inline-block;
+  animation: qaModalUp 0.5s;
 }
 
 .qa-close-modal {
-  padding: 10px;
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
   text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  }
+  .qa-close-modal:hover {
+    background-color: rgb(238, 238, 238);
+    outline: none;
+    border-radius: 25px;
+    font-size: larger;
+  }
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0
 }
 
 form[name="qa"] {
@@ -355,18 +380,31 @@ label {
 input[type="textarea"] {
   height: 60px;
 }
-input[type="text"],
-input[type="email"],
-input[type="textarea"],
-fieldset {
+form[name="qa"] input {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
   border: solid thin gray;
+  outline: none;
+  border-radius: 9px;
 }
-
 form[name="qa"] input:valid {
-  box-shadow: 0 0 1px 1px rgb(101, 136, 101);
+  box-shadow: 0 0 1px 1px darkgreen;
+  background-color: lightgreen;
+}
+form[name="qa"] input:hover {
+  background-color: rgb(238, 238, 238);
+}
+form[name="qa"] input:active {
+  border: none;
+}
+form[name="qa"] button:hover {
+  font-size: larger;
+}
+form[name="qa"] button {
+  border-radius: 6px;
+  outline: none;
+  border: none;
 }
 .small {
   font-size: xx-small;
