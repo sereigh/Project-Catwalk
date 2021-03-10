@@ -35,18 +35,33 @@ class QAview extends React.Component {
         return postFeedback(type, id, option)
   }
 
-  toggleQindex(i) {
+  toggleQuestions() {
+    const {questions } = this.props
     const { qIndex } = this.state
-
-    if (i > qIndex) {this.setState({
-      qIndex: i
+    const newIndex = qIndex.slice() + 2
+    if (qIndex >= questions.length) {this.setState({
+      qIndex: 4
     })}
+    this.setState({
+      qIndex: newIndex
+    })
+  }
+
+  toggleAnswers(length) {
+    const { aIndex } = this.state
+    if(aIndex >= length) {
+      this.setState({
+        aIndex: 2
+      })
+    }else this.setState({
+      aIndex: length
+    })
   }
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
     const { questionsView, answersView, qIndex, aIndex } = this.state
-    const questionText = (questionsView ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
+    const questionText = (qIndex >= questions.length ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
 
     // const toggleAccordian = (e) => {
     //   if (e.target.name === 'answers') {
@@ -111,8 +126,8 @@ QAview.showDefault = {
   questionsView: false,
   answersView: false,
   modalView: false,
-  qIndex: 3,
-  aIndex: 1,
+  qIndex: 4,
+  aIndex: 2,
 }
 
 export default QAview;

@@ -54,9 +54,8 @@ function QuestionsList(props) {
               />
             </div>
             <span
-              className="answers-per-question"
+              className={(i < qIndex ? 'showAll-questions' : 'showNo-questions')}
             >
-              {i < qIndex && (
               <AnswersList
                 answers={sortAnswers(questions[i].answers)}
                 answersView={answersView}
@@ -64,7 +63,6 @@ function QuestionsList(props) {
                 canClick={canClick}
                 aIndex={aIndex}
               />
-              )}
             </span>
           </div>
         ))}
