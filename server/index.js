@@ -179,6 +179,13 @@ app.put('/qa/answers/:answer_id/report', (req, res) => {
     .catch((err) => res.status(404).send(err))
 });
 
+// Interactions POST Posts a click to the database
+app.post('/interactions', (req, res) => {
+  helpers.postClick(req.body)
+    .then((response) => res.send(response.data))
+    .catch((err) => res.send(err))
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });

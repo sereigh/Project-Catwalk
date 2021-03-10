@@ -327,7 +327,7 @@ class WriteReview extends React.Component {
 
   render() {
     const {characteristics, productName} = this.props;
-    const {showModal, overallRating, photos, body, ratingError, recommendError, characteristicsError, bodyError, photoError, nicknameError, emailError, errors, submitting, submitted} = this.state;
+    const {showModal, overallRating, photos, body, size, width, comfort, quality, length, fit, ratingError, recommendError, characteristicsError, bodyError, photoError, nicknameError, emailError, errors, submitting, submitted} = this.state;
 
     const charactersLeftMessage = 50 - body.length > 0 ?
       `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
@@ -350,7 +350,7 @@ class WriteReview extends React.Component {
                     <RecommendSubmit handleRecommend={this.handleRecommend} recommendError={recommendError} />
                     <br />
                     <br />
-                    <CharacteristicsSubmit characteristics={Object.keys(characteristics)} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
+                    <CharacteristicsSubmit characteristics={Object.keys(characteristics)} values={{size, width, comfort, quality, length, fit}} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
                   </div>
                   <div className='right'>
                     <SummarySubmit handleSummaryChange={this.handleSummaryChange} />

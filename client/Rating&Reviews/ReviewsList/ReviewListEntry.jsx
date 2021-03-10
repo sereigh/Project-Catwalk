@@ -59,17 +59,17 @@ class ReviewListEntry extends React.Component {
   }
 
   render() {
-    const {review} = this.props;
+    const {review, searchTerm} = this.props;
     const {vote, reported} = this.state;
 
     return (
       <div className='review'>
         <Stars rating={review.rating} />
-        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} />
+        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} searchTerm={searchTerm} />
         <br />
         <br />
-        <Summary summary={review.summary} />
-        <Body body={review.body} />
+        <Summary summary={review.summary} searchTerm={searchTerm} />
+        <Body body={review.body} searchTerm={searchTerm} />
         <PhotoList photos={review.photos} />
         <br />
         <Recommend recommend={review.recommend} />
@@ -129,7 +129,8 @@ ReviewListEntry.propTypes = {
       id: PropTypes.number,
       url: PropTypes.string
     }))
-  }).isRequired
+  }).isRequired,
+  searchTerm: PropTypes.string.isRequired
 }
 
 export default ReviewListEntry;

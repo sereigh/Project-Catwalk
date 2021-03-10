@@ -133,7 +133,6 @@ class App extends React.Component {
         }, callback);
       })
       .catch((error) => {
-        console.log(callback)
         console.log('Get review data failed...', error);
       })
   }

@@ -24,7 +24,7 @@ class CharacteristicRate extends React.Component {
   }
 
   render() {
-    const {characteristic} = this.props;
+    const {characteristic, value} = this.props;
     const {description} = this.state;
 
     return (
@@ -33,20 +33,20 @@ class CharacteristicRate extends React.Component {
         <span className='dynamic-description'>{description}</span>
         <div className='flex-row'>
           <div className='flex-column'>
-            <input type='radio' name={`${characteristic}-rating`} value='1' onChange={event => this.handleChange(event, characteristic)} />
+            <input type='radio' name={`${characteristic}-rating`} value='1' checked={value === 1} onChange={event => this.handleChange(event, characteristic)} />
             <span>{generateDescription(characteristic, 1)}</span>
           </div>
           <div className='flex-column'>
-            <input type='radio' name={`${characteristic}-rating`} value='2' onChange={event => this.handleChange(event, characteristic)} />
+            <input type='radio' name={`${characteristic}-rating`} value='2' checked={value === 2} onChange={event => this.handleChange(event, characteristic)} />
           </div>
           <div className='flex-column'>
-            <input type='radio' name={`${characteristic}-rating`} value='3' onChange={event => this.handleChange(event, characteristic)} />
+            <input type='radio' name={`${characteristic}-rating`} value='3' checked={value === 3} onChange={event => this.handleChange(event, characteristic)} />
           </div>
           <div className='flex-column'>
-            <input type='radio' name={`${characteristic}-rating`} value='4' onChange={event => this.handleChange(event, characteristic)} />
+            <input type='radio' name={`${characteristic}-rating`} value='4' checked={value === 4} onChange={event => this.handleChange(event, characteristic)} />
           </div>
           <div className='flex-column'>
-            <input type='radio' name={`${characteristic}-rating`} value='5' onChange={event => this.handleChange(event, characteristic)} />
+            <input type='radio' name={`${characteristic}-rating`} value='5' checked={value === 5} onChange={event => this.handleChange(event, characteristic)} />
             <span>{generateDescription(characteristic, 5)}</span>
           </div>
         </div>
@@ -58,6 +58,7 @@ class CharacteristicRate extends React.Component {
 
 CharacteristicRate.propTypes = {
   characteristic: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   handleCharacteristicRate: PropTypes.func.isRequired
 }
 

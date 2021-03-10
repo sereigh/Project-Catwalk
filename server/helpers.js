@@ -250,16 +250,23 @@ const reportAnswer = (id, req) => axios.put(`${host}/qa/answers/${id}/report`, r
 // }
 
 // Interactions
+const postClick = (click) => {
+  const options = {
+    headers: {
+      Authorization: `${config.TOKEN}`
+    }
+  }
+  return (
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/interactions`, click, options)
+      .then(data => data)
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+}
 
 module.exports = {
-  getQuestions,
-  getAnswers,
-  addQuestion,
-  addAnswer,
-  markQuestionHelpful,
-  markAnswerHelpful,
-  reportQuestion,
-  reportAnswer,
+
   // Products[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/products.md]
   getProductsList,
   getProductById,
@@ -271,13 +278,21 @@ module.exports = {
   voteHelpful,
   reportReview,
   uploadPhoto,
-  submitReview
+  submitReview,
   // Questions&Answers[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/qa.md]
-
+  getQuestions,
+  getAnswers,
+  addQuestion,
+  addAnswer,
+  markQuestionHelpful,
+  markAnswerHelpful,
+  reportQuestion,
+  reportAnswer,
   // Cart[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/cart.md]
   // getCartContents,
   // postCartContents,
   // Interations[https://learn-2.galvanize.com/cohorts/2474/blocks/94/content_files/Front%20End%20Capstone/project-atelier-catwalk/interactions.md]
+  postClick
 }
 
 
