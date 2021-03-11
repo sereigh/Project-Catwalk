@@ -507,6 +507,8 @@ li{
   overflow-x: hidden;
   position: relative;
   box-sizing: content-box;
+  /* not sure if this is needed */
+  display: contents;
   background-color: green;
   max-height: 75vh;
   margin: auto;
@@ -558,7 +560,7 @@ li{
   cursor: pointer;
 }
 .answerText {
-  font-size: smaller;
+  font-size: x-small;
   word-break: normal;
   width: 100%;
   text-align: left;
@@ -571,7 +573,7 @@ li{
   display: inline-block;
   width: 32%;
 }
-.questionFeedback:hover {
+.questionFeedback:hover .answersFeedback:hover {
   cursor: pointer;
 }
 .answersFeedback {
@@ -587,8 +589,7 @@ li{
   display: inline-block;
 } */
 .loadAnswers {
-  font-size: x-small;
-  margin: 4%;
+  font-size: xx-small;
   font-weight: bolder;
 }
 .qa-modal-overlay {

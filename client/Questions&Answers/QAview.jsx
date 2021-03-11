@@ -13,7 +13,10 @@ class QAview extends React.Component {
       idList: [],
       qIndex: 3,
       aIndex: 1,
+      openIndex: [0, 1, 2, 3],
     };
+    // must change implementation to include just open Index or both
+    // qIndex and openIndex, else view more questions will not work.
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
     this.toggleQuestions = this.toggleQuestions.bind(this)
@@ -38,16 +41,18 @@ class QAview extends React.Component {
 
   toggleQuestions() {
     const {questions } = this.props
-    const { qIndex } = this.state
-    const newIndex = qIndex + 2
-    if (qIndex >= questions.length - 1) {
+    const { openIndex } = this.state
+    // const newIndex = openIndex.slice()
+    console.log('questions length - 1', questions.length -1)
+    console.log('openIndex length - 1', openIndex.length -1)
+    if (openIndex.length >= questions.length) {
       this.setState(() => {
-        return { qIndex: 3 }
+        return { openIndex: [...Array(4).keys()] }
       })
   } else this.setState(() => {
-    return { qIndex: newIndex }
+    return { openIndex: [...Array(openIndex.length + 2).keys()] }
   })
-  console.log('toggle questions clicked', newIndex)
+  console.log('toggle questions clicked')
   }
 
   toggleAnswers() {
@@ -59,6 +64,19 @@ class QAview extends React.Component {
     // }else this.setState(() => {
     //   return { aIndex: length - 1 }
     // })
+
+    //   if (openIndex[openIndex.length - 1] >= questions.length - 1) {
+    //     this.setState(() => {
+    //       return { openIndex: [0, 1, 2, 3] }
+    //     })
+    //   } else newIndex.push(newIndex.pop() + 1, newIndex.pop() + 2)
+    //   newIndex.unshift()
+    //   newIndex.unshift()
+    //   this.setState(() => {
+    //     return { openIndex: newIndex }
+    //   })
+    //   console.log('toggle questions clicked', newIndex)
+    // }
     this.setState(() => {
         return { answersView: !answersView }
       })
@@ -66,7 +84,7 @@ class QAview extends React.Component {
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
-    const { questionsView, answersView, qIndex, aIndex } = this.state
+    const { questionsView, answersView, qIndex, aIndex, openIndex } = this.state
     const questionText = (qIndex < questions.length - 1 ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     // const toggleAccordian = (e) => {
@@ -96,6 +114,7 @@ class QAview extends React.Component {
           canClick={this.canClick}
           qIndex={qIndex}
           aIndex={aIndex}
+          openIndex={openIndex}
         />
 )}
         <>
@@ -141,6 +160,7 @@ QAview.showDefault = {
   modalView: false,
   qIndex: 3,
   aIndex: 1,
+  openIndex: [0, 1, 2, 3],
 }
 
 export default QAview;

@@ -7,7 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, qIndex, aIndex } = props
+  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, qIndex, aIndex, openIndex } = props
   // const [panel, setPanel] = useState(false);
   // const view = (questionsView === true ? "showAll-questions" : "showNo-questions")
 
@@ -22,15 +22,15 @@ function QuestionsList(props) {
     <div className="qa-questions-list">
       {questions.map((question, i) => (
         <div
-          className={(i <= qIndex ? 'qa-question-card' : 'qa-no-show')}
+          className={(openIndex.includes(i) ? 'qa-question-card' : 'qa-no-show')}
           key={question.question_id}
         >
           <div
             className="questionText"
-            onClick={() => console.log('toggle panel')}
+            onClick={() => toggleAnswers(i)}
             role="button"
             tabIndex={0}
-            onKeyPress={() => console.log('toggle panel')}
+            onKeyPress={() => toggleAnswers(i)}
           >
             {/* togglePanel(i) */}
             <strong>Q:  </strong>
@@ -53,10 +53,18 @@ function QuestionsList(props) {
             />
           </div>
           <span
-            className="qa-answers"
+            className="qa-answers-list"
+            // should show default or hide answers based on clicking the question
+            // if this question is clicked (q) this answer panel (i) should show
+            // it's default view, if it's not clicked, it should stay hidden
+
+            // this list should show if it's the first 4 lists
+            // otherwise it should be hidden
+
+            // if this question is clicked, this list should show default
           >
             {/* || i === openIndex  */}
-            {i <= qIndex && (
+            {openIndex.includes(i) && (
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
               length={questions[i].answers.length}
@@ -64,6 +72,7 @@ function QuestionsList(props) {
               toggleAnswers={toggleAnswers}
               canClick={canClick}
               aIndex={aIndex}
+              q={i}
             />
 )}
           </span>
@@ -83,6 +92,7 @@ QuestionsList.propTypes = {
   canClick: PropTypes.func.isRequired,
   qIndex: PropTypes.number.isRequired,
   aIndex: PropTypes.number.isRequired,
+  openIndex: PropTypes.oneOfType([PropTypes.number]).isRequired,
 }
 
 export default QuestionsList;

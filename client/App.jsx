@@ -15,13 +15,9 @@ class App extends React.Component {
       productList: [
         {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-<<<<<<< HEAD
-      selectProductId: 17858,
-=======
       // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
       // Only products between 17067 and 17074 have multiple style images:
       selectProductId: 17069,
->>>>>>> 47583cbeae99f7262850cd042f86ca53812fa265
       selectProductInfo: {
         "id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
