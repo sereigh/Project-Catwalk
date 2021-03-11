@@ -63,10 +63,12 @@ class ProductCard extends React.Component {
   toggleModalWindow() {
     const { window } = this.state;
     if (window === 'none') {
+      document.body.style.overflow = 'hidden';
       this.setState({
         window: 'block'
       });
     } else {
+      document.body.style.overflow = 'scroll';
       this.setState({
         window: 'none'
       });
