@@ -42,13 +42,14 @@ body {
 .list-container {
   display: block;
   justify-content: left;
-  width: 70%;
+  width: 57%;
+  margin: auto;
 }
 
 .relatedProductList {
   display: flex;
   width: 100%;
-  height: 350px;
+  height: 400px;
 }
 
 .outfitList {
@@ -76,8 +77,17 @@ body {
 }
 
 .productCard-container {
-  margin: 10px;
+  padding: 5px 5px 10px 5px;
+  margin: 20px 5px 5px 5px;
   width: 200px;
+  border: 1px solid;
+  border-radius: 2%;
+  height: 85%;
+}
+
+.productCard-container:hover {
+  transform: translate(0, -5%);
+  cursor: pointer;
 }
 
 .productCard {
@@ -142,8 +152,8 @@ body {
   z-index: 11;
   left: 50%;
   top: 50%;
-  width: 300px;
-  height: 350px;
+  width: 50%;
+  height: 50%;
   transform: translate(-50%, -50%);
   overflow-y: scroll;
   max-height:85%;
@@ -151,7 +161,8 @@ body {
   margin-bottom:50px;
   animation: modalFadeIn 0.5s;
   background-color: #fefefe;
-  border: 1px solid #fefefe;
+  border: 1px solid green;
+  padding: 5%;
 }
 
 .comparison-overlay {
@@ -161,7 +172,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fefefe;
+  background-color: black;
   opacity: 0.5;
   animation: overlayFadeIn 0.5s;
 }

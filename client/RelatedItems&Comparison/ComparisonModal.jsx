@@ -22,7 +22,7 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
         ))}
       </div>
     </div>
-    <div role="button" tabIndex="0" className="overlay" onClick={toggleModalWindow} onKeyPress={toggleModalWindow} />
+    <div role="button" tabIndex="0" className="comparison-overlay" onClick={toggleModalWindow} onKeyPress={toggleModalWindow} />
   </div>
 );
 
