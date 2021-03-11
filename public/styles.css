@@ -780,6 +780,10 @@ form[name="qa"] button {
   transform: translateX(5px);
 }
 
+.recommend-options label {
+  display: inline;
+}
+
 .dynamic-description {
   color: green;
 }
