@@ -137,6 +137,20 @@ body {
   width: 100%;
 }
 
+.productInfo-name {
+  font-weight: bold;
+}
+
+.productInfo-category {
+  font-size: 80%;
+}
+
+.productInfo-price {
+  font-weight: bold;
+}
+
+
+
 .plusBtn {
   text-align: center;
   height: 5vh;
@@ -198,10 +212,12 @@ body {
 }
 
 .sale-price {
+  font-weight: bold;
   color: red;
 }
 
 .original-price {
+  font-size: 90%;
   color: gray;
 }
 
