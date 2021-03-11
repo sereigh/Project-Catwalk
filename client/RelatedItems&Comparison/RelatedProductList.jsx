@@ -85,7 +85,7 @@ class RelatedProductList extends React.Component {
     const {leftCordinate, slideLength} = this.state;
     if (this.myRef.current.offsetWidth < slideLength + leftCordinate ) {
       this.setState({
-        leftCordinate: leftCordinate - 222
+        leftCordinate: leftCordinate - 220
       });
     }
   }
@@ -94,7 +94,7 @@ class RelatedProductList extends React.Component {
     const {leftCordinate} = this.state;
     if (leftCordinate < 0) {
       this.setState({
-        leftCordinate: leftCordinate + 222
+        leftCordinate: leftCordinate + 220
       });
     }
   }
@@ -103,7 +103,7 @@ class RelatedProductList extends React.Component {
     const{relatedProductIds} = this.state;
     const numberOfCards = relatedProductIds.length;
     this.setState({
-      slideLength:  numberOfCards * 222 + 2
+      slideLength:  numberOfCards * 220 + 2
     });
   }
 
