@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import ProductCard from './ProductCard.jsx';
 
-const cardSize = 220;
+const cardSize = 210;
 
 class RelatedProductList extends React.Component {
   constructor(props) {
@@ -114,7 +114,7 @@ class RelatedProductList extends React.Component {
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <img src='./left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
+        <img src='./img/left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
@@ -122,7 +122,7 @@ class RelatedProductList extends React.Component {
             ))}
           </div>
         </div>
-        <img src='./right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
+        <img src='./img/right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
       </div>
     );
   }

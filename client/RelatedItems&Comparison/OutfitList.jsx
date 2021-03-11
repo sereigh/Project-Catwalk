@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard.jsx';
 import PlusCard from './PlusCard.jsx';
 
-const cardSize = 220;
+const cardSize = 210;
 
 class OutfitList extends React.Component {
   constructor(props) {

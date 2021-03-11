@@ -282,7 +282,7 @@ li{
 .outfitList {
   display: flex;
   width: 100%;
-  height: 350px;
+  height: 400px;
 }
 
 .carousel-container {
@@ -313,11 +313,9 @@ li{
   border-radius: 15px;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-  /* #FCF6F5 */
 }
 
 .productCard-container:hover {
-  /* cursor: pointer; */
   box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
 }
 
@@ -376,6 +374,7 @@ li{
 
 .productInfo-name {
   font-weight: bold;
+  font-size: 95%;
 }
 
 .productInfo-category {
@@ -386,10 +385,14 @@ li{
   font-weight: bold;
 }
 
+.plusCard:hover {
+  cursor: pointer;
+}
+
 .plusBtn {
   text-align: center;
-  height: 5vh;
-  width: 4vh;
+  height: 45px;
+  width: 45px;
   margin: auto;
   background-color: white;
 }
@@ -469,6 +472,14 @@ li{
   height: 15px;
   padding-right: 10px;
   padding-top: 10px;
+}
+
+.actionBtn.closeBtn {
+  font-weight: bold;
+}
+
+.actionBtn.closeBtn:hover {
+  color: red;
 }
 
 .actionBtn:hover {

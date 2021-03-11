@@ -7,20 +7,20 @@ const ActionButton = ({toggleModalWindow, isRelated, deleteOutfit, productId}) =
     deleteOutfit(productId);
   }
 
-  const [imgFilePath, setImg] = React.useState('./star(1).png');
+  const [imgFilePath, setImg] = React.useState('./img/star(1).png');
 
   const toggleImageFile = () => {
     console.log(imgFilePath);
-    if (imgFilePath === './star(1).png') {
-      setImg('./star(4).png');
+    if (imgFilePath === './img/star(1).png') {
+      setImg('./img/star(4).png');
     } else {
-      setImg('./star(1).png');
+      setImg('./img/star(1).png');
     }
   }
 
   const selectButton = () => (
     isRelated ? <img src={imgFilePath} className="actionBtn" alt="starBtn" onMouseEnter={toggleImageFile} onMouseLeave={toggleImageFile} onClick={toggleModalWindow} onKeyPress={()=>{}} /> :
-    <button className="actionBtn" type="button" onClick={handleClick}>X</button>
+    <span className="actionBtn closeBtn" onClick={handleClick}>X</span>
   );
 
   return (
