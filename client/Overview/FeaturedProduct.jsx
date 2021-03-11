@@ -16,7 +16,7 @@ class FeaturedProduct extends React.Component {
     // CATEGORY
     // <h1>Expanded Product Name</h1>
     return (
-      <div id="productAreaItem">
+      <div className="productAreaItem">
         <FeaturedReviewLink />
         <h4>{selectProductInfo.category.toUpperCase()}</h4>
         <h1>{selectProductInfo.name}</h1>

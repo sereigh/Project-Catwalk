@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import StylePrice from './StylePrice.jsx';
 import StyleCategory from './StyleCategory.jsx';
-import StyleOutbound from './StyleOutbound.jsx';
 
 class StyleSelector extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
@@ -34,7 +33,7 @@ class StyleSelector extends React.Component {
     // [] [] [] []
     // [] [] [] []
     return(
-      <div id="styleSelector">
+      <div className="styleSelector">
         <StylePrice
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
@@ -43,7 +42,6 @@ class StyleSelector extends React.Component {
           selectStyleOptions={selectStyleOptions}
           selectStyleIndex={selectStyleIndex}
         />
-        <StyleOutbound />
         {/* {selectStyleOptions.map((styleEntry, index) => (
           <div
             type="submit"
@@ -66,14 +64,20 @@ class StyleSelector extends React.Component {
               type="submit"
               onClick={this.uponStyleThumbnailClick}
               id={index}
+              // id="style-thumbnail-button"
               key={styleEntry.name + styleEntry.style_id}
-              className="styleEntryThumbnail"
+              className="style-thumbnail-button"
+              // class="style-thumbnail-button"
             >
               <img
                 src={styleEntry.photos[0].thumbnail_url}
                 // onClick={this.uponStyleThumbnailClick}
                 id={index}
+                // id="style-thumbnail"
+                type="style-thumbnail"
                 alt={styleEntry.name + styleEntry.style_id}
+                className="style-thumbnail"
+                // class="style-thumbnail"
               />
             </button>
           ))}
@@ -96,10 +100,10 @@ StyleSelector.propTypes = {
       "url": PropTypes.string
     })),
     "skus": PropTypes.objectOf(PropTypes.shape({
-      "547962": PropTypes.objectOf(PropTypes.shape({
-        "quantity": PropTypes.number,
-        "size": PropTypes.string
-      }))
+      // "547962": PropTypes.objectOf(PropTypes.shape({
+      "quantity": PropTypes.number,
+      "size": PropTypes.string
+      // }))
     }))
   })).isRequired,
   selectStyleIndex: PropTypes.number.isRequired,
