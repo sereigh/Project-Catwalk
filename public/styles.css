@@ -90,9 +90,8 @@ body {
 }
 
 .productCard-container:hover {
-  transform: translate(0, -5%);
-  cursor: pointer;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  /* cursor: pointer; */
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
 }
 
 .productCard {
@@ -129,8 +128,12 @@ body {
 
 .preview-image {
   display: block;
-  height: 200px;
+  height: 215px;
   width: 200px;
+}
+
+.preview-image:hover {
+  cursor: pointer;
 }
 
 .preview-image img {
@@ -177,9 +180,13 @@ body {
   margin-top: 50px;
   margin-bottom:50px;
   animation: modalFadeIn 0.5s;
-  background-color: #fefefe;
+  background-color: white;
   border: 1px solid green;
-  padding: 5%;
+  padding: 2% 5%;
+}
+
+.comparison-modal-content::-webkit-scrollbar {
+  display: none;
 }
 
 .comparison-overlay {
@@ -197,6 +204,7 @@ body {
 .productName-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  font-weight: bold;
 }
 
 .features-container {
@@ -214,6 +222,8 @@ body {
 
 .characteristic {
   text-align: center;
+  font-size: 90%;
+  color: gray;
 }
 
 .sale-price {
@@ -227,16 +237,15 @@ body {
 }
 
 .actionBtn {
-  border: white;
   float: right;
-  background: transparent;
-  padding: .5rem;
-  border-radius: 64px;
-  border-bottom: none;
+  width: 15px;
+  height: 15px;
+  padding-right: 10px;
+  padding-top: 10px;
 }
 
 .actionBtn:hover {
-  color: red;
+  cursor: pointer;
 }
 
 /* Questions and Answers */

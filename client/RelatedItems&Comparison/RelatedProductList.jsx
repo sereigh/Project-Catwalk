@@ -114,7 +114,7 @@ class RelatedProductList extends React.Component {
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <button type="button" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard}>&lt;</button>
+        <img src='./left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
@@ -122,7 +122,7 @@ class RelatedProductList extends React.Component {
             ))}
           </div>
         </div>
-        <button type="button" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard}>&gt;</button>
+        <img src='./right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
       </div>
     );
   }
