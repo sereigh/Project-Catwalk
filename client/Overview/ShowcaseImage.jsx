@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ShowcaseThumbnails from './ShowcaseThumbnails.jsx';
+
 class ShowcaseImage extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
   // selectStyleIndex={selectStyleIndex} viaOvC
@@ -19,34 +21,64 @@ class ShowcaseImage extends React.Component {
   onClickRight() {
     const { galleryBrowsingIndex } = this.state
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] === undefined ) {
+    if ( !selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] ) {
       this.setState({
         galleryBrowsingIndex: 0
       })
     }
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] !== undefined ) {
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] ) {
       this.setState({
         galleryBrowsingIndex: galleryBrowsingIndex+1
       })
     }
-    console.log('ShowcaseImage_onClickRight error');
   }
+
+  // onClickRight() {
+  //   const { galleryBrowsingIndex } = this.state
+  //   const { selectStyleOptions, selectStyleIndex } = this.props;
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] === undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: 0
+  //     })
+  //   }
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex+1] !== undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: galleryBrowsingIndex+1
+  //     })
+  //   }
+  //   console.log('ShowcaseImage_onClickRight error');
+  // }
 
   onClickLeft() {
     const { galleryBrowsingIndex } = this.state
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] === undefined ) {
+    if ( !selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] ) {
       this.setState({
         galleryBrowsingIndex: selectStyleOptions[selectStyleIndex].photos.length-1
       })
     }
-    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] !== undefined ) {
+    if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] ) {
       this.setState({
         galleryBrowsingIndex: galleryBrowsingIndex-1
       })
     }
-    console.log('ShowcaseImage_onClickLeft error');
   }
+
+  // onClickLeft() {
+  //   const { galleryBrowsingIndex } = this.state
+  //   const { selectStyleOptions, selectStyleIndex } = this.props;
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] === undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: selectStyleOptions[selectStyleIndex].photos.length-1
+  //     })
+  //   }
+  //   if ( selectStyleOptions[selectStyleIndex].photos[galleryBrowsingIndex-1] !== undefined ) {
+  //     this.setState({
+  //       galleryBrowsingIndex: galleryBrowsingIndex-1
+  //     })
+  //   }
+  //   console.log('ShowcaseImage_onClickLeft error');
+  // }
 
   uponGalleryBrowsingClick() {
   // uponGalleryBrowsingClick(event) {
@@ -83,14 +115,16 @@ class ShowcaseImage extends React.Component {
     )
     if ( galleryBrowsingIndex === 0 && galleryArray.length === 1 ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
         </div>
       );
     }
     if ( galleryBrowsingIndex === 0 && galleryArray.length > 1 ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
@@ -104,7 +138,8 @@ class ShowcaseImage extends React.Component {
     }
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex === galleryArray.length ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
@@ -118,7 +153,8 @@ class ShowcaseImage extends React.Component {
     }
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex < galleryArray.length ) {
       return (
-        <div id="showcaseGallery">
+        <div className="showcaseGallery">
+          <ShowcaseThumbnails />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
@@ -173,10 +209,10 @@ ShowcaseImage.propTypes = {
       "url": PropTypes.string
     })),
     "skus": PropTypes.objectOf(PropTypes.shape({
-      "547962": PropTypes.objectOf(PropTypes.shape({
-        "quantity": PropTypes.number,
-        "size": PropTypes.string
-      }))
+      // "547962": PropTypes.objectOf(PropTypes.shape({
+      "quantity": PropTypes.number,
+      "size": PropTypes.string
+      // }))
     }))
   })).isRequired,
   selectStyleIndex: PropTypes.number.isRequired,

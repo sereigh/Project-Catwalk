@@ -1,11 +1,11 @@
-// import React from 'react';
+import React from 'react';
 
-// const ShowcaseThumbnails = () => {
-//   return (
-//     <div id="" />
+function ShowcaseThumbnails() {
+  return (
+    <div className="showcaseThumbnails">
+      ^
+    </div>
+  );
+}
 
-
-//   );
-// }
-
-// export default ShowcaseThumbnails;
+export default ShowcaseThumbnails;
