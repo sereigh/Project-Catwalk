@@ -5,14 +5,14 @@ import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
   const { answers, toggleAnswers, canClick, aIndex } = props
+  // const length = answers.length;
   // const view = (answersView ? "showAll-answers" : "showDefault-answers")
-
   return (
     <>
       {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
-          className={(i < aIndex ? 'qa-answers-list' : 'qa-no-show')}
+          className={(i <= aIndex ? 'qa-answer-card' : 'qa-no-show')}
         >
           <span className="answerText">
             <strong>A:  </strong>
@@ -42,10 +42,10 @@ function Answerslist(props) {
       <span
         className='loadAnswers'
         name="answers"
-        onClick={() => {toggleAnswers()}}
+        onClick={() => toggleAnswers(answers.length)}
         role="button"
         tabIndex={0}
-        onKeyPress={() => {toggleAnswers()}}
+        onKeyPress={() => toggleAnswers(answers.length)}
       >
         LOAD MORE ANSWERS
       </span>

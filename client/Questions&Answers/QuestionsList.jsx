@@ -22,7 +22,7 @@ function QuestionsList(props) {
     <div className="qa-questions-list">
       {questions.map((question, i) => (
         <div
-          className={(i < qIndex ? 'qa-question-card' : 'qa-no-show')}
+          className={(i <= qIndex ? 'qa-question-card' : 'qa-no-show')}
           key={question.question_id}
         >
           <div
@@ -55,13 +55,17 @@ function QuestionsList(props) {
           <span
             className="qa-answers"
           >
+            {/* || i === openIndex  */}
+            {i <= qIndex && (
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
+              length={questions[i].answers.length}
               answersView={answersView}
-              toggleAnswers={() => toggleAnswers}
+              toggleAnswers={toggleAnswers}
               canClick={canClick}
               aIndex={aIndex}
             />
+)}
           </span>
         </div>
         ))}

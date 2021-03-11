@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import QuestionsList from './QuestionsList.jsx';
-import UserInput from './UserInput.jsx';
 import Modal from './Modal.jsx';
 
 class QAview extends React.Component {
@@ -12,8 +11,8 @@ class QAview extends React.Component {
       questionsView: false,
       answersView: false,
       idList: [],
-      qIndex: 2,
-      aIndex: 2,
+      qIndex: 3,
+      aIndex: 1,
     };
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
@@ -40,30 +39,35 @@ class QAview extends React.Component {
   toggleQuestions() {
     const {questions } = this.props
     const { qIndex } = this.state
-    const newIndex = qIndex.slice() + 2
-    if (qIndex >= questions.length) {this.setState({
-      qIndex: 4
-    })}
-    this.setState({
-      qIndex: newIndex
-    })
+    const newIndex = qIndex + 2
+    if (qIndex >= questions.length - 1) {
+      this.setState(() => {
+        return { qIndex: 3 }
+      })
+  } else this.setState(() => {
+    return { qIndex: newIndex }
+  })
+  console.log('toggle questions clicked', newIndex)
   }
 
-  toggleAnswers(length) {
-    const { aIndex } = this.state
-    if(aIndex >= length) {
-      this.setState({
-        aIndex: 2
+  toggleAnswers() {
+    const { answersView } = this.state
+    // if(aIndex >= length) {
+    //   this.setState(() => {
+    //           return { aIndex: 1 }
+    //         })
+    // }else this.setState(() => {
+    //   return { aIndex: length - 1 }
+    // })
+    this.setState(() => {
+        return { answersView: !answersView }
       })
-    }else this.setState({
-      aIndex: length
-    })
   }
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
     const { questionsView, answersView, qIndex, aIndex } = this.state
-    const questionText = (qIndex >= questions.length ? 'COLLAPSE QUESTIONS' : 'MORE ANSWERED QUESTIONS')
+    const questionText = (qIndex < questions.length - 1 ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     // const toggleAccordian = (e) => {
     //   if (e.target.name === 'answers') {
@@ -95,11 +99,18 @@ class QAview extends React.Component {
         />
 )}
         <>
-          <UserInput
-            text={questionText}
-            name="questions"
-            handler={this.toggleQuestions}
-          />
+          {questions.length > 4 && (
+          <span
+            className="UserInput"
+            name={name}
+            onClick={this.toggleQuestions}
+            role="button"
+            tabIndex={0}
+            onKeyPress={this.toggleQuestions}
+          >
+            {questionText}
+          </span>
+)}
           <span className="UserInput">
             <Modal
               handleInput={this.handleInput}
@@ -128,8 +139,8 @@ QAview.showDefault = {
   questionsView: false,
   answersView: false,
   modalView: false,
-  qIndex: 4,
-  aIndex: 2,
+  qIndex: 3,
+  aIndex: 1,
 }
 
 export default QAview;

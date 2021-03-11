@@ -213,8 +213,8 @@ body {
 .qa-container {
   width: 57%;
   margin: auto;
-  height: 95vh;
-  overflow: hidden;
+  max-height: 95vh;
+  /* overflow: hidden; */
   background-color: black;
 }
 .qa-header {
@@ -266,11 +266,9 @@ body {
   display: none;
 } */
 .qa-view {
-  overflow-y: scroll;
-  overflow-x: hidden;
-  overflow: hide;
+  /* overflow: hide; */
   position: relative;
-  height: 90vh;
+  max-height: 90vh;
   margin: auto;
   background-color: red;
 }
@@ -278,18 +276,20 @@ body {
   display: none;
 }
 .qa-questions-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
   position: relative;
   box-sizing: content-box;
   background-color: green;
-  height: 75vh;
+  max-height: 75vh;
   margin: auto;
 }
 .qa-question-card {
-  position: relative;
+  /* position: relative; */
   box-sizing: content-box;
-  overflow: hide;
+  /* overflow: hide; */
   background-color: blue;
-  height: 25vh;
+  max-height: 18vh;
   margin: auto;
 }
 .qa-answers-list {
@@ -298,12 +298,17 @@ body {
   /* list-style-position: inside; */
   /* overflow: hide; */
   /* display: none; */
-  background-color: yellow;
-  height: 10vh;
+  background-color: pink;
+  min-height: 10vh;
   display: content-box;
   /* max-height: 30vh;
   width: 100%;
   margin: 2%; */
+}
+.qa-answer-card {
+  background-color: yellow;
+  min-height: 5vh;
+  display: content-box;
 }
 /* .view-question {
   margin: 2%;
@@ -311,7 +316,7 @@ body {
 .view-answers {
   margin: -5%;
 } */
-/* .questionText {
+.questionText {
   font-size: small;
   font-weight: bolder;
   word-break: normal;
@@ -319,33 +324,37 @@ body {
   text-align: left;
   display: inline-block;
   outline: none;
-} */
-/* .questionText:hover {
+}
+.questionText:hover {
   text-underline-position: below;
   text-decoration: underline;
-} */
-/* .answerText {
+  cursor: pointer;
+}
+.answerText {
   font-size: smaller;
   word-break: normal;
   width: 100%;
   text-align: left;
   display: inline;
-  margin: -2%;
+  /* margin: -2%; */
 }
-/* .questionFeedback {
+.questionFeedback {
   text-align: right;
   font-size: xx-small;
   display: inline-block;
   width: 32%;
-} */
-/* .answersFeedback {
+}
+.questionFeedback:hover {
+  cursor: pointer;
+}
+.answersFeedback {
   font-size: xx-small;
   width: 100%;
   text-align: left;
   display: block;
-  margin: 0%;
-  padding: 2%;
-} */
+  /* margin: 0%;
+  padding: 2%; */
+}
 /* .answersFeedback-right,
 .answersFeedback-left {
   display: inline-block;
