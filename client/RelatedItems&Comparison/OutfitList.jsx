@@ -21,7 +21,7 @@ class OutfitList extends React.Component {
   componentDidUpdate() {
     const {userOutfits} = this.props;
     const {slideLength} = this.state;
-    if (userOutfits.length !== slideLength / 220) {
+    if (userOutfits.length !== (slideLength - 2) / 220) {
       this.updateSlideLength();
     }
     this.setRightArrowVisibility();
@@ -80,7 +80,7 @@ class OutfitList extends React.Component {
     const{userOutfits} = this.props;
     const numberOfCards = userOutfits.length;
     this.setState({
-      slideLength:  numberOfCards * 220 +2
+      slideLength:  numberOfCards * 220 + 2
     });
   }
 
