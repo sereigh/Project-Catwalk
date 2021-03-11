@@ -30,29 +30,27 @@ class QAview extends React.Component {
 
   canClick(type, id, option) {
     const { idList } = this.state
-    const {postFeedback } = this.props
+    const { postFeedback } = this.props
 
-      if (idList.includes(id)) {
-        return console.error('Invalid action')
-      }
-      idList.push(id)
-        return postFeedback(type, id, option)
+    if (idList.includes(id)) {
+      return console.error('Invalid action')
+    }
+    idList.push(id)
+    return postFeedback(type, id, option)
   }
 
   toggleQuestions() {
-    const {questions } = this.props
+    const { questions } = this.props
     const { openIndex } = this.state
-    // const newIndex = openIndex.slice()
-    console.log('questions length - 1', questions.length -1)
-    console.log('openIndex length - 1', openIndex.length -1)
+    console.log('questions length - 1', questions.length - 1)
+    console.log('openIndex length - 1', openIndex.length - 1)
     if (openIndex.length >= questions.length) {
       this.setState(() => {
         return { openIndex: [...Array(4).keys()] }
       })
-  } else this.setState(() => {
-    return { openIndex: [...Array(openIndex.length + 2).keys()] }
-  })
-  console.log('toggle questions clicked')
+    } else this.setState(() => {
+      return { openIndex: [...Array(openIndex.length + 2).keys()] }
+    })
   }
 
   toggleAnswers() {
@@ -78,14 +76,14 @@ class QAview extends React.Component {
     //   console.log('toggle questions clicked', newIndex)
     // }
     this.setState(() => {
-        return { answersView: !answersView }
-      })
+      return { answersView: !answersView }
+    })
   }
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
     const { questionsView, answersView, qIndex, aIndex, openIndex } = this.state
-    const questionText = (qIndex < questions.length - 1 ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
+    const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     // const toggleAccordian = (e) => {
     //   if (e.target.name === 'answers') {
@@ -103,33 +101,33 @@ class QAview extends React.Component {
     return (
       <div className="qa-view">
         {questions && (
-        <QuestionsList
-          questions={questions}
-          questionsView={questionsView}
-          answersView={answersView}
-          toggleAnswers={this.toggleAnswers}
-          handleInput={this.handleInput}
-          postFeedback={postFeedback}
-          productName={productName}
-          canClick={this.canClick}
-          qIndex={qIndex}
-          aIndex={aIndex}
-          openIndex={openIndex}
-        />
-)}
+          <QuestionsList
+            questions={questions}
+            questionsView={questionsView}
+            answersView={answersView}
+            toggleAnswers={this.toggleAnswers}
+            handleInput={this.handleInput}
+            postFeedback={postFeedback}
+            productName={productName}
+            canClick={this.canClick}
+            qIndex={qIndex}
+            aIndex={aIndex}
+            openIndex={openIndex}
+          />
+        )}
         <>
           {questions.length > 4 && (
-          <span
-            className="UserInput"
-            name={name}
-            onClick={this.toggleQuestions}
-            role="button"
-            tabIndex={0}
-            onKeyPress={this.toggleQuestions}
-          >
-            {questionText}
-          </span>
-)}
+            <span
+              className="UserInput"
+              name={name}
+              onClick={this.toggleQuestions}
+              role="button"
+              tabIndex={0}
+              onKeyPress={this.toggleQuestions}
+            >
+              {questionText}
+            </span>
+          )}
           <span className="UserInput">
             <Modal
               handleInput={this.handleInput}

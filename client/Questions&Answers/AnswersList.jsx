@@ -15,8 +15,8 @@ function Answerslist(props) {
       {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
-          // className={(i <= aIndex ? 'qa-answer-card' : 'qa-no-show')}
-          className="qa-no-show"
+          className={(i < 2 ? 'qa-answer-card' : 'qa-no-show')}
+          // className="qa-no-show"
         >
           <span className="answerText">
             <strong>A:  </strong>
