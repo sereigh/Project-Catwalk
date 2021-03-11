@@ -69,6 +69,8 @@ body {
   margin: 0.5%;
   display: grid;
   grid-template-columns: 18% 8% auto 8%;
+  min-width: 0;
+  min-height: 0;
   /* grid-column-gap: 30px; */
   /* grid-template-rows: auto; */
   /* grid-template-rows: 3fr 1fr; */
@@ -79,8 +81,10 @@ body {
   grid-column: 1 / 5;
   grid-row: 1;
   object-fit: contain;
-  height: 100%;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .showcaseThumbnails {
@@ -97,12 +101,14 @@ button#arrowLeft {
   grid-column: 2;
   grid-row: 1;
   background-color: transparent;
+  border: 0px;
 }
 
 button#arrowRight {
   grid-column: 4;
   grid-row: 1;
   background-color: transparent;
+  border: 0px;
 }
 
 /* OvC Product Selector */
@@ -127,21 +133,6 @@ button#arrowRight {
   justify-content: center;
   align-items: center;
 }
-
-/* #style-thumbnail-button {
-  height: 75px;
-  width: 75px;
-  background-color: transparent;
-  border: 0px;
-}
-
-#style-thumbnail {
-  border-radius: 50%;
-  border: 2px solid #888;
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-} */
 
 .style-thumbnail-button {
   height: 75px;
