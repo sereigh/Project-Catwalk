@@ -57,6 +57,8 @@ class Modal extends React.Component {
         answer: !answer
       })
     }
+    if (modalView) { document.body.style.overflow = 'scroll' }
+    else { document.body.style.overflow = 'hidden' }
     this.setState(() => { return { modalView: !modalView } })
   }
 
@@ -69,7 +71,7 @@ class Modal extends React.Component {
 
     return (
       <>
-        <div
+        <span
           className="open-modal"
           onClick={() => { this.toggleModal() }}
           role="button"
@@ -77,74 +79,76 @@ class Modal extends React.Component {
           onKeyPress={() => { this.toggleModal() }}
         >
           {buttonText}
-        </div>
+        </span>
         {modalView && (
-          <div className="qa-modal-view questionFeedback">
-            <h3>{titleText}</h3>
-            <p>
-              <strong>{subtitleText}</strong>
-              {question && productName}
-            </p>
-            <div className="modal-form">
-              <form
-                onSubmit={(e) => { this.submitForm(e) }}
-                name="qa"
-              >
-                <div>
-                  <label htmlFor="nickname">
-                    *Nickname:
+          <div className="qa-modal-overlay">
+            <div className="qa-modal-view questionFeedback">
+              <h3>{titleText}</h3>
+              <p>
+                <strong>{subtitleText}</strong>
+                {question && productName}
+              </p>
+              <div className="modal-form">
+                <form
+                  onSubmit={(e) => { this.submitForm(e) }}
+                  name="qa"
+                >
+                  <div>
+                    <label htmlFor="nickname">
+                      *Nickname:
+                      <input
+                        required
+                        type="text"
+                        name="name"
+                        maxLength="60"
+                        placeholder="Example: jackson11!"
+                        onChange={(e) => { this.handleFormChange(e) }}
+                      />
+                    </label>
+                    <span className="small">For privacy reasons, do not use your full name or email address.</span>
+                  </div>
+                  <br />
+                  <label htmlFor="email">
+                    *E-mail:
                     <input
                       required
-                      type="text"
-                      name="name"
+                      type="email"
+                      name="email"
+                      placeholder="Example: someone@gmail.com"
                       maxLength="60"
-                      placeholder="Example: jackson11!"
                       onChange={(e) => { this.handleFormChange(e) }}
                     />
                   </label>
-                  <span className="small">For privacy reasons, do not use your full name or email address.</span>
-                </div>
-                <br />
-                <label htmlFor="email">
-                  *E-mail:
-                  <input
-                    required
-                    type="email"
-                    name="email"
-                    placeholder="Example: someone@gmail.com"
-                    maxLength="60"
-                    onChange={(e) => { this.handleFormChange(e) }}
-                  />
-                </label>
-                <span className="small">For authentication reasons you will not be e-mailed.</span>
-                <br />
-                <br />
-                <label htmlFor={areaText}>
-                  *
-                  {areaText}
+                  <span className="small">For authentication reasons you will not be e-mailed.</span>
                   <br />
-                  <input
-                    type="textarea"
-                    required
-                    name="body"
-                    rows="20"
-                    maxLength="1000"
-                    onChange={(e) => { this.handleFormChange(e) }}
-                  />
-                </label>
-                <br />
-                <button type="submit">Submit</button>
-                <br />
-              </form>
-              <span
-                className="qa-close-modal topright"
-                onClick={() => { this.toggleModal() }}
-                role="button"
-                tabIndex={0}
-                onKeyPress={() => { this.toggleModal() }}
-              >
-                x
-              </span>
+                  <br />
+                  <label htmlFor={areaText}>
+                    *
+                    {areaText}
+                    <br />
+                    <input
+                      type="textarea"
+                      required
+                      name="body"
+                      rows="20"
+                      maxLength="1000"
+                      onChange={(e) => { this.handleFormChange(e) }}
+                    />
+                  </label>
+                  <br />
+                  <button type="submit">Submit</button>
+                  <br />
+                </form>
+                <span
+                  className="qa-close-modal topright"
+                  onClick={() => { this.toggleModal() }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={() => { this.toggleModal() }}
+                >
+                  x
+                </span>
+              </div>
             </div>
           </div>
         )}
