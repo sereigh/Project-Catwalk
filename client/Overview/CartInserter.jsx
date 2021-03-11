@@ -116,6 +116,7 @@ class CartInserter extends React.Component {
               // onBlur={(event) => {
               //   setCurrentSize(event.target.value)
               // }}
+              id="cartSizeDropdown"
             >
               <option>SELECT SIZE</option>
               {quantitySizes}
@@ -129,10 +130,10 @@ class CartInserter extends React.Component {
             </select>
           </span>
           <span id="cartQuantitySelect">
-            &nbsp;&nbsp;&nbsp;
             <select
               value={cartQuantityValue}
               onBlur={this.handleQuantityChange}
+              id="cartQuantityDropdown"
             >
               <option>-</option>
               <option>1</option>
@@ -157,8 +158,7 @@ class CartInserter extends React.Component {
               {/* <span id="buttonAddToPlus"> +</span> */}
             </button>
           </span>
-          <span id="cartAddToCart">
-            &nbsp;&nbsp;&nbsp;
+          <span id="cartAddToPlus">
             <button
               type="submit"
               id="buttonAddToPlus"
