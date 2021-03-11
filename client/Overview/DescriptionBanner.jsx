@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import DescriptionOutbound from './DescriptionOutbound.jsx';
+
 const DescriptionBanner = (props) => {
   const { selectProductInfo } = props;
   // console.log('DescriptionBanner_return X:', X);
@@ -11,6 +13,7 @@ const DescriptionBanner = (props) => {
         <p>{selectProductInfo.description}</p>
         {/* <p>{selectProductInfo.overview}</p> */}
         {/* Business Requirements Document (page5): Product Overview: This free form text field may exist on some items. If it is available it should be displayed. */}
+        <DescriptionOutbound />
       </div>
       <div id="hrVertical">
         <hr />
@@ -20,8 +23,9 @@ const DescriptionBanner = (props) => {
           {selectProductInfo.features.map((item) => (
             <li key={item.feature} className="checkIt">
               <span>
-                ✓
-                {item.feature}
+                {`${item.feature}`}
+                {/* ✓
+                {item.feature} */}
               </span>
             </li>
           ))}
