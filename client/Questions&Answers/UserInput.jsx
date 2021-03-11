@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const UserInput = ({ text, name, handler }) => (
 
-  <span
+  <div
     className="UserInput"
     name={name}
     onClick={(e) => {handler(e)}}
@@ -12,7 +12,7 @@ const UserInput = ({ text, name, handler }) => (
     onKeyPress={() => {handler()}}
   >
     {text}
-  </span>
+  </div>
 )
 
 UserInput.propTypes = {

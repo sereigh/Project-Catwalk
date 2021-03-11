@@ -69,7 +69,7 @@ class Modal extends React.Component {
 
     return (
       <>
-        <div
+        <span
           className="open-modal"
           onClick={() => { this.toggleModal() }}
           role="button"
@@ -77,7 +77,7 @@ class Modal extends React.Component {
           onKeyPress={() => { this.toggleModal() }}
         >
           {buttonText}
-        </div>
+        </span>
         {modalView && (
           <div className="qa-modal-view questionFeedback">
             <h3>{titleText}</h3>

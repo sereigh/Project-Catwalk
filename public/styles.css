@@ -211,10 +211,10 @@ body {
 
 /* Questions and Answers */
 .qaContainer {
-  width: 90%;
+  width: 57%;
   margin: auto;
-  max-height: 800px;
-  border: solid black thin;
+  max-height: 80vh;
+  overflow: hidden;
 }
 .qaHeader {
   width: 90%;
@@ -233,20 +233,23 @@ body {
 .UserInput {
   border: solid black thin;
   text-align: center;
+  text-underline-position: auto;
   font-size: small;
   margin: 2%;
   display: inline-block;
-  padding: 2%;
+  padding: 1%;
 }
 .showDefault-questions {
   position: relative;
-  max-height: 500px;
+  max-height: 80vh;
+  min-height: 40vh;
   margin: 2%;
   border: solid black thin;
 
 }
 .showDefault-answers {
-  min-height: 50px;
+  max-height: 40vh;
+  min-height: 20vh;
   margin: 2%;
 }
 .showDefault-questions div:nth-child(4n) {
@@ -258,8 +261,10 @@ body {
 .showAll-questions {
   overflow-y: scroll;
   overflow-x: hidden;
+  box-sizing: content-box;
   position: relative;
-  max-height: 400px;
+  max-height: 80vh;
+  min-height: 40vh;
   margin: 2%;
   border: solid black thin;
 }
@@ -284,6 +289,11 @@ body {
   width: 68%;
   text-align: left;
   display: inline-block;
+  outline: none;
+}
+.questionText:hover {
+  text-underline-position: below;
+  text-decoration: underline;
 }
 .answerText {
   font-size: small;
@@ -307,16 +317,25 @@ body {
   margin: 0%;
   padding: 2%;
 }
+.answersFeedback-right,
 .answersFeedback-left {
-  display: inline-block;
-}
-.answersFeedback-right {
   display: inline-block;
 }
 .loadAnswers {
   font-size: x-small;
   margin: 2%;
   font-weight: bolder;
+}
+.qa-modal-overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
 }
 .qa-modal-view {
   position: fixed;
@@ -327,7 +346,7 @@ body {
   height: 60%;
   overflow: auto;
   background-color: white;
-  border: thin solid green;
+  border: medium solid lightgrey;
   text-align: center;
   border-radius: 20px;
   animation: qaModalUp 0.5s;
@@ -356,11 +375,11 @@ body {
   cursor: pointer;
   white-space: nowrap;
   outline: none;
+  border-radius: 50px;
   }
   .qa-close-modal:hover {
-    background-color: rgb(204, 255, 204);
     outline: none;
-    border-radius: 25px;
+    border-radius: 50px;
     font-size: larger;
   }
 
@@ -385,23 +404,22 @@ form[name="qa"] input {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  border: solid thin green;
   outline: none;
   border-radius: 9px;
+  background-color: rgb(238, 238, 238);
+  border: none;
 }
 form[name="qa"] input:valid {
   box-shadow: 0 0 1px 1px green;
-  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] input:hover {
-  background-color: rgb(204, 255, 204);
+  background-color: rgb(232, 253, 232);
 }
 form[name="qa"] input:active {
   border: none;
 }
 form[name="qa"] button:hover {
   font-size: larger;
-  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] button {
   border-radius: 6px;
