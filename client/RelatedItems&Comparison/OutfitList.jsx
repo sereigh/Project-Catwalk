@@ -62,7 +62,7 @@ class OutfitList extends React.Component {
     const {leftCordinate, slideLength} = this.state;
     if (this.myRef.current.offsetWidth < slideLength + leftCordinate ) {
       this.setState({
-        leftCordinate: leftCordinate - 220
+        leftCordinate: leftCordinate - 222
       });
     }
   }
@@ -71,7 +71,7 @@ class OutfitList extends React.Component {
     const {leftCordinate} = this.state;
     if (leftCordinate < 0) {
       this.setState({
-        leftCordinate: leftCordinate + 220
+        leftCordinate: leftCordinate + 222
       });
     }
   }
@@ -80,7 +80,7 @@ class OutfitList extends React.Component {
     const{userOutfits} = this.props;
     const numberOfCards = userOutfits.length;
     this.setState({
-      slideLength:  numberOfCards * 220
+      slideLength:  numberOfCards * 222 +2
     });
   }
 
