@@ -12,7 +12,7 @@ class QAview extends React.Component {
       questionsView: false,
       answersView: false,
       idList: [],
-      qIndex: 4,
+      qIndex: 2,
       aIndex: 2,
     };
     this.handleInput = this.handleInput.bind(this)
@@ -79,7 +79,7 @@ class QAview extends React.Component {
     // }
 
     return (
-      <>
+      <div className="qa-view">
         {questions && (
         <QuestionsList
           questions={questions}
@@ -111,7 +111,7 @@ class QAview extends React.Component {
             />
           </span>
         </>
-      </>
+      </div>
     );
   }
 };

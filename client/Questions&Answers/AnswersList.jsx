@@ -8,11 +8,11 @@ function Answerslist(props) {
   // const view = (answersView ? "showAll-answers" : "showDefault-answers")
 
   return (
-    <div className="showAll-answers">
+    <>
       {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
-          className={(i < aIndex ? 'showAll-questions' : 'showNo-questions')}
+          className={(i < aIndex ? 'qa-answers-list' : 'qa-no-show')}
         >
           <span className="answerText">
             <strong>A:  </strong>
@@ -50,7 +50,7 @@ function Answerslist(props) {
         LOAD MORE ANSWERS
       </span>
     )}
-    </div>
+    </>
   );
 }
 

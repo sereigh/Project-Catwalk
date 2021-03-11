@@ -100,14 +100,15 @@ class QuestionsAndAnswers extends React.Component {
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
-        className="qaContainer"
+        className="qa-container"
         onClick={handleClickTrack}
         onKeyPress={handleClickTrack}
       >
+        QUESTIONS AND ANSWERS
         <form onSubmit={(e) => e.preventDefault()}>
           <input
-            type="search"
-            className="searchBar"
+            type="qa-search"
+            className="qa-search"
             onChange={this.handleSearchChange}
             onClick={this.handleSearchClear}
             value={inputValue}

@@ -19,54 +19,52 @@ function QuestionsList(props) {
   // };
 
   return (
-    <div className="showAll-questions">
-      <div>
-        {questions.map((question, i) => (
+    <div className="qa-questions-list">
+      {questions.map((question, i) => (
+        <div
+          className={(i < qIndex ? 'qa-question-card' : 'qa-no-show')}
+          key={question.question_id}
+        >
           <div
-            className={(i < qIndex ? 'showAll-questions' : 'showNo-questions')}
-            key={question.question_id}
+            className="questionText"
+            onClick={() => console.log('toggle panel')}
+            role="button"
+            tabIndex={0}
+            onKeyPress={() => console.log('toggle panel')}
           >
-            <div
-              className="questionText"
-              onClick={() => console.log('toggle panel')}
-              role="button"
-              tabIndex={0}
-              onKeyPress={() => console.log('toggle panel')}
-            >
-              {/* togglePanel(i) */}
-              <strong>Q:  </strong>
-              {question.question_body}
-            </div>
-            <div className="questionFeedback">
-              {`   Helpful? `}
-              <TextLink
-                option={1}
-                handler={() => canClick('questions', question.question_id, 'helpful')}
-              />
-              {` (${question.question_helpfulness})   |   `}
-              <Modal
-                handleInput={handleInput}
-                productName={productName}
-                id={question.question_id}
-                qText={question.question_body}
-                buttonText="Add Answer"
-                type="answer"
-              />
-            </div>
-            <span
-              className={(i < qIndex ? 'showAll-questions' : 'showNo-questions')}
-            >
-              <AnswersList
-                answers={sortAnswers(questions[i].answers)}
-                answersView={answersView}
-                toggleAnswers={() => toggleAnswers}
-                canClick={canClick}
-                aIndex={aIndex}
-              />
-            </span>
+            {/* togglePanel(i) */}
+            <strong>Q:  </strong>
+            {question.question_body}
           </div>
+          <div className="questionFeedback">
+            {`   Helpful? `}
+            <TextLink
+              option={1}
+              handler={() => canClick('questions', question.question_id, 'helpful')}
+            />
+            {` (${question.question_helpfulness})   |   `}
+            <Modal
+              handleInput={handleInput}
+              productName={productName}
+              id={question.question_id}
+              qText={question.question_body}
+              buttonText="Add Answer"
+              type="answer"
+            />
+          </div>
+          <span
+            className="qa-answers"
+          >
+            <AnswersList
+              answers={sortAnswers(questions[i].answers)}
+              answersView={answersView}
+              toggleAnswers={() => toggleAnswers}
+              canClick={canClick}
+              aIndex={aIndex}
+            />
+          </span>
+        </div>
         ))}
-      </div>
     </div>
   );
 }
