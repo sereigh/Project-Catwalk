@@ -1,12 +1,14 @@
 import React from 'react';
-// import axios from 'axios';
 import PropTypes from 'prop-types';
+
+import withClickTracker from '../SharedComponents/withClickTracker.jsx';
+
 
 import RelatedProductList from './RelatedProductList.jsx';
 import OutfitList from './OutfitList.jsx';
 
-const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits}) => (
-  <div className="list-container">
+const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits, handleClickTrack}) => (
+  <div className="list-container" onClick={handleClickTrack} onKeyPress={handleClickTrack}>
     **RelatedProductList**
     <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
     **OutfitList**
@@ -26,8 +28,9 @@ RelatedListContainer.propTypes = {
   selectAnotherProduct: PropTypes.func.isRequired,
   addNewOutfit: PropTypes.func.isRequired,
   deleteOutfit: PropTypes.func.isRequired,
-  userOutfits: PropTypes.arrayOf(PropTypes.number).isRequired
+  userOutfits: PropTypes.arrayOf(PropTypes.number).isRequired,
+  handleClickTrack: PropTypes.func.isRequired
 };
 
 
-export default RelatedListContainer;
+export default withClickTracker(RelatedListContainer);
