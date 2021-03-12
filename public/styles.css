@@ -515,80 +515,70 @@ li{
 }
 
 /* Questions and Answers */
-.qaContainer {
-  width: 57%;
-  margin: auto;
-  max-height: 80vh;
-  overflow: hidden;
-}
-.qaHeader {
-  width: 90%;
-  text-align: left;
-  margin: 2%;
-}
-.searchBar {
-  width: 96%;
-  height: 50px;
-  margin: auto;
-  margin-left: 2%;
-}
-.searchText {
-  margin-left: 2%
-}
-.UserInput {
-  border: solid black thin;
-  text-align: center;
-  text-underline-position: auto;
-  font-size: small;
-  margin: 2%;
-  display: inline-block;
-  padding: 1%;
-}
-.showDefault-questions {
-  position: relative;
-  max-height: 80vh;
-  min-height: 40vh;
-  margin: 2%;
-  border: solid black thin;
 
+.qa-container {
+  width: 57%;
+  height: 90vh;
+  display: grid;
+  margin: auto;
+  grid-template-rows: 30px 50px 380px;
+  grid-gap: 2px;
 }
-.showDefault-answers {
-  max-height: 40vh;
-  min-height: 20vh;
-  margin: 2%;
+.qa-header {
+  grid-row: 1/2;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  font-size: small;
 }
-.showDefault-questions div:nth-child(4n) {
+.qa-search {
+grid-row: 2/3;
+}
+.qa-search-bar {
+  height: 40px;
+  width: 118.5vh;
+}
+.qa-view {
+  position: relative;
+  grid-row: 3 / 4;
+  grid-gap: 2px;
+}
+.qa-no-show {
   display: none;
 }
-.showDefault-answers div:nth-child(3n) {
-  display: none;
-}
-.showAll-questions {
+.qa-questions-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 90%;
   overflow-y: scroll;
   overflow-x: hidden;
-  box-sizing: content-box;
-  position: relative;
-  max-height: 80vh;
-  min-height: 40vh;
-  margin: 2%;
+}
+.q-navigation {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  grid-gap: 20px;
+  top: 94%;
+  left: 0;
+}
+.q-buttons {
   border: solid black thin;
+  text-align: center;
+  font-size: x-small;
 }
-.showAll-answers {
-  position: relative;
-  overflow: scroll;
-  overflow-y: scroll;
-  overflow-x: hide;
-  max-height: 400px;
+.qa-question-card {
+  margin: 1%;
+}
+.qa-answers-list {
   margin: 2%;
 }
-.view-question {
-  margin: 2%;
-}
-.view-answers {
-  margin: 2%;
+.qa-answer-card {
+  margin-bottom: 1%;
 }
 .questionText {
-  font-size: medium;
+  font-size: small;
   font-weight: bolder;
   word-break: normal;
   width: 68%;
@@ -599,36 +589,39 @@ li{
 .questionText:hover {
   text-underline-position: below;
   text-decoration: underline;
+  cursor: pointer;
 }
 .answerText {
-  font-size: small;
+  font-size: x-small;
   word-break: normal;
+  font-weight: medium;
   width: 100%;
   text-align: left;
   display: inline;
-  margin: -1%;
+  margin-bottom: 1%;
 }
 .questionFeedback {
   text-align: right;
   font-size: xx-small;
   display: inline-block;
   width: 32%;
+  color: rgb(119, 117, 117);;
 }
 .answersFeedback {
   font-size: xx-small;
   width: 100%;
   text-align: left;
   display: block;
-  margin: 0%;
-  padding: 2%;
+  color: rgb(119, 117, 117);
 }
-.answersFeedback-right,
-.answersFeedback-left {
-  display: inline-block;
+.loadAnswers,
+.questionFeedback:hover,
+.answersFeedback:hover {
+  cursor: pointer;
+  background-color: rgb(232, 253, 232);
 }
 .loadAnswers {
-  font-size: x-small;
-  margin: 2%;
+  font-size: xx-small;
   font-weight: bolder;
 }
 .qa-modal-overlay {
@@ -698,13 +691,13 @@ li{
   outline: none;
   border-radius: 50px;
   }
+
   .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
     background-color: rgb(204, 255, 204);
     outline: none;
     border-radius: 50px;
     font-size: larger;
   }
-
 .topright {
   z-index: 1;
   position: absolute;

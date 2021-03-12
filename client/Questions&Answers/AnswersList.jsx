@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, answersView, toggleAccordian, canClick } = props
-  const view = (answersView ? "showAll-answers" : "showDefault-answers")
+  const { answers, toggleAnswers, canClick, answersView, qId, clickedId } = props
+  const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
   return (
-    <div className={view}>
-      {answers.map((answer) => (
+    <>
+      {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
-          className="view-answer"
+          className={(i < 2 ? 'qa-answer-card' : clickedId.includes(qId) ? 'qa-answer-card' : 'qa-no-show')}
         >
           <span className="answerText">
             <strong>A:  </strong>
@@ -42,23 +42,25 @@ function Answerslist(props) {
       <span
         className='loadAnswers'
         name="answers"
-        onClick={() => {toggleAccordian()}}
+        onClick={() => toggleAnswers(qId)}
         role="button"
         tabIndex={0}
-        onKeyPress={() => {toggleAccordian()}}
+        onKeyPress={() => toggleAnswers(qId)}
       >
-        LOAD MORE ANSWERS
+        {buttonText}
       </span>
     )}
-    </div>
+    </>
   );
 }
 
 Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   answersView: PropTypes.bool.isRequired,
-  toggleAccordian: PropTypes.func.isRequired,
+  toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
+  clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  qId: PropTypes.number.isRequired,
 }
 
 export default Answerslist;
