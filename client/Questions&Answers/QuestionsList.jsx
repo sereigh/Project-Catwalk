@@ -7,7 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex } = props
+  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId } = props
   // const [panel, setPanel] = useState(false);
   // const view = (questionsView === true ? "showAll-questions" : "showNo-questions")
 
@@ -71,6 +71,8 @@ function QuestionsList(props) {
               answersView={answersView}
               toggleAnswers={toggleAnswers}
               canClick={canClick}
+              qId={question.question_id}
+              clickedId={clickedId}
             />
 )}
           </span>
@@ -91,6 +93,11 @@ QuestionsList.propTypes = {
   openIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   togglePanel: PropTypes.func.isRequired,
   panelIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  clickedId: PropTypes.oneOfType([PropTypes.number]).isRequired
 }
+
+// QuestionsList.showDefault = {
+//   clickedId: null
+// }
 
 export default QuestionsList;

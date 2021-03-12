@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAnswers, canClick, answersView } = props
+  const { answers, toggleAnswers, canClick, answersView, qId, clickedId } = props
   const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
   // const length = answers.length;
@@ -14,7 +14,7 @@ function Answerslist(props) {
       {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
-          className={(i < 2 ? 'qa-answer-card' : 'qa-no-show')}
+          className={(i < 2 ? 'qa-answer-card' : clickedId.includes(qId) ? 'qa-answer-card' : 'qa-no-show')}
           // className="qa-no-show"
         >
           <span className="answerText">
@@ -48,10 +48,10 @@ function Answerslist(props) {
       <span
         className='loadAnswers'
         name="answers"
-        onClick={() => toggleAnswers(answers.length)}
+        onClick={() => toggleAnswers(qId)}
         role="button"
         tabIndex={0}
-        onKeyPress={() => toggleAnswers(answers.length)}
+        onKeyPress={() => toggleAnswers(qId)}
       >
         {buttonText}
       </span>
@@ -65,6 +65,8 @@ Answerslist.propTypes = {
   answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
+  clickedId: PropTypes.oneOfType([PropTypes.number]).isRequired,
+  qId: PropTypes.oneOfType(PropTypes.number, PropTypes.object).isRequired,
 }
 
 export default Answerslist;

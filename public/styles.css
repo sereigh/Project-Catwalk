@@ -525,21 +525,21 @@ li{
 .qa-answers-list {
   /* position: fixed; */
   /* overflow-x: hide; */
-  /* list-style-position: inside; */
-  /* overflow: hide; */
+  list-style-position: inside;
+  overflow: scroll;
   /* display: none; */
   background-color: pink;
   min-height: 10vh;
   /* display: content-box; */
   display: contents;
-  /* max-height: 30vh;
-  width: 100%;
+  max-height: 30vh;
+  /* width: 100%;
   margin: 2%; */
 }
 .qa-answer-card {
   background-color: yellow;
   min-height: 5vh;
-  display: contents;
+  display: content-box;
 }
 /* .view-question {
   margin: 2%;

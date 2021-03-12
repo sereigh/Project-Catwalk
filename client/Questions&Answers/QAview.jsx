@@ -13,6 +13,7 @@ class QAview extends React.Component {
       idList: [],
       openIndex: [0, 1, 2, 3],
       panelIndex: [0, 1, 2, 3],
+      clickedId: [],
     };
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
@@ -64,36 +65,21 @@ class QAview extends React.Component {
   })
   }
 
-  toggleAnswers() {
-    const { answersView } = this.state
-    // if(aIndex >= length) {
-    //   this.setState(() => {
-    //           return { aIndex: 1 }
-    //         })
-    // }else this.setState(() => {
-    //   return { aIndex: length - 1 }
-    // })
+  toggleAnswers(qId) {
+    const { clickedId } = this.state
+    const newIndex = clickedId.slice()
 
-    //   if (openIndex[openIndex.length - 1] >= questions.length - 1) {
-    //     this.setState(() => {
-    //       return { openIndex: [0, 1, 2, 3] }
-    //     })
-    //   } else newIndex.push(newIndex.pop() + 1, newIndex.pop() + 2)
-    //   newIndex.unshift()
-    //   newIndex.unshift()
-    //   this.setState(() => {
-    //     return { openIndex: newIndex }
-    //   })
-    //   console.log('toggle questions clicked', newIndex)
-    // }
-    this.setState(() => {
-        return { answersView: !answersView }
-      })
+    if (clickedId.includes(qId)) {
+      newIndex.splice(newIndex.indexOf(qId), 1)
+    } else { newIndex.push(qId) }
+      this.setState(() => {
+      return { clickedId: newIndex }
+    })
   }
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
-    const { answersView, openIndex, panelIndex } = this.state
+    const { answersView, openIndex, panelIndex, clickedId } = this.state
     const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     // const toggleAccordian = (e) => {
@@ -124,6 +110,7 @@ class QAview extends React.Component {
           openIndex={openIndex}
           togglePanel={this.togglePanel}
           panelIndex={panelIndex}
+          clickedId={clickedId}
         />
 )}
         <>
@@ -169,6 +156,7 @@ QAview.showDefault = {
   modalView: false,
   openIndex: [0, 1, 2, 3],
   panelIndex: [0, 1, 2, 3],
+  clickedId: [],
 }
 
 export default QAview;
