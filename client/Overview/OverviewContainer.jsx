@@ -92,7 +92,7 @@ class OverviewContainer extends React.Component {
 
   render() {
     // const { selectProductId, selectProductInfo } = this.props;
-    const { selectProductInfo } = this.props;
+    const { selectProductInfo, reviewData } = this.props;
     const { selectStyleIndex, selectStyleOptions, stylesLoaded } = this.state
     // console.log('OverviewC_render X:', X);
     if ( !stylesLoaded ) {
@@ -127,6 +127,7 @@ class OverviewContainer extends React.Component {
         <div className="showcaseSelection">
           <FeaturedProduct
             selectProductInfo={selectProductInfo}
+            reviewData={reviewData}
           />
           <StyleSelector
             selectStyleOptions={selectStyleOptions}
@@ -168,7 +169,7 @@ OverviewContainer.propTypes = {
       "value": PropTypes.string,
       "map": PropTypes.node
     }))
-  }).isRequired
+  }).isRequired,
   // stylesLoaded: PropTypes.bool.isRequired
   // retrieveSelectProductInfo: PropTypes.func.isRequired
   // selectStyleOptions: PropTypes.arrayOf(PropTypes.shape({
@@ -188,6 +189,46 @@ OverviewContainer.propTypes = {
   //     }))
   //   }))
   // })).isRequired
+  reviewData: PropTypes.shape({
+    product_id: PropTypes.string,
+    ratings: PropTypes.shape({
+      1: PropTypes.string,
+      2: PropTypes.string,
+      3: PropTypes.string,
+      4: PropTypes.string,
+      5: PropTypes.string
+    }),
+    recommended: PropTypes.shape({
+      false: PropTypes.string,
+      true: PropTypes.string
+    }),
+    characteristics: PropTypes.shape({
+      Comfort: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Fit: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Length: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Quality: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Size: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+      Width: PropTypes.shape({
+        id: PropTypes.number,
+        value: PropTypes.string
+      }),
+    }),
+  }).isRequired
 }
 
 export default OverviewContainer;
