@@ -215,6 +215,7 @@ class App extends React.Component {
           selectProductId={selectProductId}
           selectProductInfo={selectProductInfo}
           retrieveSelectProductInfo={this.retrieveSelectProductInfo}
+          reviewData={reviewData}
         />
         <span>
           ---Related List Widget---

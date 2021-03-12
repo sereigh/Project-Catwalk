@@ -38,23 +38,18 @@ body {
 
 /* Overview */
 .overviewWidget {
-  width: 100%;
-  margin: 0.5%;
+  width: 1100px;
+  margin: auto;
   display: grid;
+  /* justify-content: center; */
+  /* justify-items: center; */
   grid-template-columns: 10% 51% 5% 34%;
-  /* grid-column-gap: 30px; */
   grid-template-rows: auto auto auto;
-  /* grid-template-rows: 3fr 1fr; */
-  /* grid-row-gap: 15px; */
 }
 
-.showcaseGallery {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  /* background-color: gray; */
-}
+/* .btn {
+  cursor: pointer;
+} */
 
 /* OvC Carousel */
 .showcaseCarousel {
@@ -66,61 +61,141 @@ body {
 }
 
 .showcaseGallery {
-  width: 100%;
-  margin: 0.5%;
+  width: 671px;
+  height: 615px;
+  margin: 1px;
   display: grid;
-  grid-template-columns: 18% 8% auto 8%;
+  grid-template-columns: 18% 8% 66% 8%;
+  /* grid-template-columns: 18% 8% 66% 8%; */
   min-width: 0;
   min-height: 0;
-  /* grid-column-gap: 30px; */
-  /* grid-template-rows: auto; */
-  /* grid-template-rows: 3fr 1fr; */
-  position: relative;
-  background-size: cover;
-  /* background-size: contain; */
+  /* position: relative; */
+  /* width:fit-content: cover;
+  height:fit-content: cover; */
+  /* background-size: cover; */
+  /* background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  background-color: light gray;
 }
 
 .styleGalleryImage {
   grid-column: 1 / 5;
   grid-row: 1;
-  width: 550px;
+  width: 671px;
   height: 615px;
-  object-fit: cover;
-  object-position: center;
+  display: grid;
+  grid-template-columns: 1fr;
   /* max-width: 100%;
   max-height: 100%; */
+  /* display:block; */
+  /* object-fit: cover;
+  object-position: center;
   min-width: 0;
-  overflow: hidden;
-  position: relative;
-  background-size: contain;
-  background-position: center;
+  overflow: hidden; */
+  /* position: relative; */
+  /* background-size: contain;
+  background-position: center; */
   /* background-repeat: no-repeat; */
+  /* background-color: light gray; */
+}
+
+#mainImage {
+  z-index: 1;
+  /* max-width: 100%;
+  max-height: 100%; */
+  width: 671px;
+  height: 615px;
+  /* contain maintains aspect ratio inside given dimensions */
+  object-fit: contain;
+  /* cover mainatains aspect ratio and clips image to fit given dimensions */
+  /* object-fit: cover; */
+  display: block;
+  /* position: relative; */
+  /* background-color: light gray; */
+}
+
+#upCarrot {
+  z-index: 2;
+  /* height: 75px;
+  width: 75px; */
+  /* position: absolute; */
+  font-size: x-large;
+  background-color: transparent;
+  border: 0px;
+}
+#upCarrot:hover {
+  cursor: pointer;
+}
+
+#miniThumbnail {
+  /* position: absolute; */
+  border: 2px solid #888;
+  width: 55px;
+  height: 55px;
+  /* object-fit: cover; */
+}
+#miniThumbnail:hover {
+  cursor: pointer;
+  box-shadow: 7px -2.5px lightseagreen;
 }
 
 .showcaseThumbnails {
+  z-index: 3;
   grid-column: 1;
   grid-row: 1;
+  object-fit: cover;
   background-color: transparent;
   /* position: absolute; */
-  /* justify-content: center; */
-  /* align-items: center; */
   text-align: center;
+  display: grid;
+  /* grid-template-columns: repeat(1, 85%); */
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+  justify-content: center;
+  align-items: center;
+}
+
+#downCarrot {
+  z-index: 4;
+  /* height: 75px;
+  width: 75px; */
+  /* position: absolute; */
+  background-color: transparent;
+  border: 0px;
+}
+#downCarrot:hover {
+  cursor: pointer;
 }
 
 button#arrowLeft {
+  z-index: 6;
   grid-column: 2;
   grid-row: 1;
   background-color: transparent;
   border: 0px;
+  /* position: absolute; */
+}
+button#arrowLeft:hover {
+  cursor: pointer;
+}
+button#arrowLeft:focus {
+  outline:0 !important;
 }
 
 button#arrowRight {
+  z-index: 5;
   grid-column: 4;
   grid-row: 1;
   background-color: transparent;
   border: 0px;
+  /* position: absolute; */
+}
+button#arrowRight:hover {
+  cursor: pointer;
+}
+button#arrowRight:focus {
+  outline:0 !important;
 }
 
 /* OvC Product Selector */
@@ -133,6 +208,36 @@ button#arrowRight {
 
 .productAreaItem {
  grid-row: 1;
+ /* display: grid; */
+ /* grid-template-columns: 1fr 1fr; */
+ /* grid-template-rows: auto auto */
+}
+
+.productReviewLink {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 22px;
+}
+
+#prettyReviewStars {
+  grid-column: 1;
+  grid-row: 1;
+  /* border: 1px solid yellow;
+  background-color: lightyellow; */
+}
+
+#scrollToReviews {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: small;
+  display: flex;
+  align-items: flex-end;
+  /* justify-content: flex-end; */
+}
+
+#productMainTitle {
+  grid-column: 1 / 3;
+  grid-row: 3;
 }
 
 .styleSelector {
@@ -160,15 +265,20 @@ button#arrowRight {
   height: 65px;
   object-fit: cover;
 }
+.style-thumbnail:hover {
+  cursor: pointer;
+  box-shadow: 12px -12px 0px 3px lightgreen;
+}
 
 .cartCrates {
   grid-row: 3;
 }
 
 #cartSelectorRow {
+  margin-right: 17px;
   display: grid;
   grid-template-columns: 60% 5% 35%;
-  grid-template-rows: 35px;
+  grid-template-rows: 42px;
 }
 
 #cartSizeSelect {
@@ -179,8 +289,11 @@ button#arrowRight {
 #cartSizeDropdown {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
   text-align: center;
+}
+#cartSizeDropdown:hover {
+  cursor: pointer;
 }
 
 #cartQuantitySelect {
@@ -191,14 +304,18 @@ button#arrowRight {
 #cartQuantityDropdown {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
   text-align: center;
+}
+#cartQuantityDropdown:hover {
+  cursor: pointer;
 }
 
 #cartSubmitRow {
+  margin-right: 17px;
   display: grid;
   grid-template-columns: 85% 5% 10%;
-  grid-template-rows: 5px 35px;
+  grid-template-rows: 15px 42px;
 }
 
 #cartAddToCart {
@@ -209,7 +326,15 @@ button#arrowRight {
 #buttonAddToCart {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
+  /* text-align: center; */
+}
+#buttonAddToCart:hover {
+  cursor: pointer;
+}
+
+#buttonAddToBag .x-btn-center {
+  text-align: left;
 }
 
 #cartAddToPlus {
@@ -220,12 +345,15 @@ button#arrowRight {
 #buttonAddToPlus {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
+}
+#buttonAddToPlus:hover {
+  cursor: pointer;
 }
 
 /* OvC Product Banner */
 .showcaseDescription {
-  grid-column: 1 / 5;
+  grid-column: 2 / 5;
   grid-row: 4;
 }
 
@@ -240,10 +368,27 @@ button#arrowRight {
 
 }
 
+#descriptionOutbound {
+  color: darkslategray;
+}
+
+a {
+  color: darkslategray;
+}
+a:hover {
+  color: darkslategray;
+}
+
 #hrVertical {
   height: 100%;
   width: 0;
-  border: thin solid black;
+  border: thin solid gray;
+  /* margin-top: 3px; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end; */
+  /* justify-content: flex-end; */
 }
 
 #descriptionAreaRight {
@@ -676,7 +821,10 @@ grid-row: 2/3;
   display: inline-block;
   animation: qaModalUp 0.5s;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .qa-close-modal, .review-close-modal {
   border: none;
   display: inline-block;
@@ -692,6 +840,7 @@ grid-row: 2/3;
   outline: none;
   border-radius: 50px;
   }
+<<<<<<< HEAD
 
 .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
   background-color: rgb(204, 255, 204);
@@ -699,13 +848,24 @@ grid-row: 2/3;
   border-radius: 50px;
   font-size: larger;
 }
+=======
+  .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
+    background-color: rgb(204, 255, 204);
+    outline: none;
+    border-radius: 50px;
+    font-size: larger;
+  }
+>>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .topright {
   z-index: 1;
   position: absolute;
   right: 0;
   top: 0
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .review-close-modal {
   border-radius: 20px;
   position: absolute;
@@ -716,7 +876,10 @@ grid-row: 2/3;
 .review-close-modal:hover {
   border-radius: 20px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 form[name="qa"] {
   max-width: 400px;
   padding: 20px;
