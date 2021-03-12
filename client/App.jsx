@@ -10,16 +10,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSearch: 17762,
+      currentSearch: 17069,
       productId: 17069,
       productList: [
-        {"id":18076,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":17069,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
       // Only products between 17067 and 17074 have multiple style images:
       selectProductId: 17073,
       selectProductInfo: {
-        "id":18076,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":17069,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       },
       userOutfits: [],
@@ -59,14 +59,15 @@ class App extends React.Component {
 
   handleSearchChange(event) {
     this.setState({
-      currentSearch: parseInt(event.target.value, 10) || 18076
+      currentSearch: parseInt(event.target.value, 10) || 17069
     });
   }
 
   handleSearch() {
     const {currentSearch} = this.state;
     this.setState({
-      productId: currentSearch
+      productId: currentSearch,
+      selectProductId: currentSearch
     }, () => {
       this.retrieveAllProductInfo();
       this.retrieveSelectProductInfo();
@@ -218,19 +219,16 @@ class App extends React.Component {
           reviewData={reviewData}
         />
         <span>
-          ---Related List Widget---
           <br />
           <br />
         </span>
         <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{name: selectProductInfo.name, features: selectProductInfo.features}} selectAnotherProduct={this.selectAnotherProduct} addNewOutfit={this.addNewOutfit} deleteOutfit={this.deleteOutfit} userOutfits={userOutfits} />
         <span>
-          ---Questions Answers Widget---
           <br />
           <br />
         </span>
         <QuestionsAndAnswers productId={productId} productName={productList[0].name} />
         <span>
-          ---Ratings Reviews Widget---
           <br />
           <br />
         </span>
