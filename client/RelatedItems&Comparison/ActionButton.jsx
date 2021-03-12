@@ -10,7 +10,6 @@ const ActionButton = ({toggleModalWindow, isRelated, deleteOutfit, productId}) =
   const [imgFilePath, setImg] = React.useState('./img/star(1).png');
 
   const toggleImageFile = () => {
-    console.log(imgFilePath);
     if (imgFilePath === './img/star(1).png') {
       setImg('./img/star(4).png');
     } else {

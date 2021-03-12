@@ -266,11 +266,16 @@ li{
 }
 
 /* Related Items and Comparison */
-.list-container {
+.related-product-list-container {
   display: block;
   justify-content: left;
   width: 57%;
   margin: auto;
+}
+
+.list-title {
+  font-weight: bold;
+  color: gray;
 }
 
 .relatedProductList {
@@ -349,6 +354,10 @@ li{
   width: auto;
   color: black;
   height: 30px;
+}
+
+.leftArrow:hover, .rightArrow:hover {
+  transform: translate(0, -5%);
 }
 
 .preview-image {
@@ -653,7 +662,7 @@ li{
   white-space: nowrap;
   outline: none;
   }
-  .qa-close-modal:hover, .review-close-modal:hover {
+  .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
     background-color: rgb(204, 255, 204);
     outline: none;
     border-radius: 25px;

@@ -91,7 +91,7 @@ class OutfitList extends React.Component {
     const {selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits} = this.props;
     return (
       <div className="outfitList">
-        <button type="button" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard}>&lt;</button>
+        <img src='./img/left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
         <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
@@ -100,7 +100,7 @@ class OutfitList extends React.Component {
             ))}
           </div>
         </div>
-        <button type="button" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard}>&gt;</button>
+        <img src='./img/right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
       </div>
     );
   }
