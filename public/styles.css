@@ -397,12 +397,30 @@ li{
   background-color: white;
 }
 
+.comparison-close-modal {
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.comparison-modal-header {
+  border-bottom: 1px solid darkgray;
+}
+
+.comparison-modal-title {
+  font-size: 90%;
+  color: darkgray;
+}
+
 .comparison-modal-content {
   position: fixed;
   z-index: 11;
   left: 50%;
   top: 50%;
-  width: 50%;
+  width: 35%;
   height: 50%;
   transform: translate(-50%, -50%);
   overflow-y: scroll;
@@ -412,6 +430,7 @@ li{
   animation: modalFadeIn 0.5s;
   background-color: white;
   border: 1px solid green;
+  border-radius: 15px;
   padding: 2% 5%;
 }
 
