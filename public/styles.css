@@ -668,6 +668,7 @@ li{
   margin: auto;
   grid-template-rows: 30px 50px 380px;
   grid-gap: 2px;
+  border-top: solid thick white;
 }
 .qa-header {
   grid-row: 1/2;
@@ -682,11 +683,14 @@ grid-row: 2/3;
 .qa-search-bar {
   height: 40px;
   width: 118.5vh;
+  border-top: thick white;
+  border: solid medium lightgreen;
 }
 .qa-view {
   position: relative;
   grid-row: 3 / 4;
   grid-gap: 2px;
+  border-bottom: solid medium lightgreen;
 }
 .qa-no-show {
   display: none;
@@ -708,14 +712,21 @@ grid-row: 2/3;
   grid-gap: 20px;
   top: 94%;
   left: 0;
+  border-bottom: lightgrey;
 }
 .q-buttons {
   border: solid black thin;
   text-align: center;
   font-size: x-small;
+  grid-gap: 20px;
 }
 .qa-question-card {
   margin: 1%;
+  background-color: rgba(211,211,211,0.4);
+}
+.qa-question-card:nth-child(even) {
+  margin: 1%;
+  background: white;
 }
 .qa-answers-list {
   margin: 2%;
@@ -751,7 +762,7 @@ grid-row: 2/3;
   font-size: xx-small;
   display: inline-block;
   width: 32%;
-  color: rgb(119, 117, 117);;
+  color: rgb(119, 117, 117);
 }
 .answersFeedback {
   font-size: xx-small;
@@ -760,11 +771,20 @@ grid-row: 2/3;
   display: block;
   color: rgb(119, 117, 117);
 }
-.loadAnswers,
-.questionFeedback:hover,
-.answersFeedback:hover {
+.answersFeedback:nth-child(even):hover {
+  background-color: rgba(211,211,211,0.4);
+}
+.answersFeedback-right {
+  font-weight: bolder;
+}
+.questionFeedback,
+.answersFeedback-right:hover {
   cursor: pointer;
-  background-color: rgb(232, 253, 232);
+}
+.loadAnswers:hover,
+.q-buttons:hover {
+  cursor: pointer;
+  background-color: lightgreen;
 }
 .loadAnswers {
   font-size: xx-small;
@@ -796,7 +816,7 @@ grid-row: 2/3;
   height: 60%;
   overflow: auto;
   background-color: white;
-  border: medium solid lightgrey;
+  border: medium solid lightgreen;
   text-align: center;
   border-radius: 20px;
   animation: qModalUp 0.5s;
@@ -821,10 +841,6 @@ grid-row: 2/3;
   display: inline-block;
   animation: qaModalUp 0.5s;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .qa-close-modal, .review-close-modal {
   border: none;
   display: inline-block;
@@ -840,54 +856,34 @@ grid-row: 2/3;
   outline: none;
   border-radius: 50px;
   }
-<<<<<<< HEAD
-
 .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
-  background-color: rgb(204, 255, 204);
   outline: none;
   border-radius: 50px;
   font-size: larger;
 }
-=======
-  .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
-    background-color: rgb(204, 255, 204);
-    outline: none;
-    border-radius: 50px;
-    font-size: larger;
-  }
->>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .topright {
   z-index: 1;
   position: absolute;
   right: 0;
   top: 0
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 .review-close-modal {
   border-radius: 20px;
   position: absolute;
   right: 5px;
   top: 5px;
 }
-
 .review-close-modal:hover {
   border-radius: 20px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f699a422d780de468ef21e9db0306b15093ae512
 form[name="qa"] {
   max-width: 400px;
   padding: 20px;
 }
-
 label {
   display: block;
   text-align: left;
+  color: green;
 }
 input[type="textarea"] {
   height: 60px;
@@ -898,14 +894,14 @@ form[name="qa"] input {
   box-sizing: border-box;
   outline: none;
   border-radius: 9px;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(221, 220, 220);
   border: none;
 }
 form[name="qa"] input:valid {
   box-shadow: 0 0 1px 1px green;
 }
 form[name="qa"] input:hover {
-  background-color: rgb(232, 253, 232);
+  border-color: rgb(232, 253, 232);
 }
 form[name="qa"] input:active {
   border: none;
