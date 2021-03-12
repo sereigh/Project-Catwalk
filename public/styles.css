@@ -38,27 +38,18 @@ body {
 
 /* Overview */
 .overviewWidget {
-  /* width: 100%; */
   width: 1100px;
-  margin: 0.5%;
+  margin: auto;
   display: grid;
-  justify-content: center;
-  justify-items: center;
+  /* justify-content: center; */
+  /* justify-items: center; */
   grid-template-columns: 10% 51% 5% 34%;
-  /* grid-template-columns: 4% 9% 50% 4% 33%; */
-  /* grid-column-gap: 30px; */
   grid-template-rows: auto auto auto;
-  /* grid-template-rows: 3fr 1fr; */
-  /* grid-row-gap: 15px; */
 }
 
-.showcaseGallery {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  /* background-color: gray; */
-}
+/* .btn {
+  cursor: pointer;
+} */
 
 /* OvC Carousel */
 .showcaseCarousel {
@@ -70,61 +61,131 @@ body {
 }
 
 .showcaseGallery {
-  width: 100%;
-  margin: 0.5%;
+  width: 671px;
+  height: 615px;
+  margin: 1px;
   display: grid;
-  grid-template-columns: 18% 8% auto 8%;
+  grid-template-columns: 18% 8% 66% 8%;
+  /* grid-template-columns: 18% 8% 66% 8%; */
   min-width: 0;
   min-height: 0;
-  /* grid-column-gap: 30px; */
-  /* grid-template-rows: auto; */
-  /* grid-template-rows: 3fr 1fr; */
-  position: relative;
-  background-size: cover;
-  /* background-size: contain; */
+  /* position: relative; */
+  /* width:fit-content: cover;
+  height:fit-content: cover; */
+  /* background-size: cover; */
+  /* background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
+  background-color: light gray;
 }
 
 .styleGalleryImage {
   grid-column: 1 / 5;
   grid-row: 1;
-  width: 550px;
+  width: 671px;
   height: 615px;
-  object-fit: cover;
-  object-position: center;
+  display: grid;
+  grid-template-columns: 1fr;
   /* max-width: 100%;
   max-height: 100%; */
+  /* display:block; */
+  /* object-fit: cover;
+  object-position: center;
   min-width: 0;
-  overflow: hidden;
-  position: relative;
-  background-size: contain;
-  background-position: center;
+  overflow: hidden; */
+  /* position: relative; */
+  /* background-size: contain;
+  background-position: center; */
   /* background-repeat: no-repeat; */
+  /* background-color: light gray; */
+}
+
+#mainImage {
+  z-index: 1;
+  /* max-width: 100%;
+  max-height: 100%; */
+  width: 671px;
+  height: 615px;
+  /* contain maintains aspect ratio inside given dimensions */
+  object-fit: contain;
+  /* cover mainatains aspect ratio and clips image to fit given dimensions */
+  /* object-fit: cover; */
+  display: block;
+  /* position: relative; */
+  /* background-color: light gray; */
+}
+
+#upCarrot {
+  z-index: 2;
+  /* height: 75px;
+  width: 75px; */
+  /* position: absolute; */
+  background-color: transparent;
+  border: 0px;
+}
+
+#upCarrot:hover {
+  cursor: pointer;
+}
+
+#miniThumbnail {
+  /* position: absolute; */
+  border: 2px solid #888;
+  width: 55px;
+  height: 55px;
+  /* object-fit: cover; */
+}
+
+#miniThumbnail:hover {
+  cursor: pointer;
+  box-shadow: 7px -2.5px lightseagreen;
 }
 
 .showcaseThumbnails {
+  z-index: 3;
   grid-column: 1;
   grid-row: 1;
+  object-fit: cover;
   background-color: transparent;
   /* position: absolute; */
-  /* justify-content: center; */
-  /* align-items: center; */
   text-align: center;
+  display: grid;
+  /* grid-template-columns: repeat(1, 85%); */
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: minmax(min-content, max-content);
+  justify-content: center;
+  align-items: center;
+}
+
+#downCarrot {
+  z-index: 4;
+  /* height: 75px;
+  width: 75px; */
+  /* position: absolute; */
+  background-color: transparent;
+  border: 0px;
+}
+
+#downCarrot:hover {
+  cursor: pointer;
 }
 
 button#arrowLeft {
+  z-index: 6;
   grid-column: 2;
   grid-row: 1;
   background-color: transparent;
   border: 0px;
+  /* position: absolute; */
 }
 
 button#arrowRight {
+  z-index: 5;
   grid-column: 4;
   grid-row: 1;
   background-color: transparent;
   border: 0px;
+  /* position: absolute; */
 }
 
 /* OvC Product Selector */
