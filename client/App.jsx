@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentSearch: 17762,
-      productId: 17762,
+      productId: 17069,
       productList: [
         {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
