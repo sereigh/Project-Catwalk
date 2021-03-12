@@ -6,6 +6,7 @@ import DescriptionOutbound from './DescriptionOutbound.jsx';
 const DescriptionBanner = (props) => {
   const { selectProductInfo } = props;
   // console.log('DescriptionBanner_return X:', X);
+  // console.log('DescriptionBanner_return selectProductInfo:', selectProductInfo);
   return (
     <div className="descriptionBanner">
       <div id="descriptionAreaLeft">
@@ -21,6 +22,7 @@ const DescriptionBanner = (props) => {
       <div id="descriptionAreaRight">
         <ul>
           {selectProductInfo.features.map((item) => (
+          // {selectProductInfo.map((item) => (
             <li key={item.feature} className="checkIt">
               <span>
                 {`${item.feature}`}
