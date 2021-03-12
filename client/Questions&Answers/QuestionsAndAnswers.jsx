@@ -104,17 +104,21 @@ class QuestionsAndAnswers extends React.Component {
         onClick={handleClickTrack}
         onKeyPress={handleClickTrack}
       >
-        QUESTIONS AND ANSWERS
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="qa-search"
-            className="qa-search"
-            onChange={this.handleSearchChange}
-            onClick={this.handleSearchClear}
-            value={inputValue}
-            placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-          />
-        </form>
+        <span className="qa-header">
+          QUESTIONS AND ANSWERS
+        </span>
+        <span className="qa-search">
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="search"
+              className="qa-search-bar"
+              onChange={this.handleSearchChange}
+              onClick={this.handleSearchClear}
+              value={inputValue}
+              placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
+            />
+          </form>
+        </span>
         {filtered ? (
           <QAview
             questions={filteredQuestions}

@@ -10,16 +10,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSearch: 17858,
-      productId: 17858,
+      currentSearch: 18076,
+      productId: 18076,
       productList: [
-        {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
+        {"id":18076,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
       // Only products between 17067 and 17074 have multiple style images:
       selectProductId: 17069,
       selectProductInfo: {
-        "id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
+        "id":18076,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
       },
       userOutfits: [],
@@ -59,7 +59,7 @@ class App extends React.Component {
 
   handleSearchChange(event) {
     this.setState({
-      currentSearch: parseInt(event.target.value, 10) || 17858
+      currentSearch: parseInt(event.target.value, 10) || 18076
     });
   }
 

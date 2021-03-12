@@ -99,10 +99,10 @@ class QAview extends React.Component {
           clickedId={clickedId}
         />
 )}
-        <>
+        <div className="q-navigation">
           {questions.length > 4 && (
           <span
-            className="UserInput"
+            className="q-buttons"
             name={name}
             onClick={this.toggleQuestions}
             role="button"
@@ -112,17 +112,17 @@ class QAview extends React.Component {
             {questionText}
           </span>
 )}
-          <span className="UserInput">
+          <span className="q-buttons">
             <Modal
               handleInput={this.handleInput}
               productName={productName}
               id={productId}
-              buttonText="Add A Question +"
+              buttonText="ADD A QUESTION +"
               qText='About the Product: '
               type="question"
             />
           </span>
-        </>
+        </div>
       </div>
     );
   }
