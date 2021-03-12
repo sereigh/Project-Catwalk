@@ -29,15 +29,15 @@ class Body extends React.Component {
     let {body} = this.props;
     let bodyBeginning = `${body.substring(0, 250)}...`
 
-    if (searchTerm.length >= 3) {
-      body = highlightSearchTerm(body, searchTerm);
-      bodyBeginning = highlightSearchTerm(bodyBeginning, searchTerm);
-    }
-
     if (body.length <= 250) {
       return (
         <p>{body}</p>
-      )
+        )
+      }
+
+    if (searchTerm.length >= 3) {
+      body = highlightSearchTerm(body, searchTerm);
+      bodyBeginning = highlightSearchTerm(bodyBeginning, searchTerm);
     }
 
     if (!fullyVisible) {

@@ -30,6 +30,6 @@ module.exports = {
     ],
   },
   plugins: [new ESLintPlugin({
-    extensions: ['js', 'jsx']
+    extensions: ['js', 'jsx', 'png']
   })],
 };

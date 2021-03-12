@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ProductCard from './ProductCard.jsx';
 import PlusCard from './PlusCard.jsx';
 
+const cardSize = 210;
+
 class OutfitList extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class OutfitList extends React.Component {
   componentDidUpdate() {
     const {userOutfits} = this.props;
     const {slideLength} = this.state;
-    if (userOutfits.length !== slideLength / 220) {
+    if (userOutfits.length !== (slideLength - 2) / cardSize) {
       this.updateSlideLength();
     }
     this.setRightArrowVisibility();
@@ -62,7 +64,7 @@ class OutfitList extends React.Component {
     const {leftCordinate, slideLength} = this.state;
     if (this.myRef.current.offsetWidth < slideLength + leftCordinate ) {
       this.setState({
-        leftCordinate: leftCordinate - 220
+        leftCordinate: leftCordinate - cardSize
       });
     }
   }
@@ -71,7 +73,7 @@ class OutfitList extends React.Component {
     const {leftCordinate} = this.state;
     if (leftCordinate < 0) {
       this.setState({
-        leftCordinate: leftCordinate + 220
+        leftCordinate: leftCordinate + cardSize
       });
     }
   }
@@ -80,7 +82,7 @@ class OutfitList extends React.Component {
     const{userOutfits} = this.props;
     const numberOfCards = userOutfits.length;
     this.setState({
-      slideLength:  numberOfCards * 220
+      slideLength:  numberOfCards * cardSize + 2
     });
   }
 
@@ -89,7 +91,7 @@ class OutfitList extends React.Component {
     const {selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits} = this.props;
     return (
       <div className="outfitList">
-        <button type="button" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard}>&lt;</button>
+        <img src='./img/left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
         <PlusCard selectProductId={selectProductId} addNewOutfit={addNewOutfit} />
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
@@ -98,7 +100,7 @@ class OutfitList extends React.Component {
             ))}
           </div>
         </div>
-        <button type="button" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard}>&gt;</button>
+        <img src='./img/right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
       </div>
     );
   }

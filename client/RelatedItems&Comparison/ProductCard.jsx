@@ -63,10 +63,12 @@ class ProductCard extends React.Component {
   toggleModalWindow() {
     const { window } = this.state;
     if (window === 'none') {
+      document.body.style.overflow = 'hidden';
       this.setState({
         window: 'block'
       });
     } else {
+      document.body.style.overflow = 'scroll';
       this.setState({
         window: 'none'
       });
@@ -127,7 +129,7 @@ class ProductCard extends React.Component {
       return (
         <div>
           <span className="sale-price">
-            {`$${currentStyle.sale_price}`}
+            {`$${currentStyle.sale_price}   `}
           </span>
           <span className="original-price">
             {`$${currentStyle.original_price}`}
@@ -137,7 +139,7 @@ class ProductCard extends React.Component {
     }
     return (
       <div>
-        <span>
+        <span className="productInfo-price">
           {`$${currentStyle.original_price}`}
         </span>
       </div>
@@ -178,9 +180,9 @@ class ProductCard extends React.Component {
           <ActionButton toggleModalWindow={this.toggleModalWindow} deleteOutfit={deleteOutfit} isRelated={isRelated} productId={productId} />
           <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
           <div className="productInfo">
-            <div>{productInfo.category}</div>
-            <div>{productInfo.name}</div>
-            <div>{this.displayPrice()}</div>
+            <div className="productInfo-name">{productInfo.name}</div>
+            <div className="productInfo-category">{productInfo.category}</div>
+            {this.displayPrice()}
             <Stars rating={averageRating} />
           </div>
         </div>
