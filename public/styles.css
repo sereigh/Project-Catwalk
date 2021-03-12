@@ -570,7 +570,7 @@ li{
   animation: qaModalUp 0.5s;
 }
 
-.qa-close-modal {
+.qa-close-modal, .review-close-modal {
   border: none;
   display: inline-block;
   padding: 8px 16px;
@@ -584,7 +584,7 @@ li{
   white-space: nowrap;
   outline: none;
   }
-  .qa-close-modal:hover {
+  .qa-close-modal:hover, .review-close-modal:hover {
     background-color: rgb(204, 255, 204);
     outline: none;
     border-radius: 25px;
@@ -595,6 +595,17 @@ li{
   position: absolute;
   right: 0;
   top: 0
+}
+
+.review-close-modal {
+  border-radius: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.review-close-modal:hover {
+  border-radius: 20px;
 }
 
 form[name="qa"] {
@@ -837,8 +848,8 @@ form[name="qa"] button {
   margin-right: auto;
   max-width: 50%;
   max-height: 50%;
-  outline: 1px solid green;
-  outline-offset: -1px;
+  border: 1px solid green;
+  border-radius: 20px;
   transform: translate(-50%, -50%);
   animation: modalFadeIn 0.5s;
 }
@@ -930,8 +941,6 @@ form[name="qa"] button {
   max-height: 80vh;
   background-color: white;
   flex-direction: column;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 
 .submit-form h1 {
@@ -996,6 +1005,10 @@ form[name="qa"] button {
 .recommend-options {
   display: inline-block;
   transform: translateX(5px);
+}
+
+.recommend-options label {
+  display: inline;
 }
 
 .dynamic-description {
