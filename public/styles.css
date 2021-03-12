@@ -126,11 +126,12 @@ body {
 }
 #upCarrot:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
 #miniThumbnail {
   /* position: absolute; */
-  border: 2px solid #888;
+  border: 2px solid lightgray;
   width: 55px;
   height: 55px;
   /* object-fit: cover; */
@@ -166,6 +167,7 @@ body {
 }
 #downCarrot:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
 button#arrowLeft {
@@ -176,12 +178,17 @@ button#arrowLeft {
   border: 0px;
   /* position: absolute; */
 }
-button#arrowLeft:hover {
-  cursor: pointer;
-}
+button#arrowLeft:hover,
 button#arrowLeft:focus {
-  outline:0 !important;
+  cursor: pointer;
+  opacity: 0.85;
+  outline: none;
+  background-color: var(--gray);
+  transform: scale(1.15);
 }
+/* button#arrowLeft:focus {
+  outline:0 !important;
+} */
 
 button#arrowRight {
   z-index: 5;
@@ -189,14 +196,21 @@ button#arrowRight {
   grid-row: 1;
   background-color: transparent;
   border: 0px;
+  /* background: lightgray; */
+  /* border-radius: 25px; */
   /* position: absolute; */
 }
-button#arrowRight:hover {
-  cursor: pointer;
-}
+button#arrowRight:hover,
 button#arrowRight:focus {
-  outline:0 !important;
+  cursor: pointer;
+  opacity: 0.85;
+  outline: none;
+  background-color: var(--gray);
+  transform: scale(1.15);
 }
+/* button#arrowRight:focus {
+  outline:0 !important;
+} */
 
 /* OvC Product Selector */
 .showcaseSelection {
@@ -248,9 +262,7 @@ button#arrowRight:focus {
   color: red;
   margin-right: 4px;
 }
-#priceOriginal {
-
-}
+/* #priceOriginal { */
 
 #styleThumbnails {
   display: grid;
@@ -265,6 +277,16 @@ button#arrowRight:focus {
   background-color: transparent;
   border: 0px;
 }
+.style-thumbnail:hover,
+.style-thumbnail-button:focus {
+  cursor: pointer;
+  outline: none;
+  /* transform: scale(1.01); */
+  background-color: var(--lgtr-green);
+}
+/* .style-thumbnail-button:focus {
+  outline:0 !important;
+} */
 
 .style-thumbnail {
   border-radius: 50%;
@@ -273,9 +295,11 @@ button#arrowRight:focus {
   height: 65px;
   object-fit: cover;
 }
-.style-thumbnail:hover {
+.style-thumbnail:hover,
+.style-thumbnail:focus {
   cursor: pointer;
   box-shadow: 12px -12px 0px 3px lightgreen;
+  outline: none;
 }
 
 .cartCrates {
@@ -386,13 +410,13 @@ a:hover {
   color: darkslategray;
 }
 #logoFacebook:hover {
-  opacity:0.5;
+  opacity: 0.5;
 }
 #logoTwitter:hover {
-  opacity:0.5;
+  opacity: 0.5;
 }
 #logoPinterest:hover {
-  opacity:0.5;
+  opacity: 0.5;
 }
 
 #hrVertical {

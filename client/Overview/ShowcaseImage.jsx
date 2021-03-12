@@ -146,7 +146,8 @@ class ShowcaseImage extends React.Component {
             id="arrowRight"
             onClick={this.onClickRight}
           >
-            {"[  > ]"}
+            {/* {"[  > ]"} */}
+            <img src="./img/iconfinder_arrow-right.png" alt="iconArrowRight" id="iconArrowRight" />
           </button>
         </div>
       );
@@ -168,7 +169,8 @@ class ShowcaseImage extends React.Component {
             id="arrowLeft"
             onClick={this.onClickLeft}
           >
-            {"[ <  ]"}
+            {/* {"[ <  ]"} */}
+            <img src="./img/iconfinder_arrow-left.png" alt="iconArrowLeft" id="iconArrowLeft" />
           </button>
         </div>
       );
@@ -190,14 +192,16 @@ class ShowcaseImage extends React.Component {
             id="arrowLeft"
             onClick={this.onClickLeft}
           >
-            {"[ <  ]"}
+            {/* {"[ <  ]"} */}
+            <img src="./img/iconfinder_arrow-left.png" alt="iconArrowLeft" id="iconArrowLeft" />
           </button>
           <button
             type="submit"
             id="arrowRight"
             onClick={this.onClickRight}
           >
-            {"[  > ]"}
+            {/* {"[  > ]"} */}
+            <img src="./img/iconfinder_arrow-right.png" alt="iconArrowRight" id="iconArrowRight" />
           </button>
         </div>
       );
