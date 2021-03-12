@@ -120,10 +120,10 @@ body {
   /* height: 75px;
   width: 75px; */
   /* position: absolute; */
+  font-size: x-large;
   background-color: transparent;
   border: 0px;
 }
-
 #upCarrot:hover {
   cursor: pointer;
 }
@@ -135,7 +135,6 @@ body {
   height: 55px;
   /* object-fit: cover; */
 }
-
 #miniThumbnail:hover {
   cursor: pointer;
   box-shadow: 7px -2.5px lightseagreen;
@@ -165,7 +164,6 @@ body {
   background-color: transparent;
   border: 0px;
 }
-
 #downCarrot:hover {
   cursor: pointer;
 }
@@ -178,6 +176,12 @@ button#arrowLeft {
   border: 0px;
   /* position: absolute; */
 }
+button#arrowLeft:hover {
+  cursor: pointer;
+}
+button#arrowLeft:focus {
+  outline:0 !important;
+}
 
 button#arrowRight {
   z-index: 5;
@@ -186,6 +190,12 @@ button#arrowRight {
   background-color: transparent;
   border: 0px;
   /* position: absolute; */
+}
+button#arrowRight:hover {
+  cursor: pointer;
+}
+button#arrowRight:focus {
+  outline:0 !important;
 }
 
 /* OvC Product Selector */
@@ -255,6 +265,10 @@ button#arrowRight {
   height: 65px;
   object-fit: cover;
 }
+.style-thumbnail:hover {
+  cursor: pointer;
+  box-shadow: 12px -12px 0px 3px lightgreen;
+}
 
 .cartCrates {
   grid-row: 3;
@@ -278,6 +292,9 @@ button#arrowRight {
   /* font-size: large; */
   text-align: center;
 }
+#cartSizeDropdown:hover {
+  cursor: pointer;
+}
 
 #cartQuantitySelect {
   grid-column: 3;
@@ -289,6 +306,9 @@ button#arrowRight {
   width: 100%;
   /* font-size: large; */
   text-align: center;
+}
+#cartQuantityDropdown:hover {
+  cursor: pointer;
 }
 
 #cartSubmitRow {
@@ -309,6 +329,9 @@ button#arrowRight {
   /* font-size: large; */
   /* text-align: center; */
 }
+#buttonAddToCart:hover {
+  cursor: pointer;
+}
 
 #buttonAddToBag .x-btn-center {
   text-align: left;
@@ -324,10 +347,13 @@ button#arrowRight {
   width: 100%;
   /* font-size: large; */
 }
+#buttonAddToPlus:hover {
+  cursor: pointer;
+}
 
 /* OvC Product Banner */
 .showcaseDescription {
-  grid-column: 1 / 5;
+  grid-column: 2 / 5;
   grid-row: 4;
 }
 
@@ -342,10 +368,27 @@ button#arrowRight {
 
 }
 
+#descriptionOutbound {
+  color: darkslategray;
+}
+
+a {
+  color: darkslategray;
+}
+a:hover {
+  color: darkslategray;
+}
+
 #hrVertical {
   height: 100%;
   width: 0;
-  border: thin solid black;
+  border: thin solid gray;
+  /* margin-top: 3px; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end; */
+  /* justify-content: flex-end; */
 }
 
 #descriptionAreaRight {
