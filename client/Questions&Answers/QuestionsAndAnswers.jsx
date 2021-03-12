@@ -100,20 +100,25 @@ class QuestionsAndAnswers extends React.Component {
     return (
       // eslint-disable-next-line jsx-a11y/no-static-element-interactions
       <div
-        className="qaContainer"
+        className="qa-container"
         onClick={handleClickTrack}
         onKeyPress={handleClickTrack}
       >
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="search"
-            className="searchBar"
-            onChange={this.handleSearchChange}
-            onClick={this.handleSearchClear}
-            value={inputValue}
-            placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
-          />
-        </form>
+        <span className="qa-header">
+          QUESTIONS AND ANSWERS
+        </span>
+        <span className="qa-search">
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="search"
+              className="qa-search-bar"
+              onChange={this.handleSearchChange}
+              onClick={this.handleSearchClear}
+              value={inputValue}
+              placeholder='HAVE A QUESTION? SEARCH FOR ANSWERS...'
+            />
+          </form>
+        </span>
         {filtered ? (
           <QAview
             questions={filteredQuestions}

@@ -515,127 +515,155 @@ li{
 }
 
 /* Questions and Answers */
-.qaContainer {
-  width: 90%;
-  margin: auto;
-  max-height: 800px;
-  border: solid black thin;
-}
-.qaHeader {
-  width: 90%;
-  text-align: left;
-  margin: 2%;
-}
-.searchBar {
-  width: 96%;
-  height: 50px;
-  margin: auto;
-  margin-left: 2%;
-}
-.searchText {
-  margin-left: 2%
-}
-.UserInput {
-  border: solid black thin;
-  text-align: center;
-  font-size: small;
-  margin: 2%;
-  display: inline-block;
-  padding: 2%;
-}
-.showDefault-questions {
-  position: relative;
-  max-height: 500px;
-  margin: 2%;
-  border: solid black thin;
 
+.qa-container {
+  width: 57%;
+  height: 90vh;
+  display: grid;
+  margin: auto;
+  grid-template-rows: 30px 50px 380px;
+  grid-gap: 2px;
 }
-.showDefault-answers {
-  min-height: 50px;
-  margin: 2%;
+.qa-header {
+  grid-row: 1/2;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  font-size: small;
 }
-.showDefault-questions div:nth-child(4n) {
+.qa-search {
+grid-row: 2/3;
+}
+.qa-search-bar {
+  height: 40px;
+  width: 118.5vh;
+}
+.qa-view {
+  position: relative;
+  grid-row: 3 / 4;
+  grid-gap: 2px;
+}
+.qa-no-show {
   display: none;
 }
-.showDefault-answers div:nth-child(3n) {
-  display: none;
-}
-.showAll-questions {
+.qa-questions-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 90%;
   overflow-y: scroll;
   overflow-x: hidden;
-  position: relative;
-  max-height: 400px;
-  margin: 2%;
+}
+.q-navigation {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  grid-gap: 20px;
+  top: 94%;
+  left: 0;
+}
+.q-buttons {
   border: solid black thin;
+  text-align: center;
+  font-size: x-small;
 }
-.showAll-answers {
-  position: relative;
-  overflow: scroll;
-  overflow-y: scroll;
-  overflow-x: hide;
-  max-height: 400px;
+.qa-question-card {
+  margin: 1%;
+}
+.qa-answers-list {
   margin: 2%;
 }
-.view-question {
-  margin: 2%;
-}
-.view-answers {
-  margin: 2%;
+.qa-answer-card {
+  margin-bottom: 1%;
 }
 .questionText {
-  font-size: medium;
+  font-size: small;
   font-weight: bolder;
   word-break: normal;
   width: 68%;
   text-align: left;
   display: inline-block;
+  outline: none;
+}
+.questionText:hover {
+  text-underline-position: below;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .answerText {
-  font-size: small;
+  font-size: x-small;
   word-break: normal;
+  font-weight: medium;
   width: 100%;
   text-align: left;
   display: inline;
-  margin: -1%;
+  margin-bottom: 1%;
 }
 .questionFeedback {
   text-align: right;
   font-size: xx-small;
   display: inline-block;
   width: 32%;
+  color: rgb(119, 117, 117);;
 }
 .answersFeedback {
   font-size: xx-small;
   width: 100%;
   text-align: left;
   display: block;
-  margin: 0%;
-  padding: 2%;
+  color: rgb(119, 117, 117);
 }
-.answersFeedback-left {
-  display: inline-block;
-}
-.answersFeedback-right {
-  display: inline-block;
+.loadAnswers,
+.questionFeedback:hover,
+.answersFeedback:hover {
+  cursor: pointer;
+  background-color: rgb(232, 253, 232);
 }
 .loadAnswers {
-  font-size: x-small;
-  margin: 2%;
+  font-size: xx-small;
   font-weight: bolder;
+}
+.qa-modal-overlay {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  animation: QlayIn 0.5s;
+}
+@keyframes QlayIn {
+  from {
+    opacity: 0;
+  }
 }
 .qa-modal-view {
   position: fixed;
   z-index: 1;
-  left: 35%;
-  top: 20%;
+  left: 50%;
+  top: 50%;
   width: 30%;
   height: 60%;
   overflow: auto;
   background-color: white;
-  border: thin solid gray;
+  border: medium solid lightgrey;
   text-align: center;
   border-radius: 20px;
-  animation: qaModalUp 0.5s;
+  animation: qModalUp 0.5s;
+  transform: translate(-50%, -50%);
+}
+@keyframes qModalUp {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 .qa-modal-box {
   background-color: black;
@@ -647,7 +675,6 @@ li{
   display: inline-block;
   animation: qaModalUp 0.5s;
 }
-
 .qa-close-modal, .review-close-modal {
   border: none;
   display: inline-block;
@@ -661,20 +688,20 @@ li{
   cursor: pointer;
   white-space: nowrap;
   outline: none;
+  border-radius: 50px;
   }
   .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
     background-color: rgb(204, 255, 204);
     outline: none;
-    border-radius: 25px;
+    border-radius: 50px;
     font-size: larger;
   }
-
 .topright {
+  z-index: 1;
   position: absolute;
   right: 0;
   top: 0
 }
-
 .review-close-modal {
   border-radius: 20px;
   position: absolute;
@@ -685,7 +712,6 @@ li{
 .review-close-modal:hover {
   border-radius: 20px;
 }
-
 form[name="qa"] {
   max-width: 400px;
   padding: 20px;
@@ -701,16 +727,16 @@ form[name="qa"] input {
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
-  border: solid thin green;
   outline: none;
   border-radius: 9px;
+  background-color: rgb(238, 238, 238);
+  border: none;
 }
 form[name="qa"] input:valid {
   box-shadow: 0 0 1px 1px green;
-  background-color: rgb(204, 255, 204);
 }
 form[name="qa"] input:hover {
-  background-color: rgb(204, 255, 204);
+  background-color: rgb(232, 253, 232);
 }
 form[name="qa"] input:active {
   border: none;
