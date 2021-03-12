@@ -118,7 +118,7 @@ class CartInserter extends React.Component {
               // }}
               id="cartSizeDropdown"
             >
-              <option>SELECT SIZE</option>
+              <option>&nbsp;&nbsp;SELECT SIZE</option>
               {quantitySizes}
               {/* {sizeArr.map((size) => {
                 return (
@@ -135,7 +135,7 @@ class CartInserter extends React.Component {
               onBlur={this.handleQuantityChange}
               id="cartQuantityDropdown"
             >
-              <option>-</option>
+              <option>&nbsp;&nbsp;-</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>

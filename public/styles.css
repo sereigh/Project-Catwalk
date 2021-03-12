@@ -1,8 +1,5 @@
 body {
   font-family: 'Inter', sans-serif;
-  display: grid;
-  justify-content: center;
-  justify-items: center;
 }
 
 /* Header */
@@ -203,9 +200,10 @@ button#arrowRight {
 }
 
 #cartSelectorRow {
+  margin-right: 17px;
   display: grid;
   grid-template-columns: 60% 5% 35%;
-  grid-template-rows: 35px;
+  grid-template-rows: 42px;
 }
 
 #cartSizeSelect {
@@ -216,7 +214,7 @@ button#arrowRight {
 #cartSizeDropdown {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
   text-align: center;
 }
 
@@ -228,14 +226,15 @@ button#arrowRight {
 #cartQuantityDropdown {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
   text-align: center;
 }
 
 #cartSubmitRow {
+  margin-right: 17px;
   display: grid;
   grid-template-columns: 85% 5% 10%;
-  grid-template-rows: 5px 35px;
+  grid-template-rows: 15px 42px;
 }
 
 #cartAddToCart {
@@ -246,7 +245,12 @@ button#arrowRight {
 #buttonAddToCart {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
+  /* text-align: center; */
+}
+
+#buttonAddToBag .x-btn-center {
+  text-align: left;
 }
 
 #cartAddToPlus {
@@ -257,7 +261,7 @@ button#arrowRight {
 #buttonAddToPlus {
   height: 100%;
   width: 100%;
-  font-size: large;
+  /* font-size: large; */
 }
 
 /* OvC Product Banner */

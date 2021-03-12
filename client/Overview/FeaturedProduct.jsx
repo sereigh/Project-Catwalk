@@ -19,8 +19,9 @@ class FeaturedProduct extends React.Component {
   // // Kyle: I did also create a Stars component that may be of use to you. It's in the SharedComponents folder. All you have to pass it is a rating number as a prop, and it will give you an appropriate amount of filled stars.
 
   render() {
-    const { selectProductInfo, reviewData } = this.props;
-    const rating = reviewData.ratings[1];
+    // const { selectProductInfo, reviewData } = this.props;
+    const { selectProductInfo } = this.props;
+    // const rating = reviewData.ratings[1];
     // console.log('FeaturedProduct_render reviewData.ratings[1]:', reviewData.ratings[1]);
     // <FeaturedReviewLink />
     // CATEGORY
