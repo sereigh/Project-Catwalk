@@ -379,12 +379,20 @@ button#arrowRight:focus {
 #descriptionOutbound {
   color: darkslategray;
 }
-
 a {
   color: darkslategray;
 }
 a:hover {
   color: darkslategray;
+}
+#logoFacebook:hover {
+  opacity:0.5;
+}
+#logoTwitter:hover {
+  opacity:0.5;
+}
+#logoPinterest:hover {
+  opacity:0.5;
 }
 
 #hrVertical {
