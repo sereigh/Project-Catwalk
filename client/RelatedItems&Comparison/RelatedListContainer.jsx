@@ -8,10 +8,10 @@ import RelatedProductList from './RelatedProductList.jsx';
 import OutfitList from './OutfitList.jsx';
 
 const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits, handleClickTrack}) => (
-  <div className="list-container" onClick={handleClickTrack} onKeyPress={handleClickTrack}>
-    **RelatedProductList**
+  <div className="related-product-list-container" onClick={handleClickTrack} onKeyPress={handleClickTrack}>
+    <span className="list-title">RelatedProductList</span>
     <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
-    **OutfitList**
+    <span className="list-title">OutfitList</span>
     <OutfitList selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} addNewOutfit={addNewOutfit} deleteOutfit={deleteOutfit} userOutfits={userOutfits} />
   </div>
 );

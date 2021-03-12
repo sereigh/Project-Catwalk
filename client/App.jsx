@@ -11,11 +11,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentSearch: 17762,
-      productId: 17762,
+      productId: 17069,
       productList: [
         {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
-      selectProductId: 17762,
+      // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
+      // Only products between 17067 and 17074 have multiple style images:
+      selectProductId: 17069,
       selectProductInfo: {
         "id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]
@@ -181,7 +183,7 @@ class App extends React.Component {
             />
           </div>
         </div>
-        <p>
+        {/* <p>
           <a href="http://localhost:3000/products">
             localhost:3000/products
           </a>
@@ -191,8 +193,8 @@ class App extends React.Component {
           <br />
           productList[0].name:&nbsp;
           {productList[0].name}
-        </p>
-        <p>
+        </p> */}
+        {/* <p>
           <a href="http://localhost:3000/products/17763/">
             localhost:3000/products/
             {selectProductId}
@@ -203,10 +205,10 @@ class App extends React.Component {
           <br />
           selectProductInfo.feature[1].feature:&nbsp;
           {selectProductInfo.category}
-        </p>
+        </p> */}
         <span>
-          ---Overview Widget---
-          <br />
+          {/* ---Overview Widget--- */}
+          {/* <br /> */}
           <br />
         </span>
         <OverviewContainer

@@ -37,24 +37,257 @@ body {
 }
 
 /* Overview */
+.overviewWidget {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 10% 51% 5% 34%;
+  /* grid-column-gap: 30px; */
+  grid-template-rows: auto auto auto;
+  /* grid-template-rows: 3fr 1fr; */
+  /* grid-row-gap: 15px; */
+}
+
+.showcaseGallery {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  /* background-color: gray; */
+}
+
+/* OvC Carousel */
+.showcaseCarousel {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  height: 615px;
+}
+
+.showcaseGallery {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 18% 8% auto 8%;
+  min-width: 0;
+  min-height: 0;
+  /* grid-column-gap: 30px; */
+  /* grid-template-rows: auto; */
+  /* grid-template-rows: 3fr 1fr; */
+  position: relative;
+  background-size: cover;
+  /* background-size: contain; */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.styleGalleryImage {
+  grid-column: 1 / 5;
+  grid-row: 1;
+  width: 550px;
+  height: 615px;
+  object-fit: cover;
+  object-position: center;
+  /* max-width: 100%;
+  max-height: 100%; */
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  background-size: contain;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+}
+
+.showcaseThumbnails {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: transparent;
+  /* position: absolute; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+}
+
+button#arrowLeft {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: transparent;
+  border: 0px;
+}
+
+button#arrowRight {
+  grid-column: 4;
+  grid-row: 1;
+  background-color: transparent;
+  border: 0px;
+}
+
+/* OvC Product Selector */
+.showcaseSelection {
+  grid-column: 4;
+  grid-row: 1 / 3;
+  width: 100%;
+  margin: 0.5%;
+}
+
+.productAreaItem {
+ grid-row: 1;
+}
+
+.styleSelector {
+ grid-row: 2;
+}
+
+#styleThumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  justify-content: center;
+  align-items: center;
+}
+
+.style-thumbnail-button {
+  height: 75px;
+  width: 75px;
+  background-color: transparent;
+  border: 0px;
+}
+
+.style-thumbnail {
+  border-radius: 50%;
+  border: 2px solid #888;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+.cartCrates {
+  grid-row: 3;
+}
+
+#cartSelectorRow {
+  display: grid;
+  grid-template-columns: 60% 5% 35%;
+  grid-template-rows: 35px;
+}
+
+#cartSizeSelect {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+#cartSizeDropdown {
+  height: 100%;
+  width: 100%;
+  font-size: large;
+  text-align: center;
+}
+
+#cartQuantitySelect {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+#cartQuantityDropdown {
+  height: 100%;
+  width: 100%;
+  font-size: large;
+  text-align: center;
+}
+
+#cartSubmitRow {
+  display: grid;
+  grid-template-columns: 85% 5% 10%;
+  grid-template-rows: 5px 35px;
+}
+
+#cartAddToCart {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#buttonAddToCart {
+  height: 100%;
+  width: 100%;
+  font-size: large;
+}
+
+#cartAddToPlus {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#buttonAddToPlus {
+  height: 100%;
+  width: 100%;
+  font-size: large;
+}
+
+/* OvC Product Banner */
+.showcaseDescription {
+  grid-column: 1 / 5;
+  grid-row: 4;
+}
+
+.descriptionBanner {
+  width: 100%;
+  margin: 0.5%;
+  display: grid;
+  grid-template-columns: 66% 2% 32%;
+}
+
+#descriptionAreaLeft {
+
+}
+
+#hrVertical {
+  height: 100%;
+  width: 0;
+  border: thin solid black;
+}
+
+#descriptionAreaRight {
+  text-align: left;
+  transform: translate(0px, 15%);
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li:before {
+  content: '✓';
+}
+
+li{
+  margin: 9px 0;
+}
 
 /* Related Items and Comparison */
-.list-container {
+.related-product-list-container {
   display: block;
   justify-content: left;
-  width: 70%;
+  width: 57%;
+  margin: auto;
+}
+
+.list-title {
+  font-weight: bold;
+  color: gray;
 }
 
 .relatedProductList {
   display: flex;
   width: 100%;
-  height: 350px;
+  height: 400px;
 }
 
 .outfitList {
   display: flex;
   width: 100%;
-  height: 350px;
+  height: 400px;
 }
 
 .carousel-container {
@@ -76,15 +309,25 @@ body {
 }
 
 .productCard-container {
-  margin: 10px;
+  padding: 5px 0px 10px 0px;
+  margin: 20px 5px 5px 5px;
   width: 200px;
+  height: 85%;
+  border: 0px solid white;
+  border-bottom: 20px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.productCard-container:hover {
+  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
 }
 
 .productCard {
   display: grid;
   width: 200px;
   height: 100%;
-  border: 1px solid white;
 }
 
 .leftArrow {
@@ -113,10 +356,18 @@ body {
   height: 30px;
 }
 
+.leftArrow:hover, .rightArrow:hover {
+  transform: translate(0, -5%);
+}
+
 .preview-image {
   display: block;
-  height: 200px;
+  height: 215px;
   width: 200px;
+}
+
+.preview-image:hover {
+  cursor: pointer;
 }
 
 .preview-image img {
@@ -127,14 +378,50 @@ body {
 .productInfo {
   display: block;
   width: 100%;
+  padding: 5px;
+}
+
+.productInfo-name {
+  font-weight: bold;
+  font-size: 95%;
+}
+
+.productInfo-category {
+  font-size: 80%;
+}
+
+.productInfo-price {
+  font-weight: bold;
+}
+
+.plusCard:hover {
+  cursor: pointer;
 }
 
 .plusBtn {
   text-align: center;
-  height: 5vh;
-  width: 4vh;
+  height: 45px;
+  width: 45px;
   margin: auto;
   background-color: white;
+}
+
+.comparison-close-modal {
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.comparison-modal-header {
+  border-bottom: 1px solid darkgray;
+}
+
+.comparison-modal-title {
+  font-size: 90%;
+  color: darkgray;
 }
 
 .comparison-modal-content {
@@ -142,16 +429,22 @@ body {
   z-index: 11;
   left: 50%;
   top: 50%;
-  width: 300px;
-  height: 350px;
+  width: 35%;
+  height: 50%;
   transform: translate(-50%, -50%);
   overflow-y: scroll;
   max-height:85%;
   margin-top: 50px;
   margin-bottom:50px;
   animation: modalFadeIn 0.5s;
-  background-color: #fefefe;
-  border: 1px solid #fefefe;
+  background-color: white;
+  border: 1px solid green;
+  border-radius: 15px;
+  padding: 2% 5%;
+}
+
+.comparison-modal-content::-webkit-scrollbar {
+  display: none;
 }
 
 .comparison-overlay {
@@ -161,7 +454,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fefefe;
+  background-color: black;
   opacity: 0.5;
   animation: overlayFadeIn 0.5s;
 }
@@ -169,6 +462,7 @@ body {
 .productName-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  font-weight: bold;
 }
 
 .features-container {
@@ -186,27 +480,38 @@ body {
 
 .characteristic {
   text-align: center;
+  font-size: 90%;
+  color: gray;
 }
 
 .sale-price {
+  font-weight: bold;
   color: red;
 }
 
 .original-price {
+  font-size: 90%;
   color: gray;
 }
 
 .actionBtn {
-  border: white;
   float: right;
-  background: transparent;
-  padding: .5rem;
-  border-radius: 64px;
-  border-bottom: none;
+  width: 15px;
+  height: 15px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.actionBtn.closeBtn {
+  font-weight: bold;
+}
+
+.actionBtn.closeBtn:hover {
+  color: red;
 }
 
 .actionBtn:hover {
-  color: red;
+  cursor: pointer;
 }
 
 /* Questions and Answers */
@@ -378,7 +683,7 @@ body {
   animation: qaModalUp 0.5s;
 }
 
-.qa-close-modal {
+.qa-close-modal, .review-close-modal {
   border: none;
   display: inline-block;
   padding: 8px 16px;
@@ -393,7 +698,8 @@ body {
   outline: none;
   border-radius: 50px;
   }
-  .qa-close-modal:hover {
+  .qa-close-modal:hover, .review-close-modal:hover, .comparison-close-modal:hover {
+    background-color: rgb(204, 255, 204);
     outline: none;
     border-radius: 50px;
     font-size: larger;
@@ -404,6 +710,17 @@ body {
   position: absolute;
   right: 0;
   top: 0
+}
+
+.review-close-modal {
+  border-radius: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.review-close-modal:hover {
+  border-radius: 20px;
 }
 
 form[name="qa"] {
@@ -646,8 +963,8 @@ form[name="qa"] button {
   margin-right: auto;
   max-width: 50%;
   max-height: 50%;
-  outline: 1px solid green;
-  outline-offset: -1px;
+  border: 1px solid green;
+  border-radius: 20px;
   transform: translate(-50%, -50%);
   animation: modalFadeIn 0.5s;
 }
@@ -739,8 +1056,6 @@ form[name="qa"] button {
   max-height: 80vh;
   background-color: white;
   flex-direction: column;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 
 .submit-form h1 {
@@ -805,6 +1120,10 @@ form[name="qa"] button {
 .recommend-options {
   display: inline-block;
   transform: translateX(5px);
+}
+
+.recommend-options label {
+  display: inline;
 }
 
 .dynamic-description {

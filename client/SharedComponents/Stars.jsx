@@ -23,7 +23,7 @@ const Stars = ({rating}) => {
     'color': 'green',
     'position': 'absolute',
     'left': '0',
-    'font-size': 'large'
+    'fontSize': 'large'
   }
 
   return (

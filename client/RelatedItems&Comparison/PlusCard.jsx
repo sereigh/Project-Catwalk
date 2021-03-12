@@ -8,9 +8,9 @@ const PlusCard = ({selectProductId, addNewOutfit}) => {
   }
 
   return (
-    <div className="productCard-container plusCard">
+    <div role="button" onClick={handleClick} className="productCard-container plusCard" >
       <div className="productCard">
-        <button className="plusBtn" type="button" onClick={handleClick}>+</button>
+        <img src="./img/add(2).png" alt="add" className="plusBtn" />
       </div>
     </div>
   );
