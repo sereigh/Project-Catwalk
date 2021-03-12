@@ -4,8 +4,17 @@ import PropTypes from 'prop-types';
 const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModalWindow}) => (
   <div className="comparison-modal-window" style={{display: window}}>
     <div className="comparison-modal-content">
+      <span
+        className="comparison-close-modal"
+        onClick={toggleModalWindow}
+        role="button"
+        tabIndex={0}
+        onKeyPress={toggleModalWindow}
+      >
+        x
+      </span>
       <div className="comparison-modal-header">
-        <p>Comparing</p>
+        <p className="comparison-modal-title">Comparing</p>
         <p className="productName-container">
           <span className="current-product">{product1}</span>
           <span className="related-product">{product2}</span>
@@ -22,7 +31,7 @@ const ComparisonModal = ({product1, product2, commonFeatures, window, toggleModa
         ))}
       </div>
     </div>
-    <div role="button" tabIndex="0" className="overlay" onClick={toggleModalWindow} onKeyPress={toggleModalWindow} />
+    <div role="button" tabIndex="0" className="comparison-overlay" onClick={toggleModalWindow} onKeyPress={toggleModalWindow} />
   </div>
 );
 
