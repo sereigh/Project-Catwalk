@@ -34,14 +34,18 @@ function QuestionsList(props) {
               handler={() => canClick('questions', question.question_id, 'helpful')}
             />
             {` (${question.question_helpfulness})   |   `}
-            <Modal
-              handleInput={handleInput}
-              productName={productName}
-              id={question.question_id}
-              qText={question.question_body}
-              buttonText="Add Answer"
-              type="answer"
-            />
+            <u>
+              <strong>
+                <Modal
+                  handleInput={handleInput}
+                  productName={productName}
+                  id={question.question_id}
+                  qText={question.question_body}
+                  buttonText="Add Answer"
+                  type="answer"
+                />
+              </strong>
+            </u>
           </div>
           <span
             className="qa-answers-list"
