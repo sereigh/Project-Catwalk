@@ -462,11 +462,11 @@ li{
   border-bottom: 20px;
   border-radius: 15px;
   background-color: white;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 lightgreen;
 }
 
 .productCard-container:hover {
-  box-shadow: 0 10px 20px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px 0 lightgreen;
 }
 
 .productCard {
@@ -988,7 +988,7 @@ form[name="qa"] button {
 }
 
 .reset-filters:hover, .expand-review:hover, .review-buttons > button:hover, .submit-review:hover {
-  background-color: lightgray;
+  background-color: lightgreen;
   cursor: pointer;
 }
 
