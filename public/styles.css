@@ -34,6 +34,7 @@ body {
 
 .website-search-bar i:hover {
   cursor: pointer;
+  color: green;
 }
 
 /* Overview */
@@ -419,8 +420,7 @@ li{
 }
 
 .list-title {
-  font-weight: bold;
-  color: gray;
+  font-size: small;
 }
 
 .relatedProductList {
@@ -663,7 +663,7 @@ li{
 
 .qa-container {
   width: 57%;
-  height: 90vh;
+  max-height: 90vh;
   display: grid;
   margin: auto;
   grid-template-rows: 30px 50px 380px;
@@ -1043,7 +1043,7 @@ form[name="qa"] button {
 }
 
 .maximized::-webkit-scrollbar {
-  width: 5px;
+  display: none;
 }
 
 .review {
