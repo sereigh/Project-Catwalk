@@ -17,7 +17,7 @@ class App extends React.Component {
       ],
       // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
       // Only products between 17067 and 17074 have multiple style images:
-      selectProductId: 17069,
+      selectProductId: 17073,
       selectProductInfo: {
         "id":18076,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]

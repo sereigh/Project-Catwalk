@@ -25,14 +25,16 @@ function ShowcaseThumbnails(props) {
   )
   return (
     <div className="showcaseThumbnails">
-      <span id="upCarrot">
-        ^
+      <span id="upCarrotSpan">
+        {/* ^ */}
+        <img src="./img/iconfinder_angle-up.png" alt="upCarrot" id="upCarrot" />
       </span>
       <span id="thumbnailGalleryHolder">
         {thumbnailArray}
       </span>
-      <span id="downCarrot">
-        v
+      <span id="downCarrotSpan">
+        {/* v */}
+        <img src="./img/iconfinder_angle-down.png" alt="downCarrot" id="downCarrot" />
       </span>
     </div>
   );
