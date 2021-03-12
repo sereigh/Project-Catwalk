@@ -27,6 +27,12 @@ const UserInfo = ({ name, date }) => (
   </span>
 )
 
+// const ToolTip = () => (
+//   <div className="tooltip">
+//     <span className="tooltiptext">Flag an answer as innappropriate.</span>
+//   </div>
+// )
+
 TextLink.propTypes = {
   option: PropTypes.number.isRequired,
   handler: PropTypes.func.isRequired,
