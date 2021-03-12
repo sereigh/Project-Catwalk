@@ -781,14 +781,24 @@ grid-row: 2/3;
 .answersFeedback-right {
   font-weight: bolder;
 }
-.questionFeedback,
+.questionFeedback {
+  cursor: pointer;
+}
+.add-answer:hover,
 .answersFeedback-right:hover {
   cursor: pointer;
+  color: rgb(148, 219, 148);
+  font-weight:900;
 }
 .loadAnswers:hover,
 .q-buttons:hover {
   cursor: pointer;
   background-color: lightgreen;
+}
+.add-answer {
+  font-size: xx-small;
+  font-weight: bolder;
+  text-decoration: underline;
 }
 .loadAnswers {
   font-size: xx-small;

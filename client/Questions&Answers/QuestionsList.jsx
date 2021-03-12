@@ -35,7 +35,7 @@ function QuestionsList(props) {
             />
             {` (${question.question_helpfulness})   |   `}
             <u>
-              <strong>
+              <span className="add-answer">
                 <Modal
                   handleInput={handleInput}
                   productName={productName}
@@ -44,7 +44,7 @@ function QuestionsList(props) {
                   buttonText="Add Answer"
                   type="answer"
                 />
-              </strong>
+              </span>
             </u>
           </div>
           <span
