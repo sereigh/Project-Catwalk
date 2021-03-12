@@ -244,6 +244,14 @@ button#arrowRight:focus {
  grid-row: 2;
 }
 
+#priceSale {
+  color: red;
+  margin-right: 4px;
+}
+#priceOriginal {
+
+}
+
 #styleThumbnails {
   display: grid;
   grid-template-columns: repeat(4, 25%);
