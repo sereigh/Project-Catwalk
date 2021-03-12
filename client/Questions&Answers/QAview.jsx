@@ -82,19 +82,6 @@ class QAview extends React.Component {
     const { answersView, openIndex, panelIndex, clickedId } = this.state
     const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
-    // const toggleAccordian = (e) => {
-    //   if (e.target.name === 'answers') {
-    //     console.log('toggled answer view', e.target.name)
-    //     this.setState(() => {
-    //       return { answersView: true }
-    //     })
-    //   }
-    //   this.setState(() =>
-    //   { return {
-    //     questionsView: !questionsView
-    //   }})
-    // }
-
     return (
       <div className="qa-view">
         {questions && (

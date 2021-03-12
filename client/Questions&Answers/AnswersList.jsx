@@ -7,15 +7,12 @@ function Answerslist(props) {
   const { answers, toggleAnswers, canClick, answersView, qId, clickedId } = props
   const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
-  // const length = answers.length;
-  // const view = (answersView ? "showAll-answers" : "showDefault-answers")
   return (
     <>
       {answers.map((answer, i) => (
         <div
           key={answer.answer_id}
           className={(i < 2 ? 'qa-answer-card' : clickedId.includes(qId) ? 'qa-answer-card' : 'qa-no-show')}
-          // className="qa-no-show"
         >
           <span className="answerText">
             <strong>A:  </strong>
@@ -41,9 +38,6 @@ function Answerslist(props) {
           </span>
         </div>
       ))}
-
-      {/* if q === i show all questions */}
-
       {answers.length > 2 && (
       <span
         className='loadAnswers'

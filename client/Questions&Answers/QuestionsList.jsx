@@ -8,15 +8,6 @@ import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
   const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId } = props
-  // const [panel, setPanel] = useState(false);
-  // const view = (questionsView === true ? "showAll-questions" : "showNo-questions")
-
-  // const togglePanel = (i) => {
-  //   if (panel === i) {
-  //     return setPanel(null)
-  //   }
-  //   return setPanel(i)
-  // };
 
   return (
     <div className="qa-questions-list">
@@ -54,16 +45,7 @@ function QuestionsList(props) {
           </div>
           <span
             className="qa-answers-list"
-            // should show default or hide answers based on clicking the question
-            // if this question is clicked (q) this answer panel (i) should show
-            // it's default view, if it's not clicked, it should stay hidden
-
-            // this list should show if it's the first 4 lists
-            // otherwise it should be hidden
-
-            // if this question is clicked, this list should show default
           >
-            {/* || i === openIndex  */}
             {panelIndex.includes(i) && (
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
@@ -84,7 +66,6 @@ function QuestionsList(props) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  // questionsView: PropTypes.bool.isRequired,
   answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
