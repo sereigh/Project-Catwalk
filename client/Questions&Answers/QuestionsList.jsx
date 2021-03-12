@@ -7,7 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, qIndex, aIndex, openIndex } = props
+  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex } = props
   // const [panel, setPanel] = useState(false);
   // const view = (questionsView === true ? "showAll-questions" : "showNo-questions")
 
@@ -27,10 +27,10 @@ function QuestionsList(props) {
         >
           <div
             className="questionText"
-            onClick={() => toggleAnswers(i)}
+            onClick={() => togglePanel(i)}
             role="button"
             tabIndex={0}
-            onKeyPress={() => toggleAnswers(i)}
+            onKeyPress={() => togglePanel(i)}
           >
             {/* togglePanel(i) */}
             <strong>Q:  </strong>
@@ -64,15 +64,13 @@ function QuestionsList(props) {
             // if this question is clicked, this list should show default
           >
             {/* || i === openIndex  */}
-            {openIndex.includes(i) && (
+            {panelIndex.includes(i) && (
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
               length={questions[i].answers.length}
               answersView={answersView}
               toggleAnswers={toggleAnswers}
               canClick={canClick}
-              aIndex={aIndex}
-              q={i}
             />
 )}
           </span>
@@ -90,9 +88,9 @@ QuestionsList.propTypes = {
   handleInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
   canClick: PropTypes.func.isRequired,
-  qIndex: PropTypes.number.isRequired,
-  aIndex: PropTypes.number.isRequired,
-  openIndex: PropTypes.oneOfType([PropTypes.number]).isRequired,
+  openIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  togglePanel: PropTypes.func.isRequired,
+  panelIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
 }
 
 export default QuestionsList;

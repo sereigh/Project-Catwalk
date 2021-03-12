@@ -8,49 +8,60 @@ class QAview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionsView: false,
+      // questionsView: false,
       answersView: false,
       idList: [],
-      qIndex: 3,
-      aIndex: 1,
       openIndex: [0, 1, 2, 3],
+      panelIndex: [0, 1, 2, 3],
     };
-    // must change implementation to include just open Index or both
-    // qIndex and openIndex, else view more questions will not work.
     this.handleInput = this.handleInput.bind(this)
     this.canClick = this.canClick.bind(this)
     this.toggleQuestions = this.toggleQuestions.bind(this)
     this.toggleAnswers = this.toggleAnswers.bind(this)
+    this.togglePanel = this.togglePanel.bind(this)
   }
 
   handleInput(type, id, input) {
     const { postInput } = this.props
+
     postInput(type, id, 'add', input)
   }
 
   canClick(type, id, option) {
     const { idList } = this.state
-    const { postFeedback } = this.props
+    const {postFeedback } = this.props
 
-    if (idList.includes(id)) {
-      return console.error('Invalid action')
+      if (idList.includes(id)) {
+        return console.error('Invalid action')
+      }
+      idList.push(id)
+        return postFeedback(type, id, option)
+  }
+
+  togglePanel(i) {
+    const { panelIndex } = this.state
+    const newIndex = panelIndex.slice()
+
+    if (panelIndex.includes(i)) {
+      newIndex.splice(newIndex.indexOf(i), 1)
+    } else { newIndex.push(i)
     }
-    idList.push(id)
-    return postFeedback(type, id, option)
+    if (panelIndex.length > 4) { newIndex.unshift() }
+    this.setState(() => {
+      return { panelIndex: newIndex }
+    })
   }
 
   toggleQuestions() {
-    const { questions } = this.props
+    const {questions } = this.props
     const { openIndex } = this.state
-    console.log('questions length - 1', questions.length - 1)
-    console.log('openIndex length - 1', openIndex.length - 1)
     if (openIndex.length >= questions.length) {
       this.setState(() => {
         return { openIndex: [...Array(4).keys()] }
       })
-    } else this.setState(() => {
-      return { openIndex: [...Array(openIndex.length + 2).keys()] }
-    })
+  } else this.setState(() => {
+    return { openIndex: [...Array(openIndex.length + 2).keys()] }
+  })
   }
 
   toggleAnswers() {
@@ -76,13 +87,13 @@ class QAview extends React.Component {
     //   console.log('toggle questions clicked', newIndex)
     // }
     this.setState(() => {
-      return { answersView: !answersView }
-    })
+        return { answersView: !answersView }
+      })
   }
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
-    const { questionsView, answersView, qIndex, aIndex, openIndex } = this.state
+    const { answersView, openIndex, panelIndex } = this.state
     const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     // const toggleAccordian = (e) => {
@@ -101,33 +112,33 @@ class QAview extends React.Component {
     return (
       <div className="qa-view">
         {questions && (
-          <QuestionsList
-            questions={questions}
-            questionsView={questionsView}
-            answersView={answersView}
-            toggleAnswers={this.toggleAnswers}
-            handleInput={this.handleInput}
-            postFeedback={postFeedback}
-            productName={productName}
-            canClick={this.canClick}
-            qIndex={qIndex}
-            aIndex={aIndex}
-            openIndex={openIndex}
-          />
-        )}
+        <QuestionsList
+          questions={questions}
+          // questionsView={questionsView}
+          answersView={answersView}
+          toggleAnswers={this.toggleAnswers}
+          handleInput={this.handleInput}
+          postFeedback={postFeedback}
+          productName={productName}
+          canClick={this.canClick}
+          openIndex={openIndex}
+          togglePanel={this.togglePanel}
+          panelIndex={panelIndex}
+        />
+)}
         <>
           {questions.length > 4 && (
-            <span
-              className="UserInput"
-              name={name}
-              onClick={this.toggleQuestions}
-              role="button"
-              tabIndex={0}
-              onKeyPress={this.toggleQuestions}
-            >
-              {questionText}
-            </span>
-          )}
+          <span
+            className="UserInput"
+            name={name}
+            onClick={this.toggleQuestions}
+            role="button"
+            tabIndex={0}
+            onKeyPress={this.toggleQuestions}
+          >
+            {questionText}
+          </span>
+)}
           <span className="UserInput">
             <Modal
               handleInput={this.handleInput}
@@ -156,9 +167,8 @@ QAview.showDefault = {
   questionsView: false,
   answersView: false,
   modalView: false,
-  qIndex: 3,
-  aIndex: 1,
   openIndex: [0, 1, 2, 3],
+  panelIndex: [0, 1, 2, 3],
 }
 
 export default QAview;

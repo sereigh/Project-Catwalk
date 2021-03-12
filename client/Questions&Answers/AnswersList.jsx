@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAnswers, canClick, aIndex, answersView, q } = props
+  const { answers, toggleAnswers, canClick, answersView } = props
   const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
-
 
   // const length = answers.length;
   // const view = (answersView ? "showAll-answers" : "showDefault-answers")
@@ -66,8 +65,6 @@ Answerslist.propTypes = {
   answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
-  aIndex: PropTypes.number.isRequired,
-  q: PropTypes.number.isRequired,
 }
 
 export default Answerslist;

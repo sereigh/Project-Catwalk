@@ -498,6 +498,7 @@ li{
   max-height: 90vh;
   margin: auto;
   background-color: red;
+  overflow: hide;
 }
 .qa-no-show {
   display: none;
@@ -529,7 +530,8 @@ li{
   /* display: none; */
   background-color: pink;
   min-height: 10vh;
-  display: content-box;
+  /* display: content-box; */
+  display: contents;
   /* max-height: 30vh;
   width: 100%;
   margin: 2%; */
@@ -537,7 +539,7 @@ li{
 .qa-answer-card {
   background-color: yellow;
   min-height: 5vh;
-  display: content-box;
+  display: contents;
 }
 /* .view-question {
   margin: 2%;
