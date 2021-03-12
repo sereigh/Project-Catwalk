@@ -59,8 +59,8 @@ Answerslist.propTypes = {
   answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
-  clickedId: PropTypes.oneOfType([PropTypes.number]).isRequired,
-  qId: PropTypes.oneOfType(PropTypes.number, PropTypes.object).isRequired,
+  clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  qId: PropTypes.number.isRequired,
 }
 
 export default Answerslist;

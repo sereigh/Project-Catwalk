@@ -8,7 +8,6 @@ class QAview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // questionsView: false,
       answersView: false,
       idList: [],
       openIndex: [0, 1, 2, 3],

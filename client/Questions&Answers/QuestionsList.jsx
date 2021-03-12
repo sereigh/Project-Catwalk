@@ -74,11 +74,7 @@ QuestionsList.propTypes = {
   openIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   togglePanel: PropTypes.func.isRequired,
   panelIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  clickedId: PropTypes.oneOfType([PropTypes.number]).isRequired
+  clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
 }
-
-// QuestionsList.showDefault = {
-//   clickedId: null
-// }
 
 export default QuestionsList;
