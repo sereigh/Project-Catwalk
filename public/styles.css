@@ -683,14 +683,11 @@ grid-row: 2/3;
 .qa-search-bar {
   height: 40px;
   width: 118.5vh;
-  border-top: thick white;
-  border: solid medium lightgreen;
 }
 .qa-view {
   position: relative;
   grid-row: 3 / 4;
   grid-gap: 2px;
-  border-bottom: solid medium lightgreen;
 }
 .qa-no-show {
   display: none;
@@ -739,7 +736,6 @@ grid-row: 2/3;
 }
 .qa-answer-card {
   margin-bottom: 1%;
-
 }
 .qa-answers-list::-webkit-scrollbar { display: none; }
 .questionText {
