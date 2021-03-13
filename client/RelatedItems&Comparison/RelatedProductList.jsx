@@ -114,7 +114,7 @@ class RelatedProductList extends React.Component {
     const {selectProductInfo, selectAnotherProduct} = this.props;
     return (
       <div className="relatedProductList">
-        <img src='./img/left-arrow-button.png' alt="left-arrow" className="leftArrow" style={{visibility: leftArrowVisibility}} onClick={this.moveToPrevCard} />
+        <span className="leftArrow" tabIndex={0} role="button" style={{visibility: leftArrowVisibility}} onKeyPress={this.moveToPrevCard} onClick={this.moveToPrevCard}><img src='./img/left-arrow-button.png' alt="left-arrow" style={{width: '30px', height: '30px'}} /></span>
         <div className="carousel-container" ref={this.myRef}>
           <div className="carousel" style={{left: `${leftCordinate}px`, width: `${slideLength}px`}}>
             {relatedProductIds.map(productId => (
@@ -122,7 +122,7 @@ class RelatedProductList extends React.Component {
             ))}
           </div>
         </div>
-        <img src='./img/right-arrow-button.png' alt="right-arrow" className="rightArrow" style={{visibility: rightArrowVisibility}} onClick={this.moveToNextCard} />
+        <span className="rightArrow" tabIndex={0} role="button" style={{visibility: rightArrowVisibility}} onKeyPress={this.moveToNextCard} onClick={this.moveToNextCard}><img src='./img/right-arrow-button.png' alt="right-arrow" style={{width: '30px', height: '30px'}} /></span>
       </div>
     );
   }

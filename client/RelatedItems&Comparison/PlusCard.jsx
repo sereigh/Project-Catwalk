@@ -8,7 +8,7 @@ const PlusCard = ({selectProductId, addNewOutfit}) => {
   }
 
   return (
-    <div role="button" onClick={handleClick} className="productCard-container plusCard" >
+    <div className="productCard-container plusCard" role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>
       <div className="productCard">
         <img src="./img/add(2).png" alt="add" className="plusBtn" />
       </div>
