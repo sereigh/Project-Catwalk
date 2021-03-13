@@ -78,6 +78,7 @@ class QuestionsAndAnswers extends React.Component {
     const endPoint = findPath(type, id, option)
 
     axios.post(endPoint, input)
+    // remove when add question is troubleshot
           .then((response) => console.log(response))
           .then(() => this.getAllQuestions())
           .catch((err) => err)

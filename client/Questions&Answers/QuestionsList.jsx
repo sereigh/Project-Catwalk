@@ -7,7 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId } = props
+  const { questions, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId } = props
 
   return (
     <div className="qa-questions-list">
@@ -54,7 +54,6 @@ function QuestionsList(props) {
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
               length={questions[i].answers.length}
-              answersView={answersView}
               toggleAnswers={toggleAnswers}
               canClick={canClick}
               qId={question.question_id}
@@ -70,7 +69,6 @@ function QuestionsList(props) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,

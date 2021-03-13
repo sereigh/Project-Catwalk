@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAnswers, canClick, answersView, qId, clickedId } = props
-  const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
+  const { answers, toggleAnswers, canClick, qId, clickedId } = props
+  const buttonText = (answers.length > 2 ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
   return (
     <>
@@ -56,7 +56,6 @@ function Answerslist(props) {
 
 Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
   clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,

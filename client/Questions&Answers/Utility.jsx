@@ -4,25 +4,23 @@ const sortAnswers = (data) => Object.values(data).sort((a, b) => b.helpfulness -
 
 const filterQuestions = (list, query) => list.filter(question => question.question_body.toLowerCase().includes(query.toLowerCase()));
 
-const setValue = (currentValue, newValue) => newValue;
-// (ele, value) => (value) => ele;// = (value) => value
 const findPath = (type, id, option) => {
   let path;
   if (option === 'add') {
     if (type === 'answers') {
-      path = `/qa/questions/${id}/answers`;
+      path = `/qa/questions/${id}/answers`
     } else {
       path = `/qa/questions/${id}`
     }
   } else {
     if (option === 'report') {
-      path = `/qa/${type}/${id}/report`;
+      path = `/qa/${type}/${id}/report`
     } else {
       path = `/qa/${type}/${id}/helpful`
     }
-    return path;
+    return path
   }
-  return path;
+  return path
 }
 
 const dateFormat = {
@@ -35,4 +33,4 @@ const dateFormat = {
 const setDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
 
 export default sortQuestions;
-export { sortAnswers, filterQuestions, setValue, findPath, setDate };
+export { sortAnswers, filterQuestions, findPath, setDate };

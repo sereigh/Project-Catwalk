@@ -8,7 +8,6 @@ class QAview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      answersView: false,
       idList: [],
       openIndex: [0, 1, 2, 3],
       panelIndex: [0, 1, 2, 3],
@@ -78,7 +77,7 @@ class QAview extends React.Component {
 
   render() {
     const { questions, productName, productId, postFeedback } = this.props
-    const { answersView, openIndex, panelIndex, clickedId } = this.state
+    const { openIndex, panelIndex, clickedId } = this.state
     const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
     return (
@@ -86,8 +85,6 @@ class QAview extends React.Component {
         {questions && (
         <QuestionsList
           questions={questions}
-          // questionsView={questionsView}
-          answersView={answersView}
           toggleAnswers={this.toggleAnswers}
           handleInput={this.handleInput}
           postFeedback={postFeedback}
@@ -138,7 +135,6 @@ QAview.propTypes = {
 
 QAview.showDefault = {
   questionsView: false,
-  answersView: false,
   modalView: false,
   openIndex: [0, 1, 2, 3],
   panelIndex: [0, 1, 2, 3],
