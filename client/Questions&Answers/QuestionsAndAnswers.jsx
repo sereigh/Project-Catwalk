@@ -5,7 +5,7 @@ import axios from 'axios';
 import withClickTracker from '../SharedComponents/withClickTracker.jsx';
 
 import QAview from './QAview.jsx';
-import sortQuestions, {filterQuestions, findPath} from './Utility.jsx';
+import sortQuestions, {filterSearch, findPath} from './Utility.jsx';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class QuestionsAndAnswers extends React.Component {
 
     if (inputValue.length > 2) {
       this.setState({
-        filteredQuestions: filterQuestions(questions, e.target.value),
+        filteredQuestions: filterSearch(questions, e.target.value),
         filtered: true
       })
     } else {

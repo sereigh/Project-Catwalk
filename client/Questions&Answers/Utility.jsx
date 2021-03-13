@@ -1,8 +1,15 @@
-const sortQuestions = (response) => Object.values(response.data).sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+const sortQuestions = (response) => Object.values(response.data).sort((a, b) => b.question_helpfulness - a.question_helpfulness)
 
 const sortAnswers = (data) => Object.values(data).sort((a, b) => b.helpfulness - a.helpfulness);
 
-const filterQuestions = (list, query) => list.filter(question => question.question_body.toLowerCase().includes(query.toLowerCase()));
+const filterSearch = (list, query) => list.filter((question) => {
+    if (question.question_body.toLowerCase().includes(query.toLowerCase()) ||
+    Object.values(question.answers).some((answer) => answer.body.toLowerCase().includes(query.toLowerCase()))
+    ) {
+      return true
+    }
+    return false
+  })
 
 const findPath = (type, id, option) => {
   let path;
@@ -33,4 +40,4 @@ const dateFormat = {
 const setDate = (date) => new Date(date).toLocaleDateString('en-gb', dateFormat)
 
 export default sortQuestions;
-export { sortAnswers, filterQuestions, findPath, setDate };
+export { sortAnswers, filterSearch, findPath, setDate };
