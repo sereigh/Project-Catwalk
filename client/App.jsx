@@ -11,13 +11,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentSearch: 17762,
-      productId: 17069,
+      productId: 17763,
       productList: [
         {"id":17858,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null}
       ],
       // Product 17762 is buggy (uhttp://) & (duplicate feature: "Lifetime Guarantee")
       // Only products between 17067 and 17074 have multiple style images:
-      selectProductId: 17069,
+      selectProductId: 17763,
       selectProductInfo: {
         "id":17762,"campus":null,"name":null,"slogan":null,"description":null,"category":null,"default_price":null,"created_at":null,"updated_at":null,
         "features": [{"feature":null,"value": null},{"feature":null,"value": null}]

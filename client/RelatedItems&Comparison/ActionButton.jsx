@@ -18,8 +18,8 @@ const ActionButton = ({toggleModalWindow, isRelated, deleteOutfit, productId}) =
   }
 
   const selectButton = () => (
-    isRelated ? <img src={imgFilePath} className="actionBtn" alt="starBtn" onMouseEnter={toggleImageFile} onMouseLeave={toggleImageFile} onClick={toggleModalWindow} onKeyPress={()=>{}} /> :
-    <span className="actionBtn closeBtn" onClick={handleClick}>X</span>
+    isRelated ? <span role="button" tabIndex={0} onMouseEnter={toggleImageFile} onMouseLeave={toggleImageFile} onClick={toggleModalWindow} onKeyPress={toggleModalWindow}><img src={imgFilePath} className="actionBtn" alt="starBtn" /></span> :
+    <span className="actionBtn closeBtn" role="button" tabIndex={0} onClick={handleClick} onKeyPress={handleClick}>X</span>
   );
 
   return (

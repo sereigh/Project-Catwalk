@@ -8,6 +8,7 @@ import RelatedProductList from './RelatedProductList.jsx';
 import OutfitList from './OutfitList.jsx';
 
 const RelatedListContainer = ({selectProductInfo, selectProductId, selectAnotherProduct, addNewOutfit, deleteOutfit, userOutfits, handleClickTrack}) => (
+  /* eslint-disable-next-line jsx-a11y/no-static-element-interactions */
   <div className="related-product-list-container" onClick={handleClickTrack} onKeyPress={handleClickTrack}>
     <span className="list-title">RelatedProductList</span>
     <RelatedProductList selectProductInfo={selectProductInfo} selectProductId={selectProductId} selectAnotherProduct={selectAnotherProduct} />
