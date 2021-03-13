@@ -9,19 +9,25 @@ const StylePrice = (props) => {
   if (selectStyleOptions[selectStyleIndex].sale_price !== null) {
     priceReadout = (
       <div>
-        <span id="strikethroughOriginalPrice">
+        <span id="priceSale">
           $
-          {selectStyleOptions[selectStyleIndex].original_price}
+          {selectStyleOptions[selectStyleIndex].sale_price}
         </span>
-        $
-        {selectStyleOptions[selectStyleIndex].sale_price}
+        <span id="priceOriginal">
+          <strike>
+            $
+            {selectStyleOptions[selectStyleIndex].original_price}
+          </strike>
+        </span>
       </div>
     );
   } else {
     priceReadout = (
       <div>
-        $
-        {selectStyleOptions[selectStyleIndex].original_price}
+        <span id="priceOriginal">
+          $
+          {selectStyleOptions[selectStyleIndex].original_price}
+        </span>
       </div>
     );
   }

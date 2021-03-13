@@ -106,6 +106,7 @@ class ShowcaseImage extends React.Component {
           className="styleGalleryImage"
         >
           <img
+            id="mainImage"
             src={styleGallery.url}
             name={index}
             alt={styleGallery.url}
@@ -116,7 +117,14 @@ class ShowcaseImage extends React.Component {
     if ( galleryBrowsingIndex === 0 && galleryArray.length === 1 ) {
       return (
         <div className="showcaseGallery">
-          <ShowcaseThumbnails />
+          <ShowcaseThumbnails
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+            setSelectStyleIndex={this.setSelectStyleIndex}
+            galleryBrowsingIndex={galleryBrowsingIndex}
+            onClickLeft={this.onClickLeft}
+            onClickRight={this.onClickRight}
+          />
           {galleryArray[galleryBrowsingIndex]}
         </div>
       );
@@ -124,14 +132,22 @@ class ShowcaseImage extends React.Component {
     if ( galleryBrowsingIndex === 0 && galleryArray.length > 1 ) {
       return (
         <div className="showcaseGallery">
-          <ShowcaseThumbnails />
+          <ShowcaseThumbnails
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+            setSelectStyleIndex={this.setSelectStyleIndex}
+            galleryBrowsingIndex={galleryBrowsingIndex}
+            onClickLeft={this.onClickLeft}
+            onClickRight={this.onClickRight}
+          />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
             id="arrowRight"
             onClick={this.onClickRight}
           >
-            {"[  > ]"}
+            {/* {"[  > ]"} */}
+            <img src="./img/iconfinder_arrow-right.png" alt="iconArrowRight" id="iconArrowRight" />
           </button>
         </div>
       );
@@ -139,14 +155,22 @@ class ShowcaseImage extends React.Component {
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex === galleryArray.length ) {
       return (
         <div className="showcaseGallery">
-          <ShowcaseThumbnails />
+          <ShowcaseThumbnails
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+            setSelectStyleIndex={this.setSelectStyleIndex}
+            galleryBrowsingIndex={galleryBrowsingIndex}
+            onClickLeft={this.onClickLeft}
+            onClickRight={this.onClickRight}
+          />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
             id="arrowLeft"
             onClick={this.onClickLeft}
           >
-            {"[ <  ]"}
+            {/* {"[ <  ]"} */}
+            <img src="./img/iconfinder_arrow-left.png" alt="iconArrowLeft" id="iconArrowLeft" />
           </button>
         </div>
       );
@@ -154,21 +178,30 @@ class ShowcaseImage extends React.Component {
     if ( galleryBrowsingIndex !== 0 && galleryBrowsingIndex < galleryArray.length ) {
       return (
         <div className="showcaseGallery">
-          <ShowcaseThumbnails />
+          <ShowcaseThumbnails
+            selectStyleOptions={selectStyleOptions}
+            selectStyleIndex={selectStyleIndex}
+            setSelectStyleIndex={this.setSelectStyleIndex}
+            galleryBrowsingIndex={galleryBrowsingIndex}
+            onClickLeft={this.onClickLeft}
+            onClickRight={this.onClickRight}
+          />
           {galleryArray[galleryBrowsingIndex]}
           <button
             type="submit"
             id="arrowLeft"
             onClick={this.onClickLeft}
           >
-            {"[ <  ]"}
+            {/* {"[ <  ]"} */}
+            <img src="./img/iconfinder_arrow-left.png" alt="iconArrowLeft" id="iconArrowLeft" />
           </button>
           <button
             type="submit"
             id="arrowRight"
             onClick={this.onClickRight}
           >
-            {"[  > ]"}
+            {/* {"[  > ]"} */}
+            <img src="./img/iconfinder_arrow-right.png" alt="iconArrowRight" id="iconArrowRight" />
           </button>
         </div>
       );
