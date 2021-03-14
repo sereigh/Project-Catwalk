@@ -17,9 +17,7 @@ function Answerslist(props) {
         >
           <span className="answerText">
             <strong>A:  </strong>
-            {!query || !answer.body.includes(query) && answer.body}
-            {answer.body.includes(query) && (<SearchHighlight query={query} body={answer.body} />)}
-            {answer.body}
+            {query !== '' && answer.body.includes(query) ? (<SearchHighlight query={query} body={answer.body} />) : answer.body}
           </span>
           <span className="answersFeedback">
             <UserInfo

@@ -6,7 +6,7 @@ function SearchHighlight(props) {
 
   return (
     <span>
-      {body.substring(body.indexOf(query))}
+      {body.substring(0, body.indexOf(query))}
       {' '}
       <mark>{query}</mark>
       {' '}

@@ -25,9 +25,7 @@ function QuestionsList(props) {
             onKeyPress={() => togglePanel(i)}
           >
             <strong>Q:  </strong>
-            {!query || !question.question_body.includes(query) && question.question_body}
-            {question.question_body.includes(query) && (<SearchHighlight query={query} body={question.question_body} />)}
-
+            {query !== '' && question.question_body.includes(query) ? (<SearchHighlight query={query} body={question.question_body} />) : question.question_body}
           </div>
           <div className="questionFeedback">
             {`   Helpful? `}
