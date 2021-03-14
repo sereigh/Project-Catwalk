@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 
 function SearchHighlight(props) {
   const { query, body } = props
+  const Query = query.toLowerCase()
+  const Body = body.toLowerCase()
+  const marked = body.substring(Body.indexOf(Query), Body.indexOf(Query) + query.length)
 
   return (
     <span>
-      {body.substring(0, body.indexOf(query))}
+      {body.substring(0, Body.indexOf(Query))}
       {' '}
-      <mark>{query}</mark>
+      <mark>{marked}</mark>
       {' '}
-      {body.substring(body.indexOf(query) + query.length)}
+      {body.substring(Body.indexOf(Query) + query.length)}
     </span>
   )
 }
