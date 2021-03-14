@@ -127,6 +127,7 @@ class QuestionsAndAnswers extends React.Component {
             postInput={this.postInput}
             productName={productName}
             productId={productId}
+            query={inputValue}
           />
       ) : (
         <QAview
@@ -135,6 +136,7 @@ class QuestionsAndAnswers extends React.Component {
           postInput={this.postInput}
           productName={productName}
           productId={productId}
+          query=''
         />
 )}
       </div>

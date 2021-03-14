@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SearchHighlight from './SearchHighlight.jsx';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAnswers, canClick, qId, clickedId } = props
+  const { answers, toggleAnswers, canClick, qId, clickedId, query } = props
   const buttonText = (answers.length > 2 ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
   return (
@@ -16,6 +17,8 @@ function Answerslist(props) {
         >
           <span className="answerText">
             <strong>A:  </strong>
+            {!query || !answer.body.includes(query) && answer.body}
+            {answer.body.includes(query) && (<SearchHighlight query={query} body={answer.body} />)}
             {answer.body}
           </span>
           <span className="answersFeedback">
@@ -60,6 +63,7 @@ Answerslist.propTypes = {
   canClick: PropTypes.func.isRequired,
   clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   qId: PropTypes.number.isRequired,
+  query: PropTypes.string.isRequired,
 }
 
 export default Answerslist;

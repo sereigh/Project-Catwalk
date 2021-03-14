@@ -76,7 +76,7 @@ class QAview extends React.Component {
   }
 
   render() {
-    const { questions, productName, productId, postFeedback } = this.props
+    const { questions, productName, productId, postFeedback, query } = this.props
     const { openIndex, panelIndex, clickedId } = this.state
     const questionText = (openIndex.length < questions.length ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE QUESTIONS')
 
@@ -94,6 +94,7 @@ class QAview extends React.Component {
           togglePanel={this.togglePanel}
           panelIndex={panelIndex}
           clickedId={clickedId}
+          query={query}
         />
 )}
         <div className="q-navigation">
@@ -131,6 +132,7 @@ QAview.propTypes = {
   productName: PropTypes.string.isRequired,
   productId: PropTypes.number.isRequired,
   postFeedback: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 }
 
 QAview.showDefault = {

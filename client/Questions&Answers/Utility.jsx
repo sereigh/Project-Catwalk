@@ -11,26 +11,6 @@ const filterSearch = (list, query) => list.filter((question) => {
   return false
 })
 
-const highlight = (body, query) => body.replace(query, `<mark>${query}</mark>`)
-
-// const filterAnswers = (answers, query) => Object.values(answers).some((answer) => {
-//     if (answer.body.toLowerCase().includes(query.toLowerCase())) {
-//       answer.body = highlight(answer.body, query)
-//       return true
-//     }
-//     return false
-//   })
-
-// const filterSearch = (list, query) => list.filter((question) => {
-//     if (question.question_body.toLowerCase().includes(query.toLowerCase())) {
-//       question.question_body = highlight(question.question_body, query)
-//       if (filterAnswers(question.answers, query)) { return true }
-//       return true
-//     }
-//     if (filterAnswers(question.answers, query)) { return true }
-//     return false
-//   })
-
 const findPath = (type, id, option) => {
   let path;
   if (option === 'add') {
