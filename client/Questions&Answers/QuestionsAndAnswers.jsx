@@ -42,7 +42,7 @@ class QuestionsAndAnswers extends React.Component {
 
     if (inputValue.length > 2) {
       this.setState({
-        filteredQuestions: filterSearch(questions, e.target.value),
+        filteredQuestions: filterSearch(questions, (e.target.value)),
         filtered: true
       })
     } else {
