@@ -5,9 +5,10 @@ import Modal from './Modal.jsx';
 import TextLink from './UserFeedback.jsx';
 import AnswersList from './AnswersList.jsx';
 import { sortAnswers } from './Utility.jsx';
+import SearchHighlight from './SearchHighlight.jsx';
 
 function QuestionsList(props) {
-  const { questions, answersView, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId } = props
+  const { questions, toggleAnswers, handleInput, canClick, productName, openIndex, togglePanel, panelIndex, clickedId, query } = props
 
   return (
     <div className="qa-questions-list">
@@ -23,9 +24,8 @@ function QuestionsList(props) {
             tabIndex={0}
             onKeyPress={() => togglePanel(i)}
           >
-            {/* togglePanel(i) */}
             <strong>Q:  </strong>
-            {question.question_body}
+            {query !== '' && question.question_body.includes(query) ? (<SearchHighlight query={query} body={question.question_body} />) : question.question_body}
           </div>
           <div className="questionFeedback">
             {`   Helpful? `}
@@ -54,11 +54,11 @@ function QuestionsList(props) {
             <AnswersList
               answers={sortAnswers(questions[i].answers)}
               length={questions[i].answers.length}
-              answersView={answersView}
               toggleAnswers={toggleAnswers}
               canClick={canClick}
               qId={question.question_id}
               clickedId={clickedId}
+              query={query}
             />
 )}
           </span>
@@ -70,7 +70,6 @@ function QuestionsList(props) {
 
 QuestionsList.propTypes = {
   questions: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   handleInput: PropTypes.func.isRequired,
   productName: PropTypes.string.isRequired,
@@ -79,6 +78,7 @@ QuestionsList.propTypes = {
   togglePanel: PropTypes.func.isRequired,
   panelIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
+  query: PropTypes.string.isRequired,
 }
 
 export default QuestionsList;

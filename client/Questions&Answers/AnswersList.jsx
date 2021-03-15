@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SearchHighlight from './SearchHighlight.jsx';
 import TextLink, { UserInfo } from './UserFeedback.jsx';
 
 function Answerslist(props) {
-  const { answers, toggleAnswers, canClick, answersView, qId, clickedId } = props
-  const buttonText = (answersView ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
+  const { answers, toggleAnswers, canClick, qId, clickedId, query } = props
+  const buttonText = (answers.length > 2 ? 'COLLAPSE ANSWERS' : 'LOAD MORE ANSWERS')
 
   return (
     <>
@@ -16,7 +17,7 @@ function Answerslist(props) {
         >
           <span className="answerText">
             <strong>A:  </strong>
-            {answer.body}
+            {query !== '' && answer.body.includes(query) ? (<SearchHighlight query={query} body={answer.body} />) : answer.body}
           </span>
           <span className="answersFeedback">
             <UserInfo
@@ -56,11 +57,11 @@ function Answerslist(props) {
 
 Answerslist.propTypes = {
   answers: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
-  answersView: PropTypes.bool.isRequired,
   toggleAnswers: PropTypes.func.isRequired,
   canClick: PropTypes.func.isRequired,
   clickedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool, PropTypes.object, PropTypes.array]).isRequired,
   qId: PropTypes.number.isRequired,
+  query: PropTypes.string.isRequired,
 }
 
 export default Answerslist;

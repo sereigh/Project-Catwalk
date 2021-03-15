@@ -10,7 +10,7 @@ const options = ['Report', 'Yes']
       className="answersFeedback-right"
       name={option}
       onClick={(type, id, opt) => handler(type, id, opt)}
-      onKeyPress={() => handler()}
+      onKeyPress={(type, id, opt) => handler(type, id, opt)}
       role="button"
       tabIndex={0}
     >

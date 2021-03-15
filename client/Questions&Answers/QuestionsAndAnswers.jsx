@@ -5,7 +5,7 @@ import axios from 'axios';
 import withClickTracker from '../SharedComponents/withClickTracker.jsx';
 
 import QAview from './QAview.jsx';
-import sortQuestions, {filterQuestions, findPath} from './Utility.jsx';
+import sortQuestions, {filterSearch, findPath} from './Utility.jsx';
 
 class QuestionsAndAnswers extends React.Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class QuestionsAndAnswers extends React.Component {
 
     if (inputValue.length > 2) {
       this.setState({
-        filteredQuestions: filterQuestions(questions, e.target.value),
+        filteredQuestions: filterSearch(questions, (e.target.value)),
         filtered: true
       })
     } else {
@@ -78,6 +78,7 @@ class QuestionsAndAnswers extends React.Component {
     const endPoint = findPath(type, id, option)
 
     axios.post(endPoint, input)
+    // remove when add question is troubleshot
           .then((response) => console.log(response))
           .then(() => this.getAllQuestions())
           .catch((err) => err)
@@ -126,6 +127,7 @@ class QuestionsAndAnswers extends React.Component {
             postInput={this.postInput}
             productName={productName}
             productId={productId}
+            query={inputValue}
           />
       ) : (
         <QAview
@@ -134,6 +136,7 @@ class QuestionsAndAnswers extends React.Component {
           postInput={this.postInput}
           productName={productName}
           productId={productId}
+          query=''
         />
 )}
       </div>
