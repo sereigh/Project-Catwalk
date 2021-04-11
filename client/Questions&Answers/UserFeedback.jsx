@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { setDate } from './Utility.jsx';
+import { setDate } from "./Utility.jsx";
 
 function TextLink({ option, handler }) {
-const options = ['Report', 'Yes']
+  const options = ["Report", "Yes"];
   return (
     <span
       className="answersFeedback-right"
@@ -16,16 +16,14 @@ const options = ['Report', 'Yes']
     >
       <u>{options[option]}</u>
     </span>
-  )
+  );
 }
 
 const UserInfo = ({ name, date }) => (
-  <span
-    className="answersFeedback-left"
-  >
+  <span className="answersFeedback-left">
     {`by ${name} -  ${setDate(date)}  |  `}
   </span>
-)
+);
 
 // const ToolTip = () => (
 //   <div className="tooltip">
@@ -36,11 +34,11 @@ const UserInfo = ({ name, date }) => (
 TextLink.propTypes = {
   option: PropTypes.number.isRequired,
   handler: PropTypes.func.isRequired,
-}
+};
 UserInfo.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  }
+};
 
 export default TextLink;
 export { UserInfo };

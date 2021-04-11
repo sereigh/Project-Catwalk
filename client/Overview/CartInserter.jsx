@@ -1,7 +1,7 @@
 // [https://reactjs.org/docs/hooks-effect.html]
 // import React, { useState, useEffect } from 'react';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // import CartFormSize from './CartFormSize.jsx';
 // import CartFormQuantity from './CartFormQuantity.jsx';
@@ -37,10 +37,10 @@ class CartInserter extends React.Component {
   // handleSizeChange(event) {
   //   console.log('CartInserter_handleSizeChange eventtargetvalue:', event.target.value);
   //   console.log('CartInserter_handleSizeChange quantityArr.indexOf(event.target.value)', quantityArr.indexOf(event.target.value))
-      // this.setState({
-      //   skuCurrent: null,
-      //   cartQuantity: null
-      // })
+  // this.setState({
+  //   skuCurrent: null,
+  //   cartQuantity: null
+  // })
   // }
 
   // setCurrentSku() {
@@ -58,7 +58,7 @@ class CartInserter extends React.Component {
 
   render() {
     const { selectStyleOptions, selectStyleIndex } = this.props;
-    const { cartSizeValue, cartQuantityValue } = this.state
+    const { cartSizeValue, cartQuantityValue } = this.state;
     // let desiredTarget = 0;
     // console.log('CartInserter_render selectStyleOptions[selectStyleIndex].skus', selectStyleOptions[selectStyleIndex].skus);
     const skusAccessObject = selectStyleOptions[selectStyleIndex].skus;
@@ -81,7 +81,7 @@ class CartInserter extends React.Component {
     // console.log('CartInserter_render skusArray', skusArray);
     // console.log('CartInserter_render skusAccessObject # quantity', skusAccessObject[skusArray[0]].quantity);
     // console.log('CartInserter_render skusAccessObject # size', skusAccessObject[skusArray[0]].size);
-    const sizeArr = []
+    const sizeArr = [];
     const quantityArr = [];
     for (let i = 0; i < skusArray.length; i++) {
       sizeArr.push(skusAccessObject[skusArray[i]].size);
@@ -89,7 +89,11 @@ class CartInserter extends React.Component {
     }
     // console.log('CartInserter_render sizeArray', sizeArr);
     // console.log('CartInserter_render quantityArray', quantityArr);
-    const quantitySizes = sizeArr.map((size) => <option key={size} value={size}>{size}</option> );
+    const quantitySizes = sizeArr.map((size) => (
+      <option key={size} value={size}>
+        {size}
+      </option>
+    ));
     // const quantityFifteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
     // const quantityLimitFifteen = quantityFifteen.map((number) => <option key={number} value={number}>{number}</option> );
     // const quantityAvailable = []
@@ -104,7 +108,7 @@ class CartInserter extends React.Component {
     //   setCurrentSize("");
     // })
 
-    return(
+    return (
       <div className="cartCrates">
         <br />
         <div id="cartSelectorRow">
@@ -171,52 +175,57 @@ class CartInserter extends React.Component {
         </div>
       </div>
     );
-  //   // const { cartSku, cartSizeIndex, cartSize, cartQuantity } = this.state;
-  //   let buttonAddToCart = null;
-  //   // if ( cartSize !== '' && cartQuantity !== '' ) {
-  //   buttonAddToCart = (
-  //     <button
-  //       type="submit"
-  //       id="buttonAddToCart"
-  //       onClick={this.postToApiCart}
-  //     >
-  //       <span>ADD TO BAG</span>
-  //       <span id="buttonAddToCart+">+</span>
-  //     </button>
-  //   );
-  //   // }
-  //   return (
-  //     <div id="cartCrates">
-  //       {/* <CartFormSize /> */}
-  //       {/* <CartFormQuantity /> */}
-  //       <div className="cartAddToBag">
-  //         {buttonAddToCart}
-  //       </div>
-  //     </div>
-  //   );
+    //   // const { cartSku, cartSizeIndex, cartSize, cartQuantity } = this.state;
+    //   let buttonAddToCart = null;
+    //   // if ( cartSize !== '' && cartQuantity !== '' ) {
+    //   buttonAddToCart = (
+    //     <button
+    //       type="submit"
+    //       id="buttonAddToCart"
+    //       onClick={this.postToApiCart}
+    //     >
+    //       <span>ADD TO BAG</span>
+    //       <span id="buttonAddToCart+">+</span>
+    //     </button>
+    //   );
+    //   // }
+    //   return (
+    //     <div id="cartCrates">
+    //       {/* <CartFormSize /> */}
+    //       {/* <CartFormQuantity /> */}
+    //       <div className="cartAddToBag">
+    //         {buttonAddToCart}
+    //       </div>
+    //     </div>
+    //   );
   }
-
 }
 
 CartInserter.propTypes = {
-  selectStyleOptions: PropTypes.arrayOf(PropTypes.shape({
-    "style_id": PropTypes.number,
-    "name": PropTypes.string,
-    "original_price": PropTypes.string,
-    "sale_price": PropTypes.string,
-    "default?": PropTypes.bool,
-    "photos": PropTypes.arrayOf(PropTypes.shape({
-      "thumbnail_url": PropTypes.string,
-      "url": PropTypes.string
-    })),
-    "skus": PropTypes.objectOf(PropTypes.shape({
-      // "547962": PropTypes.objectOf(PropTypes.shape({
-      "quantity": PropTypes.number,
-      "size": PropTypes.string
-      // }))
-    }))
-  })).isRequired,
+  selectStyleOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      style_id: PropTypes.number,
+      name: PropTypes.string,
+      original_price: PropTypes.string,
+      sale_price: PropTypes.string,
+      "default?": PropTypes.bool,
+      photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          thumbnail_url: PropTypes.string,
+          url: PropTypes.string,
+        })
+      ),
+      skus: PropTypes.objectOf(
+        PropTypes.shape({
+          // "547962": PropTypes.objectOf(PropTypes.shape({
+          quantity: PropTypes.number,
+          size: PropTypes.string,
+          // }))
+        })
+      ),
+    })
+  ).isRequired,
   selectStyleIndex: PropTypes.number.isRequired,
-}
+};
 
 export default CartInserter;

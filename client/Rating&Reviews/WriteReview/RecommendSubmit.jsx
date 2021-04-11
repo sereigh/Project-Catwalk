@@ -1,25 +1,39 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const RecommendSubmit = ({handleRecommend, recommendError}) => (
+const RecommendSubmit = ({ handleRecommend, recommendError }) => (
   <span>
-    <span className={recommendError ? 'error' : null}>{'*Do you recommend this product? '}</span>
-    <span className='recommend-options'>
-      <label htmlFor='yes'>
+    <span className={recommendError ? "error" : null}>
+      {"*Do you recommend this product? "}
+    </span>
+    <span className="recommend-options">
+      <label htmlFor="yes">
         Yes
-        <input type='radio' id='yes' name='recommend' value='yes' onChange={handleRecommend} />
+        <input
+          type="radio"
+          id="yes"
+          name="recommend"
+          value="yes"
+          onChange={handleRecommend}
+        />
       </label>
-      <label htmlFor='no'>
+      <label htmlFor="no">
         No
-        <input type='radio' id='no' name='recommend' value='no' onChange={handleRecommend} />
+        <input
+          type="radio"
+          id="no"
+          name="recommend"
+          value="no"
+          onChange={handleRecommend}
+        />
       </label>
     </span>
   </span>
-)
+);
 
 RecommendSubmit.propTypes = {
   handleRecommend: PropTypes.func.isRequired,
-  recommendError: PropTypes.bool.isRequired
-}
+  recommendError: PropTypes.bool.isRequired,
+};
 
 export default RecommendSubmit;

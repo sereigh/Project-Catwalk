@@ -1,23 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Photo from './Photo.jsx';
+import Photo from "./Photo.jsx";
 
-const PhotoList = ({photos}) => (
+const PhotoList = ({ photos }) => (
   <div>
-    {photos.map(photo => <Photo key={photo.id} photo={photo} uploaded={false} />)}
+    {photos.map((photo) => (
+      <Photo key={photo.id} photo={photo} uploaded={false} />
+    ))}
   </div>
-)
+);
 
 PhotoList.propTypes = {
-  photos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    url: PropTypes.string
-  }))
-}
+  photos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      url: PropTypes.string,
+    })
+  ),
+};
 
 PhotoList.defaultProps = {
-  photos: []
-}
+  photos: [],
+};
 
 export default PhotoList;

@@ -3,35 +3,31 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    jest: true
+    jest: true,
   },
   extends: [
-    'airbnb',
-    'plugin:jsx-a11y/recommended',
-    'plugin:react/recommended',
-    '@webpack-contrib/eslint-config-webpack'
+    "airbnb",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "@webpack-contrib/eslint-config-webpack",
   ],
   settings: {
-    ignore: 'node_modules',
-    root: true
+    ignore: "node_modules",
+    root: true,
   },
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
   },
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 6,
   },
-  plugins: [
-    'react',
-    'jsx-a11y',
-    'import'
-  ],
+  plugins: ["react", "jsx-a11y", "import"],
   rules: {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     "no-console": "off",
     "class-methods-use-this": "off",
   },

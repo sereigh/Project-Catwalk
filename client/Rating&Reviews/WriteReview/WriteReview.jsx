@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import React from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-import RatingSubmit from './RatingSubmit.jsx';
-import RecommendSubmit from './RecommendSubmit.jsx';
-import CharacteristicsSubmit from './CharacteristicsSubmit.jsx';
-import SummarySubmit from './SummarySubmit.jsx';
-import BodySubmit from './BodySubmit.jsx';
-import PhotoPreviews from './PhotoPreviews.jsx';
-import PhotoSubmit from './PhotoSubmit.jsx';
-import NicknameSubmit from './NicknameSubmit.jsx';
-import EmailSubmit from './EmailSubmit.jsx';
+import RatingSubmit from "./RatingSubmit.jsx";
+import RecommendSubmit from "./RecommendSubmit.jsx";
+import CharacteristicsSubmit from "./CharacteristicsSubmit.jsx";
+import SummarySubmit from "./SummarySubmit.jsx";
+import BodySubmit from "./BodySubmit.jsx";
+import PhotoPreviews from "./PhotoPreviews.jsx";
+import PhotoSubmit from "./PhotoSubmit.jsx";
+import NicknameSubmit from "./NicknameSubmit.jsx";
+import EmailSubmit from "./EmailSubmit.jsx";
 
 const defaultState = {
   overallRating: 0,
@@ -21,11 +21,11 @@ const defaultState = {
   quality: null,
   length: null,
   fit: null,
-  summary: '',
-  body: '',
+  summary: "",
+  body: "",
   photos: [],
-  nickname: '',
-  email: '',
+  nickname: "",
+  email: "",
   ratingError: false,
   recommendError: false,
   characteristicsError: false,
@@ -34,13 +34,16 @@ const defaultState = {
   nicknameError: false,
   emailError: false,
   errors: false,
-  submitting: false
-}
+  submitting: false,
+};
 
 class WriteReview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign(defaultState, {showModal: false, submitted: false});
+    this.state = Object.assign(defaultState, {
+      showModal: false,
+      submitted: false,
+    });
 
     this.handleModal = this.handleModal.bind(this);
     this.handleRate = this.handleRate.bind(this);
@@ -57,88 +60,90 @@ class WriteReview extends React.Component {
   }
 
   handleModal() {
-    const {showModal} = this.state;
+    const { showModal } = this.state;
 
     if (!showModal) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'scroll';
+      document.body.style.overflow = "scroll";
     }
 
-    this.setState(Object.assign(defaultState, {showModal: !showModal, submitted: false}));
+    this.setState(
+      Object.assign(defaultState, { showModal: !showModal, submitted: false })
+    );
   }
 
   handleRate(rating) {
     this.setState({
-      overallRating: rating
-    })
+      overallRating: rating,
+    });
   }
 
   handleRecommend(event) {
     this.setState({
-      recommend: event.target.value
-    })
+      recommend: event.target.value,
+    });
   }
 
   handleCharacteristicRate(event, characteristic) {
     const rating = parseInt(event.target.value, 10);
 
-    if (characteristic === 'Size') {
+    if (characteristic === "Size") {
       this.setState({
-        size: rating
+        size: rating,
       });
-    } else if (characteristic === 'Width') {
+    } else if (characteristic === "Width") {
       this.setState({
-        width: rating
+        width: rating,
       });
-    } else if (characteristic === 'Comfort') {
+    } else if (characteristic === "Comfort") {
       this.setState({
-        comfort: rating
+        comfort: rating,
       });
-    } else if (characteristic === 'Quality') {
+    } else if (characteristic === "Quality") {
       this.setState({
-        quality: rating
+        quality: rating,
       });
-    } else if (characteristic === 'Length') {
+    } else if (characteristic === "Length") {
       this.setState({
-        length: rating
+        length: rating,
       });
-    } else if (characteristic === 'Fit') {
+    } else if (characteristic === "Fit") {
       this.setState({
-        fit: rating
+        fit: rating,
       });
     }
   }
 
   handleSummaryChange(event) {
     this.setState({
-      summary: event.target.value
+      summary: event.target.value,
     });
   }
 
   handleBodyChange(event) {
     this.setState({
-      body: event.target.value
+      body: event.target.value,
     });
   }
 
   handlePhotoChange(event) {
-    const {photos} = this.state;
+    const { photos } = this.state;
     const newPhotos = photos.concat(Array.from(event.target.files));
 
     this.setState({
-      photos: newPhotos
-    })
+      photos: newPhotos,
+    });
   }
 
   handleRemove(id) {
-    const {photos} = this.state;
+    const { photos } = this.state;
 
     for (let i = 0; i < photos.length; i++) {
       if (i === id) {
         photos.splice(i, 1);
         this.setState({
-          photos
+          photos,
         });
         break;
       }
@@ -147,58 +152,80 @@ class WriteReview extends React.Component {
 
   handleNicknameChange(event) {
     this.setState({
-      nickname: event.target.value
+      nickname: event.target.value,
     });
   }
 
   handleEmailChange(event) {
     this.setState({
-      email: event.target.value
+      email: event.target.value,
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const {productId, characteristics} = this.props;
-    const {overallRating, recommend, size, width, comfort, quality, length, fit, summary, body, photos, nickname, email} = this.state;
+    const { productId, characteristics } = this.props;
+    const {
+      overallRating,
+      recommend,
+      size,
+      width,
+      comfort,
+      quality,
+      length,
+      fit,
+      summary,
+      body,
+      photos,
+      nickname,
+      email,
+    } = this.state;
     const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
     const characteristicNames = Object.keys(characteristics);
 
     let errors = false;
     this.setState({
-      errors: false
+      errors: false,
     });
 
     for (let i = 0; i < characteristicNames.length; i++) {
-      if ((characteristicNames[i] === 'Size' && !size)
-        || (characteristicNames[i] === 'Width' && !width)
-        || (characteristicNames[i] === 'Comfort' && !comfort)
-        || (characteristicNames[i] === 'Quality' && !quality)
-        || (characteristicNames[i] === 'Length' && !length)
-        || (characteristicNames[i] === 'Fit' && !fit)) {
-          errors = true;
-          this.setState({
-            characteristicsError: true,
-            errors: true
-          });
+      if (
+        (characteristicNames[i] === "Size" && !size) ||
+        (characteristicNames[i] === "Width" && !width) ||
+        (characteristicNames[i] === "Comfort" && !comfort) ||
+        (characteristicNames[i] === "Quality" && !quality) ||
+        (characteristicNames[i] === "Length" && !length) ||
+        (characteristicNames[i] === "Fit" && !fit)
+      ) {
+        errors = true;
+        this.setState({
+          characteristicsError: true,
+          errors: true,
+        });
       }
     }
 
     if (!errors) {
       this.setState({
-        characteristicsError: false
+        characteristicsError: false,
       });
     }
 
-    if (overallRating !== 1 && overallRating !== 2 && overallRating !== 3 && overallRating !== 4 && overallRating !== 5) {
+    if (
+      overallRating !== 1 &&
+      overallRating !== 2 &&
+      overallRating !== 3 &&
+      overallRating !== 4 &&
+      overallRating !== 5
+    ) {
       errors = true;
       this.setState({
         ratingError: true,
-        errors: true
+        errors: true,
       });
     } else {
       this.setState({
-        ratingError: false
+        ratingError: false,
       });
     }
 
@@ -206,7 +233,7 @@ class WriteReview extends React.Component {
       errors = true;
       this.setState({
         recommendError: true,
-        errors: true
+        errors: true,
       });
     } else {
       this.setState({
@@ -218,7 +245,7 @@ class WriteReview extends React.Component {
       errors = true;
       this.setState({
         bodyError: true,
-        errors: true
+        errors: true,
       });
     } else {
       this.setState({
@@ -230,7 +257,7 @@ class WriteReview extends React.Component {
       errors = true;
       this.setState({
         nicknameError: true,
-        errors: true
+        errors: true,
       });
     } else {
       this.setState({
@@ -242,7 +269,7 @@ class WriteReview extends React.Component {
       errors = true;
       this.setState({
         emailError: true,
-        errors: true
+        errors: true,
       });
     } else {
       this.setState({
@@ -256,18 +283,25 @@ class WriteReview extends React.Component {
       for (const prop in characteristics) {
         if ({}.hasOwnProperty.call(characteristics, prop)) {
           characteristicsInfo[characteristics[prop].id] =
-            prop === 'Size' ? size :
-            prop === 'Width' ? width :
-            prop === 'Comfort' ? comfort :
-            prop === 'Quality' ? quality :
-            prop === 'Length' ? length :
-            prop === 'Fit' ? fit : 0
+            prop === "Size"
+              ? size
+              : prop === "Width"
+              ? width
+              : prop === "Comfort"
+              ? comfort
+              : prop === "Quality"
+              ? quality
+              : prop === "Length"
+              ? length
+              : prop === "Fit"
+              ? fit
+              : 0;
         }
       }
 
       const urls = [];
       this.setState({
-        submitting: true
+        submitting: true,
       });
 
       const submission = {
@@ -275,36 +309,37 @@ class WriteReview extends React.Component {
         rating: overallRating,
         summary,
         body,
-        recommend: recommend === 'yes',
+        recommend: recommend === "yes",
         name: nickname,
         email,
         photos: urls,
-        characteristics: characteristicsInfo
-      }
+        characteristics: characteristicsInfo,
+      };
 
       if (photos.length === 0) {
         this.submitReview(event, submission);
       } else {
-        photos.forEach(photo => {
+        photos.forEach((photo) => {
           const reader = new FileReader();
-          reader.onload = readEvent => {
-            axios.post('/upload/photo', [readEvent.target.result])
-              .then(url => {
+          reader.onload = (readEvent) => {
+            axios
+              .post("/upload/photo", [readEvent.target.result])
+              .then((url) => {
                 urls.push(url.data);
                 if (urls.length === photos.length) {
                   submission.photos = urls;
                   this.submitReview(event, submission);
                 }
               })
-              .catch(error => {
+              .catch((error) => {
                 console.log(error);
                 this.setState({
                   photoError: true,
                   errors: true,
-                  submitting: false
-                })
-              })
-          }
+                  submitting: false,
+                });
+              });
+          };
           reader.readAsDataURL(photo);
         });
       }
@@ -312,93 +347,162 @@ class WriteReview extends React.Component {
   }
 
   submitReview(event, submission) {
-    const {handleSort, selected} = this.props;
+    const { handleSort, selected } = this.props;
 
     axios
-      .post('/reviews', submission)
-      .then(results => {
+      .post("/reviews", submission)
+      .then((results) => {
         event.target.reset();
-        this.setState(Object.assign(defaultState, {submitted: true}));
+        this.setState(Object.assign(defaultState, { submitted: true }));
         handleSort(selected);
-        console.log(results)
+        console.log(results);
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error));
   }
 
   render() {
-    const {characteristics, productName} = this.props;
-    const {showModal, overallRating, photos, body, size, width, comfort, quality, length, fit, ratingError, recommendError, characteristicsError, bodyError, photoError, nicknameError, emailError, errors, submitting, submitted} = this.state;
+    const { characteristics, productName } = this.props;
+    const {
+      showModal,
+      overallRating,
+      photos,
+      body,
+      size,
+      width,
+      comfort,
+      quality,
+      length,
+      fit,
+      ratingError,
+      recommendError,
+      characteristicsError,
+      bodyError,
+      photoError,
+      nicknameError,
+      emailError,
+      errors,
+      submitting,
+      submitted,
+    } = this.state;
 
-    const charactersLeftMessage = 50 - body.length > 0 ?
-      `Minimum required characters left: ${50 - body.length}` : 'Minimum reached';
+    const charactersLeftMessage =
+      50 - body.length > 0
+        ? `Minimum required characters left: ${50 - body.length}`
+        : "Minimum reached";
 
     return (
       <>
-        <button type='button' onClick={this.handleModal}>ADD A REVIEW +</button>
-        {
-          showModal && (
-            <>
-              <form className='review-modal submit-form' onSubmit={this.handleSubmit}>
-                <span
-                  role='button'
-                  tabIndex={0}
-                  className='review-close-modal'
-                  onClick={this.handleModal}
-                  onKeyPress={this.handleModal}
-                >
-                  x
-                </span>
-                <h1>Write Your Review</h1>
-                <h3>{`About the ${productName}`}</h3>
-                <h4 className={errors ? 'error-message' : 'no-error-message'}>You must enter the following:</h4>
-                <div className='submission-components'>
-                  <div className='left'>
-                    <RatingSubmit handleRate={this.handleRate} overallRating={overallRating} ratingError={ratingError} />
-                    <br />
-                    <br />
-                    <RecommendSubmit handleRecommend={this.handleRecommend} recommendError={recommendError} />
-                    <br />
-                    <br />
-                    <CharacteristicsSubmit characteristics={Object.keys(characteristics)} values={{size, width, comfort, quality, length, fit}} handleCharacteristicRate={this.handleCharacteristicRate} characteristicsError={characteristicsError} />
-                  </div>
-                  <div className='right'>
-                    <SummarySubmit handleSummaryChange={this.handleSummaryChange} />
-                    <br />
-                    <br />
-                    <BodySubmit handleBodyChange={this.handleBodyChange} charactersLeftMessage={charactersLeftMessage} bodyError={bodyError} />
-                    <br />
-                    <br />
-                    <PhotoPreviews photos={photos.map(photo => URL.createObjectURL(photo))} handleRemove={this.handleRemove} />
-                    <br />
-                    <br />
-                    <PhotoSubmit handlePhotoChange={this.handlePhotoChange} numPhotos={photos.length} photoError={photoError} />
-                    <br />
-                    <br />
-                    <div className='final-submission-details'>
-                      <div className='user-details'>
-                        <NicknameSubmit handleNicknameChange={this.handleNicknameChange} nicknameError={nicknameError} />
-                        <EmailSubmit handleEmailChange={this.handleEmailChange} emailError={emailError} />
-                      </div>
-                      <div className='submit-details'>
-                        <button type='submit' className='submit-review'>Submit</button>
-                        <h4 className={submitting || submitted ? 'success-message' : 'no-success-message'}>{submitted ? 'Success!' : 'Submitting...'}</h4>
-                      </div>
+        <button type="button" onClick={this.handleModal}>
+          ADD A REVIEW +
+        </button>
+        {showModal && (
+          <>
+            <form
+              className="review-modal submit-form"
+              onSubmit={this.handleSubmit}
+            >
+              <span
+                role="button"
+                tabIndex={0}
+                className="review-close-modal"
+                onClick={this.handleModal}
+                onKeyPress={this.handleModal}
+              >
+                x
+              </span>
+              <h1>Write Your Review</h1>
+              <h3>{`About the ${productName}`}</h3>
+              <h4 className={errors ? "error-message" : "no-error-message"}>
+                You must enter the following:
+              </h4>
+              <div className="submission-components">
+                <div className="left">
+                  <RatingSubmit
+                    handleRate={this.handleRate}
+                    overallRating={overallRating}
+                    ratingError={ratingError}
+                  />
+                  <br />
+                  <br />
+                  <RecommendSubmit
+                    handleRecommend={this.handleRecommend}
+                    recommendError={recommendError}
+                  />
+                  <br />
+                  <br />
+                  <CharacteristicsSubmit
+                    characteristics={Object.keys(characteristics)}
+                    values={{ size, width, comfort, quality, length, fit }}
+                    handleCharacteristicRate={this.handleCharacteristicRate}
+                    characteristicsError={characteristicsError}
+                  />
+                </div>
+                <div className="right">
+                  <SummarySubmit
+                    handleSummaryChange={this.handleSummaryChange}
+                  />
+                  <br />
+                  <br />
+                  <BodySubmit
+                    handleBodyChange={this.handleBodyChange}
+                    charactersLeftMessage={charactersLeftMessage}
+                    bodyError={bodyError}
+                  />
+                  <br />
+                  <br />
+                  <PhotoPreviews
+                    photos={photos.map((photo) => URL.createObjectURL(photo))}
+                    handleRemove={this.handleRemove}
+                  />
+                  <br />
+                  <br />
+                  <PhotoSubmit
+                    handlePhotoChange={this.handlePhotoChange}
+                    numPhotos={photos.length}
+                    photoError={photoError}
+                  />
+                  <br />
+                  <br />
+                  <div className="final-submission-details">
+                    <div className="user-details">
+                      <NicknameSubmit
+                        handleNicknameChange={this.handleNicknameChange}
+                        nicknameError={nicknameError}
+                      />
+                      <EmailSubmit
+                        handleEmailChange={this.handleEmailChange}
+                        emailError={emailError}
+                      />
+                    </div>
+                    <div className="submit-details">
+                      <button type="submit" className="submit-review">
+                        Submit
+                      </button>
+                      <h4
+                        className={
+                          submitting || submitted
+                            ? "success-message"
+                            : "no-success-message"
+                        }
+                      >
+                        {submitted ? "Success!" : "Submitting..."}
+                      </h4>
                     </div>
                   </div>
                 </div>
-              </form>
-              <div
-                role='button'
-                tabIndex={0}
-                className='overlay'
-                onClick={this.handleModal}
-                onKeyPress={this.handleModal}
-              />
-            </>
-          )
-        }
+              </div>
+            </form>
+            <div
+              role="button"
+              tabIndex={0}
+              className="overlay"
+              onClick={this.handleModal}
+              onKeyPress={this.handleModal}
+            />
+          </>
+        )}
       </>
-    )
+    );
   }
 }
 
@@ -408,35 +512,35 @@ WriteReview.propTypes = {
   characteristics: PropTypes.shape({
     Comfort: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
     Fit: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
     Length: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
     Quality: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
     Size: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
     Width: PropTypes.shape({
       id: PropTypes.number,
-      value: PropTypes.string
+      value: PropTypes.string,
     }),
   }),
   handleSort: PropTypes.func.isRequired,
-  selected: PropTypes.string.isRequired
-}
+  selected: PropTypes.string.isRequired,
+};
 
 WriteReview.defaultProps = {
-  characteristics: {}
-}
+  characteristics: {},
+};
 
 export default WriteReview;

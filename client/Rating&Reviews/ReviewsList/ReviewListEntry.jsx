@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import React from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-import Stars from '../../SharedComponents/Stars.jsx';
+import Stars from "../../SharedComponents/Stars.jsx";
 
-import NameAndDate from './NameAndDate.jsx';
-import Summary from './Summary.jsx';
-import Body from './Body.jsx';
-import PhotoList from './PhotoList.jsx';
-import Recommend from './Recommend.jsx';
-import Response from './Response.jsx';
+import NameAndDate from "./NameAndDate.jsx";
+import Summary from "./Summary.jsx";
+import Body from "./Body.jsx";
+import PhotoList from "./PhotoList.jsx";
+import Recommend from "./Recommend.jsx";
+import Response from "./Response.jsx";
 
 class ReviewListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       vote: null,
-      reported: false
+      reported: false,
     };
 
     this.handleVote = this.handleVote.bind(this);
@@ -25,20 +25,20 @@ class ReviewListEntry extends React.Component {
 
   handleVote(vote, id) {
     if (!localStorage.getItem(`hasVoted${id}`)) {
-      if (vote === 'yes') {
+      if (vote === "yes") {
         axios
           .put(`/reviews/${id}/helpful`)
           .then(() => {
-            localStorage.setItem(`hasVoted${id}`, 'yes');
+            localStorage.setItem(`hasVoted${id}`, "yes");
             this.setState({
-              vote: 'yes'
-            })
+              vote: "yes",
+            });
           })
-          .catch(error => console.log(error))
-      } else if (vote === 'no') {
-        localStorage.setItem(`hasVoted${id}`, 'no');
+          .catch((error) => console.log(error));
+      } else if (vote === "no") {
+        localStorage.setItem(`hasVoted${id}`, "no");
         this.setState({
-          vote: 'no'
+          vote: "no",
         });
       }
     }
@@ -51,21 +51,26 @@ class ReviewListEntry extends React.Component {
         .then(() => {
           localStorage.setItem(`hasReported${id}`, true);
           this.setState({
-            reported: true
-          })
+            reported: true,
+          });
         })
-        .catch(error => console.log(error))
+        .catch((error) => console.log(error));
     }
   }
 
   render() {
-    const {review, searchTerm} = this.props;
-    const {vote, reported} = this.state;
+    const { review, searchTerm } = this.props;
+    const { vote, reported } = this.state;
 
     return (
-      <div className='review'>
+      <div className="review">
         <Stars rating={review.rating} />
-        <NameAndDate verified={!!review.reviewer_email} name={review.reviewer_name} date={review.date} searchTerm={searchTerm} />
+        <NameAndDate
+          verified={!!review.reviewer_email}
+          name={review.reviewer_name}
+          date={review.date}
+          searchTerm={searchTerm}
+        />
         <br />
         <br />
         <Summary summary={review.summary} searchTerm={searchTerm} />
@@ -74,42 +79,56 @@ class ReviewListEntry extends React.Component {
         <br />
         <Recommend recommend={review.recommend} />
         <Response response={review.response} />
-        <span className='review-voting'>
+        <span className="review-voting">
           Helpful?
           <span
-            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'yes' ? 'yes' : 'yes-vote'}
-            onClick={() => this.handleVote('yes', review.review_id)}
-            onKeyPress={() => this.handleVote('yes', review.review_id)}
-            role='button'
+            className={
+              localStorage.getItem(`hasVoted${review.review_id}`) === "yes"
+                ? "yes"
+                : "yes-vote"
+            }
+            onClick={() => this.handleVote("yes", review.review_id)}
+            onKeyPress={() => this.handleVote("yes", review.review_id)}
+            role="button"
             tabIndex={0}
           >
-            {vote === 'yes' ? ` Yes (${review.helpfulness + 1})` : ` Yes (${review.helpfulness})`}
+            {vote === "yes"
+              ? ` Yes (${review.helpfulness + 1})`
+              : ` Yes (${review.helpfulness})`}
           </span>
           <span> | </span>
           <span
-            className={localStorage.getItem(`hasVoted${review.review_id}`) === 'no' ? 'no' : 'no-vote'}
-            onClick={() => this.handleVote('no', review.review_id)}
-            onKeyPress={() => this.handleVote('no', review.review_id)}
-            role='button'
+            className={
+              localStorage.getItem(`hasVoted${review.review_id}`) === "no"
+                ? "no"
+                : "no-vote"
+            }
+            onClick={() => this.handleVote("no", review.review_id)}
+            onKeyPress={() => this.handleVote("no", review.review_id)}
+            role="button"
             tabIndex={0}
           >
             No
           </span>
           <span> | </span>
           <span
-            className={localStorage.getItem(`hasReported${review.review_id}`) ? 'reported' : 'reported-vote'}
+            className={
+              localStorage.getItem(`hasReported${review.review_id}`)
+                ? "reported"
+                : "reported-vote"
+            }
             onClick={() => this.handleReport(review.review_id)}
             onKeyPress={() => this.handleReport(review.review_id)}
-            role='button'
+            role="button"
             tabIndex={0}
           >
-            {reported ? 'Reported' : 'Report'}
+            {reported ? "Reported" : "Report"}
           </span>
         </span>
         <br />
         <br />
       </div>
-    )
+    );
   }
 }
 
@@ -125,12 +144,14 @@ ReviewListEntry.propTypes = {
     reviewer_name: PropTypes.string,
     reviewer_email: PropTypes.string,
     helpfulness: PropTypes.number,
-    photos: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      url: PropTypes.string
-    }))
+    photos: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        url: PropTypes.string,
+      })
+    ),
   }).isRequired,
-  searchTerm: PropTypes.string.isRequired
-}
+  searchTerm: PropTypes.string.isRequired,
+};
 
 export default ReviewListEntry;

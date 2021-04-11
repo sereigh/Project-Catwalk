@@ -1,18 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import CharacteristicRate from './CharacteristicRate.jsx';
+import CharacteristicRate from "./CharacteristicRate.jsx";
 
-const CharacteristicsSubmit = ({characteristics, values, handleCharacteristicRate, characteristicsError}) => (
+const CharacteristicsSubmit = ({
+  characteristics,
+  values,
+  handleCharacteristicRate,
+  characteristicsError,
+}) => (
   <>
-    <div className={characteristicsError ? 'error' : null}>
-      {'*Characteristics: '}
+    <div className={characteristicsError ? "error" : null}>
+      {"*Characteristics: "}
     </div>
-    {characteristics.map(characteristic => (
-      <CharacteristicRate key={characteristic} characteristic={characteristic} value={values[characteristic.toLowerCase()]} handleCharacteristicRate={handleCharacteristicRate} />
+    {characteristics.map((characteristic) => (
+      <CharacteristicRate
+        key={characteristic}
+        characteristic={characteristic}
+        value={values[characteristic.toLowerCase()]}
+        handleCharacteristicRate={handleCharacteristicRate}
+      />
     ))}
   </>
-)
+);
 
 CharacteristicsSubmit.propTypes = {
   characteristics: PropTypes.arrayOf(PropTypes.string),
@@ -24,13 +34,13 @@ CharacteristicsSubmit.propTypes = {
     comfort: PropTypes.number,
     quality: PropTypes.number,
     length: PropTypes.number,
-    fit: PropTypes.number
-  })
-}
+    fit: PropTypes.number,
+  }),
+};
 
 CharacteristicsSubmit.defaultProps = {
   characteristics: [],
-  values: {}
-}
+  values: {},
+};
 
 export default CharacteristicsSubmit;
