@@ -4,7 +4,7 @@ An e-commerce API, Redesigned and modernized to increase sales.
 
 ### Table of Contents
 
-1. [Tech Stack](#TechStack)
+1. [Tech-Stack](#Tech-Stack)
 2. [Development](#Development)
 3. [Requirements](#Requirements)
 4. [Installation](#Installation)
@@ -12,10 +12,10 @@ An e-commerce API, Redesigned and modernized to increase sales.
 6. [Preview](#Preview)
 7. [Screenshots](#Screenshots)
 8. [Testing](#Testing)
-9. [Team Members](#TeamMembers)
+9. [Authors](#Authors)
 10. [License](#License)
 
-## Tech Stack
+## Tech-Stack
 
 * CSS
 * Jest
