@@ -1,60 +1,53 @@
 # Project-Catwalk
 
->An e-commerce API, redesigned and modernized to increase traffic and sales.
+> An e-commerce API, redesigned and modernized to increase traffic and sales.
 
 #### Table of Contents
 
-* [Project-Catwalk](#Project-Catwalk)
-     * [Technologies](#Technologies)
-     * [Development](#Development)
-     * [Installation](#Installation)
-     * [Operation](#Operation)
-     * [Preview](#Preview)
-          * [Screenshots](#Screenshots)
-     * [Testing](#Testing)
-     * [Team Members](#Team_Members)
-     * [License](#License)
+- [Project-Catwalk](#Project-Catwalk)
+  - [Technologies](#Technologies)
+  - [Development](#Development)
+  - [Installation](#Installation)
+  - [Operation](#Operation)
+  - [Preview](#Preview)
+    - [Screenshots](#Screenshots)
+  - [Testing](#Testing)
+  - [Team Members](#Team_Members)
+  - [License](#License)
 
 ### Technologies
 
-|    Stack   | Dependencies | Dev Dependencies |
-|------------|--------------|------------------|
-|    CSS     |    Axios     |       Jest       |
-|    HTML    |   ReactJS    |     axe-core     |
-|   ReactJS  |  ExpressJS   |   webpack/babel  |
-| JavaScript |  Cloudinary  |  eslint -airbnb  |
-
+| Stack      | Dependencies | Dev Dependencies |
+| ---------- | ------------ | ---------------- |
+| CSS        | Axios        | Jest             |
+| HTML       | ReactJS      | axe-core         |
+| ReactJS    | ExpressJS    | webpack/babel    |
+| JavaScript | Cloudinary   | eslint -airbnb   |
 
 ### Development
 
 > My role in the remote team that developed Project-Catwalk was re-designing and implementing the client-facing features of the Questions & Answers Service.
 >
-There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these data points in an accordion style UI to reduce scrolling and support user control.
+> There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these data points in an accordion style UI to reduce scrolling and support user control.
 
- The panel functionality is controlled with a queue-like function I implemented with ___JavaScript___, and supported by pure ___CSS___ properties and ternary operators that switch element classnames to show or hide information based on user interaction.
+The panel functionality is controlled with a queue-like function I implemented with **_JavaScript_**, and supported by pure **_CSS_** properties and ternary operators that switch element classnames to show or hide information based on user interaction.
 
->Check out [Operation](#Operation) for an overview of the services' functionality or the [Preview](#Preview) below for a demonstration of all Q & A features.
+> Check out [Operation](#Operation) for an overview of the services' functionality or the [Preview](#Preview) below for a demonstration of all Q & A features.
 
 ### Installation
 
 1. Clone repository.
 2. From within the root directory:
 
-``
-npm install
-``
+`npm install`
 
 3. From within the root directory:
 
-``
-npm start
-``
+`npm start`
 
 4. View in browser:
 
-``
-http://localhost:3000
-``
+`http://localhost:3000`
 
 ### Operation
 
@@ -62,18 +55,17 @@ http://localhost:3000
 
 -Clicking any question will expand the panel to reveal it's corresponding answers list.
 
--Vote for the helpfulness of an answer or question by clicking the ``Helpful`` button. Each vote increases the helpful rating by 1. A user can only vote once.
+-Vote for the helpfulness of an answer or question by clicking the `Helpful` button. Each vote increases the helpful rating by 1. A user can only vote once.
 
--Click ``Report`` to notify site admins of an inappropriate answer.
+-Click `Report` to notify site admins of an inappropriate answer.
 
--Want to submit your own question or answer? Click ``Add`` and fill out the required fields in the pop up modal to submit and see it appear in the widget.
+-Want to submit your own question or answer? Click `Add` and fill out the required fields in the pop up modal to submit and see it appear in the widget.
 
--Cant find what you're looking for? Click ``More`` for answers or questions to expand the accordion. When you're finished, tap ``Collapse`` to close the panel.
+-Cant find what you're looking for? Click `More` for answers or questions to expand the accordion. When you're finished, tap `Collapse` to close the panel.
 
 ### Preview
 
 ![Preview](demo/qa-demo.gif)
-
 
 ### Screenshots
 
@@ -83,13 +75,11 @@ http://localhost:3000
 
 ### Testing
 
-This application was tested using snapshots in ___Jest___.
+This application was tested using snapshots in **_Jest_**.
 
 From within the root directory:
 
-``
-npm test
-``
+`npm test`
 
 ### Team Members
 

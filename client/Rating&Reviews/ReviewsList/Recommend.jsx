@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const Recommend = ({recommend}) => {
+const Recommend = ({ recommend }) => {
   if (recommend) {
     return (
       <div>
@@ -9,14 +9,14 @@ const Recommend = ({recommend}) => {
         <br />
         <br />
       </div>
-    )
+    );
   }
 
   return null;
-}
+};
 
 Recommend.propTypes = {
-  recommend: PropTypes.bool.isRequired
-}
+  recommend: PropTypes.bool.isRequired,
+};
 
 export default Recommend;

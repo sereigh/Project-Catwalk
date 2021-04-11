@@ -1,36 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import React from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
 
-import Stars from '../SharedComponents/Stars.jsx';
+import Stars from "../SharedComponents/Stars.jsx";
 
-import ActionButton from './ActionButton.jsx';
-import PreviewImages from './PreviewImages.jsx';
-import ComparisonModal from './ComparisonModal.jsx';
-import dummyStyleData from './dummyStyleData';
+import ActionButton from "./ActionButton.jsx";
+import PreviewImages from "./PreviewImages.jsx";
+import ComparisonModal from "./ComparisonModal.jsx";
+import dummyStyleData from "./dummyStyleData";
 
 class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      window: 'none',
+      window: "none",
       productStyles: dummyStyleData,
       currentStyle: dummyStyleData[0],
       productInfo: {
-        "id": 17810,
-        "campus": null,
-        "name": null,
-        "slogan": null,
-        "description": null,
-        "category": null,
-        "default_price": null,
-        "created_at": null,
-        "updated_at": null,
-        "features": []
+        id: 17810,
+        campus: null,
+        name: null,
+        slogan: null,
+        description: null,
+        category: null,
+        default_price: null,
+        created_at: null,
+        updated_at: null,
+        features: [],
       },
       averageRating: 5,
-      commonFeatures: {}
-    }
+      commonFeatures: {},
+    };
     this.toggleModalWindow = this.toggleModalWindow.bind(this);
   }
 
@@ -43,34 +43,34 @@ class ProductCard extends React.Component {
   getAverageRatings() {
     const { productId } = this.props;
     axios
-    .get(`/reviewdata/${productId}`)
-    .then((response) => {
-      this.convertAverageRateToStarRating(response.data.ratings);
-    })
-    .catch((error) => {
-      console.log('Get product review failed...', error);
-    })
+      .get(`/reviewdata/${productId}`)
+      .then((response) => {
+        this.convertAverageRateToStarRating(response.data.ratings);
+      })
+      .catch((error) => {
+        console.log("Get product review failed...", error);
+      });
   }
 
   setCurrentStyle() {
     const { productStyles } = this.state;
-    const curr = productStyles.filter(style => style['default?']);
+    const curr = productStyles.filter((style) => style["default?"]);
     this.setState({
-      currentStyle: curr[0] || productStyles[0]
+      currentStyle: curr[0] || productStyles[0],
     });
   }
 
   toggleModalWindow() {
     const { window } = this.state;
-    if (window === 'none') {
-      document.body.style.overflow = 'hidden';
+    if (window === "none") {
+      document.body.style.overflow = "hidden";
       this.setState({
-        window: 'block'
+        window: "block",
       });
     } else {
-      document.body.style.overflow = 'scroll';
+      document.body.style.overflow = "scroll";
       this.setState({
-        window: 'none'
+        window: "none",
       });
     }
   }
@@ -81,15 +81,15 @@ class ProductCard extends React.Component {
       .get(`/products/${productId}/styles`)
       .then((response) => {
         this.setState({
-          productStyles: response.data.results
-        })
+          productStyles: response.data.results,
+        });
       })
       .then(() => {
         this.setCurrentStyle();
       })
       .catch((error) => {
-        console.log('Get product style options failed...', error);
-      })
+        console.log("Get product style options failed...", error);
+      });
   }
 
   retrieveProductInfo() {
@@ -98,39 +98,37 @@ class ProductCard extends React.Component {
       .get(`/products/${productId}`)
       .then((response) => {
         this.setState({
-          productInfo: response.data
-        })
+          productInfo: response.data,
+        });
       })
       .then(() => {
-        if(isRelated) {
+        if (isRelated) {
           this.mergeFeatures();
         }
       })
       .catch((error) => {
-        console.log('Get product information failed...', error);
-      })
+        console.log("Get product information failed...", error);
+      });
   }
 
   convertAverageRateToStarRating(ratings) {
     let devider = 0;
     const total = Object.values(ratings).reduce((sum, rating, i) => {
       devider += Number.parseInt(rating, 10);
-      return sum + (rating * (i + 1));
+      return sum + rating * (i + 1);
     }, 0);
     const average = total / devider;
     this.setState({
-      averageRating: average
-    })
+      averageRating: average,
+    });
   }
 
   displayPrice() {
-    const {currentStyle} = this.state;
+    const { currentStyle } = this.state;
     if (currentStyle.sale_price) {
       return (
         <div>
-          <span className="sale-price">
-            {`$${currentStyle.sale_price}   `}
-          </span>
+          <span className="sale-price">{`$${currentStyle.sale_price}   `}</span>
           <span className="original-price">
             {`$${currentStyle.original_price}`}
           </span>
@@ -147,38 +145,59 @@ class ProductCard extends React.Component {
   }
 
   mergeFeatures() {
-    const {productInfo} = this.state;
-    const {selectProductInfo} = this.props;
+    const { productInfo } = this.state;
+    const { selectProductInfo } = this.props;
     const commonFeatures = {};
-    selectProductInfo.features.forEach(item => {
+    selectProductInfo.features.forEach((item) => {
       commonFeatures[item.feature] = {
         value1: item.value,
-        value2: null
+        value2: null,
       };
     });
-    productInfo.features.forEach(item => {
+    productInfo.features.forEach((item) => {
       if (commonFeatures[item.feature]) {
         commonFeatures[item.feature].value2 = item.value;
       } else {
         commonFeatures[item.feature] = {
           value1: null,
-          value2: item.value
+          value2: item.value,
         };
       }
     });
     this.setState({
-      commonFeatures
+      commonFeatures,
     });
   }
 
   render() {
-    const { selectProductInfo, selectAnotherProduct, isRelated, deleteOutfit, productId } = this.props;
-    const { window, productInfo, currentStyle, averageRating, commonFeatures } = this.state;
+    const {
+      selectProductInfo,
+      selectAnotherProduct,
+      isRelated,
+      deleteOutfit,
+      productId,
+    } = this.props;
+    const {
+      window,
+      productInfo,
+      currentStyle,
+      averageRating,
+      commonFeatures,
+    } = this.state;
     return (
       <div className="productCard-container">
         <div className="productCard">
-          <ActionButton toggleModalWindow={this.toggleModalWindow} deleteOutfit={deleteOutfit} isRelated={isRelated} productId={productId} />
-          <PreviewImages currentStyle={currentStyle} selectAnotherProduct={selectAnotherProduct} productId={productInfo.id} />
+          <ActionButton
+            toggleModalWindow={this.toggleModalWindow}
+            deleteOutfit={deleteOutfit}
+            isRelated={isRelated}
+            productId={productId}
+          />
+          <PreviewImages
+            currentStyle={currentStyle}
+            selectAnotherProduct={selectAnotherProduct}
+            productId={productInfo.id}
+          />
           <div className="productInfo">
             <div className="productInfo-name">{productInfo.name}</div>
             <div className="productInfo-category">{productInfo.category}</div>
@@ -186,7 +205,15 @@ class ProductCard extends React.Component {
             <Stars rating={averageRating} />
           </div>
         </div>
-        {isRelated && <ComparisonModal product1={selectProductInfo.name} product2={productInfo.name} commonFeatures={commonFeatures} window={window} toggleModalWindow={this.toggleModalWindow} />}
+        {isRelated && (
+          <ComparisonModal
+            product1={selectProductInfo.name}
+            product2={productInfo.name}
+            commonFeatures={commonFeatures}
+            window={window}
+            toggleModalWindow={this.toggleModalWindow}
+          />
+        )}
       </div>
     );
   }
@@ -195,21 +222,23 @@ class ProductCard extends React.Component {
 ProductCard.propTypes = {
   selectProductInfo: PropTypes.shape({
     name: PropTypes.string,
-    features: PropTypes.arrayOf(PropTypes.shape({
-      feature: PropTypes.string,
-      value: PropTypes.string
-    }))
+    features: PropTypes.arrayOf(
+      PropTypes.shape({
+        feature: PropTypes.string,
+        value: PropTypes.string,
+      })
+    ),
   }),
   productId: PropTypes.number.isRequired,
   selectAnotherProduct: PropTypes.func.isRequired,
   isRelated: PropTypes.bool,
-  deleteOutfit: PropTypes.func
-}
+  deleteOutfit: PropTypes.func,
+};
 
 ProductCard.defaultProps = {
   selectProductInfo: {},
   isRelated: false,
-  deleteOutfit: null
-}
+  deleteOutfit: null,
+};
 
 export default ProductCard;

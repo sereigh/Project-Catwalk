@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import StylePrice from './StylePrice.jsx';
-import StyleCategory from './StyleCategory.jsx';
+import StylePrice from "./StylePrice.jsx";
+import StyleCategory from "./StyleCategory.jsx";
 
 class StyleSelector extends React.Component {
   // selectStyleOptions={selectStyleOptions} viaOvC
@@ -32,7 +32,7 @@ class StyleSelector extends React.Component {
     // <StyleCategory />
     // [] [] [] []
     // [] [] [] []
-    return(
+    return (
       <div className="styleSelector">
         <StylePrice
           selectStyleOptions={selectStyleOptions}
@@ -85,29 +85,34 @@ class StyleSelector extends React.Component {
       </div>
     );
   }
-
 }
 
 StyleSelector.propTypes = {
-  selectStyleOptions: PropTypes.arrayOf(PropTypes.shape({
-    "style_id": PropTypes.number,
-    "name": PropTypes.string,
-    "original_price": PropTypes.string,
-    "sale_price": PropTypes.string,
-    "default?": PropTypes.bool,
-    "photos": PropTypes.arrayOf(PropTypes.shape({
-      "thumbnail_url": PropTypes.string,
-      "url": PropTypes.string
-    })),
-    "skus": PropTypes.objectOf(PropTypes.shape({
-      // "547962": PropTypes.objectOf(PropTypes.shape({
-      "quantity": PropTypes.number,
-      "size": PropTypes.string
-      // }))
-    }))
-  })).isRequired,
+  selectStyleOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      style_id: PropTypes.number,
+      name: PropTypes.string,
+      original_price: PropTypes.string,
+      sale_price: PropTypes.string,
+      "default?": PropTypes.bool,
+      photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          thumbnail_url: PropTypes.string,
+          url: PropTypes.string,
+        })
+      ),
+      skus: PropTypes.objectOf(
+        PropTypes.shape({
+          // "547962": PropTypes.objectOf(PropTypes.shape({
+          quantity: PropTypes.number,
+          size: PropTypes.string,
+          // }))
+        })
+      ),
+    })
+  ).isRequired,
   selectStyleIndex: PropTypes.number.isRequired,
-  setSelectStyleIndex: PropTypes.func.isRequired
-}
+  setSelectStyleIndex: PropTypes.func.isRequired,
+};
 
 export default StyleSelector;

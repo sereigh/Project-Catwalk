@@ -1,33 +1,37 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import RatingBar from './RatingBar.jsx';
+import RatingBar from "./RatingBar.jsx";
 
-const Filter = ({rating, ratingTotal, percent, handleFilter, filtered}) => (
+const Filter = ({ rating, ratingTotal, percent, handleFilter, filtered }) => (
   <div
-    className={filtered ? 'filter filtered' : 'filter'}
-    role='link'
+    className={filtered ? "filter filtered" : "filter"}
+    role="link"
     title={`${ratingTotal} total ${rating} star reviews`}
     tabIndex={0}
-    onClick={() => {handleFilter(rating)}}
-    onKeyPress={() => {handleFilter(rating)}}
+    onClick={() => {
+      handleFilter(rating);
+    }}
+    onKeyPress={() => {
+      handleFilter(rating);
+    }}
   >
-    <span className='star-amounts'>{`${rating} stars`}</span>
+    <span className="star-amounts">{`${rating} stars`}</span>
     <RatingBar percent={percent} />
-    <span className='review-total'>{ratingTotal}</span>
+    <span className="review-total">{ratingTotal}</span>
   </div>
-)
+);
 
 Filter.propTypes = {
   rating: PropTypes.number.isRequired,
   ratingTotal: PropTypes.string,
   percent: PropTypes.number.isRequired,
   handleFilter: PropTypes.func.isRequired,
-  filtered: PropTypes.bool.isRequired
-}
+  filtered: PropTypes.bool.isRequired,
+};
 
 Filter.defaultProps = {
-  ratingTotal: '0'
-}
+  ratingTotal: "0",
+};
 
 export default Filter;

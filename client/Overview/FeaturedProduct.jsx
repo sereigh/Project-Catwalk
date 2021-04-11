@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Stars from '../SharedComponents/Stars.jsx';
+import Stars from "../SharedComponents/Stars.jsx";
 // import FeaturedReviewLink from './FeaturedReviewLink.jsx';
 
 class FeaturedProduct extends React.Component {
@@ -34,7 +34,9 @@ class FeaturedProduct extends React.Component {
             <Stars rating={3.75} />
           </span>
           <span id="scrollToReviews">
-            <a href="http://localhost:3000/#ratings-and-reviews-container">Read all reviews</a>
+            <a href="http://localhost:3000/#ratings-and-reviews-container">
+              Read all reviews
+            </a>
           </span>
           {/* <span id="scrollToReviews" onClick={this.ScrollToReviewSection}>
             Read all reviews
@@ -48,25 +50,26 @@ class FeaturedProduct extends React.Component {
       </div>
     );
   }
-
 }
 
 FeaturedProduct.propTypes = {
   selectProductInfo: PropTypes.shape({
-    "id": PropTypes.number,
-    "campus": PropTypes.string,
-    "name": PropTypes.string,
-    "slogan": PropTypes.string,
-    "description": PropTypes.string,
-    "category": PropTypes.string,
-    "default_price": PropTypes.string,
-    "created_at": PropTypes.string,
-    "updated_at": PropTypes.string,
-    "features": PropTypes.arrayOf(PropTypes.shape({
-      "feature": PropTypes.string,
-      "value": PropTypes.string,
-      "map": PropTypes.node
-    }))
+    id: PropTypes.number,
+    campus: PropTypes.string,
+    name: PropTypes.string,
+    slogan: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.string,
+    default_price: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    features: PropTypes.arrayOf(
+      PropTypes.shape({
+        feature: PropTypes.string,
+        value: PropTypes.string,
+        map: PropTypes.node,
+      })
+    ),
   }).isRequired,
   reviewData: PropTypes.shape({
     product_id: PropTypes.string,
@@ -75,39 +78,39 @@ FeaturedProduct.propTypes = {
       2: PropTypes.string,
       3: PropTypes.string,
       4: PropTypes.string,
-      5: PropTypes.string
+      5: PropTypes.string,
     }),
     recommended: PropTypes.shape({
       false: PropTypes.string,
-      true: PropTypes.string
+      true: PropTypes.string,
     }),
     characteristics: PropTypes.shape({
       Comfort: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
       Fit: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
       Length: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
       Quality: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
       Size: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
       Width: PropTypes.shape({
         id: PropTypes.number,
-        value: PropTypes.string
+        value: PropTypes.string,
       }),
     }),
-  }).isRequired
-}
+  }).isRequired,
+};
 
 export default FeaturedProduct;

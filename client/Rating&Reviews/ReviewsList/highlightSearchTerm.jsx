@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const highlightSearchTerm = (string, searchTerm) => {
-  if (searchTerm === '') {
+  if (searchTerm === "") {
     return string;
   }
 
@@ -15,7 +15,7 @@ const highlightSearchTerm = (string, searchTerm) => {
 
   newString.pop();
 
-  return <>{newString}</>
-}
+  return <>{newString}</>;
+};
 
 export default highlightSearchTerm;
