@@ -75,14 +75,14 @@ Cant find what you're looking for? Click ``More Answered Questions`` or ``More A
 
 ## Preview
 
-![Preview](https://www.dropbox.com/s/dt8fjpi9csv4t17/qa-demo.gif?dl=0)
+![Preview](https://www.dropbox.com/s/dt8fjpi9csv4t17/qa-demo.gif)
 
 
 ## Screenshots
 
-![Questions&Answers Widget](https://www.dropbox.com/s/vzwutn8p4ly2zjc/qaSH.png?dl=0 "Questions&Answers Widget")
-![Search Highlight Feature](https://www.dropbox.com/s/h194f86w3ka6g8e/qaHL.png?dl=0 "Search Highlight Feature")
-![Pop-up Modal](https://www.dropbox.com/s/3h636in122vtxlq/qaM.png?dl=0 "Pop-up Modal")
+![Questions&Answers Widget](https://www.dropbox.com/s/vzwutn8p4ly2zjc/qaSH.png "Questions&Answers Widget")
+![Search Highlight Feature](https://www.dropbox.com/s/h194f86w3ka6g8e/qaHL.png "Search Highlight Feature")
+![Pop-up Modal](https://www.dropbox.com/s/3h636in122vtxlq/qaM.png "Pop-up Modal")
 
 ## Testing
 
@@ -95,14 +95,10 @@ npm test
 
 ## Team Members
 
-- [Krista]
-https://github.com/sereigh [Questions & Answers Service]
-- [Samuel]
-https://github.com/SamuelCho-ubf [Related Products Service]
-- [Laura]
-https://github.com/VioletGlen [Overview & Cart Service]
-- [Kyle]
-https://github.com/KyleJohnson42 [Ratings & Reviews Service]
+- [Krista Brock](https://github.com/sereigh) [Questions & Answers Service]
+- [Samuel Cho](https://github.com/SamuelCho-ubf) [Related Products Service]
+- [Laura Nielsen](https://github.com/VioletGlen) [Overview & Cart Service]
+- [Kyle Johnson](https://github.com/KyleJohnson42) [Ratings & Reviews Service]
 
 ## License 
 
