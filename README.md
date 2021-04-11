@@ -1,11 +1,11 @@
 # Project-Catwalk
 
->An e-commerce API, Redesigned and modernized to increase sales.
+>An e-commerce API, redesigned and modernized to increase traffic and sales.
 
 #### Table of Contents
 
 * [Project-Catwalk](#Project-Catwalk)
-     * [Technoligies](#Technologies)
+     * [Technologies](#Technologies)
      * [Development](#Development)
      * [Installation](#Installation)
      * [Operation](#Operation)
@@ -17,7 +17,7 @@
 
 ### Technologies
 
-|    Stack   | Dependancies | Dev-dependancies |
+|    Stack   | Dependencies | Dev Dependencies |
 |------------|--------------|------------------|
 |    CSS     |    Axios     |       Jest       |
 |    HTML    |   ReactJS    |     axe-core     |
@@ -27,11 +27,11 @@
 
 ### Development
 
-> My role in the remote team that developed Project-Catwalk was re-desiging an implementing the client-facing features of the Questions & Answers Service.
+> My role in the remote team that developed Project-Catwalk was re-designing and implementing the client-facing features of the Questions & Answers Service.
 > 
-There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these datapoints in an accordion style UI to reduce scrolling and support user control. 
+There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these data points in an accordion style UI to reduce scrolling and support user control. 
  
- The panel functionality is controled with a queue-like function I implemented with Javascript, and supported by pure CSS properties and ternary operators that switch element classnames to show or hide information based on user interaction.
+ The panel functionality is controlled with a queue-like function I implemented with *JavaScript*, and supported by pure *CSS* properties and ternary operators that switch element classnames to show or hide information based on user interaction.
  
 >Check out [Operation](#Operation) for an overview of the services' functionality or the [Preview](#Preview) below for a demonstration of all Q & A features. 
 
@@ -39,21 +39,24 @@ There was a unique need to display multiple pieces of relational data in a clean
 
 1. Clone repository.
 2. From within the root directory:
+
 ``
 npm install
 ``
 3. From within the root directory:
+
 ``
 npm start
 ``
 4. View in browser:
+
 ``
 http://localhost:3000
 ``
 
 ### Operation
 
--Type any phrase to search the product's questions and answers for more information. This will highlight the keywords and filter the results. 
+-Type any phrase to search the product's questions and answers for related information. This will highlight the keywords and filter the results. 
 
 -Clicking any question will expand the panel to reveal it's corresponding answers list.
 
@@ -81,6 +84,7 @@ http://localhost:3000
 This application was tested using snapshots in *Jest*.
 
 From within the root directory:
+
 ``
 npm test
 ``
