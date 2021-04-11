@@ -1,21 +1,22 @@
-### Project Catwalk
+# Project-Catwalk
 
-An e-commerce API, Redesigned and modernized to increase sales.
+>An e-commerce API, Redesigned and modernized to increase sales.
 
 ### Table of Contents
 
-1. [Tech-Stack](#Tech-Stack)
-2. [Development](#Development)
-3. [Requirements](#Requirements)
-4. [Installation](#Installation)
-5. [Operation](#Operation)
-6. [Preview](#Preview)
-7. [Screenshots](#Screenshots)
-8. [Testing](#Testing)
-9. [Authors](#Authors)
-10. [License](#License)
+* [Project-Catwalk](#Project-Catwalk)
+     * [Tech Stack](#Tech_Stack)
+     * [Development](#Development)
+     * [Requirements](#Requirements)
+     * [Installation](#Installation)
+     * [Operation](#Operation)
+     * [Preview](#Preview)
+          * [Screenshots](#Screenshots)
+     * [Testing](#Testing)
+     * [Team Members](#Team_Members)
+     * [License](#License)
 
-## Tech-Stack
+#### Tech-Stack
 
 * CSS
 * Jest
@@ -33,12 +34,12 @@ There was a unique need to display multiple pieces of relational data in a clean
  
 I used the airbnb plugin with eslint for readability, and integrated accessibility into the team workflow by using axe-core to maintain productivity and increase reach potential. 
  
- Check out the [Preview](#Preview) below for a demonstration of all Q & A features. 
+>Check out the [Preview](#Preview) below for a demonstration of all Q & A features. 
 
 ## Requirements
 
 * Axios
-* Reactjs
+* ReactJS
 * Expressjs
 * Cloudinary
 
@@ -92,7 +93,7 @@ From within the root directory:
 npm test
 ``
 
-## Authors
+## Team Members
 
 - [Krista]
 https://github.com/sereigh [Questions & Answers Service]
