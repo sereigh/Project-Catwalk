@@ -27,8 +27,8 @@
 ### Development
 
 > My role in the remote team that developed Project-Catwalk was re-designing and implementing the client-facing features of the Questions & Answers Service.
->
-> There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these data points in an accordion style UI to reduce scrolling and support user control.
+
+There was a unique need to display multiple pieces of relational data in a clean and user friendly way. I chose to display these data points in an accordion style UI to reduce scrolling and support user control.
 
 The panel functionality is controlled with a queue-like function I implemented with **_JavaScript_**, and supported by pure **_CSS_** properties and ternary operators that switch element classnames to show or hide information based on user interaction.
 
